@@ -20,20 +20,9 @@ const hangMan = [
 ]
 
 // Import
-// import words from './svenska-ord.json' assert {type: 'json'};
+import words from './svenska-ord.json' assert {type: 'json'};
 
-// Namn-input variabler
-let nameInputDiv = document.querySelector('.player-input')
-let nameInput = document.getElementById('player-inputfield')
-let namePlaceholder = document.getElementById('player-name-placeholder')
 
-// Namninput funktion
-nameInput.addEventListener('keyup', (event) => {
-    if (event.code === 'Enter') {
-        namePlaceholder.innerText = ' ' + nameInput.value
-        nameInput.remove()
-    }
-})
 
 
 // List
@@ -56,7 +45,6 @@ console.log(typeof(wordArray))
 
 
 let answer = '';
-
 let guessedLetters = [];
 
 // Mistakes 
@@ -74,6 +62,27 @@ function randomWord() {
 document.getElementById('maxWrong').innerHTML = maxWrong;
 document.getElementById('mistakes').innerHTML = mistakes;
 //Tangentbord
+
+for(let i = 0; i > answer.lenght; i++){
+const secretWord = document.creatElement('div')
+}
+
+
+// import words from './svenska-ord.json' assert {type: 'json'};
+
+// Namn-input variabler
+let nameInputDiv = document.querySelector('.player-input')
+let nameInput = document.getElementById('player-inputfield')
+let namePlaceholder = document.getElementById('player-name-placeholder')
+
+// Namninput funktion
+nameInput.addEventListener('keyup', (event) => {
+    if (event.code === 'Enter') {
+        namePlaceholder.innerText = ' ' + nameInput.value
+        nameInput.remove()
+    }
+})
+
 
 
 
