@@ -74,11 +74,13 @@ const secretWord = document.creatElement('div')
 let nameInputDiv = document.querySelector('.player-input')
 let nameInput = document.getElementById('player-inputfield')
 let namePlaceholder = document.getElementById('player-name-placeholder')
+let p1name
 
 // Namninput funktion
 nameInput.addEventListener('keyup', (event) => {
     if (event.code === 'Enter') {
         namePlaceholder.innerText = ' ' + nameInput.value
+        p1name = nameInput.value
         nameInput.remove()
     }
 })
