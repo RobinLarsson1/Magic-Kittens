@@ -51,12 +51,19 @@ let guessedLetters = [];
 // Mistakes 
 let mistakes = 0;
 let maxWrong = 6;
+// let secretWord = randomWord()
 
 function randomWord() {
 	answer = wordArray[Math.floor(Math.random() * wordArray.length)];
-	console.log(answer)
+	alert(answer)
 }
-randomWord()
+
+
+//antar gissningar och max antal gissningar
+document.getElementById('maxWrong').innerHTML = maxWrong;
+document.getElementById('mistakes').innerHTML = mistakes;
+//Tangentbord
+
 
 
 
