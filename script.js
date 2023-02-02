@@ -30,12 +30,12 @@ let namePlaceholder = document.getElementById('player-name-placeholder')
 // Namninput funktion
 nameInput.addEventListener('keyup', (event) => {
     if (event.code === 'Enter') {
-        namePlaceholder.innerText = ' ' + nameInput.value
+        namePlaceholder.innerText = nameInput.value
         nameInput.remove()
     }
 })
 
-
+let p1name = nameInput.value
 // List
 const wordArray = [
 'Alfta',
