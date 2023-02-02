@@ -49,7 +49,7 @@
 			<!-- container för spelare -->
 			<div id="player-input" class="player-input">
 				<p>Spelare: </p>
-				<input type="text" id="player-inputfield">
+				<input type="text" class="text-input" id="player-inputfield">
 					<p id="player-name-placeholder"> </p>
 			</div>
 			
@@ -74,22 +74,30 @@
 	<!-- Overlay -->
 	<div class="overlay">
 		<div class="modal start"><h2>Välj läge!</h2>
-			<button class="normal-mode button">Vanligt</button>
-			<button class="pvp-mode button">PvP</button>
+			<div>
+				<button class="normal-mode button">Vanligt</button>
+				<button class="pvp-mode button">PvP</button>
+			</div>
 		</div>
-		
 		<div class="modal enter-name">
-			<h2>Välkommen till hänga gubben!</h2>
-			<input id="name-input" type="text" placeholder="Vänligen skriv in ditt namn" value="" title="Namn här" />
-			<button class="button" id="name-enter-button">Är redo att spela!</button>
+			<div class="title-center">
+				<h2>Välkommen till</h2>
+				<h1 class="title">Hangman</h1>
+			</div>
+			<div>
+				<input id="name-input" class="text-input" type="text" placeholder="Vänligen skriv in ditt namn" value="" title="Namn här" />
+				<button class="button" id="name-enter-button">Är redo att spela!</button>
+			</div>
 		</div>
 		<div class="modal end">
 			<h2>NAMN Du har vunnit!</h2>
 			<p>Antal gissningar: </p>
 			<p>Gissat ord:</p>
 			<p>Vill du starta om spelet?</p>
-			<button class="button">Starta om spelet</button>
-			<button class="button">Visa scoreboarden</button>
+			<div>
+				<button class="button">Starta om spelet</button>
+				<button class="button">Visa scoreboarden</button>
+			</div>
 		</div>
 	</div>
 </body>
