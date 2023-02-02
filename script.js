@@ -78,30 +78,23 @@ nameInput.addEventListener('keyup', (event) => {
         namePlaceholder.innerText = ' ' + nameInput.value
         p1name = nameInput.value
         nameInput.remove()
+        
     }
 })
 
 
-// FUNKTION (ej färdig) - Vid knapptryck visas en del av hangMan-objektet
+// FUNKTION - Vid knapptryck visas en del av hangMan-objektet
 let hangManPicture = document.getElementById('hangman-picture')
 let main = document.getElementById('body')
 
-for (let i = 0; i < 6; i++) {
-    main.addEventListener('keydown', () => {
-        hangManPicture.innerHTML = hangManPicture.innerHTML + hangMan[i]
-    })}
+for (let i = 0; i < 6; i++) {  
+    let wrongGuesses = 0
+        main.addEventListener('keydown', (event) => {
+            hangManPicture.innerHTML = hangManPicture.innerHTML + hangMan[wrongGuesses]
+            wrongGuesses++
+})}
+
     
-        
-
-
-
-
-
-
-
-
-
-
 
 
 /*/ <figure class="">
