@@ -82,6 +82,19 @@ for(let lines = 0; lines < randomWord.length; lines++){
 })
 
 
+document.onkeydown = function(event) {
+    const nyBokstav = document.getElementById("nyBokstav");
+    const pTag = document.createElement("p");
+    const bokstav = document.createTextNode(event.key);
+    pTag.style.fontSize = "24px";
+    pTag.style.color = "green";
+    pTag.style.display = "inline-block";
+    pTag.style.fontWeight = "700";
+    pTag.appendChild(bokstav);
+    nyBokstav.append(pTag);
+  };
+
+
 // import words from './svenska-ord.json' assert {type: 'json'};
 
 // Namn-input variabler

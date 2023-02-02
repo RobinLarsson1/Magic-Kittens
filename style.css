@@ -72,7 +72,7 @@ html, body {
 	background-color: #fffefc;
 	width: 60vw;
 }
-.hero-section {
+.heroSection {
 	padding: 2em;
 	display: flex;
 	flex-direction: column;
