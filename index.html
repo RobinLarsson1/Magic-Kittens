@@ -5,10 +5,78 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title> Hangman - Magic Kittens </title>
+	<!-- Style -->
 	<link rel="stylesheet" href="style.css">
+	<!-- Icons and fonts -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Carter+One&family=Poppins&display=swap" rel="stylesheet">
+
+	<!-- Script -->
 	<script src="script.js" type="module"></script>
 </head>
 <body>
-	
+	<section class="main-section">
+	<section class="center-section">
+		<header id="head">
+			<button>
+				<span class="material-symbols-outlined">
+					scoreboard
+				</span>
+			</button>
+			<h1 class="title">Hangman</h1>
+			<button>
+				<span class="material-symbols-outlined">
+					restart_alt
+				</span>
+			</button>
+		</header>
+		<div id="top-div">
+			
+			<!-- container för spelare -->
+			<div id="player-input">
+				<p>Spelare: </p>
+			</div>
+			
+			<!-- container för antal gissningar -->
+			<div class="number-of-guesses">
+				<p id="gissningar">Antal Gissningar: 0 av 6</p>
+			</div>
+			
+		</div>
+		<section class="hero-section">
+			<!-- gubben här -->
+			<figure class="gubben">
+				<svg width="501" height="565" viewBox="0 0 501 565" fill="none" xmlns="http://www.w3.org/2000/svg">
+					
+				</svg>
+			</figure>
+			<p id="correct-letters">Bokstäver: _ _ _ _ _ _ </p>
+			<p id="guessed-letters"> Gissningar: </p>
+		</section>
+	</section>
+</section>
+	<!-- Overlay -->
+	<div class="overlay">
+		<div class="modal start"><h2>Välj vilket läge du vill spela?</h2>
+			<button class="normal-mode">Vanligt</button>
+			<button class="pvp-mode">PvP</button>
+		</div>
+		
+		<div class="modal enter-name">
+			<h2>Välkommen till hänga gubben!</h2>
+			<input type="text" placeholder="Vänligen skriv in ditt namn" value="" title="Namn här" />
+			<button>Är redo att spela!</button>
+		</div>
+		<div class="modal end">
+			<h2>Du har vunnit!</h2>
+			<p>Antal gissningar: </p>
+			<p>Gissat ord:</p>
+			<p>Vill du starta om spelet?</p>
+			<button>Starta om spelet</button>
+			<button>Visa scoreboarden</button>
+		</div>
+	</div>
 </body>
 </html>

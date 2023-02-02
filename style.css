@@ -1,0 +1,64 @@
+/* Body */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html, body {
+	background-color: #bae1ff;
+	width: 100vw;
+	height: 100vh;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Head */
+#head {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding: 1em 1em 0 1em;
+}
+.title {
+	font-size: 36px;
+    font-family: 'Carter One', cursive;
+}
+
+/* Sections */
+.main-section {
+	display: flex;
+	justify-content: center;
+}
+.center-section {
+	border-radius: 1em;
+	background-color: #fffefc;
+	width: 60vw;
+}
+.hero-section {
+	padding: 2em;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+#top-div {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding: 1em;
+}
+#top-div, p {
+	font-size: 20px;
+}
+#correct-letters, #guessed-letters {
+	font-size: 20px;
+	padding: 1em;
+}
+#guessed-letters {
+	color: gray;
+}
+
+.gubben {
+    width: 501px;
+    height: 565px;
+}
