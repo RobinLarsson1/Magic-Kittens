@@ -20,9 +20,20 @@ const hangMan = [
 ]
 
 // Import
-import words from './svenska-ord.json' assert {type: 'json'};
+// import words from './svenska-ord.json' assert {type: 'json'};
 
+// Namn-input variabler
+let nameInputDiv = document.querySelector('.player-input')
+let nameInput = document.getElementById('player-inputfield')
+let namePlaceholder = document.getElementById('player-name-placeholder')
 
+// Namninput funktion
+nameInput.addEventListener('keyup', (event) => {
+    if (event.code === 'Enter') {
+        namePlaceholder.innerText = ' ' + nameInput.value
+        nameInput.remove()
+    }
+})
 
 
 // List

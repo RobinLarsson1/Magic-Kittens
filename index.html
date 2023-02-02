@@ -14,7 +14,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Carter+One&family=Poppins&display=swap" rel="stylesheet">
 
 	<!-- Script -->
-	<script type="module" src="script.js"></script>
+	<script src="script.js" defer></script>
 </head>
 <body>
 	<section class="main-section">
@@ -47,8 +47,10 @@
 		<div id="top-div">
 			
 			<!-- container för spelare -->
-			<div id="player-input">
+			<div id="player-input" class="player-input">
 				<p>Spelare: </p>
+				<input type="text" id="player-inputfield">
+					<p id="player-name-placeholder"> </p>
 			</div>
 			
 			<!-- container för antal gissningar -->
