@@ -20,7 +20,7 @@ const hangMan = [
 ]
 
 // Import
-import words from './svenska-ord.json' assert {type: 'json'};
+// import words from './svenska-ord.json' assert {type: 'json'};
 
 
 
