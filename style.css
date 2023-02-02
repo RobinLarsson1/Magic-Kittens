@@ -79,7 +79,12 @@ html, body {
 	justify-content: center;
 	align-items: center;
 }
-
+#player-input {
+    display: flex;
+}
+#player-inputfield, #player-name-placeholder {
+    margin-left: 0.5em;
+}
 #top-div {
 	display: flex;
 	flex-direction: row;

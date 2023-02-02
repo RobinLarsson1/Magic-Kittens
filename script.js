@@ -43,30 +43,43 @@ const wordArray = [
 
 console.log(typeof(wordArray))
 
-let answer = '';
 let guessedLetters = [];
 
 // Mistakes 
 let mistakes = 0;
 let maxWrong = 6;
-// let secretWord = randomWord()
 
-function randomWord() {
-	answer = wordArray[Math.floor(Math.random() * wordArray.length)];
-	alert(answer)
-}
+const randomWords = wordArray
+let randomWord = randomWords[Math.floor(Math.random() * wordArray.length)];
+console.log(randomWord)
 
+let answer = randomWord;
 
 //antar gissningar och max antal gissningar
 document.getElementById('maxWrong').innerHTML = maxWrong;
 document.getElementById('mistakes').innerHTML = mistakes;
+
 //Tangentbord
+let keyboard = document.querySelector('body')
+let underScore = document.getElementById('correctLetters')
+//skapa understrecken
+for(let lines = 0; lines < randomWord.length; lines++){
 
-// for(let i = 0; i > answer.lenght; i++){
-// const secretWord = document.creatElement('div')
-// }
-// secretWord.append()
-
+    const underStreck = document.createElement('div')
+    underStreck.style.display = "inline-block";
+    underStreck.style.width = "2em";
+    underStreck.style.height = "0.1em";
+    underStreck.style.background = "#000000";
+    underStreck.style.margin = "0.5em";
+    underStreck.style.color = "black";
+    
+    underScore.append(underStreck)
+    
+}
+//eventlyssnare för att få tangentbord att fungera
+    keyboard.addEventListener('keydown', event => {
+	console.log('Key down: ', event.key, event.target.value)
+})
 
 
 // import words from './svenska-ord.json' assert {type: 'json'};
