@@ -20,11 +20,30 @@ const hangMan = [
 ]
 
 // Import
-import { data } from './svenska-ord.json'
+import words from './svenska-ord.json' assert {type: 'json'};
+
+
 
 
 // List
-const wordArray = JSON.parse(data);
+const wordArray = [
+'Alfta',
+'Alingsås',
+'Almunge',
+'Alnö',
+'Alstermo',
+'Alunda',
+'Alvesta',
+'Anderstorp',
+'Aneby',
+'Angered',
+'Arboga',
+'Arbrå'
+]
+
+console.log(typeof(wordArray))
+
+
 let answer = '';
 
 let guessedLetters = [];
@@ -33,7 +52,11 @@ let guessedLetters = [];
 let mistakes = 0;
 let maxWrong = 6;
 
-
+function randomWord() {
+	answer = wordArray[Math.floor(Math.random() * wordArray.length)];
+	console.log(answer)
+}
+randomWord()
 
 
 

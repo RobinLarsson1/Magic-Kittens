@@ -14,23 +14,35 @@
 	<link href="https://fonts.googleapis.com/css2?family=Carter+One&family=Poppins&display=swap" rel="stylesheet">
 
 	<!-- Script -->
-	<script src="script.js" type="module"></script>
+	<script type="module" src="script.js"></script>
 </head>
 <body>
 	<section class="main-section">
 	<section class="center-section">
 		<header id="head">
-			<button>
-				<span class="material-symbols-outlined">
-					scoreboard
-				</span>
-			</button>
 			<h1 class="title">Hangman</h1>
-			<button>
-				<span class="material-symbols-outlined">
-					restart_alt
-				</span>
-			</button>
+			<div class="header-buttons">
+				<button class="header-button" title="Starta om spelet">
+					<span class="material-symbols-outlined">
+						restart_alt
+					</span>
+				</button>
+				<button class="header-button" title="Ändra läge">
+					<span class="material-symbols-outlined">
+						sports_score
+					</span>
+				</button>
+				<button class="header-button" title="Visa scoreboarden">
+					<span class="material-symbols-outlined">
+						scoreboard
+					</span>
+				</button>
+				<button class="header-button" title="Ändra spelare">
+					<span class="material-symbols-outlined">
+						person
+					</span>
+				</button>
+			</div>
 		</header>
 		<div id="top-div">
 			
@@ -59,23 +71,23 @@
 </section>
 	<!-- Overlay -->
 	<div class="overlay">
-		<div class="modal start"><h2>Välj vilket läge du vill spela?</h2>
-			<button class="normal-mode">Vanligt</button>
-			<button class="pvp-mode">PvP</button>
+		<div class="modal start"><h2>Välj läge!</h2>
+			<button class="normal-mode button">Vanligt</button>
+			<button class="pvp-mode button">PvP</button>
 		</div>
 		
 		<div class="modal enter-name">
 			<h2>Välkommen till hänga gubben!</h2>
-			<input type="text" placeholder="Vänligen skriv in ditt namn" value="" title="Namn här" />
-			<button>Är redo att spela!</button>
+			<input id="name-input" type="text" placeholder="Vänligen skriv in ditt namn" value="" title="Namn här" />
+			<button class="button" id="name-enter-button">Är redo att spela!</button>
 		</div>
 		<div class="modal end">
-			<h2>Du har vunnit!</h2>
+			<h2>NAMN Du har vunnit!</h2>
 			<p>Antal gissningar: </p>
 			<p>Gissat ord:</p>
 			<p>Vill du starta om spelet?</p>
-			<button>Starta om spelet</button>
-			<button>Visa scoreboarden</button>
+			<button class="button">Starta om spelet</button>
+			<button class="button">Visa scoreboarden</button>
 		</div>
 	</div>
 </body>

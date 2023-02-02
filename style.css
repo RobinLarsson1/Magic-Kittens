@@ -12,7 +12,7 @@ html, body {
     font-family: 'Poppins', sans-serif;
 }
 
-/* Head */
+/* Header */
 #head {
 	display: flex;
 	flex-direction: row;
@@ -22,6 +22,44 @@ html, body {
 .title {
 	font-size: 36px;
     font-family: 'Carter One', cursive;
+}
+
+
+/* Buttons and inputs */
+.header-button {
+    border-radius: 7.5px;
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #e4e1db;
+    background-color: #f5f2eb;
+    outline: none;
+    margin: 0px 7.5px;
+}
+
+.header-button:hover {
+    border: 1px solid #b6b2ac;
+    background-color: #e2dfd8;
+}
+
+.button {
+    border-radius: 7.5px;
+    padding: 7.5px;
+    text-align: center;
+    border: 1px solid #e4e1db;
+    background-color: #f5f2eb;
+    outline: none;
+}
+
+.button:hover {
+    border: 1px solid #b6b2ac;
+    background-color: #e2dfd8;
+}
+
+#name-input {
+    padding: 7.5px;
+    border-radius: 7.5px;
+    border: 1px solid #e4e1db;
+    background-color: #f5f2eb;
 }
 
 /* Sections */
@@ -41,6 +79,7 @@ html, body {
 	justify-content: center;
 	align-items: center;
 }
+
 #top-div {
 	display: flex;
 	flex-direction: row;
@@ -61,4 +100,39 @@ html, body {
 .gubben {
     width: 501px;
     height: 565px;
+}
+
+/* Overlays */
+.overlay {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, .65);
+    position: absolute;
+    top: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+/* Modal */
+.modal {
+    width: 35vw;
+    height: 50vh;
+    background-color: #fffefc;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    justify-items: stretch;
+    align-content: space-around;
+    align-items: flex-start;
+    padding: 25px;
+    flex-flow: column wrap;
+}
+
+.modal.start {
+}
+
+.modal.end {
 }
