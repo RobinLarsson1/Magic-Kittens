@@ -43,7 +43,6 @@ const wordArray = [
 
 console.log(typeof(wordArray))
 
-
 let answer = '';
 let guessedLetters = [];
 
@@ -63,9 +62,11 @@ document.getElementById('maxWrong').innerHTML = maxWrong;
 document.getElementById('mistakes').innerHTML = mistakes;
 //Tangentbord
 
-for(let i = 0; i > answer.lenght; i++){
-const secretWord = document.creatElement('div')
-}
+// for(let i = 0; i > answer.lenght; i++){
+// const secretWord = document.creatElement('div')
+// }
+// secretWord.append()
+
 
 
 // import words from './svenska-ord.json' assert {type: 'json'};
