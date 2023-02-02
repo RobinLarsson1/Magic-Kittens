@@ -22,6 +22,11 @@
 		<header id="head">
 			<h1 class="title">Hangman</h1>
 			<div class="header-buttons">
+				<button class="header-button" title="Om spelet">
+					<span class="material-symbols-outlined">
+						info
+					</span>
+				</button>
 				<button class="header-button" title="Starta om spelet">
 					<span class="material-symbols-outlined">
 						restart_alt
@@ -73,7 +78,8 @@
 </section>
 	<!-- Overlay -->
 	<div class="overlay">
-		<div class="modal start"><h2>Välj läge!</h2>
+		<!-- Modals -->
+		<div class="modal mode"><h2>Välj läge!</h2>
 			<div>
 				<button class="normal-mode button">Vanligt</button>
 				<button class="pvp-mode button">PvP</button>
@@ -98,6 +104,10 @@
 				<button class="button">Starta om spelet</button>
 				<button class="button">Visa scoreboarden</button>
 			</div>
+		</div>
+		<div class="modal about">
+			<h1 class="title">Hangman</h1>
+			<p>Gjord av: Robin, Victor L, Victor B</p>
 		</div>
 	</div>
 </body>
