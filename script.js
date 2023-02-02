@@ -41,25 +41,26 @@ console.log(typeof(wordArray))
 
 let guessedLetters = [];
 
-// Mistakes 
+// Antal felgissningar
 let mistakes = 0;
 let maxWrong = 6;
-
-const randomWords = wordArray
-let randomWord = randomWords[Math.floor(Math.random() * wordArray.length)];
-console.log(randomWord)
-
-let answer = randomWord;
-
-//antar gissningar och max antal gissningar
 document.getElementById('maxWrong').innerHTML = maxWrong;
 document.getElementById('mistakes').innerHTML = mistakes;
+
+//Slumpar ut ett ord i wordArray
+const randomWords = wordArray
+let secretWord = randomWords[Math.floor(Math.random() * wordArray.length)];
+console.log(secretWord)
+
+//Ordet som valdes
+let answer = secretWord;
 
 //Tangentbord
 let keyboard = document.querySelector('body')
 let underScore = document.getElementById('correctLetters')
-//skapa understrecken
-for(let lines = 0; lines < randomWord.length; lines++){
+
+//Skapar understrecken
+for(let lines = 0; lines < secretWord.length; lines++){
 
     const underStreck = document.createElement('div')
     underStreck.style.display = "inline-block";
@@ -70,7 +71,7 @@ for(let lines = 0; lines < randomWord.length; lines++){
     underStreck.style.color = "black";
     
     underScore.append(underStreck)
-    
+
 }
 //eventlyssnare för att få tangentbord att fungera
     keyboard.addEventListener('keydown', event => {

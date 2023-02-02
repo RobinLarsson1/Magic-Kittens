@@ -72,7 +72,7 @@ html, body {
 	background-color: #fffefc;
 	width: 60vw;
 }
-.hero-section {
+.heroSection {
 	padding: 2em;
 	display: flex;
 	flex-direction: column;
@@ -90,6 +90,7 @@ html, body {
 	flex-direction: row;
 	justify-content: space-between;
 	padding: 1em;
+    
 }
 #top-div, p {
 	font-size: 20px;
@@ -100,6 +101,9 @@ html, body {
 }
 #guessed-letters {
 	color: gray;
+}
+#svar {
+    padding-top: 3em;
 }
 
 .gubben {
