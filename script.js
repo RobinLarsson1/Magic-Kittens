@@ -53,7 +53,6 @@ let underScore = document.getElementById('correctLetters')
 
 //funtion för att printa bosktäverna
 
-
 let wrongGuesses = 0
 document.onkeydown = function(event) {
     let charArray = secretWord.split("");
@@ -74,6 +73,12 @@ document.onkeydown = function(event) {
     }}
 
 
+
+    //Reset-knapp
+    let resetButton = document.getElementById('reset-game-button')
+    resetButton.addEventListener('click', () => {
+        location.reload();
+    })
 
 
 
