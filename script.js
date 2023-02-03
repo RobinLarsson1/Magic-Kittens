@@ -72,9 +72,9 @@ document.onkeydown = function(event) {
     })} else {
         while (mistakes < maxWrong) {
             mistakes++
-            wrongGuesses++
             document.getElementById('mistakes').innerText = mistakes
             hangManPicture.innerHTML = hangManPicture.innerHTML + hangMan[wrongGuesses]
+            wrongGuesses++
             break
         }
 
