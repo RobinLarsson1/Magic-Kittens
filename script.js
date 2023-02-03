@@ -103,7 +103,17 @@ for (let i = 0; i < 6; i++) {
             wrongGuesses++
 })}
 
-    
+
+// FUNKTION - Visuell uppdatering av felgissningar 
+//  BEHÖVER KOPPLAS IHOP
+main.addEventListener('keydown', () =>{
+    for ( let i = 0; i < maxWrong; i++ ) {
+            mistakes = mistakes + 1
+            document.getElementById('mistakes').innerText = mistakes
+            console.log('Mistake #' + mistakes)
+            break
+        }
+    })
 
 
 /*/  <figure class="">
