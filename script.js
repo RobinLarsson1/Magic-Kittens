@@ -55,8 +55,6 @@ let underScore = document.getElementById('correctLetters')
 })
 
 //funtion för att printa bosktäverna
-
-
 let wrongGuesses = 0
 document.onkeydown = function(event) {
     let charArray = secretWord.split("");
@@ -72,18 +70,14 @@ document.onkeydown = function(event) {
     })} else {
         while (mistakes < maxWrong) {
             mistakes++
-            wrongGuesses++
             document.getElementById('mistakes').innerText = mistakes
             hangManPicture.innerHTML = hangManPicture.innerHTML + hangMan[wrongGuesses]
+            wrongGuesses++
             break
         }
+        
 
     }}
-
-
-
-
-
 
 
 
@@ -106,9 +100,14 @@ nameInput.addEventListener('keyup', (event) => {
     }
 })
 
-
-
-
+// FUNKTION - generera fram spelarnamn samt resultat
+let playerResult = {}
+function generatePlayerResult() {
+    playerResult.player = p1name
+    playerResult.score = `${mistakes} of ${maxWrong}`
+    return playerResult
+}
+generatePlayerResult()
 
 
 
