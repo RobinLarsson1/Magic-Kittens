@@ -84,8 +84,6 @@ nameInput.addEventListener('keyup', (event) => {
     }
 })
 
-
-
 // Functionality for buttons
 // Alla knappar
 const headerButtonList = {
@@ -146,7 +144,7 @@ headerButtons.forEach(element => {
 
             // Byta spelare
         } else if (element == headerButtonList.changePlayer) {
-            overlayAddHidden()
+            overlayScreenToggle()
             modalPanels.changePlayer.classList.toggle('hidden')
         }
     })
@@ -161,6 +159,11 @@ closeButtonsForModals.forEach(element => {
         if(element == modalCloseButtons.aboutModal) {
             overlayAddHidden()
             modalPanels.about.classList.add('hidden')
+        }
+
+        else if (element == modalCloseButtons.changePlayerModal) {
+            overlayAddHidden()
+            modalPanels.changePlayer.classList.add('hidden')
         }
     })
 })

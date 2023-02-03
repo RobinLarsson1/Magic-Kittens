@@ -70,6 +70,12 @@ html, body {
     background-color: #e2dfd8;
 }
 
+.button.close {
+    display: flex;
+    position: relative;
+    align-self: flex-end;
+}
+
 .text-input {
     padding: 7.5px;
     border-radius: 7.5px;
@@ -143,15 +149,15 @@ html, body {
 
 /* Modal */
 .modal {
-    max-width: 30vw;
-    min-width: 25vw;
+    max-width: 60vw;
+    min-width: 30vw;
     height: 28vh;
     background-color: #fffefc;
     border-radius: 15px;
     display: flex;
-    justify-content: center;
-    align-content: space-evenly;
-    align-items: flex-start;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: center;
     padding: 25px;
     flex-flow: column wrap;
     box-shadow: var(--shadow-low);
