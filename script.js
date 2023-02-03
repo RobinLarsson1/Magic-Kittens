@@ -68,6 +68,12 @@ document.onkeydown = function(event) {
     });
 }
 
+//resetknapp
+let resetButton = document.getElementById('reset')
+resetButton.addEventListener('click', () => {
+    location.reload();
+})
+
 }
 
 // import words from './svenska-ord.json' assert {type: 'json'};
