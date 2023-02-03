@@ -106,8 +106,9 @@ html, body {
 	background-color: #fffefc;
 	width: 60vw;
     box-shadow: var(--shadow-medium);
+    margin-top: max(18px)
 }
-.heroSection {
+.hero-section {
 	padding: 2em;
 	display: flex;
 	flex-direction: column;
