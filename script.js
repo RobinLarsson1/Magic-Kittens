@@ -67,22 +67,17 @@ document.onkeydown = function(event) {
             dashes[index].innerText = char;
         }
     })} else {
-        wrongGuesses++
-        document.getElementById('mistakes').innerText = mistakes
-        mistakes = mistakes + 1
-        hangManPicture.innerHTML = hangManPicture.innerHTML + hangMan[wrongGuesses]
+        while (mistakes < maxWrong) {
+            mistakes++
+            document.getElementById('mistakes').innerText = mistakes
+            hangManPicture.innerHTML = hangManPicture.innerHTML + hangMan[wrongGuesses]
+            wrongGuesses++
+            break
+        }
+        if (mistakes == maxWrong) {
+            gameOverModalOverlay()
+        }
     }}
-
-
-
-
-
-
-
-
-
-
-
 
 
 // Namn-input variabler
@@ -114,7 +109,8 @@ const headerButtonList = {
 const modalPanels = {
     enterName: document.querySelector('#enter-name-modal'),
     gameMode: document.querySelector('#gamemode-modal'),
-    ending: document.querySelector('#ending-modal'),
+    endLose: document.querySelector('#lose-modal'),
+    endWin: document.querySelector('#win-modal'),
     about: document.querySelector('#about-modal'),
     changePlayer: document.querySelector('#change-player-modal')
 }
@@ -124,9 +120,6 @@ const modalCloseButtons = {
     aboutModal: document.querySelector('#about-modal-close-button'),
     changePlayerModal: document.querySelector('#change-player-modal-close-button')
 }
-
-
-
 
 // Selecta overlayen för modals
 const overlay = document.querySelector('.overlay')
@@ -174,16 +167,27 @@ headerButtons.forEach(element => {
 // Denna koillar till om man trycker på en stäng av knapp
 closeButtonsForModals.forEach(element => {
     element.addEventListener('click', () => {
+                // När man trycker på stäng av knappen för om spelet modalen
+                if(element == modalCloseButtons.aboutModal) {
+                    overlayAddHidden()
+                    modalPanels.about.classList.add('hidden')
+                }
+        
+                else if (element == modalCloseButtons.changePlayerModal) {
+                    overlayAddHidden()
+                    modalPanels.changePlayer.classList.add('hidden')
+                }
+            })
+        })
 
-        // När man trycker på stäng av knappen för om spelet modalen
-        if(element == modalCloseButtons.aboutModal) {
-            overlayAddHidden()
-            modalPanels.about.classList.add('hidden')
-        }
 
-        else if (element == modalCloseButtons.changePlayerModal) {
-            overlayAddHidden()
-            modalPanels.changePlayer.classList.add('hidden')
-        }
-    })
-})
+// Om man har gissat max antal gånger
+const bodyElem = document.body;
+const gameOverModalOverlay = () => {
+    bodyElem.classList.add('game-over')
+    overlay.classList.remove('hidden')
+    modalPanels.endLose.classList.remove('hidden')
+}
+// Displayar Secretword i gameover splashscreenen
+const showSecretWord = document.querySelector('#correct-answer')
+showSecretWord.textContent = secretWord;
