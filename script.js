@@ -75,10 +75,12 @@ document.onkeydown = function(event) {
             dashes[index].innerText = char.toUpperCase();
             found = true;
         }
-    })}  if (found == false && !guessedLetters.includes(event.key)) {
+    })}  else {
+    if (found == false && !guessedLetters.includes(event.key)) {
         wrongLetters.innerText += event.key.toLocaleUpperCase() + ', ';
         guessedLetters.push(event.key); 
-    }  while ((mistakes < maxWrong) && (disabledKeys.includes(event.key) == false)) {
+    }  
+    while ((mistakes < maxWrong) && (disabledKeys.includes(event.key) == false)) {
         mistakes++
         document.getElementById('mistakes').innerText = mistakes
         hangManPicture.innerHTML = hangManPicture.innerHTML + hangMan[wrongGuesses]
@@ -89,7 +91,7 @@ document.onkeydown = function(event) {
     } else if (answerArray.length = secretWord.length-1) {
         // VINST HÄR !
     }
-}
+}}
     
 
 // Namn-input variabler
