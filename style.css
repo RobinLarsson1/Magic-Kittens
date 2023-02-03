@@ -124,6 +124,7 @@ html, body {
 /* Hide elements */
 .hidden {
     visibility: hidden;
+    display: none !important;
 }
 
 /* Overlay */

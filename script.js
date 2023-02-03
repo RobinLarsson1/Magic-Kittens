@@ -23,8 +23,6 @@ const hangMan = [
 // import words from './svenska-ord.json' assert {type: 'json'};
 
 
-
-
 // List
 const wordArray = [
 'Alfta',
@@ -88,8 +86,78 @@ nameInput.addEventListener('keyup', (event) => {
 
 
 
+// Functionality for buttons
+
+// Alla knappar
+const headerButtonList = {
+    aboutGame: document.querySelector('#about-game-button'),
+    resetGame: document.querySelector('#reset-game-button'),
+    changeGameMode: document.querySelector('#change-gamemode-button'),
+    showScoreboard: document.querySelector('#show-scoreboard-button'),
+    changePlayer: document.querySelector('#change-player-button')
+}
+
+// Alla modals
+const modalPanels = {
+    enterName: document.querySelector('#enter-name-modal'),
+    gameMode: document.querySelector('#gamemode-modal'),
+    ending: document.querySelector('#ending-modal'),
+    about: document.querySelector('#about-modal'),
+    changePlayer: document.querySelector('#change-player-modal')
+}
+
+// En knapp för varje modal för att stänga (toggla) av modalen och overlayen
+const modalCloseButtons = {
+    aboutModal: document.querySelector('#about-modal-close-button'),
+    changePlayerModal: document.querySelector('#change-player-modal-close-button')
+}
 
 
+// Selecta overlayen för modals
+const overlay = document.querySelector('.overlay')
+
+
+// Används för att selecta alla knappar med den klassen
+const headerButtons = document.querySelectorAll('.header-button')
+
+
+// Används för att toggla overlayen
+const overlayScreenToggle = () => {
+overlay.classList.toggle('hidden')
+}
+
+const overlayAddHidden = () => {
+    overlay.classList.add('hidden')
+}
+
+
+// Denna kollar till om man trycker på en specifik knapp
+headerButtons.forEach(element => {
+    element.addEventListener('click', () => {
+
+        // Om spelet
+        if(element == headerButtonList.aboutGame) {
+            overlayScreenToggle()
+            modalPanels.about.classList.toggle('hidden')
+
+            modalCloseButtons.aboutModal.addEventListener('click', () => {
+                overlayAddHidden()
+                modalPanels.about.classList.add('hidden')
+            })
+
+            // Byta spelläge
+        } else if (element == headerButtonList.changeGameMode) {
+            overlayScreenToggle()
+            modalPanels.gameMode.classList.toggle('hidden')
+
+            // Byta spelare
+        } else if (element == headerButtonList.changePlayer) {
+            overlayAddHidden()
+            modalPanels.changePlayer.classList.toggle('hidden')
+        }
+    })
+    
+})
 
 
 {/* <figure class="">
