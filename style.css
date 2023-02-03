@@ -82,6 +82,18 @@ html, body {
 	justify-content: center;
 	align-items: center;
 }
+#reset {
+    background-color:  #bae1ff;
+    font-size: 20px;
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 7.5px;
+    cursor: pointer;
+}
+#reset:hover {
+    background-color: red;
+
+}
 #player-input {
     display: flex;
 }
