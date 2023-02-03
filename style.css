@@ -25,6 +25,10 @@ html, body {
     font-family: 'Poppins', sans-serif;
 }
 
+.game-over {
+    background-color: #C70039;
+}
+
 /* Header */
 #head {
 	display: flex;

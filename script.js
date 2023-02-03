@@ -195,3 +195,4 @@ closeButtonsForModals.forEach(element => {
         }
     })
 })
+
