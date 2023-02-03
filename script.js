@@ -18,7 +18,7 @@ const hangMan = [
 ]
 
 
-console.log(typeof(wordArray))
+
 
 let guessedLetters = [];
 
