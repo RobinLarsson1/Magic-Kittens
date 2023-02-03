@@ -18,25 +18,6 @@ const hangMan = [
 ]
 
 
-
-
-
-// List
-const wordArray = [
-'Alfta',
-'Alingsås',
-'Almunge',
-'Alnö',
-'Alstermo',
-'Alunda',
-'Alvesta',
-'Anderstorp',
-'Aneby',
-'Angered',
-'Arboga',
-'Arbrå'
-]
-
 console.log(typeof(wordArray))
 
 let guessedLetters = [];
