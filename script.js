@@ -82,7 +82,7 @@ document.onkeydown = function(event) {
         if (mistakes == maxWrong) {
             gameOverModalOverlay()
         } else if (answerArray.length = secretWord.length-1) {
-            // VINST HÄR !
+            gameWinModalOverlay()
         }
     }}
 
