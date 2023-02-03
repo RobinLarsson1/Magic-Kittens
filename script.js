@@ -193,3 +193,11 @@ const gameOverModalOverlay = () => {
 // Displayar Secretword i gameover splashscreenen
 const showSecretWord = document.querySelector('#correct-answer')
 showSecretWord.textContent = secretWord;
+
+// När man har vunnit spelet
+const gameWinModalOverlay = () => {
+    bodyElem.classList.add('game-won')
+    overlay.classList.remove('hidden')
+    modalPanels.endWin.classList.remove('hidden')
+}
+
