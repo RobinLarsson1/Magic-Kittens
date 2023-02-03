@@ -132,7 +132,7 @@ const modalCloseButtons = {
 const overlay = document.querySelector('.overlay')
 
 
-    
+
 
 // Används för att selecta alla knappar med den klassen
 const headerButtons = document.querySelectorAll('.header-button')
