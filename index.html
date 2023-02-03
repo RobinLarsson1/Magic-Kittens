@@ -105,7 +105,16 @@
 				<button class="pvp-mode button">PvP</button>
 			</div>
 		</div>
-		<div id="ending-modal" class="modal hidden">
+		<div id="lose-modal" class="modal hidden">
+			<h2>Du har förlorat!</h2>
+			<p>Det rätta ordet var: <span id="correct-answer"></span></p>
+			<p>Vill du starta om spelet?</p>
+			<div>
+				<button id="reset">Starta om spelet</button>
+				<button class="button">Visa scoreboarden</button>
+			</div>
+		</div>
+		<div id="win-modal" class="modal hidden">
 			<h2>NAMN Du har vunnit!</h2>
 			<p>Antal gissningar: </p>
 			<p>Gissat ord:</p>
