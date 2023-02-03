@@ -65,18 +65,10 @@ document.onkeydown = function(event) {
 
 //resetknapp
 let resetButton = document.getElementById('reset')
-<<<<<<< HEAD
 
 resetButton.addEventListener('click', () => {
     location.reload();
 })
-=======
-resetButton.addEventListener('click', () => {
-    location.reload();
-})
-
-}
->>>>>>> dev_robin
 
 // import words from './svenska-ord.json' assert {type: 'json'};
 
