@@ -102,6 +102,10 @@ html, body {
 #guessed-letters {
 	color: gray;
 }
+.understreck-div {
+    margin-top: 1em;
+}
+
 #svar {
     padding-top: 3em;
 }
@@ -145,3 +149,28 @@ html, body {
 
 .modal.end {
 }
+
+
+@media (max-width: 900px) {
+    .center-section {
+        width: 80%;
+    }
+
+    #head {
+        /* flex-direction: column; */
+    }
+
+    #top-div {
+        flex-direction: column;
+    }
+    
+    #player-input {
+        flex-direction: column;
+    }
+
+    #player-inputfield {
+        width: 50%;
+    }
+}
+
+/* @media (max-width: 900px) { */

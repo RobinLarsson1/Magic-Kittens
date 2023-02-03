@@ -45,10 +45,11 @@ for(let lines = 0; lines < secretWord.length; lines++){
 
     const underStreck = document.createElement('div')
     underStreck.style.display = "inline-block";
+    underStreck.className = 'understreck-div'
     underStreck.style.width = "2em";
     underStreck.style.height = "0.1em";
     underStreck.style.background = "#000000";
-    underStreck.style.margin = "0.5em";
+    underStreck.style.margin = "1em 0.5em 1em 0.5em";
     underStreck.style.color = "black";
     
     underScore.append(underStreck)
