@@ -62,6 +62,9 @@ document.onkeydown = function(event) {
     let charArray = secretWord.split("");
     let dashes = document.getElementsByClassName("dashes");
     let hangManPicture = document.getElementById('hangman-picture')
+    let wrongLetters = document.getElementById('guessed-letters')
+    let guessedLetters = wrongLetters.innerText.split(/\s*/);
+    let found = false;
     if (charArray.includes(event.key)) {
         charArray.forEach((char, index) => {
           //om bostäverna är samma som trycks
@@ -69,23 +72,25 @@ document.onkeydown = function(event) {
             //ersätt understreck med bokstav
             dashes[index].innerText = char;
             answerArray.push(char)
+            dashes[index].innerText = char.toUpperCase();
+            found = true;
         }
-    })} else {
-        // så länge som gissningar finns kvar, och gissningen INTE innehåller just bokstäver
-        while ((mistakes < maxWrong) && (disabledKeys.includes(event.key) == false)) {
-            mistakes++
-            document.getElementById('mistakes').innerText = mistakes
-            hangManPicture.innerHTML = hangManPicture.innerHTML + hangMan[wrongGuesses]
-            wrongGuesses++
-            break
-        }
-        if (mistakes == maxWrong) {
-            gameOverModalOverlay()
-        } else if (answerArray.length = secretWord.length-1) {
-            // VINST HÄR !
-        }
-    }}
-
+    })}  if (found == false && !guessedLetters.includes(event.key)) {
+        wrongLetters.innerText += event.key.toLocaleUpperCase() + ', ';
+        guessedLetters.push(event.key); 
+    }  while ((mistakes < maxWrong) && (disabledKeys.includes(event.key) == false)) {
+        mistakes++
+        document.getElementById('mistakes').innerText = mistakes
+        hangManPicture.innerHTML = hangManPicture.innerHTML + hangMan[wrongGuesses]
+        wrongGuesses++
+        break
+    }  if (mistakes == maxWrong) {
+        gameOverModalOverlay()
+    } else if (answerArray.length = secretWord.length-1) {
+        // VINST HÄR !
+    }
+}
+    
 
 // Namn-input variabler
 let nameInputDiv = document.querySelector('.player-input')
