@@ -78,6 +78,13 @@ document.onkeydown = function(event) {
 
 
 
+
+
+
+
+
+
+
 // Namn-input variabler
 let nameInputDiv = document.querySelector('.player-input')
 let nameInput = document.getElementById('player-inputfield')
@@ -119,14 +126,20 @@ const modalCloseButtons = {
 }
  
 
+
+
+// Selecta overlayen för modals
+const overlay = document.querySelector('.overlay')
+
+
+
+
 // Används för att selecta alla knappar med den klassen
 const headerButtons = document.querySelectorAll('.header-button')
 
 // Används flr att selecta alla close knappar
 const closeButtonsForModals = document.querySelectorAll('.button.close')
 
-// Selecta overlayen för modals
-const overlay = document.querySelector('.overlay')
 
 // Används för att toggla overlayen eller lägga till hidden klassen
 const overlayScreenToggle = () => {
