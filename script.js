@@ -57,30 +57,11 @@ let underScore = document.getElementById('correctLetters')
 //funtion för att printa bosktäverna
 
 
-// let wrongGuesses = 0
-// document.onkeydown = function(event) {
-//     let charArray = secretWord.split("");
-//     let dashes = document.getElementsByClassName("dashes");
-//     let hangManPicture = document.getElementById('hangman-picture')
-//     if (charArray.includes(event.key)) {
-//         charArray.forEach((char, index) => {
-//           //om bostäverna är samma som trycks
-//         if (char === event.key) {
-//             //ersätt understreck med bokstav
-//             dashes[index].innerText = char;
-//         }
-//     })} else {
-//         document.getElementById('mistakes').innerText = mistakes
-//         mistakes = mistakes + 1
-//             hangManPicture.innerHTML = hangManPicture.innerHTML + hangMan[wrongGuesses]
-// } wrongGuesses++ }
-
 let wrongGuesses = 0
 document.onkeydown = function(event) {
     let charArray = secretWord.split("");
     let dashes = document.getElementsByClassName("dashes");
     let hangManPicture = document.getElementById('hangman-picture')
-    
     if (charArray.includes(event.key)) {
         charArray.forEach((char, index) => {
           //om bostäverna är samma som trycks
@@ -89,12 +70,11 @@ document.onkeydown = function(event) {
             dashes[index].innerText = char;
         }
     })} else {
+        wrongGuesses++
         document.getElementById('mistakes').innerText = mistakes
         mistakes = mistakes + 1
-            hangManPicture.innerHTML = hangManPicture.innerHTML + hangMan[wrongGuesses]
-} wrongGuesses++ }
-
-
+        hangManPicture.innerHTML = hangManPicture.innerHTML + hangMan[wrongGuesses]
+    }}
 
 
 
