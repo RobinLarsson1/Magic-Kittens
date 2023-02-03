@@ -40,38 +40,35 @@ let answer = secretWord;
 let keyboard = document.querySelector('body')
 let underScore = document.getElementById('correctLetters')
 
-//Skapar understrecken
-for(let lines = 0; lines < secretWord.length; lines++){
+//Skickar in hemliga ordet
+    const underStreck = document.createElement('p')
+    const ny = document.createTextNode(secretWord)
+    underStreck.append(ny)
 
-    const underStreck = document.createElement('div')
-    underStreck.style.display = "inline-block";
-    underStreck.style.width = "2em";
-    underStreck.style.height = "0.1em";
-    underStreck.style.background = "#000000";
-    underStreck.style.margin = "0.5em";
-    underStreck.style.color = "black";
-    
-    underScore.append(underStreck)
+//Gör om ordet till streck
+    let displayItem = secretWord.replace(/./g, '<span class="dashes">_</span>')
+    svar.innerHTML = displayItem;
 
-}
 //eventlyssnare för att få tangentbord att fungera
     keyboard.addEventListener('keydown', event => {
 	console.log('Key down: ', event.key, event.target.value)
 })
 
-
+//funtion för att printa bosktäverna
 document.onkeydown = function(event) {
-    const nyBokstav = document.getElementById("nyBokstav");
-    const pTag = document.createElement("p");
-    const bokstav = document.createTextNode(event.key);
-    pTag.style.fontSize = "24px";
-    pTag.style.color = "green";
-    pTag.style.display = "inline-block";
-    pTag.style.fontWeight = "700";
-    pTag.appendChild(bokstav);
-    nyBokstav.append(pTag);
-  };
+    let charArray = secretWord.split("");
+    let dashes = document.getElementsByClassName("dashes");
+    if (charArray.includes(event.key)) {
+        charArray.forEach((char, index) => {
+          //om bostäverna är samma som trycks
+        if (char === event.key) {
+            //ersätt understreck med bokstav
+            dashes[index].innerText = char;
+        }
+    });
+}
 
+}
 
 // import words from './svenska-ord.json' assert {type: 'json'};
 
