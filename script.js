@@ -187,4 +187,3 @@ closeButtonsForModals.forEach(element => {
         }
     })
 })
-
