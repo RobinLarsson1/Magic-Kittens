@@ -55,9 +55,32 @@ let underScore = document.getElementById('correctLetters')
 })
 
 //funtion för att printa bosktäverna
+
+
+// let wrongGuesses = 0
+// document.onkeydown = function(event) {
+//     let charArray = secretWord.split("");
+//     let dashes = document.getElementsByClassName("dashes");
+//     let hangManPicture = document.getElementById('hangman-picture')
+//     if (charArray.includes(event.key)) {
+//         charArray.forEach((char, index) => {
+//           //om bostäverna är samma som trycks
+//         if (char === event.key) {
+//             //ersätt understreck med bokstav
+//             dashes[index].innerText = char;
+//         }
+//     })} else {
+//         document.getElementById('mistakes').innerText = mistakes
+//         mistakes = mistakes + 1
+//             hangManPicture.innerHTML = hangManPicture.innerHTML + hangMan[wrongGuesses]
+// } wrongGuesses++ }
+
+let wrongGuesses = 0
 document.onkeydown = function(event) {
     let charArray = secretWord.split("");
     let dashes = document.getElementsByClassName("dashes");
+    let hangManPicture = document.getElementById('hangman-picture')
+    
     if (charArray.includes(event.key)) {
         charArray.forEach((char, index) => {
           //om bostäverna är samma som trycks
@@ -65,12 +88,24 @@ document.onkeydown = function(event) {
             //ersätt understreck med bokstav
             dashes[index].innerText = char;
         }
-    });
-}
+    })} else {
+        document.getElementById('mistakes').innerText = mistakes
+        mistakes = mistakes + 1
+            hangManPicture.innerHTML = hangManPicture.innerHTML + hangMan[wrongGuesses]
+} wrongGuesses++ }
 
-}
 
-// import words from './svenska-ord.json' assert {type: 'json'};
+
+
+
+
+
+
+
+
+
+
+
 
 // Namn-input variabler
 let nameInputDiv = document.querySelector('.player-input')
@@ -88,29 +123,10 @@ nameInput.addEventListener('keyup', (event) => {
 })
 
 
-// FUNKTION - Vid knapptryck visas en del av hangMan-objektet
-let hangManPicture = document.getElementById('hangman-picture')
-let main = document.getElementById('body')
-
-for (let i = 0; i < 6; i++) {  
-    let wrongGuesses = 0
-        main.addEventListener('keydown', (event) => {
-            hangManPicture.innerHTML = hangManPicture.innerHTML + hangMan[wrongGuesses]
-            wrongGuesses++
-})}
 
 
-// FUNKTION - Visuell uppdatering av felgissningar 
-//  BEHÖVER KOPPLAS IHOP
-main.addEventListener('keydown', () =>{
-    if (mistakes !== maxWrong) {
-        for ( let i = 0; i < maxWrong; i++ ) {
-                mistakes = mistakes + 1
-                document.getElementById('mistakes').innerText = mistakes
-                console.log('Mistake #' + mistakes)
-                break
-            }
-        }})
+
+
 
     
 
