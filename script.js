@@ -54,9 +54,16 @@ let underScore = document.getElementById('correctLetters')
 	console.log('Key down: ', event.key, event.target.value)
 })
 
+
+
 //funtion för att printa bosktäverna
 let wrongGuesses = 0
+
+
+let disabledKeyList = ['Enter', 'Control', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'ArrowUp', ' ', 'Meta', 'Alt', 'AltGraph', 'ContextMenu', 'Home', 'End', 'PageDown', 'PageUp', 'Shift', 'Delete', 'Backspace', 'Insert', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12', '§', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'CapsLock', 'Tab']
+
 document.onkeydown = function(event) {
+    console.log(event.key)
     let charArray = secretWord.split("");
     let dashes = document.getElementsByClassName("dashes");
     let hangManPicture = document.getElementById('hangman-picture')
@@ -68,7 +75,7 @@ document.onkeydown = function(event) {
             dashes[index].innerText = char;
         }
     })} else {
-        while (mistakes < maxWrong) {
+        while ((mistakes < maxWrong) && (disabledKeyList.includes(event.key) == false)) {
             mistakes++
             document.getElementById('mistakes').innerText = mistakes
             hangManPicture.innerHTML = hangManPicture.innerHTML + hangMan[wrongGuesses]
