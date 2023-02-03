@@ -96,7 +96,7 @@
 			</div>
 			<div>
 				<input id="name-input" class="text-input" type="text" placeholder="Vänligen skriv in ditt namn" value="" title="Namn här" />
-				<button class="button" id="name-enter-button">Är redo att spela!</button>
+				<button class="button" id="name-enter-button">Redo att spela!</button>
 			</div>
 		</div>
 		<div id="gamemode-modal" class="modal hidden"><h2>Välj läge!</h2>
@@ -105,7 +105,16 @@
 				<button class="pvp-mode button">PvP</button>
 			</div>
 		</div>
-		<div id="ending-modal" class="modal hidden">
+		<div id="lose-modal" class="modal hidden">
+			<h2>Du har förlorat!</h2>
+			<p>Det rätta ordet var: <span id="correct-answer"></span></p>
+			<p>Vill du starta om spelet?</p>
+			<div>
+				<button id="reset">Starta om spelet</button>
+				<button class="button">Visa scoreboarden</button>
+			</div>
+		</div>
+		<div id="win-modal" class="modal hidden">
 			<h2>NAMN Du har vunnit!</h2>
 			<p>Antal gissningar: </p>
 			<p>Gissat ord:</p>
@@ -118,7 +127,18 @@
 		<div id="about-modal" class="modal hidden">
 			<button class="button close" id="about-modal-close-button">X</button>
 			<h1 class="title">Hangman</h1>
-			<p>Gjord av: Robin, Victor L, Victor B</p>
+			<div class="profile">
+				<img src="robin.png" width="124" height="124" alt="Robin">
+				<legend>Robin</legend>
+			</div>
+			<div class="profile">
+				<img src="victorl.png" width="124" height="124" alt="Victor L">
+				<legend>Victor L</legend>
+			</div>
+			<div class="profile">
+				<img src="victorb.png" width="124" height="124" alt="Victor B"> 
+				<legend>Victor B</legend>
+			</div>
 		</div>
 		<div id="change-player-modal" class="modal hidden">
 			<button class="button close" id="change-player-modal-close-button">X</button>
