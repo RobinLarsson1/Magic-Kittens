@@ -121,6 +121,11 @@ html, body {
     height: 565px;
 }
 
+/* Hide elements */
+.hidden {
+    visibility: hidden;
+}
+
 /* Overlay */
 .overlay {
     width: 100vw;
@@ -133,7 +138,6 @@ html, body {
     justify-content: center;
     align-items: center;
     z-index: 1;
-    display: none;
 }
 
 /* Modal */
@@ -162,11 +166,13 @@ html, body {
     height: 16px;
 }
 
+/*
 .modal.mode {
 }
 
 .modal.end {
 }
+*/
 
 /* Mobile */
 @media (orientation: portrait) {

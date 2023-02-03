@@ -77,25 +77,25 @@
 	</section>
 </section>
 	<!-- Overlay -->
-	<div class="overlay">
+	<div class="overlay hidden">
 		<!-- Modals -->
-		<div class="modal mode"><h2>Välj läge!</h2>
-			<div>
-				<button class="normal-mode button">Vanligt</button>
-				<button class="pvp-mode button">PvP</button>
-			</div>
-		</div>
-		<div class="modal enter-name">
+		<div class="modal enter-name hidden">
 			<div class="title-center">
 				<h2>Välkommen till</h2>
 				<h1 class="title">Hangman</h1>
+			</div>
+			<div class="modal mode hidden"><h2>Välj läge!</h2>
+				<div>
+					<button class="normal-mode button">Vanligt</button>
+					<button class="pvp-mode button">PvP</button>
+				</div>
 			</div>
 			<div>
 				<input id="name-input" class="text-input" type="text" placeholder="Vänligen skriv in ditt namn" value="" title="Namn här" />
 				<button class="button" id="name-enter-button">Är redo att spela!</button>
 			</div>
 		</div>
-		<div class="modal end">
+		<div class="modal end hidden">
 			<h2>NAMN Du har vunnit!</h2>
 			<p>Antal gissningar: </p>
 			<p>Gissat ord:</p>
@@ -105,7 +105,7 @@
 				<button class="button">Visa scoreboarden</button>
 			</div>
 		</div>
-		<div class="modal about">
+		<div class="modal about hidden">
 			<h1 class="title">Hangman</h1>
 			<p>Gjord av: Robin, Victor L, Victor B</p>
 		</div>
