@@ -70,10 +70,14 @@ document.onkeydown = function(event) {
             dashes[index].innerText = char;
         }
     })} else {
-        mistakes++
-        wrongGuesses++
-        document.getElementById('mistakes').innerText = mistakes
-        hangManPicture.innerHTML = hangManPicture.innerHTML + hangMan[wrongGuesses]
+        while (mistakes < maxWrong) {
+            mistakes++
+            wrongGuesses++
+            document.getElementById('mistakes').innerText = mistakes
+            hangManPicture.innerHTML = hangManPicture.innerHTML + hangMan[wrongGuesses]
+            break
+        }
+
     }}
 
 
