@@ -51,9 +51,10 @@ let underScore = document.getElementById('correctLetters')
     let displayItem = secretWord.replace(/./g, '<span class="dashes">_</span>')
     svar.innerHTML = displayItem;
 
+// Tangenter som inte får registreras som försök
+const disabledKeys = ['Enter', 'Control', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'ArrowUp', ' ', 'Meta', 'Alt', 'AltGraph', 'ContextMenu', 'Home', 'End', 'PageDown', 'PageUp', 'Shift', 'Delete', 'Backspace', 'Insert', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12', '§', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'CapsLock', 'Tab']
+
 //funtion för att printa bosktäverna
-
-
 let wrongGuesses = 0
 document.onkeydown = function(event) {
     let charArray = secretWord.split("");
@@ -67,7 +68,8 @@ document.onkeydown = function(event) {
             dashes[index].innerText = char;
         }
     })} else {
-        while (mistakes < maxWrong) {
+        // så länge som gissningar finns kvar, och gissningen INTE innehåller just bokstäver
+        while ((mistakes < maxWrong) && (disabledKeys.includes(event.key) == false)) {
             mistakes++
             document.getElementById('mistakes').innerText = mistakes
             hangManPicture.innerHTML = hangManPicture.innerHTML + hangMan[wrongGuesses]
