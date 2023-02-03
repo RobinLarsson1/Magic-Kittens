@@ -124,7 +124,7 @@ const modalCloseButtons = {
     aboutModal: document.querySelector('#about-modal-close-button'),
     changePlayerModal: document.querySelector('#change-player-modal-close-button')
 }
-
+ 
 
 
 
