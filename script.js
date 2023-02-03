@@ -78,13 +78,6 @@ document.onkeydown = function(event) {
 
 
 
-
-
-
-
-}
-
-
 // Namn-input variabler
 let nameInputDiv = document.querySelector('.player-input')
 let nameInput = document.getElementById('player-inputfield')
@@ -124,15 +117,7 @@ const modalCloseButtons = {
     aboutModal: document.querySelector('#about-modal-close-button'),
     changePlayerModal: document.querySelector('#change-player-modal-close-button')
 }
-
-
-
-
-// Selecta overlayen för modals
-const overlay = document.querySelector('.overlay')
-
-
-    
+ 
 
 // Används för att selecta alla knappar med den klassen
 const headerButtons = document.querySelectorAll('.header-button')
