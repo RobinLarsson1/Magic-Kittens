@@ -29,6 +29,10 @@ html, body {
     background-color: #C70039;
 }
 
+.game-won {
+    background-color: #28A228;
+}
+
 /* Header */
 #head {
 	display: flex;
