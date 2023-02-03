@@ -100,11 +100,12 @@ html, body {
     box-shadow: var(--shadow-medium);
 }
 .heroSection {
-	padding: 2em;
+	padding: 1em;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+    height: fit-content;
 }
 #reset {
     background-color:  #bae1ff;
@@ -137,14 +138,13 @@ html, body {
 }
 #correct-letters, #guessed-letters {
 	font-size: 20px;
-	padding: 1em;
 }
 #guessed-letters {
-	color: gray;
-}
-#svar {
-    padding-top: 3em;
-}
+	color: rgb(218, 45, 45);
+    font-weight: 700;
+    margin: 1em 0 2em 0;
+    height: 20px;
+}s
 
 .gubben {
     width: 501px;
