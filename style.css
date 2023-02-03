@@ -63,6 +63,7 @@ html, body {
 }
 .dashes {
     font-size: 36px;
+    letter-spacing: .1em;
 }
 /* Sections */
 .main-section {

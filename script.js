@@ -49,11 +49,6 @@ let underScore = document.getElementById('correctLetters')
     let displayItem = secretWord.replace(/./g, '<span class="dashes">_</span>')
     svar.innerHTML = displayItem;
 
-//eventlyssnare för att få tangentbord att fungera
-    keyboard.addEventListener('keydown', event => {
-	console.log('Key down: ', event.key, event.target.value)
-})
-
 //funtion för att printa bosktäverna
 document.onkeydown = function(event) {
     let charArray = secretWord.split("");
@@ -66,9 +61,14 @@ document.onkeydown = function(event) {
             dashes[index].innerText = char;
         }
     });
-}
+}}
 
-}
+//resetknapp
+let resetButton = document.getElementById('reset')
+
+resetButton.addEventListener('click', () => {
+    location.reload();
+})
 
 // import words from './svenska-ord.json' assert {type: 'json'};
 
