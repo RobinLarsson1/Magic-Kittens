@@ -54,6 +54,8 @@ let underScore = document.getElementById('correctLetters')
 // Tangenter som inte får registreras som försök
 const disabledKeys = ['Enter', 'Control', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'ArrowUp', ' ', 'Meta', 'Alt', 'AltGraph', 'ContextMenu', 'Home', 'End', 'PageDown', 'PageUp', 'Shift', 'Delete', 'Backspace', 'Insert', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12', '§', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'CapsLock', 'Tab']
 
+let answerArray = []
+
 //funtion för att printa bosktäverna
 let wrongGuesses = 0
 
@@ -65,13 +67,20 @@ document.onkeydown = function(event) {
     let charArray = secretWord.split("");
     let dashes = document.getElementsByClassName("dashes");
     let hangManPicture = document.getElementById('hangman-picture')
+    let wrongLetters = document.getElementById('guessed-letters')
+    let guessedLetters = wrongLetters.innerText.split(/\s*/);
+    let found = false;
     if (charArray.includes(event.key)) {
         charArray.forEach((char, index) => {
           //om bostäverna är samma som trycks
         if (char === event.key) {
             //ersätt understreck med bokstav
             dashes[index].innerText = char;
+            answerArray.push(char)
+            dashes[index].innerText = char.toUpperCase();
+            found = true;
         }
+<<<<<<< HEAD
     })} else {
         // så länge som gissningar finns kvar, och gissningen INTE innehåller just bokstäver
         while ((mistakes < maxWrong) && (disabledKeys.includes(event.key) == false)) {
@@ -87,6 +96,26 @@ document.onkeydown = function(event) {
         }
     }}
 
+=======
+    })}  else {
+    if (found == false && !guessedLetters.includes(event.key)) {
+        wrongLetters.innerText += event.key.toLocaleUpperCase() + ', ';
+        guessedLetters.push(event.key); 
+    }  
+    while ((mistakes < maxWrong) && (disabledKeys.includes(event.key) == false)) {
+        mistakes++
+        document.getElementById('mistakes').innerText = mistakes
+        hangManPicture.innerHTML = hangManPicture.innerHTML + hangMan[wrongGuesses]
+        wrongGuesses++
+        break
+    }  if (mistakes == maxWrong) {
+        gameOverModalOverlay()
+    } else if (answerArray.length = secretWord.length-1) {
+        // VINST HÄR !
+    }
+}}
+    
+>>>>>>> main
 
 
 
