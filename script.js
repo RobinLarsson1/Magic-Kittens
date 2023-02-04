@@ -55,46 +55,75 @@ let underScore = document.getElementById('correctLetters')
 const disabledKeys = ['Enter', 'Control', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'ArrowUp', ' ', 'Meta', 'Alt', 'AltGraph', 'ContextMenu', 'Home', 'End', 'PageDown', 'PageUp', 'Shift', 'Delete', 'Backspace', 'Insert', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12', '§', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'CapsLock', 'Tab']
 
 let answerArray = []
+let count = 0
 
 //funtion för att printa bosktäverna
-let wrongGuesses = 0
+let currentHangmanPart = 0
 
 
 let disabledKeyList = ['Enter', 'Control', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'ArrowUp', ' ', 'Meta', 'Alt', 'AltGraph', 'ContextMenu', 'Home', 'End', 'PageDown', 'PageUp', 'Shift', 'Delete', 'Backspace', 'Insert', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12', '§', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'CapsLock', 'Tab']
+let dashes = document.getElementsByClassName("dashes");
 
 document.onkeydown = function(event) {
     console.log(event.key)
     let charArray = secretWord.split("");
-    let dashes = document.getElementsByClassName("dashes");
     let hangManPicture = document.getElementById('hangman-picture')
     let wrongLetters = document.getElementById('guessed-letters')
     let guessedLetters = wrongLetters.innerText.split(/\s*/);
     let found = false;
+    let wrongGuess = (found == false && !guessedLetters.includes(event.key)) && (mistakes < maxWrong) && (disabledKeys.includes(event.key) == false)
+
+
+
+    // om ordet innehåller bokstav
     if (charArray.includes(event.key)) {
         charArray.forEach((char, index) => {
-          //om bostäverna är samma som trycks
+          
+        //om bostäverna är samma som trycks
         if (char === event.key) {
             //ersätt understreck med bokstav
             dashes[index].innerText = char;
-            answerArray.push(char)
             dashes[index].innerText = char.toUpperCase();
             found = true;
+            guessedLetters.push(event.key); 
+            answerArray.push(event.key)
+            // let count = 0
+            // console.log(count)
+            count++
+            console.log(count)
+            // for (let i = 0; i < dashes.length; i++) {
+                if (( dashes[count].innerHTML.includes('_') == false) && (secretWord.length == answerArray.length)) {
+                // VINST HÄR !
+                console.log('YAY!')
+                // } else {
+                    // console.log(count)
+                // }
         }
-    })}  else {
-    if ((found == false && !guessedLetters.includes(event.key)) && (mistakes < maxWrong) && (disabledKeys.includes(event.key) == false)) {
+
+            
+   } })}  else if (wrongGuess) {
+        // uppdatera felgissade bokstäver
         wrongLetters.innerText += event.key.toLocaleUpperCase() + ', ';
-        guessedLetters.push(event.key); 
+
+        // lägg på och skriv ut en felgissning på poängen
         mistakes++
         document.getElementById('mistakes').innerText = mistakes
-        hangManPicture.innerHTML = hangManPicture.innerHTML + hangMan[wrongGuesses]
-        wrongGuesses++
-    }  
+
+        // lägg till en bit av hangman-gubben
+        hangManPicture.innerHTML = hangManPicture.innerHTML + hangMan[currentHangmanPart]
+
+        // lägg till +1 på hangman-array så att nästa kroppsdel adderas nästa knapptryck
+        currentHangmanPart++
+
     }  if (mistakes == maxWrong) {
         gameOverModalOverlay()
-    } else if (answerArray.length = secretWord.length-1) {
-        // VINST HÄR !
+    }   
+        
+        }
+         {
+
     }
-}
+
 
 // Namn-input variabler
 let nameInputDiv = document.querySelector('.player-input')
