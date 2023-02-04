@@ -80,52 +80,21 @@ document.onkeydown = function(event) {
             dashes[index].innerText = char.toUpperCase();
             found = true;
         }
-<<<<<<< HEAD
-    })} else {
-        // så länge som gissningar finns kvar, och gissningen INTE innehåller just bokstäver
-        while ((mistakes < maxWrong) && (disabledKeys.includes(event.key) == false)) {
-            mistakes++
-            document.getElementById('mistakes').innerText = mistakes
-            hangManPicture.innerHTML = hangManPicture.innerHTML + hangMan[wrongGuesses]
-            wrongGuesses++
-            wrongGuesses++
-            break
-        }
-        if (mistakes == maxWrong) {
-            gameOverModalOverlay()
-        }
-    }}
-
-=======
     })}  else {
-    if (found == false && !guessedLetters.includes(event.key)) {
+    if ((found == false && !guessedLetters.includes(event.key)) && (mistakes < maxWrong) && (disabledKeys.includes(event.key) == false)) {
         wrongLetters.innerText += event.key.toLocaleUpperCase() + ', ';
         guessedLetters.push(event.key); 
-    }  
-    while ((mistakes < maxWrong) && (disabledKeys.includes(event.key) == false)) {
         mistakes++
         document.getElementById('mistakes').innerText = mistakes
         hangManPicture.innerHTML = hangManPicture.innerHTML + hangMan[wrongGuesses]
         wrongGuesses++
-        break
+    }  
     }  if (mistakes == maxWrong) {
         gameOverModalOverlay()
     } else if (answerArray.length = secretWord.length-1) {
         // VINST HÄR !
     }
-}}
-    
->>>>>>> main
-
-
-
-
-
-
-
-
-
-
+}
 
 // Namn-input variabler
 let nameInputDiv = document.querySelector('.player-input')
