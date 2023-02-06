@@ -58,10 +58,18 @@ let answerArray = []
 
 //funtion för att printa bosktäverna
 let wrongGuesses = 0
+
+
+let disabledKeyList = ['Enter', 'Control', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'ArrowUp', ' ', 'Meta', 'Alt', 'AltGraph', 'ContextMenu', 'Home', 'End', 'PageDown', 'PageUp', 'Shift', 'Delete', 'Backspace', 'Insert', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12', '§', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'CapsLock', 'Tab']
+
 document.onkeydown = function(event) {
+    console.log(event.key)
     let charArray = secretWord.split("");
     let dashes = document.getElementsByClassName("dashes");
     let hangManPicture = document.getElementById('hangman-picture')
+    let wrongLetters = document.getElementById('guessed-letters')
+    let guessedLetters = wrongLetters.innerText.split(/\s*/);
+    let found = false;
     if (charArray.includes(event.key)) {
         charArray.forEach((char, index) => {
           //om bostäverna är samma som trycks
@@ -69,21 +77,34 @@ document.onkeydown = function(event) {
             //ersätt understreck med bokstav
             dashes[index].innerText = char;
             answerArray.push(char)
+            dashes[index].innerText = char;
+            found = true;
         }
-    })} else {
-        // så länge som gissningar finns kvar, och gissningen INTE innehåller just bokstäver
-        while ((mistakes < maxWrong) && (disabledKeys.includes(event.key) == false)) {
-            mistakes++
-            document.getElementById('mistakes').innerText = mistakes
-            hangManPicture.innerHTML = hangManPicture.innerHTML + hangMan[wrongGuesses]
-            wrongGuesses++
-            break
-        }
-        if (mistakes == maxWrong) {
-            gameOverModalOverlay()
-        }
-    }}
+    })}  else {
+    if ((found == false && !guessedLetters.includes(event.key)) && (mistakes < maxWrong) && (disabledKeys.includes(event.key) == false)) {
+        wrongLetters.innerText += event.key + ', ';
+        guessedLetters.push(event.key); 
+        mistakes++
+        document.getElementById('mistakes').innerText = mistakes
+        hangManPicture.innerHTML = hangManPicture.innerHTML + hangMan[wrongGuesses]
+        wrongGuesses++
+    }  
+    }  if (mistakes == maxWrong) {
+        gameOverModalOverlay()   
+}
+let wordGuessed = true;
+for (let i = 0; i < charArray.length; i++) {
+    if (dashes[i].innerText !== charArray[i]) {
+    wordGuessed = false;
+    break;
+    }
+}
 
+if (wordGuessed) {
+    // Reload the website
+    gameWinModalOverlay()
+}
+}; 
 
 // Namn-input variabler
 let nameInputDiv = document.querySelector('.player-input')
@@ -100,8 +121,27 @@ nameInput.addEventListener('keyup', (event) => {
     }
 })
 
-// Functionality for buttons
-// Alla knappar
+// FUNKTION - generera fram spelarnamn samt resultat
+let playerResult = {}
+function generatePlayerResult() {
+    playerResult.player = p1name
+    playerResult.score = `${mistakes} of ${maxWrong}`
+    return playerResult
+}
+generatePlayerResult()
+
+//Eventlyssnare på restart-game knapp i win eller lose
+const resetLoseButton = document.getElementById('reset-lose')
+const resetWinButton = document.getElementById('reset-win')
+
+
+// Förhindrande av att namninskrivning i början räknas som gissningar i spelet.
+let overlayNameInput = document.querySelector('#name-input')
+overlayNameInput.addEventListener('keydown', (event) => {
+    event.stopPropagation()
+})
+
+
 const headerButtonList = {
     aboutGame: document.querySelector('#about-game-button'),
     resetGame: document.querySelector('#reset-game-button'),
@@ -203,4 +243,15 @@ const gameWinModalOverlay = () => {
     overlay.classList.remove('hidden')
     modalPanels.endWin.classList.remove('hidden')
 }
+
+//Resetknappar i win, lose samt header 
+resetWinButton.addEventListener('click', () => {
+    location.reload()
+});
+resetLoseButton.addEventListener('click', () => {
+    location.reload()
+});
+headerButtonList.resetGame.addEventListener('click', () => {
+    location.reload()
+});
 

@@ -138,10 +138,22 @@ html, body {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+    height: fit-content;
+}
+#reset-win, #reset-lose {
+    background-color:  #bae1ff;
+    font-size: 20px;
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 7.5px;
+    cursor: pointer;
+}
+#reset:hover {
+    background-color: red;
 }
 
 .game-section {
-    display: none;
+    /* display: none; */
 }
 
 #player-input {
@@ -163,13 +175,12 @@ html, body {
 }
 #correct-letters, #guessed-letters {
 	font-size: 20px;
-	padding: 1em;
 }
 #guessed-letters {
-	color: gray;
-}
-#svar {
-    padding-top: 3em;
+	color: rgb(218, 45, 45);
+    font-weight: 700;
+    margin: 1em 0 2em 0;
+    height: 20px;
 }
 
 .gubben {
