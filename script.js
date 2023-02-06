@@ -63,19 +63,20 @@ document.onkeydown = function(event) {
     let found = false;
     charArray.forEach((char, index) => {
         if (char === event.key) {
-            dashes[index].innerText = char.toUpperCase();
+            dashes[index].innerText = char;
             found = true;
         }
     })
     //lägger till felgissade bokstäver under
     
     if (found == false && !guessedLetters.includes(event.key)) {
-        wrongLetters.innerText += event.key.toLocaleUpperCase() + ', ';
+        wrongLetters.innerText += event.key + ', ';
         guessedLetters.push(event.key);
         wrongGuesses++
         document.getElementById('mistakes').innerText = mistakes
         mistakes = mistakes + 1
         hangManPicture.innerHTML = hangManPicture.innerHTML + hangMan[wrongGuesses]
+        found = false;
     }
 }
 
