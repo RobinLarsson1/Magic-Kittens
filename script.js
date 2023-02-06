@@ -35,6 +35,7 @@ const randomWords = wordArray
 let secretWord = randomWords[Math.floor(Math.random() * wordArray.length)];
 console.log(secretWord)
 
+
 //Ordet som valdes
 let answer = secretWord;
 
@@ -52,7 +53,7 @@ let underScore = document.getElementById('correctLetters')
     svar.innerHTML = displayItem;
 
 // Tangenter som inte får registreras som försök
-const disabledKeys = ['Enter', 'Control', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'ArrowUp', ' ', 'Meta', 'Alt', 'AltGraph', 'ContextMenu', 'Home', 'End', 'PageDown', 'PageUp', 'Shift', 'Delete', 'Backspace', 'Insert', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12', '§', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'CapsLock', 'Tab']
+const disabledKeys = ['Enter', 'Control', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'ArrowUp', ' ', 'Meta', 'Alt', 'AltGraph', 'ContextMenu', 'Home', 'End', 'PageDown', 'PageUp', 'Shift', 'Delete', 'Backspace', 'Insert', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12', '§', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'CapsLock', 'Tab', '-', ',', '.', '+']
 
 let answerArray = []
 
@@ -113,7 +114,7 @@ if (wordGuessed) {
 
 // Namn-input variabler
 let nameInputDiv = document.querySelector('.player-input')
-let nameInput = document.getElementById('player-inputfield')
+let nameInput = document.getElementById('name-input')
 let namePlaceholder = document.getElementById('player-name-placeholder')
 let p1name
 
@@ -123,7 +124,21 @@ nameInput.addEventListener('keyup', (event) => {
         namePlaceholder.innerText = ' ' + nameInput.value
         p1name = nameInput.value
         nameInput.remove()
+        modalPanels.enterName.className = 'hidden'
+        let overlay = document.querySelector('.overlay')
+        overlay.classList.add('hidden')
     }
+})
+
+// FUNKTION - Namn-input kopplat till "Redo att spela!"-knapp
+let nameInputButton = document.querySelector('#name-enter-button')
+nameInputButton.addEventListener('click', () => {
+    namePlaceholder.innerText = ' ' + nameInput.value
+    p1name = nameInput.value
+    nameInput.remove()
+    modalPanels.enterName.className = 'hidden'
+    let overlay = document.querySelector('.overlay')
+    overlay.classList.add('hidden')
 })
 
 // FUNKTION - generera fram spelarnamn samt resultat
@@ -266,7 +281,7 @@ const score = document.querySelector('.scoreboard-section')
 let publishStats = player => {
     let playerData = {
         name: player,
-        guessed: guessedLetters, 
+        guessed: wrongLetters, 
         word: answer,
         tries: mistakes
     }
