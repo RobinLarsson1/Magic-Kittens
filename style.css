@@ -56,13 +56,11 @@ html, body {
     background-color: #f5f2eb;
     outline: none;
     margin: 0px 7.5px;
-    transition: all 0.5s;
 }
 
 .header-button:hover {
     border: 1px solid #b6b2ac;
-    background-color: #d89f1b;
-    transform: scale(1.1);
+    background-color: #e2dfd8;
 }
 
 .button {
@@ -117,23 +115,16 @@ html, body {
 	align-items: center;
     height: fit-content;
 }
-#reset-win, #reset-lose {
+#reset {
     background-color:  #bae1ff;
     font-size: 20px;
     padding: 0.5em 1em;
     border: none;
     border-radius: 7.5px;
     cursor: pointer;
-    transition: all 0.5s;
 }
-#reset-win:hover {
+#reset:hover {
     background-color: red;
-    transform: scale(1.1);
-
-}
-#reset-lose:hover {
-    background-color: red;
-    transform: scale(1.1);
 
 }
 #player-input {
@@ -161,7 +152,7 @@ html, body {
     font-weight: 700;
     margin: 1em 0 2em 0;
     height: 20px;
-}s
+}
 
 .gubben {
     width: 501px;

@@ -108,7 +108,7 @@ if (wordGuessed) {
 
 // Namn-input variabler
 let nameInputDiv = document.querySelector('.player-input')
-let nameInput = document.getElementById('player-inputfield')
+let nameInput = document.getElementById('name-input')
 let namePlaceholder = document.getElementById('player-name-placeholder')
 let p1name
 
@@ -118,6 +118,9 @@ nameInput.addEventListener('keyup', (event) => {
         namePlaceholder.innerText = ' ' + nameInput.value
         p1name = nameInput.value
         nameInput.remove()
+        modalPanels.enterName.className = 'hidden'
+        let overlay = document.querySelector('.overlay')
+        overlay.classList.add('hidden')
     }
 })
 
