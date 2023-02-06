@@ -141,8 +141,6 @@ overlayNameInput.addEventListener('keydown', (event) => {
     event.stopPropagation()
 })
 
-const resetLoseButton = document.getElementById('reset-lose')
-const resetWinButton = document.getElementById('reset-win')
 
 
 /*/  <figure class="">
