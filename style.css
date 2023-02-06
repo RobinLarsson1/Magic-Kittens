@@ -184,8 +184,7 @@ html, body {
 }
 
 .gubben {
-    width: 501px;
-    height: 525px;
+    display: flex;
 }
 
 /* Hide elements */
@@ -254,6 +253,37 @@ html, body {
     .center-section {
         width: 85vw;
     }
+
+    #top-div {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .header-buttons {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+
+    #hangman-picture {
+        width: 50%;
+        height: 50%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (max-width: 450px) {
+    .main-section, .middle-section, .game-section {
+        min-width: 90%;
+    }
+
+    .header-buttons {
+        display: flex;
+        justify-content: flex-start;
+        gap: 0.5em;
+    }
+
 }
 
 .error-message {
