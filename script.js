@@ -102,7 +102,10 @@ for (let i = 0; i < charArray.length; i++) {
 
 if (wordGuessed) {
     // Reload the website
+    
+
     gameWinModalOverlay()
+    publishStats(p1name)
 }
 }; 
 
@@ -254,4 +257,30 @@ resetLoseButton.addEventListener('click', () => {
 headerButtonList.resetGame.addEventListener('click', () => {
     location.reload()
 });
+
+
+let publishStats = player => {
+    let playerData = {
+        name: player,
+        guessed: guessedLetters,
+        word: answer,
+        tries: mistakes
+    }
+    
+    let storedStatsToJSON = JSON.stringify(playerData)
+
+    let playerName = `Player ${playerData.name}`
+
+    localStorage.setItem(playerName, storedStatsToJSON)
+
+    for (let i = localStorage.getItem(playerName); i < localStorage.getItem(playerName); i++) {
+        let scoreBoard = document.querySelector('.scoreboard-section')
+        let displayStats = document.createElement('p')
+        displayStats.innerText(i)
+        scoreBoard.append(displayStats)
+    }
+}
+
+
+
 
