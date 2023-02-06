@@ -164,5 +164,3 @@ let scoreboardResults = () => {
 }
 
 scoreboardResults()
-
-

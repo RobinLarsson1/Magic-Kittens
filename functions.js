@@ -1,88 +1,110 @@
-//funktion för att ladda om sidan        
+//funktion för att ladda om sidan
 const reloadGame = () => {
-    location.reload();
+  location.reload();
 };
 
-//Resetknappar i win, lose samt header 
-resetWinButton.addEventListener('click', reloadGame);
-resetLoseButton.addEventListener('click', reloadGame);
-headerButtonList.resetGame.addEventListener('click', reloadGame);
+//Resetknappar i win, lose samt header
+resetWinButton.addEventListener("click", reloadGame);
+resetLoseButton.addEventListener("click", reloadGame);
+headerButtonList.resetGame.addEventListener("click", reloadGame);
 
 // FUNKTION - Namn-input
-nameInput.addEventListener('keyup', (event) => {
-    if (event.code === 'Enter') {
-        namePlaceholder.innerText = ' ' + nameInput.value
-        p1name = nameInput.value
-        nameInput.remove()
-        modalPanels.enterName.className = 'hidden'
-        let overlay = document.querySelector('.overlay')
-        overlay.classList.add('hidden')
-    }
-})
+nameInput.addEventListener("keyup", (event) => {
+  if ((event.code === "Enter") && (nameInput.value !== '')) {
+    namePlaceholder.innerText = " " + nameInput.value;
+    p1name = nameInput.value;
+    nameInput.remove();
+    modalPanels.enterName.className = "hidden";
+    let overlay = document.querySelector(".overlay");
+    overlay.classList.add("hidden");
+  }
+});
+
 
 // FUNKTION - Namn-input kopplat till "Redo att spela!"-knapp
-let nameInputButton = document.querySelector('#name-enter-button')
-nameInputButton.addEventListener('click', () => {
-    namePlaceholder.innerText = ' ' + nameInput.value
-    p1name = nameInput.value
-    nameInput.remove()
-    modalPanels.enterName.className = 'hidden'
-    let overlay = document.querySelector('.overlay')
-    overlay.classList.add('hidden')
-})
+let nameInputButton = document.querySelector("#name-enter-button");
+nameInputButton.addEventListener("click", () => {
+
+    // Kollar om inputfältet är tomt eller ej
+    let isNameProvided = (nameInput.value !== '')
+
+    if (isNameProvided === true) {
+        namePlaceholder.innerText = " " + nameInput.value;
+        p1name = nameInput.value;
+        nameInput.remove();
+        modalPanels.enterName.className = "hidden";
+        let overlay = document.querySelector(".overlay");
+        overlay.classList.add("hidden");
+    }
+});
 
 // FUNKTION - generera fram spelarnamn samt resultat
-let playerResult = {}
+let playerResult = {};
 function generatePlayerResult() {
-    playerResult.player = p1name
-    playerResult.score = `${mistakes} of ${maxWrong}`
-    return playerResult
+  playerResult.player = p1name;
+  playerResult.score = `${mistakes} of ${maxWrong}`;
+  return playerResult;
 }
-generatePlayerResult()
+generatePlayerResult();
+
+//
 
 //funktion för att printa rätta bokstäver
-document.onkeydown = function(event) {
-    console.log(event.key)
+document.onkeydown = function (event) {
+  
+    // Förhindrar input utanför namninputs-modalen
+  let nameOverlayIsHidden = modalPanels.enterName.className.includes("hidden");
+  console.log(event.key);
+
+  if (nameOverlayIsHidden === true) {
     let found = false;
     if (charArray.includes(event.key)) {
-        charArray.forEach((char, index) => {
-          //om bostäverna är samma som trycks
+      charArray.forEach((char, index) => {
+        //om bostäverna är samma som trycks
         if (char === event.key) {
-            //ersätt understreck med bokstav
-            dashes[index].innerText = char;
-            answerArray.push(char)
-            dashes[index].innerText = char;
-            found = true;
+          //ersätt understreck med bokstav
+          dashes[index].innerText = char;
+          answerArray.push(char);
+          dashes[index].innerText = char;
+          found = true;
         }
-//Printar fel bosktäver        
-    })}  else {
-    if ((found == false && !guessedLetters.includes(event.key)) && (mistakes < maxWrong) && (disabledKeys.includes(event.key) == false)) {
-        wrongLetters.innerText += event.key + ', ';
-        guessedLetters.push(event.key); 
-        mistakes++
-        document.getElementById('mistakes').innerText = mistakes
-        hangManPicture.innerHTML = hangManPicture.innerHTML + hangMan[wrongGuesses]
-        wrongGuesses++
+      });
+    } else {
+      //Printar fel bosktäver
+      if (
+        found == false &&
+        !guessedLetters.includes(event.key) &&
+        mistakes < maxWrong &&
+        disabledKeys.includes(event.key) == false
+      ) {
+        wrongLetters.innerText += event.key + ", ";
+        guessedLetters.push(event.key);
+        mistakes++;
+        document.getElementById("mistakes").innerText = mistakes;
+        hangManPicture.innerHTML =
+          hangManPicture.innerHTML + hangMan[wrongGuesses];
+        wrongGuesses++;
+      }
+      //Om max antal fel överskridits
     }
-//Om max antal fel överskridits   
-    }  if (mistakes == maxWrong) {
-        gameOverModalOverlay()   
-        publishStats(p1name, false)
-    } 
-//Om man gissat rätt
-let wordGuessed = true;
-for (let i = 0; i < charArray.length; i++) {
-    if (dashes[i].innerText !== charArray[i]) {
-    wordGuessed = false;
-    break;
+    if (mistakes == maxWrong) {
+      gameOverModalOverlay();
+      publishStats(p1name, false);
     }
-}
-// Om man har vunnit
-if (wordGuessed) {
-    // Reload the website
-    
+    //Om man gissat rätt
+    let wordGuessed = true;
+    for (let i = 0; i < charArray.length; i++) {
+      if (dashes[i].innerText !== charArray[i]) {
+        wordGuessed = false;
+        break;
+      }
+    }
+    // Om man har vunnit
+    if (wordGuessed) {
+      // Reload the website
 
-    gameWinModalOverlay()
-    publishStats(p1name, true)
-}
+      gameWinModalOverlay();
+      publishStats(p1name, true);
+    }
+  }
 };
