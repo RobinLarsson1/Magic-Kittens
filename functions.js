@@ -62,6 +62,7 @@ document.onkeydown = function(event) {
 //Om max antal fel överskridits   
     }  if (mistakes == maxWrong) {
         gameOverModalOverlay()   
+        publishStats(p1name, false)
     } 
 //Om man gissat rätt
 let wordGuessed = true;
@@ -71,9 +72,12 @@ for (let i = 0; i < charArray.length; i++) {
     break;
     }
 }
-//Om man gissat rätt
+// Om man har vunnit
 if (wordGuessed) {
     // Reload the website
+    
+
     gameWinModalOverlay()
+    publishStats(p1name, true)
 }
-}; 
+};

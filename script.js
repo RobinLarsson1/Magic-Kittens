@@ -120,3 +120,57 @@ resetWinButton.addEventListener('click', reloadGame);
 resetLoseButton.addEventListener('click', reloadGame);
 headerButtonList.resetGame.addEventListener('click', reloadGame);
 
+//////// SCOREBOARD ////////
+
+const scoreboard = document.querySelector('.scoreboard-section')
+const gameboard = document.querySelector('.game-section')
+
+
+const showScoreboardButton = document.querySelector('#show-scoreboard-button')
+const closeScoreboardButton = document.querySelector("#close-scoreboard-button")
+
+closeScoreboardButton.addEventListener('click', () => {
+    scoreboard.classList.add('hidden')
+    gameboard.classList.remove('hidden')
+})
+
+showScoreboardButton.addEventListener('click', () => {
+    scoreboard.classList.remove('hidden')
+    gameboard.classList.add('hidden')
+})
+
+// Publicera stats till localstorage
+let publishStats = (player, result) => {
+    let playerData = {
+        name: player,
+        guessed: guessedLetters, 
+        word: answer,
+        tries: mistakes,
+        won: result
+    }
+    
+    let storedStatsToJSON = JSON.stringify(playerData)
+
+    let playerName = `Player ${playerData.name}`
+
+    localStorage.setItem(playerName, storedStatsToJSON)
+
+    scoreboardResults()
+}
+
+// Displayar stats till scoreboard
+let scoreboardResults = () => {
+    for (const key in localStorage) {
+        if (key.startsWith('Player')) {
+            console.log(`${key}: ${localStorage.getItem(key)}`)
+
+            let p = document.createElement('p')
+            p.innerText = localStorage.getItem(key).replace('{', '').replace('}', '')
+            scoreboard.append(p)
+        }
+    }
+}
+
+scoreboardResults()
+
+
