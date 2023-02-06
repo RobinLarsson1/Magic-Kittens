@@ -15,7 +15,10 @@
 
 	<!-- Script -->
 	<script src="svenska-ord-1000st.js" defer></script>
+	<script src="modaler.js" defer></script>
 	<script src="script.js" defer></script>
+	<script src="hangman.js" defer></script>
+	<script src="functions.js" defer></script>
 </head>
 <body id="body">
 </head>
@@ -58,8 +61,7 @@
 			<!-- container för spelare -->
 			<div id="player-input" class="player-input">
 				<p>Spelare: </p>
-				<input type="text" class="text-input" id="player-inputfield">
-					<p id="player-name-placeholder"> </p>
+				<p id="player-name-placeholder"> </p>
 			</div>
 			
 			<!-- container för antal gissningar -->
@@ -69,26 +71,10 @@
 			
 		</div>
 		<section class="heroSection">
-			<!-- gubben här -->
-			<figure class="gubben">
-				<svg id="hangman-picture" width="501" height="565" viewBox="0 0 501 565" fill="none" xmlns="http://www.w3.org/2000/svg">
-					
-				</svg>
-			</figure>
-			<!-- Hemliga ordet -->
-			<div id="nyBokstav"></div>
-			<div id="correctLetters">
-			<p id="svar"></p>
-			</div>
-		</div>
-		<p id="guessed-letters"></p>
-		</section>
-	</section>
-</section>
-	<!-- Overlay -->
-	<div class="overlay hidden">
+				<!-- Overlay -->
+	<div class="overlay">
 		<!-- Modals -->
-		<div id="enter-name-modal" class="modal hidden">
+		<div id="enter-name-modal" class="modal">
 			<div class="title-center">
 				<h2>Välkommen till</h2>
 				<h1 class="title">Hangman</h1>
@@ -109,7 +95,7 @@
 			<p>Det rätta ordet var: <span id="correct-answer"></span></p>
 			<p>Vill du starta om spelet?</p>
 			<div>
-				<button id="reset">Starta om spelet</button>
+				<button id="reset-lose">Starta om spelet</button>
 				<button class="button">Visa scoreboarden</button>
 			</div>
 		</div>
@@ -119,7 +105,7 @@
 			<p>Gissat ord:</p>
 			<p>Vill du starta om spelet?</p>
 			<div>
-				<button class="button">Starta om spelet</button>
+				<button id="reset-win">Starta om spelet</button>
 				<button class="button">Visa scoreboarden</button>
 			</div>
 		</div>
@@ -144,5 +130,22 @@
 			<h1 class="title">Hangman</h1>
 		</div>
 	</div>
+			<!-- gubben här -->
+			<figure class="gubben">
+				<svg id="hangman-picture" width="501" height="565" viewBox="0 0 501 565" fill="none" xmlns="http://www.w3.org/2000/svg">
+					
+				</svg>
+			</figure>
+			<!-- Hemliga ordet -->
+			<div id="nyBokstav"></div>
+			<div id="correctLetters">
+			<p id="svar"></p>
+			</div>
+		</div>
+		<p id="guessed-letters"></p>
+		</section>
+	</section>
+</section>
+
 </body>
 </html>

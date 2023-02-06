@@ -56,11 +56,13 @@ html, body {
     background-color: #f5f2eb;
     outline: none;
     margin: 0px 7.5px;
+    transition: all 0.5s;
 }
 
 .header-button:hover {
     border: 1px solid #b6b2ac;
-    background-color: #e2dfd8;
+    background-color: #eac97c;
+    transform: scale(1.1);
 }
 
 .button {
@@ -95,6 +97,7 @@ html, body {
 .dashes {
     font-size: 36px;
     letter-spacing: .1em;
+    transition: all 0.5s;
 }
 /* Sections */
 .main-section {
@@ -115,15 +118,16 @@ html, body {
 	align-items: center;
     height: fit-content;
 }
-#reset {
+#reset-win, #reset-lose {
     background-color:  #bae1ff;
     font-size: 20px;
     padding: 0.5em 1em;
     border: none;
     border-radius: 7.5px;
     cursor: pointer;
+    transition: all 0.5s;
 }
-#reset:hover {
+#reset-win:hover {
     background-color: red;
 
 }
@@ -152,7 +156,7 @@ html, body {
     font-weight: 700;
     margin: 1em 0 2em 0;
     height: 20px;
-}s
+}
 
 .gubben {
     width: 501px;
