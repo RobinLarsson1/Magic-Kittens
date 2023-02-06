@@ -22,70 +22,104 @@
 <body>
 	<!-- Sections -->
 	<section class="main-section">
-	<section class="center-section">
-		<header id="head">
-			<h1 class="title">Hangman</h1>
-			<div class="header-buttons">
-				<button id="about-game-button" class="header-button" title="Om spelet">
-					<span class="material-symbols-outlined">
-						info
-					</span>
-				</button>
-				<button id="reset-game-button" class="header-button" title="Starta om spelet">
-					<span class="material-symbols-outlined">
-						restart_alt
-					</span>
-				</button>
-				<button id="change-gamemode-button" class="header-button" title="Ändra läge">
-					<span class="material-symbols-outlined">
-						sports_score
-					</span>
-				</button>
-				<button id="show-scoreboard-button" class="header-button" title="Visa scoreboarden">
-					<span class="material-symbols-outlined">
-						scoreboard
-					</span>
-				</button>
-				<button id="change-player-button" class="header-button" title="Ändra spelare">
-					<span class="material-symbols-outlined">
-						person
-					</span>
-				</button>
-			</div>
-		</header>
-		<div id="top-div">
-			
-			<!-- container för spelare -->
-			<div id="player-input" class="player-input">
-				<p>Spelare: </p>
-				<input type="text" class="text-input" id="player-inputfield">
-					<p id="player-name-placeholder"> </p>
-			</div>
-			
-			<!-- container för antal gissningar -->
-			<div class="number-of-guesses">
-				Wrong guesses: <span id="mistakes"></span> of <span id="maxWrong"></span>
-			</div>
-			
-		</div>
-		<section class="hero-section">
-			<!-- gubben här -->
-			<figure class="gubben">
-				<svg id="hangman-picture" width="501" height="565" viewBox="0 0 501 565" fill="none" xmlns="http://www.w3.org/2000/svg">
-					
-				</svg>
-			</figure>
-			<!-- Hemliga ordet -->
-			<div id="nyBokstav"></div>
-			<div id="correctLetters">
-			<p id="svar"></p>
-			</div>
-		</div>
-		<p id="guessed-letters"> Gissade bokstäver:  </p>
-        <button id="reset">Reset</button>
+		<section class="middle-section">
+			<!-- Game -->
+			<section class="game-section">
+				<header class="header">
+					<h1 class="main-title">Hangman</h1>
+					<div class="header-buttons">
+						<button id="about-game-button" class="header-button" title="Om spelet">
+							<span class="material-symbols-outlined">
+								info
+							</span>
+						</button>
+						<button id="reset-game-button" class="header-button" title="Starta om spelet">
+							<span class="material-symbols-outlined">
+								restart_alt
+							</span>
+						</button>
+						<button id="change-gamemode-button" class="header-button" title="Ändra läge">
+							<span class="material-symbols-outlined">
+								sports_score
+							</span>
+						</button>
+						<button id="show-scoreboard-button" class="header-button" title="Visa scoreboarden">
+							<span class="material-symbols-outlined">
+								scoreboard
+							</span>
+						</button>
+						<button id="change-player-button" class="header-button" title="Ändra spelare">
+							<span class="material-symbols-outlined">
+								person
+							</span>
+						</button>
+					</div>
+				</header>
+				<div id="top-div">
+					<!-- container för spelare -->
+					<div id="player-input" class="player-input">
+						<p>Spelare: </p>
+						<input type="text" class="text-input" id="player-inputfield">
+						<p id="player-name-placeholder"> </p>
+					</div>
+					<!-- container för antal gissningar -->
+					<div class="number-of-guesses">
+						Wrong guesses: <span id="mistakes"></span> of <span id="maxWrong"></span>
+					</div>
+				</div>
+				<section class="hero-section">
+					<!-- gubben här -->
+					<figure class="gubben">
+						<svg id="hangman-picture" width="501" height="565" viewBox="0 0 501 565" fill="none" xmlns="http://www.w3.org/2000/svg"></svg>
+					</figure>
+					<!-- Hemliga ordet -->
+					<div id="nyBokstav"></div>
+					<div id="correctLetters">
+						<p id="svar"></p>
+					</div>
+					<p id="guessed-letters"> Gissade bokstäver:  </p>
+				</section>
+			</section>
+			<!-- Scoreboard -->
+			<section class="scoreboard-section">
+				<header class="header">
+					<h1 class="scoreboard-title">Scoreboard</h1>
+					<div class="header-buttons">
+						<button id="close-scoreboard-button" class="header-button" title="Stäng av scoreboarden">
+							<span class="material-symbols-outlined">
+								close
+							</span>
+						</button>
+						<span>Sortera listan</span>
+						<button class="header-button">
+							<span class="material-symbols-outlined">
+								arrow_upward
+							</span>
+							Sämst
+						</button>
+						<button class="header-button">
+							<span class="material-symbols-outlined">
+								arrow_downward
+							</span>
+							Bästa
+						</button>
+						<button class="header-button">
+							Vinst
+						</button>
+						<button class="header-button">
+							Förlust
+						</button>
+						<button class="header-button">
+							Senast
+						</button>
+						<button class="header-button">
+							Från start
+						</button>
+					</div>
+				</header>
+			</section>
 		</section>
 	</section>
-</section>
 	<!-- Overlay -->
 	<div class="overlay hidden">
 		<!-- Modals -->
@@ -126,7 +160,7 @@
 		</div>
 		<div id="about-modal" class="modal hidden">
 			<button class="button close" id="about-modal-close-button">X</button>
-			<h1 class="title">Hangman</h1>
+			<h1 class="main-title">Hangman</h1>
 			<div class="profile">
 				<img src="robin.png" width="124" height="124" alt="Robin">
 				<legend>Robin</legend>
@@ -142,7 +176,7 @@
 		</div>
 		<div id="change-player-modal" class="modal hidden">
 			<button class="button close" id="change-player-modal-close-button">X</button>
-			<h1 class="title">Hangman</h1>
+			<h1 class="main-title">Hangman</h1>
 		</div>
 	</div>
 </body>
