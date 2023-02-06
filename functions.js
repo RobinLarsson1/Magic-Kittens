@@ -3,6 +3,11 @@ const reloadGame = () => {
     location.reload();
 };
 
+//Resetknappar i win, lose samt header 
+resetWinButton.addEventListener('click', reloadGame);
+resetLoseButton.addEventListener('click', reloadGame);
+headerButtonList.resetGame.addEventListener('click', reloadGame);
+
 // FUNKTION - Namn-input
 nameInput.addEventListener('keyup', (event) => {
     if (event.code === 'Enter') {
