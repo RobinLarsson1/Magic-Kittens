@@ -3,6 +3,12 @@ const reloadGame = () => {
   location.reload();
 };
 
+function errorMessage() {
+    let errorMessage = document.querySelector('.error-message')
+    errorMessage.innerText = errorMessageText
+}
+
+
 //Resetknappar i win, lose samt header
 resetWinButton.addEventListener("click", reloadGame);
 resetLoseButton.addEventListener("click", reloadGame);
@@ -10,14 +16,20 @@ headerButtonList.resetGame.addEventListener("click", reloadGame);
 
 // FUNKTION - Namn-input
 nameInput.addEventListener("keyup", (event) => {
-  if ((event.code === "Enter") && (nameInput.value !== '')) {
+
+    // Kollar om inputfältet är tomt eller ej
+    let isNameProvided = (nameInput.value !== '')
+    
+    if ((event.code === "Enter") && (nameInput.value !== '')) {
     namePlaceholder.innerText = " " + nameInput.value;
     p1name = nameInput.value;
     nameInput.remove();
     modalPanels.enterName.className = "hidden";
     let overlay = document.querySelector(".overlay");
     overlay.classList.add("hidden");
-  }
+  } else if (isNameProvided === false) {
+    errorMessage()
+}
 });
 
 
@@ -35,6 +47,8 @@ nameInputButton.addEventListener("click", () => {
         modalPanels.enterName.className = "hidden";
         let overlay = document.querySelector(".overlay");
         overlay.classList.add("hidden");
+    } else if (isNameProvided === false) {
+        errorMessage()
     }
 });
 

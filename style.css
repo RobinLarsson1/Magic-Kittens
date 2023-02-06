@@ -238,9 +238,10 @@ html, body {
 }
 
 .title-center {
-    width: 25vw;
+    width: 35vw;
     text-align: center;
     height: 72px;
+    margin-bottom: 1em;
 }
 
 .title-center > * {
@@ -253,4 +254,17 @@ html, body {
     .center-section {
         width: 85vw;
     }
+}
+
+.error-message {
+    height: 20px;
+    font-size: 1em;
+    margin-top: 0.5em;
+    margin-left: 0.5em;
+    color: #a6201e;
+    font-weight: 600;
+}
+
+#enter-name-modal {
+    height: 12em;
 }
