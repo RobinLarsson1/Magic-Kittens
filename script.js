@@ -20,10 +20,6 @@ const hangMan = [
 // Import
 // import words from './svenska-ord.json' assert {type: 'json'};
 
-
-
-let guessedLetters = [];
-
 // Antal felgissningar
 let mistakes = 0;
 let maxWrong = 6;
@@ -63,13 +59,15 @@ let wrongGuesses = 0
 
 let disabledKeyList = ['Enter', 'Control', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'ArrowUp', ' ', 'Meta', 'Alt', 'AltGraph', 'ContextMenu', 'Home', 'End', 'PageDown', 'PageUp', 'Shift', 'Delete', 'Backspace', 'Insert', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12', '§', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'CapsLock', 'Tab']
 
+
+let charArray = secretWord.split("");
+let dashes = document.getElementsByClassName("dashes");
+let hangManPicture = document.getElementById('hangman-picture')
+let wrongLetters = document.getElementById('guessed-letters')
+let guessedLetters = wrongLetters.innerText.split(/\s*/);
+
 document.onkeydown = function(event) {
     console.log(event.key)
-    let charArray = secretWord.split("");
-    let dashes = document.getElementsByClassName("dashes");
-    let hangManPicture = document.getElementById('hangman-picture')
-    let wrongLetters = document.getElementById('guessed-letters')
-    let guessedLetters = wrongLetters.innerText.split(/\s*/);
     let found = false;
     if (charArray.includes(event.key)) {
         charArray.forEach((char, index) => {
