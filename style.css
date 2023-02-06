@@ -25,6 +25,14 @@ html, body {
     font-family: 'Poppins', sans-serif;
 }
 
+.game-over {
+    background-color: #C70039;
+}
+
+.game-won {
+    background-color: #28A228;
+}
+
 /* Header */
 #head {
 	display: flex;
@@ -173,18 +181,31 @@ html, body {
 
 /* Modal */
 .modal {
-    max-width: 60vw;
-    min-width: 30vw;
-    height: 28vh;
+    width: 500px;
     background-color: #fffefc;
     border-radius: 15px;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-content: stretch;
     align-items: center;
     padding: 25px;
-    flex-flow: column wrap;
+    flex-flow: row wrap;
     box-shadow: var(--shadow-low);
+}
+
+.modal > .button.close {
+    margin-left: min(430px);
+}
+
+.modal > .profile {
+    margin-left: .25em;
+    margin-right: .25em;
+}
+
+.modal > .title {
+    width: 60vw;
+    padding-bottom: 34px;
+    text-align: center;
 }
 
 .title-center {
