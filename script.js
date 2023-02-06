@@ -130,12 +130,19 @@ function generatePlayerResult() {
 }
 generatePlayerResult()
 
+//Eventlyssnare på restart-game knapp i win eller lose
+const resetLoseButton = document.getElementById('reset-lose')
+const resetWinButton = document.getElementById('reset-win')
+
+
 // Förhindrande av att namninskrivning i början räknas som gissningar i spelet.
 let overlayNameInput = document.querySelector('#name-input')
 overlayNameInput.addEventListener('keydown', (event) => {
     event.stopPropagation()
 })
 
+const resetLoseButton = document.getElementById('reset-lose')
+const resetWinButton = document.getElementById('reset-win')
 
 
 /*/  <figure class="">
@@ -250,3 +257,15 @@ const gameWinModalOverlay = () => {
     overlay.classList.remove('hidden')
     modalPanels.endWin.classList.remove('hidden')
 }
+
+//Resetknappar i win, lose samt header 
+resetWinButton.addEventListener('click', () => {
+    location.reload()
+});
+resetLoseButton.addEventListener('click', () => {
+    location.reload()
+});
+headerButtonList.resetGame.addEventListener('click', () => {
+    location.reload()
+});
+
