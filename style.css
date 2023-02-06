@@ -56,11 +56,13 @@ html, body {
     background-color: #f5f2eb;
     outline: none;
     margin: 0px 7.5px;
+    transition: all 0.5s;
 }
 
 .header-button:hover {
     border: 1px solid #b6b2ac;
-    background-color: #e2dfd8;
+    background-color: #d89f1b;
+    transform: scale(1.1);
 }
 
 .button {
@@ -122,9 +124,16 @@ html, body {
     border: none;
     border-radius: 7.5px;
     cursor: pointer;
+    transition: all 0.5s;
 }
-#reset:hover {
+#reset-win:hover {
     background-color: red;
+    transform: scale(1.1);
+
+}
+#reset-lose:hover {
+    background-color: red;
+    transform: scale(1.1);
 
 }
 #player-input {
