@@ -131,8 +131,11 @@ function generatePlayerResult() {
 generatePlayerResult()
 
 
+let overlayNameInput = document.querySelector('#name-input')
+overlayNameInput.addEventListener('keydown', (event) => {
+    event.stopPropagation()
+})
 
-    
 
 
 /*/  <figure class="">
