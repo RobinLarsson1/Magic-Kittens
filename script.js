@@ -5,22 +5,25 @@ document.getElementById('maxWrong').innerHTML = maxWrong;
 document.getElementById('mistakes').innerHTML = mistakes;
 
 //Slumpar ut ett ord i wordArray
-const randomWords = wordArray
-let secretWord = randomWords[Math.floor(Math.random() * wordArray.length)];
-console.log(secretWord)
+function generateSecretWordFromArray() {
+    let secretWord = wordArray[Math.floor(Math.random() * wordArray.length)];
+    let answer = secretWord;
+    console.log(secretWord)
+    console.log(answer)
+}
 
+function appendCensoredSecretWord() {
+    //Skickar in hemliga ordet
+        const underStreck = document.createElement('p')
+        const ny = document.createTextNode(secretWord)
+        underStreck.append(ny)
 
-//Ordet som valdes
-let answer = secretWord;
+}
 
 //Tangentbord
 let keyboard = document.querySelector('body')
 let underScore = document.getElementById('correctLetters')
 
-//Skickar in hemliga ordet
-    const underStreck = document.createElement('p')
-    const ny = document.createTextNode(secretWord)
-    underStreck.append(ny)
 
 //Gör om ordet till streck
     let displayItem = secretWord.replace(/./g, '<span class="dashes">_</span>')
