@@ -61,6 +61,7 @@ document.onkeydown = function(event) {
     let wrongLetters = document.getElementById('guessed-letters')
     let guessedLetters = wrongLetters.innerText.split(/\s*/);
     let found = false;
+
     charArray.forEach((char, index) => {
         if (char === event.key) {
             dashes[index].innerText = char;
@@ -77,7 +78,7 @@ document.onkeydown = function(event) {
         mistakes = mistakes + 1
         hangManPicture.innerHTML = hangManPicture.innerHTML + hangMan[wrongGuesses]
         found = false;
-    }
+    }  
 }
 
 
