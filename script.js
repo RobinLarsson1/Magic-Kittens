@@ -130,7 +130,7 @@ function generatePlayerResult() {
 }
 generatePlayerResult()
 
-
+// Förhindrande av att namninskrivning i början räknas som gissningar i spelet.
 let overlayNameInput = document.querySelector('#name-input')
 overlayNameInput.addEventListener('keydown', (event) => {
     event.stopPropagation()
