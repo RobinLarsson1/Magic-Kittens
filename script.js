@@ -93,6 +93,7 @@ document.onkeydown = function(event) {
     }  
     }  if (mistakes == maxWrong) {
         gameOverModalOverlay()   
+        publishStats(p1name, false)
 }
 let wordGuessed = true;
 for (let i = 0; i < charArray.length; i++) {

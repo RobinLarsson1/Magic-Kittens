@@ -202,7 +202,6 @@ html, body {
     justify-content: center;
     align-items: center;
     z-index: 1;
-    display: none;
 }
 
 /* Modal */
@@ -217,7 +216,6 @@ html, body {
     padding: 25px;
     flex-flow: row wrap;
     box-shadow: var(--shadow-low);
-    display: none;
 }
 
 .modal > .button.close {
@@ -244,14 +242,6 @@ html, body {
 .title-center > * {
     height: 16px;
 }
-
-/*
-.modal.mode {
-}
-
-.modal.end {
-}
-*/
 
 /* Mobile */
 @media (orientation: portrait) {
