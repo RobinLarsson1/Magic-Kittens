@@ -102,12 +102,14 @@ for (let i = 0; i < charArray.length; i++) {
     }
 }
 
+
+// Om man har vunnit
 if (wordGuessed) {
     // Reload the website
     
 
     gameWinModalOverlay()
-    publishStats(p1name)
+    publishStats(p1name, true)
 }
 }; 
 
@@ -274,15 +276,33 @@ headerButtonList.resetGame.addEventListener('click', () => {
     location.reload()
 });
 
-const score = document.querySelector('.scoreboard-section')
+//////// SCOREBOARD ////////
+
+const scoreboard = document.querySelector('.scoreboard-section')
+const gameboard = document.querySelector('.game-section')
 
 
-let publishStats = player => {
+const showScoreboardButton = document.querySelector('#show-scoreboard-button')
+const closeScoreboardButton = document.querySelector("#close-scoreboard-button")
+
+closeScoreboardButton.addEventListener('click', () => {
+    scoreboard.classList.add('hidden')
+    gameboard.classList.remove('hidden')
+})
+
+showScoreboardButton.addEventListener('click', () => {
+    scoreboard.classList.remove('hidden')
+    gameboard.classList.add('hidden')
+})
+
+// Publicera stats till localstorage
+let publishStats = (player, result) => {
     let playerData = {
         name: player,
         guessed: guessedLetters, 
         word: answer,
-        tries: mistakes
+        tries: mistakes,
+        won: result
     }
     
     let storedStatsToJSON = JSON.stringify(playerData)
@@ -291,26 +311,18 @@ let publishStats = player => {
 
     localStorage.setItem(playerName, storedStatsToJSON)
 
-    for (const key in localStorage) {
-        if (key.startsWith = 'Player') {
-            console.log(`${key}: ${localStorage.getItem(key)}`)
-
-            let p = document.createElement('p')
-            p.innerText = localStorage.getItem(key)
-            score.append(p)
-        }
-    }
+    scoreboardResults()
 }
 
-
+// Displayar stats till scoreboard
 let scoreboardResults = () => {
     for (const key in localStorage) {
-        if (key.startsWith = 'Player') {
+        if (key.startsWith('Player')) {
             console.log(`${key}: ${localStorage.getItem(key)}`)
 
             let p = document.createElement('p')
-            p.innerText = localStorage.getItem(key)
-            score.append(p)
+            p.innerText = localStorage.getItem(key).replace('{', '').replace('}', '')
+            scoreboard.append(p)
         }
     }
 }

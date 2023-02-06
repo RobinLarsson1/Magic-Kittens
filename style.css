@@ -152,9 +152,6 @@ html, body {
     background-color: red;
 }
 
-.game-section {
-}
-
 #player-input {
     display: flex;
 }
@@ -205,6 +202,7 @@ html, body {
     justify-content: center;
     align-items: center;
     z-index: 1;
+    display: none;
 }
 
 /* Modal */
@@ -219,6 +217,7 @@ html, body {
     padding: 25px;
     flex-flow: row wrap;
     box-shadow: var(--shadow-low);
+    display: none;
 }
 
 .modal > .button.close {

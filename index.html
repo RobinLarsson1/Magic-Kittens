@@ -80,15 +80,11 @@
 				</section>
 			</section>
 			<!-- Scoreboard -->
-			<section class="scoreboard-section">
+			<section class="scoreboard-section hidden">
 				<header class="header">
 					<h1 class="scoreboard-title">Scoreboard</h1>
 					<div class="header-buttons">
-						<button id="close-scoreboard-button" class="header-button" title="Stäng av scoreboarden">
-							<span class="material-symbols-outlined">
-								close
-							</span>
-						</button>
+
 						<span>Sortera listan</span>
 						<button class="header-button">
 							<span class="material-symbols-outlined">
@@ -114,6 +110,17 @@
 						<button class="header-button">
 							Från start
 						</button>
+						<span>Alternativ</span>
+						<button class="header-button">
+							<span class="material-symbols-outlined">
+								delete
+							</span>
+						</button>
+						<button id="close-scoreboard-button" class="header-button" title="Stäng av scoreboarden">
+							<span class="material-symbols-outlined">
+								close
+							</span>
+						</button>
 					</div>
 				</header>
 			</section>
@@ -125,7 +132,7 @@
 		<div id="enter-name-modal" class="modal">
 			<div class="title-center">
 				<h2>Välkommen till</h2>
-				<h1 class="title">Hangman</h1>
+				<h1 class="main-title">Hangman</h1>
 			</div>
 			<div>
 				<input id="name-input" class="text-input" type="text" placeholder="Vänligen skriv in ditt namn" value="" title="Namn här" />
