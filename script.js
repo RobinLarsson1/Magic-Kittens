@@ -63,7 +63,6 @@ let wrongGuesses = 0
 
 let disabledKeyList = ['Enter', 'Control', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'ArrowUp', ' ', 'Meta', 'Alt', 'AltGraph', 'ContextMenu', 'Home', 'End', 'PageDown', 'PageUp', 'Shift', 'Delete', 'Backspace', 'Insert', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12', '§', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'CapsLock', 'Tab']
 
-
 let dashes = document.getElementsByClassName("dashes");
 let hangManPicture = document.getElementById('hangman-picture')
 let wrongLetters = document.getElementById('guessed-letters')
@@ -281,7 +280,7 @@ const score = document.querySelector('.scoreboard-section')
 let publishStats = player => {
     let playerData = {
         name: player,
-        guessed: wrongLetters, 
+        guessed: guessedLetters, 
         word: answer,
         tries: mistakes
     }
@@ -293,18 +292,29 @@ let publishStats = player => {
     localStorage.setItem(playerName, storedStatsToJSON)
 
     for (const key in localStorage) {
-
         if (key.startsWith = 'Player') {
             console.log(`${key}: ${localStorage.getItem(key)}`)
 
             let p = document.createElement('p')
-            p.innerText = key
+            p.innerText = localStorage.getItem(key)
             score.append(p)
         }
-
     }
 }
 
 
+let scoreboardResults = () => {
+    for (const key in localStorage) {
+        if (key.startsWith = 'Player') {
+            console.log(`${key}: ${localStorage.getItem(key)}`)
+
+            let p = document.createElement('p')
+            p.innerText = localStorage.getItem(key)
+            score.append(p)
+        }
+    }
+}
+
+scoreboardResults()
 
 

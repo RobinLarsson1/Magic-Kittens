@@ -59,7 +59,6 @@
 					<!-- container för spelare -->
 					<div id="player-input" class="player-input">
 						<p>Spelare: </p>
-						<input type="text" class="text-input" id="player-inputfield">
 						<p id="player-name-placeholder"> </p>
 					</div>
 					<!-- container för antal gissningar -->
@@ -77,7 +76,7 @@
 					<div id="correctLetters">
 						<p id="svar"></p>
 					</div>
-					<p id="guessed-letters"> Gissade bokstäver:  </p>
+					<p id="guessed-letters"></p>
 				</section>
 			</section>
 			<!-- Scoreboard -->
@@ -121,67 +120,63 @@
 		</section>
 	</section>
 	<!-- Overlay -->
-		<div class="overlay hidden">
-			<!-- Modals -->
-			<div id="enter-name-modal" class="modal hidden">
-				<div class="title-center">
-					<h2>Välkommen till</h2>
-					<h1 class="title">Hangman</h1>
-				</div>
-				<div>
-					<input id="name-input" class="text-input" type="text" placeholder="Vänligen skriv in ditt namn" value="" title="Namn här" />
-					<button class="button" id="name-enter-button">Redo att spela!</button>
-				</div>
+	<div class="overlay">
+		<!-- Modals -->
+		<div id="enter-name-modal" class="modal">
+			<div class="title-center">
+				<h2>Välkommen till</h2>
+				<h1 class="title">Hangman</h1>
 			</div>
-			<div id="gamemode-modal" class="modal hidden"><h2>Välj läge!</h2>
-				<div>
-					<button class="normal-mode button">Vanligt</button>
-					<button class="pvp-mode button">PvP</button>
-				</div>
-			</div>
-			<div id="lose-modal" class="modal hidden">
-				<h2>Du har förlorat!</h2>
-				<p>Det rätta ordet var: <span id="correct-answer"></span></p>
-				<p>Vill du starta om spelet?</p>
-				<div>
-					<button id="reset-lose">Starta om spelet</button>
-					<button class="button">Visa scoreboarden</button>
-				</div>
-			</div>
-			<div id="win-modal" class="modal hidden">
-				<h2>NAMN Du har vunnit!</h2>
-				<p>Antal gissningar: </p>
-				<p>Gissat ord:</p>
-				<p>Vill du starta om spelet?</p>
-				<div>
-					<button id="reset-win">Starta om spelet</button>
-					<button class="button">Visa scoreboarden</button>
-				</div>
-			</div>
-			<div id="about-modal" class="modal hidden">
-				<button class="button close" id="about-modal-close-button">X</button>
-				<h1 class="main-title">Hangman</h1>
-				<div class="profile">
-					<img src="robin.png" width="124" height="124" alt="Robin">
-					<legend>Robin</legend>
-				</div>
-				<div class="profile">
-					<img src="victorl.png" width="124" height="124" alt="Victor L">
-					<legend>Victor L</legend>
-				</div>
-				<div class="profile">
-					<img src="victorb.png" width="124" height="124" alt="Victor B"> 
-					<legend>Victor B</legend>
-				</div>
-			</div>
-			<div id="change-player-modal" class="modal hidden">
-				<button class="button close" id="change-player-modal-close-button">X</button>
-				<h1 class="main-title">Hangman</h1>
+			<div>
+				<input id="name-input" class="text-input" type="text" placeholder="Vänligen skriv in ditt namn" value="" title="Namn här" />
+				<button class="button" id="name-enter-button">Redo att spela!</button>
 			</div>
 		</div>
-			</section>
-		</section>
-	</section>
-
+		<div id="gamemode-modal" class="modal hidden"><h2>Välj läge!</h2>
+			<div>
+				<button class="normal-mode button">Vanligt</button>
+				<button class="pvp-mode button">PvP</button>
+			</div>
+		</div>
+		<div id="lose-modal" class="modal hidden">
+			<h2>Du har förlorat!</h2>
+			<p>Det rätta ordet var: <span id="correct-answer"></span></p>
+			<p>Vill du starta om spelet?</p>
+			<div>
+				<button id="reset-lose">Starta om spelet</button>
+				<button class="button">Visa scoreboarden</button>
+			</div>
+		</div>
+		<div id="win-modal" class="modal hidden">
+			<h2>NAMN Du har vunnit!</h2>
+			<p>Antal gissningar: </p>
+			<p>Gissat ord:</p>
+			<p>Vill du starta om spelet?</p>
+			<div>
+				<button id="reset-win">Starta om spelet</button>
+				<button class="button">Visa scoreboarden</button>
+			</div>
+		</div>
+		<div id="about-modal" class="modal hidden">
+			<button class="button close" id="about-modal-close-button">X</button>
+			<h1 class="title">Hangman</h1>
+			<div class="profile">
+				<img src="robin.png" width="124" height="124" alt="Robin">
+				<legend>Robin</legend>
+			</div>
+			<div class="profile">
+				<img src="victorl.png" width="124" height="124" alt="Victor L">
+				<legend>Victor L</legend>
+			</div>
+			<div class="profile">
+				<img src="victorb.png" width="124" height="124" alt="Victor B"> 
+				<legend>Victor B</legend>
+			</div>
+		</div>
+		<div id="change-player-modal" class="modal hidden">
+			<button class="button close" id="change-player-modal-close-button">X</button>
+			<h1 class="title">Hangman</h1>
+		</div>
+	</div>
 </body>
 </html>
