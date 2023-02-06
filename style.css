@@ -115,7 +115,7 @@ html, body {
 	align-items: center;
     height: fit-content;
 }
-#reset {
+#reset-win, #reset-lose {
     background-color:  #bae1ff;
     font-size: 20px;
     padding: 0.5em 1em;
