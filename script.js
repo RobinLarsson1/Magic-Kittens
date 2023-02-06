@@ -77,12 +77,12 @@ document.onkeydown = function(event) {
             //ersätt understreck med bokstav
             dashes[index].innerText = char;
             answerArray.push(char)
-            dashes[index].innerText = char.toUpperCase();
+            dashes[index].innerText = char;
             found = true;
         }
     })}  else {
     if ((found == false && !guessedLetters.includes(event.key)) && (mistakes < maxWrong) && (disabledKeys.includes(event.key) == false)) {
-        wrongLetters.innerText += event.key.toLocaleUpperCase() + ', ';
+        wrongLetters.innerText += event.key + ', ';
         guessedLetters.push(event.key); 
         mistakes++
         document.getElementById('mistakes').innerText = mistakes
