@@ -90,11 +90,21 @@ document.onkeydown = function(event) {
         wrongGuesses++
     }  
     }  if (mistakes == maxWrong) {
-        gameOverModalOverlay()
-    } else if (answerArray.length = secretWord.length-1) {
-        // VINST HÄR !
+        gameOverModalOverlay()   
+}
+let wordGuessed = true;
+for (let i = 0; i < charArray.length; i++) {
+    if (dashes[i].innerText !== charArray[i]) {
+    wordGuessed = false;
+    break;
     }
 }
+
+if (wordGuessed) {
+    // Reload the website
+    gameWinModalOverlay()
+}
+}; 
 
 // Namn-input variabler
 let nameInputDiv = document.querySelector('.player-input')
@@ -230,3 +240,10 @@ const gameOverModalOverlay = () => {
 // Displayar Secretword i gameover splashscreenen
 const showSecretWord = document.querySelector('#correct-answer')
 showSecretWord.textContent = secretWord;
+
+// När man har vunnit spelet
+const gameWinModalOverlay = () => {
+    bodyElem.classList.add('game-won')
+    overlay.classList.remove('hidden')
+    modalPanels.endWin.classList.remove('hidden')
+}
