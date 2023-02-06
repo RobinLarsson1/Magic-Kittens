@@ -124,6 +124,17 @@ nameInput.addEventListener('keyup', (event) => {
     }
 })
 
+// FUNKTION - Namn-input kopplat till "Redo att spela!"-knapp
+let nameInputButton = document.querySelector('#name-enter-button')
+nameInputButton.addEventListener('click', () => {
+    namePlaceholder.innerText = ' ' + nameInput.value
+    p1name = nameInput.value
+    nameInput.remove()
+    modalPanels.enterName.className = 'hidden'
+    let overlay = document.querySelector('.overlay')
+    overlay.classList.add('hidden')
+})
+
 // FUNKTION - generera fram spelarnamn samt resultat
 let playerResult = {}
 function generatePlayerResult() {
