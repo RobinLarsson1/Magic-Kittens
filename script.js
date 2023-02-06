@@ -68,8 +68,7 @@ const headerButtonList = {
 }
 
 // Displayar Secretword i gameover splashscreenen
-
-showSecretWord.textContent = secretWord;
+// showSecretWord.textContent = secretWord;
 
 // Används för att selecta alla knappar med den klassen
 const headerButtons = document.querySelectorAll('.header-button')
@@ -115,8 +114,4 @@ closeButtonsForModals.forEach(element => {
             })
         })
 
-//Resetknappar i win, lose samt header 
-resetWinButton.addEventListener('click', reloadGame);
-resetLoseButton.addEventListener('click', reloadGame);
-headerButtonList.resetGame.addEventListener('click', reloadGame);
 
