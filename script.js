@@ -260,11 +260,13 @@ headerButtonList.resetGame.addEventListener('click', () => {
     location.reload()
 });
 
+const score = document.querySelector('.scoreboard-section')
+
 
 let publishStats = player => {
     let playerData = {
         name: player,
-        guessed: wrongLetters.innerText.split(/\s*/), 
+        guessed: guessedLetters, 
         word: answer,
         tries: mistakes
     }
@@ -275,11 +277,16 @@ let publishStats = player => {
 
     localStorage.setItem(playerName, storedStatsToJSON)
 
-    for (let i = localStorage.getItem(playerName); i < localStorage.getItem(playerName); i++) {
-        let scoreBoard = document.querySelector('.scoreboard-section')
-        let displayStats = document.createElement('p')
-        displayStats.innerText(i)
-        scoreBoard.append(displayStats)
+    for (const key in localStorage) {
+
+        if (key.startsWith = 'Player') {
+            console.log(`${key}: ${localStorage.getItem(key)}`)
+
+            let p = document.createElement('p')
+            p.innerText = key
+            score.append(p)
+        }
+
     }
 }
 
