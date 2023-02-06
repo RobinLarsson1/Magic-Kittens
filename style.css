@@ -268,3 +268,8 @@ html, body {
 #enter-name-modal {
     height: 12em;
 }
+
+#svar {
+    display: flex;
+    flex-wrap: wrap;
+}
