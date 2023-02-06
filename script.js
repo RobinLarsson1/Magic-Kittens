@@ -35,6 +35,7 @@ const randomWords = wordArray
 let secretWord = randomWords[Math.floor(Math.random() * wordArray.length)];
 console.log(secretWord)
 
+
 //Ordet som valdes
 let answer = secretWord;
 
