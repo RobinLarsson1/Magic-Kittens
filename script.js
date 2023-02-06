@@ -271,14 +271,12 @@ const gameWinModalOverlay = () => {
     modalPanels.endWin.classList.remove('hidden')
 }
 
+
+const reloadGame = () => {
+    location.reload();
+};
 //Resetknappar i win, lose samt header 
-resetWinButton.addEventListener('click', () => {
-    location.reload()
-});
-resetLoseButton.addEventListener('click', () => {
-    location.reload()
-});
-headerButtonList.resetGame.addEventListener('click', () => {
-    location.reload()
-});
+resetWinButton.addEventListener('click', reloadGame);
+resetLoseButton.addEventListener('click', reloadGame);
+headerButtonList.resetGame.addEventListener('click', reloadGame);
 
