@@ -123,11 +123,6 @@ document.onkeydown = function(event) {
     });
 } 
 
-if (mistakes == maxWrong) {
-  gameResultModalOverlay(false, answer, null);
-  publishStats(p1name, false);
-}
-
 //Kollar om ordet är gissat eller inte, loopas varje gång
   function isWordComplete(singleLetter, dashes) {
       for (let i = 0; i < singleLetter.length; i++) {
