@@ -25,16 +25,24 @@ const overlayScreenToggle = () => {
 }
 // Om man har gissat max antal gånger
 const bodyElem = document.body;
-const gameOverModalOverlay = () => {
-    bodyElem.classList.add('game-over')
-    overlay.classList.remove('hidden')
-    modalPanels.endLose.classList.remove('hidden')
-}
 
 
-// När man har vunnit spelet
-const gameWinModalOverlay = () => {
-    bodyElem.classList.add('game-won')
-    overlay.classList.remove('hidden')
-    modalPanels.endWin.classList.remove('hidden')
+// Denna funktion kollar om man har vunnit spelet och visar då en specifik modal för resultatet
+const gameResultModalOverlay = (endResult, generatedWord, amountTries) => {
+    // Om man har vunnit
+    if (endResult == true) {
+        bodyElem.classList.add('game-won')
+        overlay.classList.remove('hidden')
+        modalPanels.endWin.classList.remove('hidden')
+
+        // Om man har förlorat
+    } else if (endResult == false) {
+
+        let correctAnswer = document.querySelector('#correct-answer')
+        correctAnswer.textContent = answer
+
+        bodyElem.classList.add('game-over')
+        overlay.classList.remove('hidden')
+        modalPanels.endLose.classList.remove('hidden')
+    }
 }

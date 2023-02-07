@@ -102,7 +102,7 @@ document.onkeydown = function (event) {
       //Om max antal fel överskridits
     }
     if (mistakes == maxWrong) {
-      gameOverModalOverlay();
+      gameResultModalOverlay(false, answer, null);
       publishStats(p1name, false);
     }
     //Om man gissat rätt
@@ -117,7 +117,7 @@ document.onkeydown = function (event) {
     if (wordGuessed) {
       // Reload the website
 
-      gameWinModalOverlay();
+      gameResultModalOverlay(true, null, mistakes);
       publishStats(p1name, true);
     }
   }
