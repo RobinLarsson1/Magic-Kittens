@@ -50,8 +50,8 @@ let p1name
 let errorMessageText = 'Var god ange ditt namn!'
 
 //Eventlyssnare på restart-game knapp i win eller lose
-const resetLoseButton = document.getElementById('reset-lose')
-const resetWinButton = document.getElementById('reset-win')
+const resetButtonForWinOrLoseModalScreen = document.querySelectorAll('.reset-button')
+
 
 
 // Förhindrande av att namninskrivning i början räknas som gissningar i spelet.

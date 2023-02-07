@@ -31,6 +31,10 @@ const bodyElem = document.body;
 const gameResultModalOverlay = (endResult, generatedWord, amountTries) => {
     // Om man har vunnit
     if (endResult == true) {
+
+        let triesAmount = document.querySelector('#amount-tries')
+        triesAmount.textContent = mistakes
+
         bodyElem.classList.add('game-won')
         overlay.classList.remove('hidden')
         modalPanels.endWin.classList.remove('hidden')

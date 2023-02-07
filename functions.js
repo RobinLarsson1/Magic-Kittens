@@ -10,8 +10,9 @@ function errorMessage() {
 
 
 //Resetknappar i win, lose samt header
-resetWinButton.addEventListener("click", reloadGame);
-resetLoseButton.addEventListener("click", reloadGame);
+resetButtonForWinOrLoseModalScreen.forEach(button => {
+  button.addEventListener('click', reloadGame)
+})
 headerButtonList.resetGame.addEventListener("click", reloadGame);
 
 // FUNKTION - Namn-input
