@@ -221,6 +221,8 @@ html, body {
     box-shadow: var(--shadow-low);
 }
 
+
+
 .modal > .button.close {
     margin-left: min(430px);
 }
@@ -245,6 +247,24 @@ html, body {
 
 .title-center > * {
     height: 16px;
+}
+
+.win-title {
+    font-size: 36px;
+    font-family: 'Carter One', cursive;
+    color: #439143;
+    text-shadow: #272727 4px 3px;
+}
+
+.lose-title {
+    font-size: 36px;
+    font-family: 'Carter One', cursive;
+    color: #C70039;
+    text-shadow: #272727 4px 3px;
+}
+
+#win-modal, #lose-modal {
+    flex-flow: column wrap;
 }
 
 /* Mobile */

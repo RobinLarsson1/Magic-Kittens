@@ -196,24 +196,23 @@
 
 		<!-- MODAL: Vid förlust -->
 		<div id="lose-modal" class="modal hidden">
-			<h2>Du har förlorat!</h2>
-			<p>Det rätta ordet var: <span id="correct-answer"></span></p>
-			<p>Vill du starta om spelet?</p>
+			<h2 class="lose-title">Du förlora!</h2>
+			<p>Det korrekta ordet var: <span id="correct-answer"></span></p>
+			<p>Vill du spela igen?</p>
 			<div>
-				<button id="reset-lose">Starta om spelet</button>
-				<button class="button">Visa scoreboarden</button>
+				<button class="reset-button button">Spela igen</button>
+				<button class="go-to-scoreboard-button button">Visa scoreboarden</button>
 			</div>
 		</div>
 
 		<!-- MODAL: Vid vinst -->
 		<div id="win-modal" class="modal hidden">
-			<h2>NAMN Du har vunnit!</h2>
-			<p>Antal gissningar: </p>
-			<p>Gissat ord:</p>
-			<p>Vill du starta om spelet?</p>
+			<h2 class="win-title">Du  vann!</h2>
+			<p>Antal gissningar: <span id="amount-tries"></span></p>
+			<p>Vill du spela igen?</p>
 			<div>
-				<button id="reset-win">Starta om spelet</button>
-				<button class="button">Visa scoreboarden</button>
+				<button class="reset-button button">Spela igen</button>
+				<button class="go-to-scoreboard-button button">Visa scoreboarden</button>
 			</div>
 		</div>
 

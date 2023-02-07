@@ -9,10 +9,27 @@ function errorMessage() {
 }
 
 
-//Resetknappar i win, lose samt header
-resetWinButton.addEventListener("click", reloadGame);
-resetLoseButton.addEventListener("click", reloadGame);
+//Resetknappar i win, lose samt för header
+resetButtonForWinOrLoseModalScreen.forEach(button => {
+  button.addEventListener('click', reloadGame)
+})
 headerButtonList.resetGame.addEventListener("click", reloadGame);
+
+
+// Gå till scoreboard efter lose eller win
+goToScoreboardButton.forEach(button => {
+  button.addEventListener('click', () => {
+    if (!document.querySelector('#win-modal').classList.contains('hidden')) {
+      modalPanels.endWin.classList.add('hidden')
+      goToScoreboard()
+    }
+    if (!document.querySelector('#lose-modal').classList.contains('hidden')) {
+      modalPanels.endLose.classList.add('hidden')
+      goToScoreboard()
+    }
+  });
+})
+
 
 // FUNKTION - Namn-input
 nameInput.addEventListener("keyup", (event) => {
@@ -104,7 +121,8 @@ document.onkeydown = function(event) {
 } 
 
 if (mistakes == maxWrong) {
-gameOverModalOverlay()
+  gameResultModalOverlay(false, answer, null);
+  publishStats(p1name, false);
 }
 
 
@@ -133,6 +151,7 @@ gameOverModalOverlay()
   //Kolla om spelet är vunnet 
   let isGameWon = isWordComplete(singleLetter, dashes)
   if (isGameWon) {
-      gameWinModalOverlay();
+    gameResultModalOverlay(true, null, mistakes);
+    publishStats(p1name, true);
   }
 }}
