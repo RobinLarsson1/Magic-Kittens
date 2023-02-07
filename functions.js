@@ -144,6 +144,7 @@ document.onkeydown = function(event) {
   let gameIsOver = mistakes >= maxWrong;
   if (gameIsOver) {
     gameResultModalOverlay(false, answer);
+    publishStats(p1name, false);
   }
 
   //Kolla om spelet är vunnet 
