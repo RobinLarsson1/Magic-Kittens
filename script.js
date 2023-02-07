@@ -31,14 +31,13 @@ const disabledKeys = ['Enter', 'Control', 'ArrowLeft', 'ArrowRight', 'ArrowDown'
 
 let answerArray = []
 
-//funtion för att printa bosktäverna
 let wrongGuesses = 0
 
-let charArray = secretWord.split("");
-let dashes = document.getElementsByClassName("dashes");
-let hangManPicture = document.getElementById('hangman-picture')
-let wrongLetters = document.getElementById('guessed-letters')
-let guessedLetters = wrongLetters.innerText.split(/\s*/);
+let dashes = document.getElementsByClassName("dashes");//Placeholders för ordet
+let hangManPicture = document.getElementById('hangman-picture'); //Bilden på gubben
+let wrongLetters = document.getElementById('guessed-letters');
+let guessedLetters = wrongLetters.innerText.split();
+let singleLetter = secretWord.split(""); //delar upp ordet
 
 
 // Namn-input variabler

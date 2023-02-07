@@ -64,61 +64,72 @@ generatePlayerResult();
 //
 
 //funktion för att printa rätta bokstäver
-document.onkeydown = function (event) {
+document.onkeydown = function(event) {
+  //Tangentbordet
+  let key = event.key;
   
-    // Förhindrar input utanför namninputs-modalen
-  let nameOverlayIsHidden = modalPanels.enterName.className.includes("hidden");
-  console.log(event.key);
+  //Kolla om gissningen är rätt
+  let isCorrectGuess = singleLetter.includes(key);
+  
+  //Kollar om man redan gissat 
+  let isGuessed = guessedLetters.includes(key);
+  
+  //Kollar om det man gissat är disabled key
+  let isDisabled = disabledKeys.includes(key);
+  
+  //Kollar om en ny och korrekt key är pressed, samt om man har slut på gissningar
+  let isValidGuess = isCorrectGuess ||(!isCorrectGuess && !isGuessed && mistakes < maxWrong && !isDisabled)
+  
 
-  if (nameOverlayIsHidden === true) {
-    let found = false;
-    if (charArray.includes(event.key)) {
-      charArray.forEach((char, index) => {
-        //om bostäverna är samma som trycks
-        if (char === event.key) {
-          //ersätt understreck med bokstav
-          dashes[index].innerText = char;
-          answerArray.push(char);
-          dashes[index].innerText = char;
-          found = true;
+
+  function updateIncorrectGuess(wrongLetters, guessedLetters, hangManPicture, key, mistakes, hangMan, wrongGuesses) {
+    wrongLetters.innerText += key + ', '
+    guessedLetters.push(key);
+    mistakes++
+    document.getElementById('mistakes').innerText = mistakes;
+    hangManPicture.innerHTML = hangManPicture.innerHTML + hangMan[wrongGuesses];
+    wrongGuesses++
+    return wrongGuesses;
+}
+
+  function updateCorrectGuess(singleLetter, dashes, key) {
+    singleLetter.forEach((char, index) => {
+        if (char === key) {
+            dashes[index].innerText = char;
         }
-      });
-    } else {
-      //Printar fel bosktäver
-      if (
-        found == false &&
-        !guessedLetters.includes(event.key) &&
-        mistakes < maxWrong &&
-        disabledKeys.includes(event.key) == false
-      ) {
-        wrongLetters.innerText += event.key + ", ";
-        guessedLetters.push(event.key);
-        mistakes++;
-        document.getElementById("mistakes").innerText = mistakes;
-        hangManPicture.innerHTML =
-          hangManPicture.innerHTML + hangMan[wrongGuesses];
-        wrongGuesses++;
-      }
-      //Om max antal fel överskridits
-    }
-    if (mistakes == maxWrong) {
-      gameOverModalOverlay();
-      publishStats(p1name, false);
-    }
-    //Om man gissat rätt
-    let wordGuessed = true;
-    for (let i = 0; i < charArray.length; i++) {
-      if (dashes[i].innerText !== charArray[i]) {
-        wordGuessed = false;
-        break;
-      }
-    }
-    // Om man har vunnit
-    if (wordGuessed) {
-      // Reload the website
+    });
+} 
 
-      gameWinModalOverlay();
-      publishStats(p1name, true);
-    }
+if (mistakes == maxWrong) {
+gameOverModalOverlay()   
+}
+
+
+  function isWordComplete(singleLetter, dashes) {
+      for (let i = 0; i < singleLetter.length; i++) {
+      if (dashes[i].innerText !== singleLetter[i]) {
+          return false;
+      }
+      }
+      return true;
   }
-};
+  
+  
+  if (isCorrectGuess) {
+      updateCorrectGuess(singleLetter, dashes, key)
+  } else if (isValidGuess) {
+      updateIncorrectGuess(wrongLetters, guessedLetters, hangManPicture,  key, mistakes, hangMan, wrongGuesses)
+  }
+  
+  //Kolla om spelet är förlorat
+  let gameIsOver = mistakes >= maxWrong;
+  if (gameIsOver) {
+      gameOverModalOverlay();
+  }
+  
+  //Kolla om spelet är vunnet 
+  let isGameWon = isWordComplete(singleLetter, dashes)
+  if (isGameWon) {
+      gameWinModalOverlay();
+  }
+}
