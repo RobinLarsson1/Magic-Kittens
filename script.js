@@ -154,16 +154,15 @@ let storedStatsToJSON = JSON.stringify(playerData)
 // Publicera stats till localstorage
 let publishStats = (player, result) => {
 
-    localStorage.setItem(p1name, storedStatsToJSON)
-
+    let playerName = `Player ${playerData.name}`
+    localStorage.setItem(playerName, storedStatsToJSON)
     scoreboardResults()
 }
 
 // Displayar stats till scoreboard
 let scoreboardResults = () => {
-    for (const key in localStorage) {
-        if (key.startsWith('Player')) {
-            console.log(`${key}: ${localStorage.getItem(key)}`)
+        // if (key.startsWith('Player')) {
+            // console.log(`${key}: ${localStorage.getItem(key)}`)
             const parsedData = JSON.parse(storedStatsToJSON)
             console.log(parsedData)
 
@@ -173,8 +172,8 @@ let scoreboardResults = () => {
             p.innerHTML = `Spelare: ${playerData.name} <br> Ord: ${parsedData.word} <br> Gissningar: ${guessedLetters}`
             displayScoreContainer.append(p)
         }
-    }
-}
+    // }
+
 
 // scoreboardResults()
 // publishStats()
