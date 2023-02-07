@@ -15,78 +15,186 @@
 
 	<!-- Script -->
 	<script src="svenska-ord-1000st.js" defer></script>
+	<script src="modaler.js" defer></script>
 	<script src="script.js" defer></script>
+	<script src="hangman.js" defer></script>
+	<script src="functions.js" defer></script>
 </head>
+
 <body id="body">
-</head>
-<body>
 	<!-- Sections -->
 	<section class="main-section">
-	<section class="center-section">
-		<header id="head">
-			<h1 class="title">Hangman</h1>
-			<div class="header-buttons">
-				<button id="about-game-button" class="header-button" title="Om spelet">
-					<span class="material-symbols-outlined">
-						info
-					</span>
-				</button>
-				<button id="reset-game-button" class="header-button" title="Starta om spelet">
-					<span class="material-symbols-outlined">
-						restart_alt
-					</span>
-				</button>
-				<button id="change-gamemode-button" class="header-button" title="Ändra läge">
-					<span class="material-symbols-outlined">
-						sports_score
-					</span>
-				</button>
-				<button id="show-scoreboard-button" class="header-button" title="Visa scoreboarden">
-					<span class="material-symbols-outlined">
-						scoreboard
-					</span>
-				</button>
-				<button id="change-player-button" class="header-button" title="Ändra spelare">
-					<span class="material-symbols-outlined">
-						person
-					</span>
-				</button>
-			</div>
-		</header>
-		<div id="top-div">
+
+		<section class="middle-section"> 
 			
-			<!-- container för spelare -->
-			<div id="player-input" class="player-input">
-				<p>Spelare: </p>
-				<p id="player-name-placeholder"> </p>
-			</div>
-			
-			<!-- container för antal gissningar -->
-			<div class="number-of-guesses">
-				Wrong guesses: <span id="mistakes"></span> of <span id="maxWrong"></span>
-			</div>
-			
-		</div>
-		<section class="heroSection">
-				<!-- Overlay -->
+			<!-- Game -->
+			<section class="game-section">
+				
+				<!-- GAME HEADER -->
+				<header class="header">
+					<h1 class="main-title">Hangman</h1>
+					
+					<div class="header-buttons">
+
+						<!-- HEADER-KNAPP: Om spelet -->
+						<button id="about-game-button" class="header-button" title="Om spelet">
+							<span class="material-symbols-outlined">
+								info
+							</span>
+						</button>
+
+						<!-- HEADER-KNAPP: Reset -->
+						<button id="reset-game-button" class="header-button" title="Starta om spelet">
+							<span class="material-symbols-outlined">
+								restart_alt
+							</span>
+						</button>
+
+						<!-- HEADER-KNAPP: Ändra spelläge -->
+						<button id="change-gamemode-button" class="header-button" title="Ändra läge">
+							<span class="material-symbols-outlined">
+								sports_score
+							</span>
+						</button>
+
+						<!-- HEADER-KNAPP: Scoreboard -->
+						<button id="show-scoreboard-button" class="header-button" title="Visa scoreboarden">
+							<span class="material-symbols-outlined">
+								scoreboard
+							</span>
+						</button>
+
+						<!-- HEADER-KNAPP: Byt spelare -->
+						<button id="change-player-button" class="header-button" title="Ändra spelare">
+							<span class="material-symbols-outlined">
+								person
+							</span>
+						</button>
+
+					</div>
+				</header>
+
+				<!-- SPELINFO (spelarnamn + gissningar) -->
+				<div id="top-div">
+					<!-- container för spelare -->
+					<div id="player-input" class="player-input">
+						<p>Spelare: </p>
+						<p id="player-name-placeholder"> </p>
+					</div>
+
+					<!-- container för antal gissningar -->
+					<div class="number-of-guesses">
+						Wrong guesses: <span id="mistakes"></span> of <span id="maxWrong"></span>
+					</div>
+				</div>
+
+				<section class="hero-section">
+					<!-- gubben här -->
+					<figure class="gubben">
+						<svg id="hangman-picture" width="501" height="565" viewBox="0 0 501 565" fill="none" xmlns="http://www.w3.org/2000/svg"></svg>
+					</figure>
+					<!-- Hemliga ordet -->
+					<div id="nyBokstav"></div>
+					<div id="correctLetters">
+						<p id="svar"></p>
+					</div>
+					<p id="wrong-letters"></p>
+				</section>
+			</section>
+
+			<!-- SCOREBOARD -->
+			<section class="scoreboard-section hidden">
+				<header class="header">
+					<h1 class="scoreboard-title">Scoreboard</h1>
+					<div class="header-buttons">
+
+						<span>Sortera listan</span>
+						
+						<!-- SCOREBOARD-KNAPP #1: Sämst -->
+						<button class="header-button">
+							<span class="material-symbols-outlined">
+								arrow_upward
+							</span>
+							Sämst
+						</button>
+
+						<!-- SCOREBOARD-KNAPP #2: Bästa -->
+						<button class="header-button">
+							<span class="material-symbols-outlined">
+								arrow_downward
+							</span>
+							Bästa
+						</button>
+
+						<!-- SCOREBOARD-KNAPP #3: Vinst -->
+						<button class="header-button">
+							Vinst
+						</button>
+
+						<!-- SCOREBOARD-KNAPP #4: Förlust -->
+						<button class="header-button">
+							Förlust
+						</button>
+
+						<!-- SCOREBOARD-KNAPP #5: Senast -->
+						<button class="header-button">
+							Senast
+						</button>
+
+						<!-- SCOREBOARD-KNAPP #6: Från start -->
+						<button class="header-button">
+							Från start
+						</button>
+
+						<span>Alternativ</span>
+						
+						<!-- SCOREBOARD-KNAPP #7: Ta bort -->
+						<button class="header-button">
+							<span class="material-symbols-outlined">
+								delete
+							</span>
+						</button>
+
+						<!-- SCOREBOARD-KNAPP #8: Stäng scoreboard -->
+						<button id="close-scoreboard-button" class="header-button" title="Stäng av scoreboarden">
+							<span class="material-symbols-outlined">
+								close
+							</span>
+						</button>
+
+					</div>
+				</header>
+			</section>
+		</section>
+	</section>
+
+	<!-- Overlay -->
 	<div class="overlay">
 		<!-- Modals -->
+		
+		<!-- MODAL: Skriv in namn -->
 		<div id="enter-name-modal" class="modal">
 			<div class="title-center">
 				<h2>Välkommen till</h2>
-				<h1 class="title">Hangman</h1>
+				<h1 class="main-title">Hangman</h1>
 			</div>
 			<div>
 				<input id="name-input" class="text-input" type="text" placeholder="Vänligen skriv in ditt namn" value="" title="Namn här" />
 				<button class="button" id="name-enter-button">Redo att spela!</button>
+				<br>
+				<p class="error-message">  </p>
 			</div>
 		</div>
+
+		<!-- MODAL: Välj spelläge -->
 		<div id="gamemode-modal" class="modal hidden"><h2>Välj läge!</h2>
 			<div>
 				<button class="normal-mode button">Vanligt</button>
 				<button class="pvp-mode button">PvP</button>
 			</div>
 		</div>
+
+		<!-- MODAL: Vid förlust -->
 		<div id="lose-modal" class="modal hidden">
 			<h2>Du har förlorat!</h2>
 			<p>Det rätta ordet var: <span id="correct-answer"></span></p>
@@ -96,6 +204,8 @@
 				<button class="button">Visa scoreboarden</button>
 			</div>
 		</div>
+
+		<!-- MODAL: Vid vinst -->
 		<div id="win-modal" class="modal hidden">
 			<h2>NAMN Du har vunnit!</h2>
 			<p>Antal gissningar: </p>
@@ -106,22 +216,32 @@
 				<button class="button">Visa scoreboarden</button>
 			</div>
 		</div>
+
+		<!-- MODAL: Om oss -->
 		<div id="about-modal" class="modal hidden">
 			<button class="button close" id="about-modal-close-button">X</button>
 			<h1 class="title">Hangman</h1>
+			
+			<!-- Om oss - Robin -->
 			<div class="profile">
 				<img src="robin.png" width="124" height="124" alt="Robin">
 				<legend>Robin</legend>
 			</div>
+
+			<!-- Om oss - VictorL -->
 			<div class="profile">
 				<img src="victorl.png" width="124" height="124" alt="Victor L">
 				<legend>Victor L</legend>
 			</div>
+
+			<!-- Om oss - VictorB -->
 			<div class="profile">
 				<img src="victorb.png" width="124" height="124" alt="Victor B"> 
 				<legend>Victor B</legend>
 			</div>
 		</div>
+
+		<!-- MODAL: Byt spelare -->
 		<div id="change-player-modal" class="modal hidden">
 			<button class="button close" id="change-player-modal-close-button">X</button>
 			<h1 class="title">Hangman</h1>
