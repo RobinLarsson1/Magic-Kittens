@@ -163,61 +163,13 @@ let publishStats = (player, result) => {
 let scoreboardResults = () => {
         // if (key.startsWith('Player')) {
             // console.log(`${key}: ${localStorage.getItem(key)}`)
-            const parsedData = JSON.parse(storedStatsToJSON)
-            console.log(parsedData)
+            const parsedPlayerData = JSON.parse(storedStatsToJSON)
+            console.log(parsedPlayerData)
+            console.log(p1name)
 
             let displayScoreContainer = document.querySelector('.container-display-score')
             let p = document.createElement('p')
             p.className = 'score-div'
-            p.innerHTML = `Spelare: ${playerData.name} <br> Ord: ${parsedData.word} <br> Gissningar: ${guessedLetters}`
+            p.innerHTML = `Spelare: ${p1name} <br> Ord: ${parsedPlayerData.word} <br> Gissningar: ${guessedLetters}`
             displayScoreContainer.append(p)
         }
-    // }
-
-
-// scoreboardResults()
-// publishStats()
-
-///////////////
-
-
-// Publicera stats till localstorage
-// let publishStats = (player, result) => {
-//     let playerData = {
-//         name: p1name,
-//         word: answer,
-//         tries: mistakes,
-//         won: result,
-//         guessed: guessedLetters
-//     }
-    
-//     let storedStatsToJSON = JSON.stringify(playerData)
-
-//     let playerName = `Player ${playerData.name}`
-
-//     localStorage.setItem(playerName, storedStatsToJSON)
-// }
-
-//     // Displayar stats till scoreboard
-// function blabla() {
-//     for (const key in localStorage) {
-//         if (key.startsWith('Player')) {
-//             console.log(`${key}: ${localStorage.getItem(key)}`)
-
-//             const parsedData = JSON.parse(storedStatsToJSON)
-//             console.log('PARSED' + parsedData.word)
-
-
-//             let p = document.createElement('p')
-//             p.innerText = `${parsedData.name} ${parsedData.word} ${parsedData.tries} ${parsedData.won} $`
-//             scoreboard.append(p)
-//             console.log(parsedData.name)
-//         }
-//     }
-// }
-
-// publishStats()
-
-
-
-
