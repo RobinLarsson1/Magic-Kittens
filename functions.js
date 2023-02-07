@@ -9,11 +9,27 @@ function errorMessage() {
 }
 
 
-//Resetknappar i win, lose samt header
+//Resetknappar i win, lose samt för header
 resetButtonForWinOrLoseModalScreen.forEach(button => {
   button.addEventListener('click', reloadGame)
 })
 headerButtonList.resetGame.addEventListener("click", reloadGame);
+
+
+// Gå till scoreboard efter lose eller win
+goToScoreboardButton.forEach(button => {
+  button.addEventListener('click', () => {
+    if (!document.querySelector('#win-modal').classList.contains('hidden')) {
+      modalPanels.endWin.classList.add('hidden')
+      goToScoreboard()
+    }
+    if (!document.querySelector('#lose-modal').classList.contains('hidden')) {
+      modalPanels.endLose.classList.add('hidden')
+      goToScoreboard()
+    }
+  });
+})
+
 
 // FUNKTION - Namn-input
 nameInput.addEventListener("keyup", (event) => {

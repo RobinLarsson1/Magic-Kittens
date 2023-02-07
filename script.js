@@ -51,6 +51,7 @@ let errorMessageText = 'Var god ange ditt namn!'
 
 //Eventlyssnare på restart-game knapp i win eller lose
 const resetButtonForWinOrLoseModalScreen = document.querySelectorAll('.reset-button')
+const goToScoreboardButton = document.querySelectorAll('.go-to-scoreboard-button')
 
 
 
