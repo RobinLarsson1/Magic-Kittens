@@ -96,7 +96,7 @@ headerButtons.forEach(element => {
     
 })
 
-// Denna koillar till om man trycker på en stäng av knapp
+// Denna kollar till om man trycker på en stäng av knapp
 closeButtonsForModals.forEach(element => {
     element.addEventListener('click', () => {
                 // När man trycker på stäng av knappen för om spelet modalen

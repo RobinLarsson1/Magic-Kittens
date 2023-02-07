@@ -79,7 +79,7 @@ function generatePlayerResult() {
 generatePlayerResult();
 
 //
-//funktion för att printa rätta bokstäver
+//funktion för att printa bokstäver
 document.onkeydown = function(event) {
   //Tangentbordet
   let key = event.key;
@@ -102,6 +102,8 @@ document.onkeydown = function(event) {
 
   if (nameOverlayIsHidden === true) {
 
+
+    //Skickar in fel bokstav, samt uppdaterar antal felgissningar
     function updateIncorrectGuess() {
         wrongLetters.innerText += key + ', '
         guessedLetters.push(key);
@@ -112,6 +114,7 @@ document.onkeydown = function(event) {
         return wrongGuesses;
 }
 
+  //Skickar in korrekt gissning iställer för understräcken
   function updateCorrectGuess() {
     singleLetter.forEach((char, index) => {
         if (char === key) {
@@ -125,7 +128,7 @@ if (mistakes == maxWrong) {
   publishStats(p1name, false);
 }
 
-
+//Kollar om ordet är gissat eller inte, loopas varje gång
   function isWordComplete(singleLetter, dashes) {
       for (let i = 0; i < singleLetter.length; i++) {
       if (dashes[i].innerText !== singleLetter[i]) {
@@ -135,7 +138,7 @@ if (mistakes == maxWrong) {
       return true;
   }
 
-
+//kallar på rätt funktion beroende på vilken gissning som anges
   if (isCorrectGuess) {
       updateCorrectGuess()
   } else if (isValidGuess) {
