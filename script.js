@@ -134,14 +134,47 @@ showScoreboardButton.addEventListener('click', () => {
 })
 
 // Publicera stats till localstorage
+// let publishStats = (player, result) => {
+//     let playerData = {
+//         name: player,
+//         guessed: guessedLetters, 
+//         word: answer,
+//         tries: mistakes,
+//         won: result
+//     }
+    
+//     let storedStatsToJSON = JSON.stringify(playerData)
+
+//     let playerName = `Player ${playerData.name}`
+
+//     localStorage.setItem(playerName, storedStatsToJSON)
+
+//     scoreboardResults()
+// }
+
+// // Displayar stats till scoreboard
+// let scoreboardResults = () => {
+//     for (const key in localStorage) {
+//         if (key.startsWith('Player')) {
+//             console.log(`${key}: ${localStorage.getItem(key)}`)
+
+//             let p = document.createElement('p')
+//             p.innerText = localStorage.getItem(key).replace('{', '').replace('}', '')
+//             scoreboard.append(p)
+//         }
+//     }
+// }
+
+// scoreboardResults()
+let playerData = {
+    name: p1name,
+    guessed: guessedLetters, 
+    word: answer,
+    tries: mistakes
+}
+// Publicera stats till localstorage
 let publishStats = (player, result) => {
-    let playerData = {
-        name: player,
-        guessed: guessedLetters, 
-        word: answer,
-        tries: mistakes,
-        won: result
-    }
+
     
     let storedStatsToJSON = JSON.stringify(playerData)
 
@@ -158,9 +191,14 @@ let scoreboardResults = () => {
         if (key.startsWith('Player')) {
             console.log(`${key}: ${localStorage.getItem(key)}`)
 
+            let scoreboardText = localStorage.getItem(key).toString()
+            let dividedScoreboardText = scoreboardText.split(' ')
+            console.log('divided'+dividedScoreboardText)
+
             let p = document.createElement('p')
-            p.innerText = localStorage.getItem(key).replace('{', '').replace('}', '')
+            p.innerText = scoreboardText.replaceAll('{', '').replaceAll('"', '').replaceAll(',', ', ')
             scoreboard.append(p)
+            return 
         }
     }
 }
