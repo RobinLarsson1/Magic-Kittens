@@ -79,16 +79,20 @@ document.onkeydown = function(event) {
   //Kollar om en ny och korrekt key är pressed, samt om man har slut på gissningar
   let isValidGuess = isCorrectGuess ||(!isCorrectGuess && !isGuessed && mistakes < maxWrong && !isDisabled)
 
+  // Förhindrar input utanför namninputs-modalen
+  let nameOverlayIsHidden = modalPanels.enterName.className.includes("hidden");
+  console.log(event.key);
 
+  if (nameOverlayIsHidden === true) {
 
-  function updateIncorrectGuess() {
-    wrongLetters.innerText += key + ', '
-    guessedLetters.push(key);
-    mistakes++
-    document.getElementById('mistakes').innerText = mistakes;
-    hangManPicture.innerHTML = hangManPicture.innerHTML + hangMan[wrongGuesses];
-    wrongGuesses++
-    return wrongGuesses;
+    function updateIncorrectGuess() {
+        wrongLetters.innerText += key + ', '
+        guessedLetters.push(key);
+        mistakes++
+        document.getElementById('mistakes').innerText = mistakes;
+        hangManPicture.innerHTML = hangManPicture.innerHTML + hangMan[wrongGuesses];
+        wrongGuesses++
+        return wrongGuesses;
 }
 
   function updateCorrectGuess() {
@@ -131,4 +135,4 @@ gameOverModalOverlay()
   if (isGameWon) {
       gameWinModalOverlay();
   }
-}
+}}
