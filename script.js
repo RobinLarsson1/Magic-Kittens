@@ -154,7 +154,6 @@ let publishStats = (result) => {
 
     storedStatsWithResult = storedStatsToJSON.replace('Detta är en sträng som kommer bytas ut till spelresultatet', String(result))
 
-    playerData.won = "value3";
     let playerName = `Player ${p1name}`
     localStorage.setItem(playerName, storedStatsWithResult)
     scoreboardResults()
