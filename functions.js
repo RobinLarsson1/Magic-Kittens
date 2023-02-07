@@ -62,27 +62,26 @@ function generatePlayerResult() {
 generatePlayerResult();
 
 //
-
 //funktion för att printa rätta bokstäver
 document.onkeydown = function(event) {
   //Tangentbordet
   let key = event.key;
-  
+
   //Kolla om gissningen är rätt
   let isCorrectGuess = singleLetter.includes(key);
-  
+
   //Kollar om man redan gissat 
   let isGuessed = guessedLetters.includes(key);
-  
+
   //Kollar om det man gissat är disabled key
   let isDisabled = disabledKeys.includes(key);
-  
+
   //Kollar om en ny och korrekt key är pressed, samt om man har slut på gissningar
   let isValidGuess = isCorrectGuess ||(!isCorrectGuess && !isGuessed && mistakes < maxWrong && !isDisabled)
-  
 
 
-  function updateIncorrectGuess(wrongLetters, guessedLetters, hangManPicture, key, mistakes, hangMan, wrongGuesses) {
+
+  function updateIncorrectGuess() {
     wrongLetters.innerText += key + ', '
     guessedLetters.push(key);
     mistakes++
@@ -92,7 +91,7 @@ document.onkeydown = function(event) {
     return wrongGuesses;
 }
 
-  function updateCorrectGuess(singleLetter, dashes, key) {
+  function updateCorrectGuess() {
     singleLetter.forEach((char, index) => {
         if (char === key) {
             dashes[index].innerText = char;
@@ -101,7 +100,7 @@ document.onkeydown = function(event) {
 } 
 
 if (mistakes == maxWrong) {
-gameOverModalOverlay()   
+gameOverModalOverlay()
 }
 
 
@@ -113,20 +112,20 @@ gameOverModalOverlay()
       }
       return true;
   }
-  
-  
+
+
   if (isCorrectGuess) {
-      updateCorrectGuess(singleLetter, dashes, key)
+      updateCorrectGuess()
   } else if (isValidGuess) {
-      updateIncorrectGuess(wrongLetters, guessedLetters, hangManPicture,  key, mistakes, hangMan, wrongGuesses)
+      updateIncorrectGuess()
   }
-  
+
   //Kolla om spelet är förlorat
   let gameIsOver = mistakes >= maxWrong;
   if (gameIsOver) {
       gameOverModalOverlay();
   }
-  
+
   //Kolla om spelet är vunnet 
   let isGameWon = isWordComplete(singleLetter, dashes)
   if (isGameWon) {
