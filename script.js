@@ -43,7 +43,7 @@ let singleLetter = secretWord.split(""); //delar upp ordet
 let nameInputDiv = document.querySelector('.player-input')
 let nameInput = document.getElementById('name-input')
 let namePlaceholder = document.getElementById('player-name-placeholder')
-let p1name
+
 
 let errorMessageText = 'Var god ange ditt namn!'
 
@@ -132,21 +132,28 @@ showScoreboardButton.addEventListener('click', () => {
     gameboard.classList.add('hidden')
 })
 
+let p1name
+
+
+let playerData = {
+    name: p1name,
+    word: answer,
+    tries: mistakes,
+
+}
+
+let playerGuessed = guessedLetters
+
+let storedStatsToJSON = JSON.stringify(playerData)
+
+
+
+
+
 // Publicera stats till localstorage
 let publishStats = (player, result) => {
-    let playerData = {
-        name: player,
-        guessed: guessedLetters, 
-        word: answer,
-        tries: mistakes,
-        won: result
-    }
-    
-    let storedStatsToJSON = JSON.stringify(playerData)
 
-    let playerName = `Player ${playerData.name}`
-
-    localStorage.setItem(playerName, storedStatsToJSON)
+    localStorage.setItem(p1name, storedStatsToJSON)
 
     scoreboardResults()
 }
@@ -156,12 +163,62 @@ let scoreboardResults = () => {
     for (const key in localStorage) {
         if (key.startsWith('Player')) {
             console.log(`${key}: ${localStorage.getItem(key)}`)
+            const parsedData = JSON.parse(storedStatsToJSON)
 
+
+            let displayScoreContainer = document.querySelector('.container-display-score')
             let p = document.createElement('p')
-            p.innerText = localStorage.getItem(key).replace('{', '').replace('}', '')
-            scoreboard.append(p)
+            p.className = 'score-div'
+            p.innerText = `Spelare: ${playerData.name} Ord: ${parsedData.word} Gissningar: ${guessedLetters}`
+            console.log(parsedData.guessed)
+            displayScoreContainer.append(p)
         }
     }
 }
 
-scoreboardResults()
+// scoreboardResults()
+// publishStats()
+
+///////////////
+
+
+// Publicera stats till localstorage
+// let publishStats = (player, result) => {
+//     let playerData = {
+//         name: p1name,
+//         word: answer,
+//         tries: mistakes,
+//         won: result,
+//         guessed: guessedLetters
+//     }
+    
+//     let storedStatsToJSON = JSON.stringify(playerData)
+
+//     let playerName = `Player ${playerData.name}`
+
+//     localStorage.setItem(playerName, storedStatsToJSON)
+// }
+
+//     // Displayar stats till scoreboard
+// function blabla() {
+//     for (const key in localStorage) {
+//         if (key.startsWith('Player')) {
+//             console.log(`${key}: ${localStorage.getItem(key)}`)
+
+//             const parsedData = JSON.parse(storedStatsToJSON)
+//             console.log('PARSED' + parsedData.word)
+
+
+//             let p = document.createElement('p')
+//             p.innerText = `${parsedData.name} ${parsedData.word} ${parsedData.tries} ${parsedData.won} $`
+//             scoreboard.append(p)
+//             console.log(parsedData.name)
+//         }
+//     }
+// }
+
+// publishStats()
+
+
+
+

@@ -31,6 +31,7 @@ goToScoreboardButton.forEach(button => {
 })
 
 
+
 // FUNKTION - Namn-input
 nameInput.addEventListener("keyup", (event) => {
 
@@ -68,6 +69,8 @@ nameInputButton.addEventListener("click", () => {
         errorMessage()
     }
 });
+
+
 
 // FUNKTION - generera fram spelarnamn samt resultat
 let playerResult = {};
@@ -154,3 +157,7 @@ document.onkeydown = function(event) {
     publishStats(p1name, true);
   }
 }}
+
+
+// scoreboardResults()
+// publishStats()
