@@ -154,6 +154,7 @@ let storedStatsToJSON = JSON.stringify(playerData)
 // Publicera stats till localstorage
 let publishStats = (player, result) => {
 
+    playerData.won = "value3";
     let playerName = `Player ${p1name}`
     localStorage.setItem(playerName, storedStatsToJSON)
     scoreboardResults()
