@@ -48,9 +48,8 @@ let p1name
 let errorMessageText = 'Var god ange ditt namn!'
 
 //Eventlyssnare på restart-game knapp i win eller lose
-const resetButtonForWinOrLoseModalScreen = document.querySelectorAll('.reset-button')
-const goToScoreboardButton = document.querySelectorAll('.go-to-scoreboard-button')
-
+const resetLoseButton = document.getElementById('reset-lose')
+const resetWinButton = document.getElementById('reset-win')
 
 
 // Förhindrande av att namninskrivning i början räknas som gissningar i spelet.
@@ -96,7 +95,7 @@ headerButtons.forEach(element => {
     
 })
 
-// Denna kollar till om man trycker på en stäng av knapp
+// Denna koillar till om man trycker på en stäng av knapp
 closeButtonsForModals.forEach(element => {
     element.addEventListener('click', () => {
                 // När man trycker på stäng av knappen för om spelet modalen
