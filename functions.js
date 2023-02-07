@@ -147,13 +147,13 @@ document.onkeydown = function(event) {
   let gameIsOver = mistakes >= maxWrong;
   if (gameIsOver) {
     gameResultModalOverlay(false, answer);
-    publishStats(p1name, false);
+    publishStats(false);
   }
 
   //Kolla om spelet är vunnet 
   let isGameWon = isWordComplete(singleLetter, dashes)
   if (isGameWon) {
     gameResultModalOverlay(true, null, mistakes);
-    publishStats(p1name, true);
+    publishStats(true);
   }
 }}
