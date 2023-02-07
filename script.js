@@ -164,19 +164,35 @@ showScoreboardButton.addEventListener('click', () => {
 //         }
 //     }
 // }
+    // scoreboardResults()
+    let playerData = {
+        name: p1name,
+        'Guessed letters': guessedLetters, 
+        word: answer,
+        tries: mistakes
+    }
 
-// scoreboardResults()
-let playerData = {
-    name: p1name,
-    guessed: guessedLetters, 
-    word: answer,
-    tries: mistakes
-}
 // Publicera stats till localstorage
-let publishStats = (player, result) => {
-
+let publishStats = () => {
     
-    let storedStatsToJSON = JSON.stringify(playerData)
+    
+
+    console.log('playerData: ' + playerData.word)
+    let storedStatsToJSON = playerData
+    console.log('stored JSON string: '+storedStatsToJSON)
+    console.log(playerData.word)
+
+    let name = playerData.name
+    console.log('playerData.name: ' + playerData.name)
+    
+    let guess = playerData['Guessed letters']
+    console.log('playerData.guess: ' + playerData['Guessed letters'])
+    
+    let word = playerData.word
+    console.log('playerData.word: ' + playerData.word)
+    
+    let tries = playerData.tries
+    console.log('playerData.tries: ' + playerData.tries)
 
     let playerName = `Player ${playerData.name}`
 
@@ -191,9 +207,16 @@ let scoreboardResults = () => {
         if (key.startsWith('Player')) {
             console.log(`${key}: ${localStorage.getItem(key)}`)
 
-            let scoreboardText = localStorage.getItem(key).toString()
-            let dividedScoreboardText = scoreboardText.split(' ')
-            console.log('divided'+dividedScoreboardText)
+            let scoreboardText = localStorage.getItem(key)
+            console.log('scoreboardtext:' + scoreboardText)
+            let dividedScoreboardText = scoreboardText.split(',')
+
+            let name = dividedScoreboardText[0].replaceAll('"', '').replaceAll('{', '')
+            
+            let guesses = dividedScoreboardText[1].replaceAll('"', '').replaceAll('{', '')
+            
+            
+            console.log(guesses)
 
             let p = document.createElement('p')
             p.className = 'score-text'
@@ -203,5 +226,7 @@ let scoreboardResults = () => {
         }
     }
 }
+
+publishStats()
 
 scoreboardResults()

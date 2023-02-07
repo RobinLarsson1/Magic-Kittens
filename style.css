@@ -31,6 +31,7 @@ html, body {
 
 .game-won {
     background-color: #28A228;
+    height: 100vh;
 }
 
 /* Header */
