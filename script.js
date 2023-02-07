@@ -196,7 +196,8 @@ let scoreboardResults = () => {
             console.log('divided'+dividedScoreboardText)
 
             let p = document.createElement('p')
-            p.innerText = scoreboardText.replaceAll('{', '').replaceAll('"', '').replaceAll(',', ', ')
+            p.className = 'score-text'
+            p.innerHTML = scoreboardText.replaceAll('{', '').replaceAll('}', '').replaceAll('"', '').replaceAll(',', '   ').replaceAll(':', ': ')
             scoreboard.append(p)
             return 
         }

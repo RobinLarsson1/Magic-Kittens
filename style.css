@@ -303,3 +303,8 @@ html, body {
     display: flex;
     flex-wrap: wrap;
 }
+
+.score-text {
+    display: flex;
+    font-size: 1.1em;
+}
