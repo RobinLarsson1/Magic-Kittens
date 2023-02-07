@@ -196,6 +196,7 @@ let publishStats = () => {
 
     let playerName = `Player ${playerData.name}`
 
+    playerArray = [{name}, {guess}, {word}, {tries}]
     localStorage.setItem(playerName, storedStatsToJSON)
 
     scoreboardResults()
@@ -209,20 +210,18 @@ let scoreboardResults = () => {
 
             let scoreboardText = localStorage.getItem(key)
             console.log('scoreboardtext:' + scoreboardText)
-            let dividedScoreboardText = scoreboardText.split(',')
+            // let dividedScoreboardText = scoreboardText.split(',')
 
-            let name = dividedScoreboardText[0].replaceAll('"', '').replaceAll('{', '')
+            // let name = dividedScoreboardText[0].replaceAll('"', '').replaceAll('{', '')
             
-            let guesses = dividedScoreboardText[1].replaceAll('"', '').replaceAll('{', '')
+            // let guesses = dividedScoreboardText[1].replaceAll('"', '').replaceAll('{', '')
             
             
             console.log(guesses)
 
             let p = document.createElement('p')
             p.className = 'score-text'
-            p.innerHTML = scoreboardText.replaceAll('{', '').replaceAll('}', '').replaceAll('"', '').replaceAll(',', '   ').replaceAll(':', ': ')
-            scoreboard.append(p)
-            return 
+            p.innerHTML = ` ${name} `
         }
     }
 }
