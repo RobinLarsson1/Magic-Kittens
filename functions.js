@@ -157,7 +157,3 @@ document.onkeydown = function(event) {
     publishStats(p1name, true);
   }
 }}
-
-
-// scoreboardResults()
-// publishStats()

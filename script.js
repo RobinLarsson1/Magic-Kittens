@@ -135,11 +135,12 @@ showScoreboardButton.addEventListener('click', () => {
 let p1name
 
 
+
+
 let playerData = {
     name: p1name,
     word: answer,
-    tries: mistakes,
-
+    tries: mistakes
 }
 
 let playerGuessed = guessedLetters
@@ -164,13 +165,12 @@ let scoreboardResults = () => {
         if (key.startsWith('Player')) {
             console.log(`${key}: ${localStorage.getItem(key)}`)
             const parsedData = JSON.parse(storedStatsToJSON)
-
+            console.log(parsedData)
 
             let displayScoreContainer = document.querySelector('.container-display-score')
             let p = document.createElement('p')
             p.className = 'score-div'
-            p.innerText = `Spelare: ${playerData.name} Ord: ${parsedData.word} Gissningar: ${guessedLetters}`
-            console.log(parsedData.guessed)
+            p.innerHTML = `Spelare: ${playerData.name} <br> Ord: ${parsedData.word} <br> Gissningar: ${guessedLetters}`
             displayScoreContainer.append(p)
         }
     }
