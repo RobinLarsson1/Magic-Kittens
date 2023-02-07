@@ -148,7 +148,7 @@ if (mistakes == maxWrong) {
   //Kolla om spelet är förlorat
   let gameIsOver = mistakes >= maxWrong;
   if (gameIsOver) {
-      gameOverModalOverlay();
+    gameResultModalOverlay(false, answer);
   }
 
   //Kolla om spelet är vunnet 
