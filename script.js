@@ -151,12 +151,12 @@ let p1name
 
 
 
-function publishStats() {
+function publishStats(result) {
     let currentResult = {
         name: p1name,
         word: secretWord,
         tries: mistakes,
-        won: '"temporär sträng"'
+        won: result
     }
 
     const LS_KEY = 'hangman-score'
@@ -194,7 +194,32 @@ function renderStats(results) {
         p.innerHTML = `Namn: ${element.name}, <br> Ord: ${element.word}, <br> Felgissningar: ${element.tries} <br> Vinst? ${element.won}`
 
         displayScoreContainer.append(p)
+
+
+        // Knappar
+
+        // Det denna gör är att den kollar om elementet (win) har egenskapen true
+        const listAllWinsButton = document.querySelector('#list-only-wins-button')
+        listAllWinsButton.addEventListener('click', event => {
+            if(!element.won == true) {
+                p.style.display = 'none'
+            } else {
+                p.style.display = 'block'
+            }
+        })
+
+                // Det denna gör är att den kollar om elementet (win) har egenskapen true
+                const listAllLossesButton = document.querySelector('#list-only-losses-button')
+                listAllLossesButton.addEventListener('click', event => {
+                    if(!element.won == false) {
+                        p.style.display = 'none'
+                    } else {
+                        p.style.display = 'block'
+                    }
+                })
     });
+
+
 }
 
 
