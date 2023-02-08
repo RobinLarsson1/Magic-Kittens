@@ -123,6 +123,8 @@ showScoreboardButton.addEventListener('click', () => {
 
 let p1name
 
+// publishStats()
+
 function publishStats(result) {
     let currentResult = {
         name: p1name,
@@ -153,7 +155,6 @@ function publishStats(result) {
     let stringToSave = JSON.stringify(results)
     localStorage.setItem(LS_KEY, stringToSave)
 }
-
 
 function renderStats(results) {
     let displayScoreContainer = document.querySelector('.container-display-score')
