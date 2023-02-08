@@ -338,3 +338,7 @@ html, body {
     margin: 1em;
     font-size: 1em;
 }
+
+.player-result {
+    margin: 0.5em;
+}
