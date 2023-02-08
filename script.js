@@ -133,33 +133,7 @@ showScoreboardButton.addEventListener('click', () => {
 
 let p1name
 
-// let playerData = {
-//     name: p1name,
-//     word: answer,
-//     tries: mistakes,
-//     won: 'Detta är en sträng som kommer bytas ut till spelresultatet'
-// }
-
-
-
-
-// let playerGuessed = guessedLetters
-
-// let storedStatsToJSON = JSON.stringify(playerData)
-
-// let storedStatsWithResult
-
-
-// För att lägga till ett nytt resultat:
-// 1. hämta data från localStorage -> lista
-    //* hämta datan (så man får en sträng)
-    //* gör om strängen till array
-
-// 2. lägg till nya resultatet sist i listan
-
-// 3. spara data i localStorage
-
-
+// publishStats()
 
 function publishStats(result) {
     let currentResult = {
@@ -191,7 +165,6 @@ function publishStats(result) {
     let stringToSave = JSON.stringify(results)
     localStorage.setItem(LS_KEY, stringToSave)
 }
-
 
 function renderStats(results) {
     let displayScoreContainer = document.querySelector('.container-display-score')
@@ -261,65 +234,4 @@ function renderStats(results) {
             }
         })
     });
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // displayScoreContainer.append(currentResult)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/** 
-// Publicera stats till localstorage
-let publishStats = (result) => {
-
-    storedStatsWithResult = storedStatsToJSON.replace('Detta är en sträng som kommer bytas ut till spelresultatet', String(result))
-
-    let playerName = `Player ${p1name}`
-    localStorage.setItem(playerName, storedStatsWithResult)
-    scoreboardResults()
-}
-
-// Displayar stats till scoreboard
-let scoreboardResults = () => {
-        // if (key.startsWith('Player')) {
-            // console.log(`${key}: ${localStorage.getItem(key)}`)
-
-            const parsedPlayerData = JSON.parse(storedStatsWithResult)
-            console.log(parsedPlayerData)
-            console.log(p1name)
-
-            let displayScoreContainer = document.querySelector('.container-display-score')
-            let p = document.createElement('p')
-            p.className = 'score-div'
-            p.innerHTML = `Spelare: ${p1name} <br> Ord: ${parsedPlayerData.word} <br> Antal gissningar: ${parsedPlayerData.tries} <br> Vann?: ${parsedPlayerData.won} <br> Gissningar: ${guessedLetters}`
-            displayScoreContainer.append(p)
-}
-*/
