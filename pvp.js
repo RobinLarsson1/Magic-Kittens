@@ -63,27 +63,20 @@ pvpStartButton.addEventListener('click', (event) => {
 
 
 let pvpSecretWord
+
 // FUNKTION - PVP - Hemligt ord
 pvpSecretWordInput.addEventListener("keydown", (event) => {
     // Förhindrar input utanför namninputs-modalen
     event.stopPropagation()
-
-        if ((event.code === "Enter") && (pvpSecretWordInput.value !== '')) 
-        {
-            pvpSecretWord = pvpSecretWordInput.value.toString()
-            pvpSecretWordInput.innerText = pvpSecretWord
-			secretWord = pvpSecretWord.toLowerCase();
-            const svar = document.getElementById('correctLetters');
-            svar.innerHTML = secretWord.replace(/./g, '<span class="dashes">_</span>');
-            overlayScreenToggle()
-			gameModeModal.classList.add('hidden')
-        }
-
+    if ((event.code === "Enter") && (pvpSecretWordInput.value !== '')) {
+        pvpSecretWord = pvpSecretWordInput.value.toString()
+        pvpSecretWordInput.innerText = pvpSecretWord
+		secretWord = pvpSecretWord.toLowerCase();
+        appendSecretWordToDashes()
+        overlayScreenToggle()
+		gameModeModal.classList.add('hidden')
+    }
 })
-
-// if(secretWord = pvpSecretWord) {
-// 	gameModeModal.overlayScreenToggle()
-// }
 
 
 

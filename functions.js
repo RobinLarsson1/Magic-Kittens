@@ -30,7 +30,11 @@ goToScoreboardButton.forEach(button => {
   });
 })
 
-
+//Skickar in hemliga ordet
+function appendSecretWordToDashes() {
+  const svar = document.getElementById('correctLetters');
+  svar.innerHTML = secretWord.replace(/./g, '<span class="dashes">_</span>');
+  }
 
 // FUNKTION - Namn-input
 nameInput.addEventListener("keyup", (event) => {

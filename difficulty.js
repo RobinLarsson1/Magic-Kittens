@@ -13,29 +13,26 @@ let secretWord = '';
 
 //funktion för svårighetsgrad
 function setDifficulty(difficulty) {
-if (difficulty === 'easy') {
-    secretWord = easyWords[Math.floor(Math.random() * easyWords.length)].toLowerCase();
-} else if (difficulty === 'medium') {
-    secretWord = mediumWords[Math.floor(Math.random() * mediumWords.length)].toLowerCase();
-} else if (difficulty === 'hard') {
-    secretWord = hardWords[Math.floor(Math.random() * hardWords.length)].toLowerCase();
+    if (difficulty === 'easy') {
+        secretWord = easyWords[Math.floor(Math.random() * easyWords.length)].toLowerCase();
+    } else if (difficulty === 'medium') {
+        secretWord = mediumWords[Math.floor(Math.random() * mediumWords.length)].toLowerCase();
+    } else if (difficulty === 'hard') {
+        secretWord = hardWords[Math.floor(Math.random() * hardWords.length)].toLowerCase();
+    }
+    appendSecretWordToDashes()
+    console.log(secretWord);
 }
 
-console.log(secretWord);
-
-//Skickar in hemliga ordet
-const svar = document.getElementById('correctLetters');
-svar.innerHTML = secretWord.replace(/./g, '<span class="dashes">_</span>');
-}
 //Lyssnar efter klick på knapparna
 difficultyEasy.addEventListener('click', function() {
-setDifficulty('easy');
+    setDifficulty('easy');
 });
 
 difficultyMedium.addEventListener('click', function() {
-setDifficulty('medium');
+    setDifficulty('medium');
 });
 
 difficultyHard.addEventListener('click', function() {
-setDifficulty('hard');
+    setDifficulty('hard');
 });
