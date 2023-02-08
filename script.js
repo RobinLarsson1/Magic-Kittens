@@ -43,10 +43,10 @@ const goToScoreboardButton = document.querySelectorAll('.go-to-scoreboard-button
 
 
 // Förhindrande av att namninskrivning i början räknas som gissningar i spelet.
-let overlayNameInput = document.querySelector('#name-input')
-overlayNameInput.addEventListener('keydown', (event) => {
-    event.stopPropagation()
-})
+// let overlayNameInput = document.querySelector('#name-input')
+// overlayNameInput.addEventListener('keydown', (event) => {
+//     event.stopPropagation()
+// })
 
 
 const headerButtonList = {
@@ -122,6 +122,7 @@ showScoreboardButton.addEventListener('click', () => {
 })
 
 let p1name
+// let p2name
 
 // publishStats()
 

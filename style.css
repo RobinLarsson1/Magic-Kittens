@@ -223,8 +223,22 @@ html, body {
     flex-flow: row wrap;
     box-shadow: var(--shadow-low);
 }
-
-
+#gamemode-modal {
+    display: flex;
+    flex-direction: column;
+}
+.mode-buttons {
+    display: flex;
+    justify-content: center;
+}
+.pvp-div {
+    display: flex;
+    flex-direction: column;
+    visibility: hidden;
+}
+#secret-name-div {
+    visibility: hidden;
+}
 
 .modal > .button.close {
     margin-left: min(430px);

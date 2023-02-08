@@ -22,6 +22,7 @@
 	<script src="script.js" defer></script>
 	<script src="hangman.js" defer></script>
 	<script src="functions.js" defer></script>
+	<script src="pvp.js" defer></script>
 </head>
 
 <body id="body">
@@ -206,11 +207,24 @@
 		<!-- MODAL: Välj spelläge -->
 		<div id="gamemode-modal" class="modal hidden"><h2>Välj läge!</h2>
 			<div>
-				<button class="normal-mode button">Vanligt</button>
+				<div class="mode-buttons">
+				<button class="normal-mode button" id="vanligt-button">Vanligt</button>
 				<button class="pvp-mode button">PvP</button>
 			</div>
+				<div class="pvp-div">
+					<label for="pvp-name">Namn på spelare 1</label>
+					<input type="text" class="pvp-name"
+					id="pvp-name1">
+					<label for="pvp-name">Namn på spelare 2</label>
+					<input type="text" class="pvp-name" id="pvp-name2">
+					<button id="pvp-start-button">Start game</button>
+				</div>
+				<div id="secret-name-div">
+				<label for="hemligt-ord">Ange det hemliga ordet</label>
+					<input type="text" id="secret-word-pvp">
+				</div>
+			</div>
 		</div>
-
 		<!-- MODAL: Vid förlust -->
 		<div id="lose-modal" class="modal hidden">
 			<h2 class="lose-title">Du förlorade!</h2>
