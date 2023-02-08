@@ -123,12 +123,12 @@ showScoreboardButton.addEventListener('click', () => {
 
 let p1name
 
-let playerData = {
-    name: p1name,
-    word: answer,
-    tries: mistakes,
-    won: 'Detta är en sträng som kommer bytas ut till spelresultatet'
-}
+// let playerData = {
+//     name: p1name,
+//     word: answer,
+//     tries: mistakes,
+//     won: 'Detta är en sträng som kommer bytas ut till spelresultatet'
+// }
 
 
 
@@ -154,7 +154,7 @@ let playerData = {
 function publishStats() {
     let currentResult = {
         name: p1name,
-        word: answer,
+        word: secretWord,
         tries: mistakes,
         won: '"temporär sträng"'
     }
