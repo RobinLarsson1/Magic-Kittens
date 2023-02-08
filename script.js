@@ -132,7 +132,7 @@ showScoreboardButton.addEventListener('click', () => {
 })
 
 let p1name
-// let p2name
+let p2name
 
 // publishStats()
 
