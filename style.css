@@ -190,6 +190,7 @@ html, body {
     display: flex;
 }
 
+
 /* Hide elements */
 .hidden {
     visibility: hidden;
@@ -283,6 +284,13 @@ html, body {
 #win-modal, #lose-modal {
     flex-flow: column wrap;
 }
+
+#remove-player-data-modal {
+    flex-flow: column wrap;
+}
+
+
+
 .svårighetsgrad {
     margin-bottom: 1em;
 }
@@ -340,10 +348,13 @@ html, body {
     flex-wrap: wrap;
 }
 
+/* Scoreboard */
+
 .container-display-score {
-    display: flex;
-    flex-direction: column;
+    display: grid;
     justify-content: space-around;
+    overflow-y:scroll;
+    height: 80vh;
 }
 
 .score-div {
@@ -354,4 +365,10 @@ html, body {
 
 .player-result {
     margin: 0.5em;
+}
+
+.player-result.list-element-hidden {
+    height: 0px;
+    margin: 0px;
+    visibility: hidden;
 }

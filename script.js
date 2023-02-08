@@ -54,7 +54,8 @@ const headerButtonList = {
     resetGame: document.querySelector('#reset-game-button'),
     changeGameMode: document.querySelector('#change-gamemode-button'),
     showScoreboard: document.querySelector('#show-scoreboard-button'),
-    changePlayer: document.querySelector('#change-player-button')
+    changePlayer: document.querySelector('#change-player-button'),
+    removeResultsWithSpecificName: document.querySelector('#remove-results-with-specific-name-button')
 }
 
 // Används för att selecta alla knappar med den klassen
@@ -80,12 +81,17 @@ headerButtons.forEach(element => {
         } else if (element == headerButtonList.changePlayer) {
             overlayScreenToggle()
             modalPanels.changePlayer.classList.toggle('hidden')
+
+            // SCOREBOARD //// REMOVE SPECIFIC PLAYER DATA
+        } else if (element == headerButtonList.removeResultsWithSpecificName) {
+            overlayScreenToggle()
+            modalPanels.removeSpecificPlayerData.classList.toggle('hidden')
         }
     })
     
 })
 
-// Denna koillar till om man trycker på en stäng av knapp
+// Denna kollar till om man trycker på en stäng av knapp
 closeButtonsForModals.forEach(element => {
     element.addEventListener('click', () => {
                 // När man trycker på stäng av knappen för om spelet modalen
@@ -97,6 +103,10 @@ closeButtonsForModals.forEach(element => {
                 else if (element == modalCloseButtons.changePlayerModal) {
                     overlayAddHidden()
                     modalPanels.changePlayer.classList.add('hidden')
+                } // SCOREBOARD
+                else if (element == modalCloseButtons.removeSpecificPlayerDataModal) {
+                    overlayAddHidden()
+                    modalPanels.removeSpecificPlayerData.classList.add('hidden')
                 }
             })
         })
@@ -126,6 +136,8 @@ let p1name
 
 // publishStats()
 
+const LS_KEY = 'hangman-score'
+
 function publishStats(result) {
     let currentResult = {
         name: p1name,
@@ -133,8 +145,6 @@ function publishStats(result) {
         tries: mistakes,
         won: result
     }
-
-    const LS_KEY = 'hangman-score'
     
     // steg 1: hämta data från localStorage
     // ifsats kontrollerar om det inte finns någon data sen innan
@@ -159,7 +169,38 @@ function publishStats(result) {
 
 function renderStats(results) {
     let displayScoreContainer = document.querySelector('.container-display-score')
-    
+
+        const removePlayerData = () => {
+            console.log(`removePlayerData`, results);
+            const playerNameInputValue = playerNameInput.value.toLowerCase()
+            // const elementName = element.name
+            const elementName = results.forEach(element => element.name.toLowerCase())
+                if(playerNameInputValue === elementName) {
+                    p.remove()
+                    const saveFilterResult = results.filter(result => result.name !== playerNameInputValue)
+                    
+                    let saveNewString = JSON.stringify(saveFilterResult)
+                    localStorage.setItem(LS_KEY, saveNewString)
+                }
+        }
+
+        // BUG 2: Om man trycker på en funktionknapp eller mellanslag så registerar spelet samma resultat igen. Men localstorage uppdateras inte vilket är bra.
+        // BUG 3: Man kan fortfarande spela spelet även om man har en modal uppe.
+        const playerNameInput = document.querySelector('#select-player-data-using-input')
+        playerNameInput.addEventListener('keydown', event => {
+            event.stopPropagation()
+            if (event.key == 'Enter') {
+                    removePlayerData()
+                    //playerNameInput.value = null
+            }
+        })
+
+        const playerNameInputButton = document.querySelector('#select-player-data-using-input-button')
+        playerNameInputButton.addEventListener('click', () => {
+                removePlayerData()
+                //playerNameInput.value = null
+        })
+
     // Skapa de DOMelement som behövs 
     results.forEach(element => {
         let p = document.createElement('p')
@@ -168,5 +209,40 @@ function renderStats(results) {
         p.innerHTML = `Namn: ${element.name}, <br> Ord: ${element.word}, <br> Felgissningar: ${element.tries} <br> Vinst? ${element.won}`
 
         displayScoreContainer.append(p)
+
+            
+        // Knappar
+
+        // Det denna gör är att den kollar om elementet (win) har egenskapen true
+        const listAllWinsButton = document.querySelector('#list-only-wins-button')
+        listAllWinsButton.addEventListener('click', event => {
+            if(!element.won == true) {
+                // p.style.display = 'none'
+                p.classList.add('list-element-hidden')
+            } else {
+                // p.style.display = 'block'
+                p.classList.remove('list-element-hidden')
+            }
+        })
+
+        // Det denna gör är att den kollar om elementet (win) har egenskapen true
+        const listAllLossesButton = document.querySelector('#list-only-losses-button')
+        listAllLossesButton.addEventListener('click', event => {
+            if(!element.won == false) {
+                p.classList.add('list-element-hidden')
+            } else {
+                p.classList.remove('list-element-hidden')
+            }
+        })
+
+        // Funkar bara om man har tryckt på vinster eller förluster först
+        const listAllResultsButton = document.querySelector('#list-all-results-button')
+        listAllResultsButton.addEventListener('click', event => {
+            if(!element.won == false || !element.won == true) {
+                // p.style.display = 'block'
+                p.classList.remove('list-element-hidden')
+            }
+        })
+
     });
 }
