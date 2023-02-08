@@ -168,7 +168,38 @@ function publishStats(result) {
 
 function renderStats(results) {
     let displayScoreContainer = document.querySelector('.container-display-score')
-    
+
+        const removePlayerData = () => {
+            console.log(`removePlayerData`, results);
+            const playerNameInputValue = playerNameInput.value.toLowerCase()
+            // const elementName = element.name
+            const elementName = results.forEach(element => element.name.toLowerCase())
+                if(playerNameInputValue === elementName) {
+                    p.remove()
+                    const saveFilterResult = results.filter(result => result.name !== playerNameInputValue)
+                    
+                    let saveNewString = JSON.stringify(saveFilterResult)
+                    localStorage.setItem(LS_KEY, saveNewString)
+                }
+        }
+
+        // BUG 2: Om man trycker på en funktionknapp eller mellanslag så registerar spelet samma resultat igen. Men localstorage uppdateras inte vilket är bra.
+        // BUG 3: Man kan fortfarande spela spelet även om man har en modal uppe.
+        const playerNameInput = document.querySelector('#select-player-data-using-input')
+        playerNameInput.addEventListener('keydown', event => {
+            event.stopPropagation()
+            if (event.key == 'Enter') {
+                    removePlayerData()
+                    //playerNameInput.value = null
+            }
+        })
+
+        const playerNameInputButton = document.querySelector('#select-player-data-using-input-button')
+        playerNameInputButton.addEventListener('click', () => {
+                removePlayerData()
+                //playerNameInput.value = null
+        })
+
     // Skapa de DOMelement som behövs 
     results.forEach(element => {
         let p = document.createElement('p')
@@ -178,7 +209,7 @@ function renderStats(results) {
 
         displayScoreContainer.append(p)
 
-
+            
         // Knappar
 
         // Det denna gör är att den kollar om elementet (win) har egenskapen true
@@ -212,33 +243,5 @@ function renderStats(results) {
             }
         })
 
-
-        const removePlayerData = () => {
-            const playerNameInputValue = playerNameInput.value.toLowerCase()
-            const elementName = element.name.toLowerCase()
-                if(playerNameInputValue === elementName) {
-                    p.remove()
-                    const saveFilterResult = results.filter(result => result.name !== playerNameInputValue)
-                    
-                    let saveNewString = JSON.stringify(saveFilterResult)
-                    localStorage.setItem(LS_KEY, saveNewString)
-                }
-        }
-
-        // Tanke: En knapp som öppnar upp en ruta där man kan skriva in spelarnamn och kunna radera data från localstorage och p element
-        const playerNameInput = document.querySelector('#select-player-data-using-input')
-        playerNameInput.addEventListener('keydown', event => {
-            event.stopPropagation()
-            if (event.key == 'Enter') {
-                    removePlayerData()
-                    playerNameInput.value = null
-            }
-        })
-
-        const playerNameInputButton = document.querySelector('#select-player-data-using-input-button')
-        playerNameInputButton.addEventListener('click', () => {
-                removePlayerData()
-                playerNameInput.value = null
-        })
     });
 }
