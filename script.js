@@ -213,33 +213,32 @@ function renderStats(results) {
         })
 
 
+        const removePlayerData = () => {
+            const playerNameInputValue = playerNameInput.value.toLowerCase()
+            const elementName = element.name.toLowerCase()
+                if(playerNameInputValue === elementName) {
+                    p.remove()
+                    const saveFilterResult = results.filter(result => result.name !== playerNameInputValue)
+                    
+                    let saveNewString = JSON.stringify(saveFilterResult)
+                    localStorage.setItem(LS_KEY, saveNewString)
+                }
+        }
+
         // Tanke: En knapp som öppnar upp en ruta där man kan skriva in spelarnamn och kunna radera data från localstorage och p element
         const playerNameInput = document.querySelector('#select-player-data-using-input')
         playerNameInput.addEventListener('keydown', event => {
-
             event.stopPropagation()
             if (event.key == 'Enter') {
-                const playerNameInputValue = playerNameInput.value.toLowerCase()
-                const elementName = element.name.toLowerCase()
-                if(playerNameInputValue === elementName) {
-                    p.remove()
-                    const saveFilterResult = results.filter(result => result.name.toLowerCase() !== playerNameInputValue )
-                    
-
-                    let stringToSave = JSON.stringify(saveFilterResult)
-                    localStorage.setItem(LS_KEY, stringToSave)
-
-                    playerNameInput.value = ''
-                }
+                    removePlayerData()
+                    playerNameInput.value = null
             }
         })
 
         const playerNameInputButton = document.querySelector('#select-player-data-using-input-button')
-        playerNameInputButton.addEventListener('click', event => {
-            if(playerNameInput.value === element.name) {
-                p.remove()
+        playerNameInputButton.addEventListener('click', () => {
+                removePlayerData()
                 playerNameInput.value = null
-            }
         })
     });
 }
