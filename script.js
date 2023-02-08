@@ -135,6 +135,8 @@ let p1name
 
 // publishStats()
 
+const LS_KEY = 'hangman-score'
+
 function publishStats(result) {
     let currentResult = {
         name: p1name,
@@ -142,8 +144,6 @@ function publishStats(result) {
         tries: mistakes,
         won: result
     }
-
-    const LS_KEY = 'hangman-score'
     
     // steg 1: hämta data från localStorage
     // ifsats kontrollerar om det inte finns någon data sen innan
@@ -219,9 +219,17 @@ function renderStats(results) {
 
             event.stopPropagation()
             if (event.key == 'Enter') {
-                if(playerNameInput.value === element.name) {
+                const playerNameInputValue = playerNameInput.value.toLowerCase()
+                const elementName = element.name.toLowerCase()
+                if(playerNameInputValue === elementName) {
                     p.remove()
-                    playerNameInput.value = null
+                    const saveFilterResult = results.filter(result => result.name.toLowerCase() !== playerNameInputValue )
+                    
+
+                    let stringToSave = JSON.stringify(saveFilterResult)
+                    localStorage.setItem(LS_KEY, stringToSave)
+
+                    playerNameInput.value = ''
                 }
             }
         })
