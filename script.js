@@ -54,7 +54,8 @@ const headerButtonList = {
     resetGame: document.querySelector('#reset-game-button'),
     changeGameMode: document.querySelector('#change-gamemode-button'),
     showScoreboard: document.querySelector('#show-scoreboard-button'),
-    changePlayer: document.querySelector('#change-player-button')
+    changePlayer: document.querySelector('#change-player-button'),
+    removeResultsWithSpecificName: document.querySelector('#remove-results-with-specific-name-button')
 }
 
 // Används för att selecta alla knappar med den klassen
@@ -80,12 +81,17 @@ headerButtons.forEach(element => {
         } else if (element == headerButtonList.changePlayer) {
             overlayScreenToggle()
             modalPanels.changePlayer.classList.toggle('hidden')
+
+            // SCOREBOARD //// REMOVE SPECIFIC PLAYER DATA
+        } else if (element == headerButtonList.removeResultsWithSpecificName) {
+            overlayScreenToggle()
+            modalPanels.removeSpecificPlayerData.classList.toggle('hidden')
         }
     })
     
 })
 
-// Denna koillar till om man trycker på en stäng av knapp
+// Denna kollar till om man trycker på en stäng av knapp
 closeButtonsForModals.forEach(element => {
     element.addEventListener('click', () => {
                 // När man trycker på stäng av knappen för om spelet modalen
@@ -97,6 +103,10 @@ closeButtonsForModals.forEach(element => {
                 else if (element == modalCloseButtons.changePlayerModal) {
                     overlayAddHidden()
                     modalPanels.changePlayer.classList.add('hidden')
+                } // SCOREBOARD
+                else if (element == modalCloseButtons.removeSpecificPlayerDataModal) {
+                    overlayAddHidden()
+                    modalPanels.removeSpecificPlayerData.classList.add('hidden')
                 }
             })
         })
@@ -202,27 +212,57 @@ function renderStats(results) {
         const listAllWinsButton = document.querySelector('#list-only-wins-button')
         listAllWinsButton.addEventListener('click', event => {
             if(!element.won == true) {
-                p.style.display = 'none'
+                // p.style.display = 'none'
+                p.classList.add('list-element-hidden')
             } else {
-                p.style.display = 'block'
+                // p.style.display = 'block'
+                p.classList.remove('list-element-hidden')
             }
         })
 
-                // Det denna gör är att den kollar om elementet (win) har egenskapen true
-                const listAllLossesButton = document.querySelector('#list-only-losses-button')
-                listAllLossesButton.addEventListener('click', event => {
-                    if(!element.won == false) {
-                        p.style.display = 'none'
-                    } else {
-                        p.style.display = 'block'
-                    }
-                })
+        // Det denna gör är att den kollar om elementet (win) har egenskapen true
+        const listAllLossesButton = document.querySelector('#list-only-losses-button')
+        listAllLossesButton.addEventListener('click', event => {
+            if(!element.won == false) {
+                p.classList.add('list-element-hidden')
+            } else {
+                p.classList.remove('list-element-hidden')
+            }
+        })
+
+        // Funkar bara om man har tryckt på vinster eller förluster först
+        const listAllResultsButton = document.querySelector('#list-all-results-button')
+        listAllResultsButton.addEventListener('click', event => {
+            if(!element.won == false || !element.won == true) {
+                // p.style.display = 'block'
+                p.classList.remove('list-element-hidden')
+            }
+        })
+
+
+        // Tanke: En knapp som öppnar upp en ruta där man kan skriva in spelarnamn och kunna radera data från localstorage och p element
+        const playerNameInput = document.querySelector('#select-player-data-using-input')
+        playerNameInput.addEventListener('keydown', event => {
+
+            event.stopPropagation()
+            if (event.key == 'Enter') {
+                if(playerNameInput.value === element.name) {
+                    p.remove()
+                    playerNameInput.value = null
+                }
+            }
+        })
+
+        const playerNameInputButton = document.querySelector('#select-player-data-using-input-button')
+        playerNameInputButton.addEventListener('click', event => {
+            if(playerNameInput.value === element.name) {
+                p.remove()
+                playerNameInput.value = null
+            }
+        })
     });
 
-
 }
-
-
 
 
 
