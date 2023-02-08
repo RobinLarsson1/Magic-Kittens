@@ -30,15 +30,3 @@ function setDifficulty(difficulty) {
     console.log(secretWord);
 }
 
-//Lyssnar efter klick på knapparna
-difficultyEasy.addEventListener('click', function() {
-    setDifficulty('easy');
-});
-
-difficultyMedium.addEventListener('click', function() {
-    setDifficulty('medium');
-});
-
-difficultyHard.addEventListener('click', function() {
-    setDifficulty('hard');
-});

@@ -5,8 +5,6 @@ let wrongGuesses = 0
 document.getElementById('maxWrong').innerHTML = maxWrong;
 document.getElementById('mistakes').innerHTML = mistakes;
 
-//Slumpar ut ett ord i wordArray
-const randomWords = wordArray
 
 //Ordet som valdes
 let answer = secretWord;

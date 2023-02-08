@@ -43,11 +43,9 @@ function appendSecretWordToDashes() {
   svar.innerHTML = secretWord.replace(/./g, '<span class="dashes">_</span>');
   }
 
-// FUNKTION - Namn-input
-nameInput.addEventListener("keyup", (event) => {
-  appendPlayerName(event)
-});
 
+  
+  // FUNKTION - Namn-input
 function appendPlayerName(event) {
       // Kollar om inputfältet är tomt eller ej
       let isNameProvided = (nameInput.value !== '')
@@ -66,24 +64,26 @@ function appendPlayerName(event) {
 
 
 
-// FUNKTION - Namn-input kopplat till "Redo att spela!"-knapp
+
+
 let nameInputButton = document.querySelector("#name-enter-button");
-nameInputButton.addEventListener("click", () => {
+function appendPlayerNameWhenButtonClicked() {
+  // Kollar om inputfältet är tomt eller ej
+  let isNameProvided = (nameInput.value !== '')
 
-    // Kollar om inputfältet är tomt eller ej
-    let isNameProvided = (nameInput.value !== '')
+  if (isNameProvided === true) {
+      namePlaceholder.innerText = " " + nameInput.value;
+      p1name = nameInput.value;
+      nameInput.remove();
+      modalPanels.enterName.className = "hidden";
+      let overlay = document.querySelector(".overlay");
+      overlay.classList.add("hidden");
+  } else if (isNameProvided === false) {
+      errorMessage()
+  }
+}
 
-    if (isNameProvided === true) {
-        namePlaceholder.innerText = " " + nameInput.value;
-        p1name = nameInput.value;
-        nameInput.remove();
-        modalPanels.enterName.className = "hidden";
-        let overlay = document.querySelector(".overlay");
-        overlay.classList.add("hidden");
-    } else if (isNameProvided === false) {
-        errorMessage()
-    }
-});
+
 
 
 
@@ -96,83 +96,25 @@ function generatePlayerResult() {
 }
 generatePlayerResult();
 
-//
-//funktion för att printa bokstäver
-document.onkeydown = function(event) {
-  //Tangentbordet
+//Skickar in fel bokstav, samt uppdaterar antal felgissningar
+function updateIncorrectGuess() {
   let key = event.key.toLowerCase();
-
-  let singleLetter = secretWord.split("");
-
-  //Kolla om gissningen är rätt
-  let isCorrectGuess = singleLetter.includes(key);
-
-  //Kollar om man redan gissat 
-  let isGuessed = guessedLetters.includes(key);
-
-  //Kollar om det man gissat är disabled key
-  let isDisabled = disabledKeys.includes(key);
-
-  //Kollar om en ny och korrekt key är pressed, samt om man har slut på gissningar
-  let isValidGuess = isCorrectGuess ||(!isCorrectGuess && !isGuessed && mistakes < maxWrong && !isDisabled)
-
-
-  
-  // Förhindrar input utanför namninputs-modalen
-  let nameOverlayIsHidden = modalPanels.enterName.className.includes("hidden");
-  console.log(event.key);
-
-  if (nameOverlayIsHidden === true) {
-
-
-    //Skickar in fel bokstav, samt uppdaterar antal felgissningar
-    function updateIncorrectGuess() {
-        wrongLetters.innerText += key + ', '
-        guessedLetters.push(key);
-        mistakes++
-        document.getElementById('mistakes').innerText = mistakes;
-        hangManPicture.innerHTML = hangManPicture.innerHTML + hangMan[wrongGuesses];
-        wrongGuesses++
-        return wrongGuesses;
+  wrongLetters.innerText += key + ', '
+  guessedLetters.push(key);
+  mistakes++
+  document.getElementById('mistakes').innerText = mistakes;
+  hangManPicture.innerHTML = hangManPicture.innerHTML + hangMan[wrongGuesses];
+  wrongGuesses++
+  return wrongGuesses;
 }
 
-  //Skickar in korrekt gissning iställer för understräcken
-  function updateCorrectGuess() {
-    singleLetter.forEach((char, index) => {
-        if (char === key) {
-            dashes[index].innerText = char;
-        }
-    });
-} 
-
 //Kollar om ordet är gissat eller inte, loopas varje gång
-  function isWordComplete(singleLetter, dashes) {
-      for (let i = 0; i < singleLetter.length; i++) {
-      if (dashes[i].innerText !== singleLetter[i]) {
-          return false;
-      }
-      }
-      return true;
+function isWordComplete(singleLetter, dashes) {
+  for (let i = 0; i < singleLetter.length; i++) {
+  if (dashes[i].innerText !== singleLetter[i]) {
+      return false;
   }
+  }
+  return true;
+}
 
-//kallar på rätt funktion beroende på vilken gissning som anges
-  if (isCorrectGuess) {
-      updateCorrectGuess()
-  } else if (isValidGuess) {
-      updateIncorrectGuess()
-  }
-
-  //Kolla om spelet är förlorat
-  let gameIsOver = mistakes >= maxWrong;
-  if (gameIsOver) {
-    gameResultModalOverlay(false, answer);
-    publishStats(false);
-  }
-
-  //Kolla om spelet är vunnet 
-  let isGameWon = isWordComplete(singleLetter, dashes)
-  if (isGameWon) {
-    gameResultModalOverlay(true, null, mistakes);
-    publishStats(true);
-  }
-}}
