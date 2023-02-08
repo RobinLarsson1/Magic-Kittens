@@ -15,6 +15,7 @@
 
 	<!-- Script -->
 	<script src="svenska-ord-1000st.js" defer></script>
+	<script src="difficulty.js" defer></script>
 	<script src="modaler.js" defer></script>
 	<script src="script.js" defer></script>
 	<script src="hangman.js" defer></script>
@@ -70,7 +71,6 @@
 								person
 							</span>
 						</button>
-
 					</div>
 				</header>
 
@@ -178,6 +178,21 @@
 				<h2>Välkommen till</h2>
 				<h1 class="main-title">Hangman</h1>
 			</div>
+			<button id="difficulty-easy"  title="Easy">
+				<span class="material-symbols-outlined">
+					Easy
+				</span>
+			</button>
+			<button id="difficulty-medium"  title="Medium">
+				<span class="material-symbols-outlined">
+					Medium
+				</span>
+			</button>
+			<button id="difficulty-hard"  title="Hard">
+				<span class="material-symbols-outlined">
+					Hard
+				</span>
+			</button>
 			<div>
 				<input id="name-input" class="text-input" type="text" placeholder="Vänligen skriv in ditt namn" value="" title="Namn här" />
 				<button class="button" id="name-enter-button">Redo att spela!</button>

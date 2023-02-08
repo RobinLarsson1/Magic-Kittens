@@ -43,7 +43,7 @@ const gameResultModalOverlay = (endResult, generatedWord, amountTries) => {
     } else if (endResult == false) {
 
         let correctAnswer = document.querySelector('#correct-answer')
-        correctAnswer.textContent = answer
+        correctAnswer.textContent = secretWord
 
         bodyElem.classList.add('game-over')
         overlay.classList.remove('hidden')

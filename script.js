@@ -7,9 +7,6 @@ document.getElementById('mistakes').innerHTML = mistakes;
 
 //Slumpar ut ett ord i wordArray
 const randomWords = wordArray
-let secretWord = randomWords[Math.floor(Math.random() * wordArray.length)];
-console.log(secretWord)
-
 
 //Ordet som valdes
 let answer = secretWord;
@@ -18,14 +15,7 @@ let answer = secretWord;
 let keyboard = document.querySelector('body')
 let underScore = document.getElementById('correctLetters')
 
-//Skickar in hemliga ordet
-    const underStreck = document.createElement('p')
-    const ny = document.createTextNode(secretWord)
-    underStreck.append(ny)
 
-//Gör om ordet till streck
-    let displayItem = secretWord.replace(/./g, '<span class="dashes">_</span>')
-    svar.innerHTML = displayItem;
 
 // Tangenter som inte får registreras som försök
 const disabledKeys = ['Enter', 'Control', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'ArrowUp', ' ', 'Meta', 'Alt', 'AltGraph', 'ContextMenu', 'Home', 'End', 'PageDown', 'PageUp', 'Shift', 'Delete', 'Backspace', 'Insert', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12', '§', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'CapsLock', 'Tab', '-', ',', '.', '+']
@@ -154,7 +144,7 @@ let publishStats = (player, result) => {
 let scoreboardResults = () => {
     for (const key in localStorage) {
         if (key.startsWith('Player')) {
-            console.log(`${key}: ${localStorage.getItem(key)}`)
+            // console.log(`${key}: ${localStorage.getItem(key)}`)
 
             let p = document.createElement('p')
             p.innerText = localStorage.getItem(key).replace('{', '').replace('}', '')

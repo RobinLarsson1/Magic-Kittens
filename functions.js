@@ -82,7 +82,9 @@ generatePlayerResult();
 //funktion för att printa bokstäver
 document.onkeydown = function(event) {
   //Tangentbordet
-  let key = event.key;
+  let key = event.key.toLowerCase();
+
+  let singleLetter = secretWord.split("");
 
   //Kolla om gissningen är rätt
   let isCorrectGuess = singleLetter.includes(key);
@@ -96,6 +98,8 @@ document.onkeydown = function(event) {
   //Kollar om en ny och korrekt key är pressed, samt om man har slut på gissningar
   let isValidGuess = isCorrectGuess ||(!isCorrectGuess && !isGuessed && mistakes < maxWrong && !isDisabled)
 
+
+  
   // Förhindrar input utanför namninputs-modalen
   let nameOverlayIsHidden = modalPanels.enterName.className.includes("hidden");
   console.log(event.key);
