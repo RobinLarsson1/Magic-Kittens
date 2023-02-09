@@ -67,14 +67,6 @@
 								scoreboard
 							</span>
 						</button>
-
-						<!-- HEADER-KNAPP: Byt spelare -->
-						<button id="change-player-button" class="header-button" title="Ändra spelare">
-							<span class="material-symbols-outlined">
-								person
-							</span>
-						</button>
-					</div>
 				</header>
 
 				<!-- SPELINFO (spelarnamn + gissningar) -->
@@ -87,7 +79,7 @@
 
 					<!-- container för antal gissningar -->
 					<div class="number-of-guesses">
-						Wrong guesses: <span id="mistakes"></span> of <span id="maxWrong"></span>
+						Felgissningar: <span id="mistakes"></span> av <span id="maxWrong"></span>
 					</div>
 				</div>
 
@@ -167,7 +159,29 @@
 
 					</div>
 					<div class="container-display-score">
-						
+
+						<table id='score-table-static-header' class="score-table">
+							<tbody id="table-body" class="table-body">
+								<tr class="score-table-row">
+								
+									<th class="score-table-heading">
+										<p class="score-table-name">Namn</p>
+									</th>
+									<th class="score-table-heading">
+										<p class="score-table-word">Ord</p>
+									</th>
+									<th class="score-table-heading">
+										<p class="score-table-faults">Antal fel</p>
+									</th>
+									<th class="score-table-heading">
+										<p class="score-table-win-lose">Vinst?</p>
+									</th>
+	
+								</tr>
+							</tbody>
+
+
+						</table>
 					</div>
 				</header>
 			</section>
@@ -195,6 +209,7 @@
 			<button class="button" id="difficulty-hard"  title="Hard">
 				Hard
 			</button>
+			<p class="error-message-difficulty"></p>
 		</div>
 			<div>
 				<input id="name-input" class="text-input" type="text" placeholder="Vänligen skriv in ditt namn" value="" title="Namn här" />
@@ -213,11 +228,11 @@
 			</div>
 				<div class="pvp-div">
 					<label for="pvp-name">Namn på spelare 1</label>
-					<input type="text" class="pvp-name"
+					<input type="text" class="text-input" class="pvp-name"
 					id="pvp-name1">
 					<label for="pvp-name">Namn på spelare 2</label>
-					<input type="text" class="pvp-name" id="pvp-name2">
-					<button id="pvp-start-button">Start game</button>
+					<input type="text" class="text-input" class="pvp-name" id="pvp-name2">
+					<button id="pvp-start-button" class="button">Start game</button>
 				</div>
 				<div id="secret-name-div">
 				<label for="hemligt-ord">Ange det hemliga ordet</label>
@@ -250,9 +265,13 @@
 		<!-- MODAL: Om oss -->
 		<div id="about-modal" class="modal hidden">
 			<button class="button close" id="about-modal-close-button">X</button>
+			<div class="about-modal-mid">
 			<h1 class="title">Hangman</h1>
-			
+		</div>
+			<h3>Skapad av:</h3>
+
 			<!-- Om oss - Robin -->
+		<div id="profile-img">
 			<div class="profile">
 				<img src="robin.png" width="124" height="124" alt="Robin">
 				<legend>Robin</legend>
@@ -269,6 +288,7 @@
 				<img src="victorb.png" width="124" height="124" alt="Victor B"> 
 				<legend>Victor B</legend>
 			</div>
+		</div>
 		</div>
 
 		<!-- MODAL: Byt spelare -->

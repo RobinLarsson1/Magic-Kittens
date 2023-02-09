@@ -16,6 +16,8 @@ let secretWord = '';
 let currentDifficulty
 
 
+let difficultySelected = false;
+
 //funktion för svårighetsgrad
 let difficultySelected = false;
 
@@ -38,14 +40,23 @@ function setDifficulty(difficulty) {
 difficultyEasy.addEventListener('click', function() {
   setDifficulty('easy');
   difficultySelected = true;
+    difficultySelected = true;
+    let errorMessage = document.querySelector('.error-message')
+    errorMessage.innerText = errorMessageText.empty
 });
 
 difficultyMedium.addEventListener('click', function() {
   setDifficulty('medium');
   difficultySelected = true;
+    difficultySelected = true;
+    let errorMessage = document.querySelector('.error-message')
+    errorMessage.innerText = errorMessageText.empty
 });
 
 difficultyHard.addEventListener('click', function() {
   setDifficulty('hard');
   difficultySelected = true;
+    difficultySelected = true;
+    let errorMessage = document.querySelector('.error-message')
+    errorMessage.innerText = errorMessageText.empty
 });
