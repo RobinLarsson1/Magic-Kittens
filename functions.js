@@ -4,6 +4,7 @@ function reloadGame() {
   appendSecretWordToDashes();
   mistakes = 0
   document.getElementById('mistakes').innerText = mistakes;
+  gameMode = 'singleplayer'
 };
 
 function errorMessage() {
