@@ -171,18 +171,30 @@ function publishStats(result) {
 function renderStats(results) {
     let displayScoreContainer = document.querySelector('.container-display-score')
 
+    // Skapa de DOMelement som behövs 
+    results.forEach(element => {
+        let p = document.createElement('p')
+        p.className = 'player-result'
+        
+        p.innerHTML = `Namn: ${element.name}, <br> Ord: ${element.word}, <br> Felgissningar: ${element.tries} <br> Vinst? ${element.won}`
+
+        displayScoreContainer.append(p)
+
+            
+        // Knappar
+
+        // BUG: Spammar flera gånger på grund av forEach
         const removePlayerData = () => {
-            console.log(`removePlayerData`, results);
             const playerNameInputValue = playerNameInput.value.toLowerCase()
-            // const elementName = element.name
-            const elementName = results.forEach(element => element.name.toLowerCase())
-                if(playerNameInputValue === elementName) {
+            const elementName = element.name
+            console.log(elementName);
+                if(elementName === playerNameInput) {
                     p.remove()
-                    const saveFilterResult = results.filter(result => result.name !== playerNameInputValue)
+                    let saveFilterResult = results.filter(result => result.name !== playerNameInputValue)
                     
                     let saveNewString = JSON.stringify(saveFilterResult)
                     localStorage.setItem(LS_KEY, saveNewString)
-                }
+                } 
         }
 
         // BUG 2: Om man trycker på en funktionknapp eller mellanslag så registerar spelet samma resultat igen. Men localstorage uppdateras inte vilket är bra.
@@ -202,21 +214,10 @@ function renderStats(results) {
                 //playerNameInput.value = null
         })
 
-    // Skapa de DOMelement som behövs 
-    results.forEach(element => {
-        let p = document.createElement('p')
-        p.className = 'player-result'
-        
-        p.innerHTML = `Namn: ${element.name}, <br> Ord: ${element.word}, <br> Felgissningar: ${element.tries} <br> Vinst? ${element.won}`
-
-        displayScoreContainer.append(p)
-
-            
-        // Knappar
-
         // Det denna gör är att den kollar om elementet (win) har egenskapen true
         const listAllWinsButton = document.querySelector('#list-only-wins-button')
         listAllWinsButton.addEventListener('click', event => {
+            console.log('Hello there!');
             if(!element.won == true) {
                 // p.style.display = 'none'
                 p.classList.add('list-element-hidden')
@@ -224,6 +225,10 @@ function renderStats(results) {
                 // p.style.display = 'block'
                 p.classList.remove('list-element-hidden')
             }
+            // Gör listan numerisk 0 > 5 (typ)
+            if(element.tries > 0) {
+                displayScoreContainer.append(p)
+            } 
         })
 
         // Det denna gör är att den kollar om elementet (win) har egenskapen true
