@@ -8,7 +8,7 @@ const pvpStartButton = document.getElementById('pvp-start-button')
 let pvpDiv = document.querySelector('.pvp-div')
 const secretWordDiv = document.getElementById('secret-name-div')
 let pvpSecretWordInput = document.getElementById('secret-word-pvp')
-let gameMode
+
 
 pvpButton.addEventListener('click', (event) => {
     // let inputfieldP1 = document.createElement('input')

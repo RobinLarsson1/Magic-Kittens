@@ -5,6 +5,9 @@ let wrongGuesses = 0
 document.getElementById('maxWrong').innerHTML = maxWrong;
 document.getElementById('mistakes').innerHTML = mistakes;
 
+// Anger spelläge
+let gameMode
+
 //Slumpar ut ett ord i wordArray
 const randomWords = wordArray
 
@@ -252,47 +255,98 @@ const LS_KEY = 'hangman-score'
 
 
 function publishStats(result) {
-    let currentResult = {
-        name1: p1name,
-        name2: p2name,
-        word: secretWord,
-        tries: mistakes,
-        won: result
+
+    if (gameMode === 'pvp') {
+        let currentResult = {
+            name1: p1name,
+            name2: p2name,
+            word: secretWord,
+            tries: mistakes,
+            won: result
+        }
+    
+        const LS_KEY = 'hangman-score-pvp'
+        
+        // steg 1: hämta data från localStorage
+        // ifsats kontrollerar om det inte finns någon data sen innan
+        let stringFromLocalStorage = localStorage.getItem(LS_KEY)
+        if (!stringFromLocalStorage) {
+            stringFromLocalStorage = '[]'
+        }
+        
+        // omvandlar JSON-strängen till array med namn 'results'
+        let results = JSON.parse(stringFromLocalStorage)
+        
+        // pushar in senaste omgång till result-arrayen
+        results.push(currentResult)
+    
+        // mha annan funktion - renderar listan på scoreboard-sidan
+        renderStats(results)
+    
+        // lägger tillbaka arrayen till localStorage (görs om till JSON-string)
+        let stringToSave = JSON.stringify(results)
+        localStorage.setItem(LS_KEY, stringToSave)
     }
 
-    const LS_KEY = 'hangman-score-pvp'
-    
-    // steg 1: hämta data från localStorage
-    // ifsats kontrollerar om det inte finns någon data sen innan
-    let stringFromLocalStorage = localStorage.getItem(LS_KEY)
-    if (!stringFromLocalStorage) {
-        stringFromLocalStorage = '[]'
-    }
-    
-    // omvandlar JSON-strängen till array med namn 'results'
-    let resultsPVP = JSON.parse(stringFromLocalStorage)
-    
-    // pushar in senaste omgång till result-arrayen
-    resultsPVP.push(currentResult)
+    else if (gameMode === 'singleplayer'){
+                let currentResult = {
+                    name1: p1name,
+                    word: secretWord,
+                    tries: mistakes,
+                    won: result
+                }
+            
+                const LS_KEY = 'hangman-score'
+                
+                // steg 1: hämta data från localStorage
+                // ifsats kontrollerar om det inte finns någon data sen innan
+                let stringFromLocalStorage = localStorage.getItem(LS_KEY)
+                if (!stringFromLocalStorage) {
+                    stringFromLocalStorage = '[]'
+                }
+                
+                // omvandlar JSON-strängen till array med namn 'results'
+                let results = JSON.parse(stringFromLocalStorage)
+                
+                // pushar in senaste omgång till result-arrayen
+                results.push(currentResult)
+            
+                // mha annan funktion - renderar listan på scoreboard-sidan
+                renderStats(results)
+            
+                // lägger tillbaka arrayen till localStorage (görs om till JSON-string)
+                let stringToSave = JSON.stringify(results)
+                localStorage.setItem(LS_KEY, stringToSave)
+            }
 
-    // mha annan funktion - renderar listan på scoreboard-sidan
-    renderStats(resultsPVP)
+    
 
-    // lägger tillbaka arrayen till localStorage (görs om till JSON-string)
-    let stringToSave = JSON.stringify(resultsPVP)
-    localStorage.setItem(LS_KEY, stringToSave)
 }
 
-function renderStats(resultsPVP) {
+function renderStats(results) {
         let displayScoreContainer = document.querySelector('.container-display-score')
         
-        // Skapa de DOMelement som behövs 
-        resultsPVP.forEach(element => {
-            let p = document.createElement('p')
-            p.className = 'player-result'
-            
-            p.innerHTML = `PVP <br> ${element.name1}, ordskapare, spelade mot ${element.name2} som gissade. <br> Ordet var ${element.word}, <br> Felgissningar: ${element.tries} <br> Vinst? ${element.won}`
-    
-            displayScoreContainer.append(p)
-        });
+        if (gameMode === 'pvp') {
+            // Skapa de DOMelement som behövs 
+            results.forEach(element => {
+                let p = document.createElement('p')
+                p.className = 'player-result'
+                
+                p.innerHTML = `PVP <br> ${element.name1}, ordskapare, spelade mot ${element.name2} som gissade. <br> Ordet var ${element.word}, <br> Felgissningar: ${element.tries} <br> Vinst? ${element.won}`
+        
+                displayScoreContainer.append(p)
+            });
+        }
+        else if (gameMode === 'singleplayer') {
+            // Skapa de DOMelement som behövs 
+            results.forEach(element => {
+                let p = document.createElement('p')
+                p.className = 'player-result'
+                
+                p.innerHTML = `${element.name1}, gissade. <br> Ordet var ${element.word}, <br> Felgissningar: ${element.tries} <br> Vinst? ${element.won}`
+        
+                displayScoreContainer.append(p)
+            });
+        }
+
     }

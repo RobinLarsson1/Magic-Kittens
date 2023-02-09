@@ -59,6 +59,7 @@ function appendPlayerName(event) {
       modalPanels.enterName.className = "hidden";
       let overlay = document.querySelector(".overlay");
       overlay.classList.add("hidden");
+      gameMode = 'singleplayer'
     } else if (isNameProvided === false) {
       errorMessage()
   }
@@ -80,6 +81,7 @@ nameInputButton.addEventListener("click", () => {
         modalPanels.enterName.className = "hidden";
         let overlay = document.querySelector(".overlay");
         overlay.classList.add("hidden");
+        gameMode = 'singleplayer'
     } else if (isNameProvided === false) {
         errorMessage()
     }
