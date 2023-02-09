@@ -15,9 +15,6 @@ let secretWord = '';
 // sparar svårighetsgraden för att använda vid reload-funktion
 let currentDifficulty
 
-
-let difficultySelected = false;
-
 //funktion för svårighetsgrad
 let difficultySelected = false;
 
