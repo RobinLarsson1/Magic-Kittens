@@ -303,13 +303,17 @@ function renderStats(results) {
         // BUG: Spammar flera gånger på grund av forEach
         const removePlayerData = () => {
             const playerNameInputValue = playerNameInput.value.toLowerCase()
-            const elementName = element.name
-            console.log(elementName);
-                if(elementName === playerNameInput) {
+            const elementName = element.name1
+                if(playerNameInputValue === elementName ) {
+                    console.log('playerNameInputValue', playerNameInputValue);
+                    console.log('Inne i if satsen!');
                     p.remove()
-                    let saveFilterResult = results.filter(result => result.name !== playerNameInputValue)
+                    const saveFilterResult = results.filter(result => result.name1 !== playerNameInputValue)
                     
-                    let saveNewString = JSON.stringify(saveFilterResult)
+                    console.log('saveFilterResult', saveFilterResult);
+                    const saveNewString = JSON.stringify(saveFilterResult)
+
+                    console.log('saveNewString', saveNewString);
                     localStorage.setItem(LS_KEY, saveNewString)
                 } 
         }
