@@ -298,6 +298,8 @@ function renderStats(results) {
         
         displayScoreContainer.append(p)
 
+
+        // Det denna gör är att den kollar localstorage och filtrerar spelarens namn. Om den finns, tas den bort i localstorage genom att göra en ny sträng som excluderar den filterade spelaren. Sen spottar den in det i LS_KEY igen. Den tar även bort p elementet.
         const removePlayerData = () => {
             const playerNameInputValue = playerNameInput.value.toLowerCase()
             const elementName = element.name1
@@ -315,8 +317,6 @@ function renderStats(results) {
                 } 
         }
 
-        // BUG 2: Om man trycker på en funktionknapp eller mellanslag så registerar spelet samma resultat igen. Men localstorage uppdateras inte vilket är bra.
-        // BUG 3: Man kan fortfarande spela spelet även om man har en modal uppe.
         const playerNameInput = document.querySelector('#select-player-data-using-input')
         playerNameInput.addEventListener('keydown', event => {
             event.stopPropagation()
