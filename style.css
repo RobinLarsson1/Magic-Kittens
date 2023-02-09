@@ -140,7 +140,6 @@ html, body {
 }
 
 .hero-section {
-	padding: 1.5em;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -191,6 +190,7 @@ html, body {
     display: flex;
 }
 
+
 /* Hide elements */
 .hidden {
     visibility: hidden;
@@ -224,8 +224,22 @@ html, body {
     flex-flow: row wrap;
     box-shadow: var(--shadow-low);
 }
-
-
+#gamemode-modal {
+    display: flex;
+    flex-direction: column;
+}
+.mode-buttons {
+    display: flex;
+    justify-content: center;
+}
+.pvp-div {
+    display: flex;
+    flex-direction: column;
+    visibility: hidden;
+}
+#secret-name-div {
+    visibility: hidden;
+}
 
 .modal > .button.close {
     margin-left: min(430px);
@@ -270,6 +284,13 @@ html, body {
 #win-modal, #lose-modal {
     flex-flow: column wrap;
 }
+
+#remove-player-data-modal {
+    flex-flow: column wrap;
+}
+
+
+
 .svårighetsgrad {
     margin-bottom: 1em;
 }
@@ -327,10 +348,13 @@ html, body {
     flex-wrap: wrap;
 }
 
+/* Scoreboard */
+
 .container-display-score {
-    display: flex;
-    flex-direction: column;
+    display: grid;
     justify-content: space-around;
+    overflow-y:scroll;
+    height: 80vh;
 }
 
 .score-div {
@@ -341,4 +365,10 @@ html, body {
 
 .player-result {
     margin: 0.5em;
+}
+
+.player-result.list-element-hidden {
+    height: 0px;
+    margin: 0px;
+    visibility: hidden;
 }
