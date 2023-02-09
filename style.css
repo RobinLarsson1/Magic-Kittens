@@ -371,6 +371,14 @@ html, body {
     color: #a6201e;
     font-weight: 600;
 }
+.error-message-difficulty {
+    height: 20px;
+    font-size: 1em;
+    margin-top: 0.5em;
+    margin-left: 0.5em;
+    color: #a6201e;
+    font-weight: 600;
+}
 
 #svar {
     display: flex;

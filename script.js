@@ -36,6 +36,7 @@ let namePlaceholder = document.getElementById('player-name-placeholder')
 
 
 let errorMessageText = 'Var god ange ditt namn!'
+let errorMessageDifficulty = 'Var god ange en svårighetsgrad!'
 
 //Eventlyssnare på restart-game knapp i win eller lose
 const resetButtonForWinOrLoseModalScreen = document.querySelectorAll('.reset-button')

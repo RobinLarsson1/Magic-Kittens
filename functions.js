@@ -1,14 +1,16 @@
 //funktion för att ladda om sidan
 function reloadGame() {
-  setDifficulty(prompt('easy, medium, hard?'))
-  appendSecretWordToDashes();
-  mistakes = 0
-  document.getElementById('mistakes').innerText = mistakes;
+  location.reload()
 };
 
 function errorMessage() {
     let errorMessage = document.querySelector('.error-message')
     errorMessage.innerText = errorMessageText
+}
+
+function errorMessageForDifficulty () {
+  let errorMessageDifficulty = document.querySelector('.error-message-difficulty')
+  errorMessageDifficulty.innerText = errorMessageDifficulty
 }
 
 //Resetknappar i win, lose samt för header
@@ -84,7 +86,9 @@ nameInputButton.addEventListener("click", () => {
     }
 });
 
-
+if(difficultySelected === false) {
+  errorMessageForDifficulty()
+}
 
 // FUNKTION - generera fram spelarnamn samt resultat
 let playerResult = {};
