@@ -123,6 +123,20 @@ document.onkeydown = function(event) {
 
   if (nameOverlayIsHidden === true) {
 
+    if (!modalPanels.about.classList.contains('hidden')) {
+      console.log('Modal is not hidden');
+      document.body.addEventListener('keydown', removeThis =>  {
+        removeThis.stopImmediatePropagation()
+        removeThis.preventDefault()
+        removeThis.stopPropagation()
+    })} else if (modalPanels.about.classList.contains('hidden')) {
+      try {
+        document.body.removeEventListener('keydown', {passive: false}, removeThis) 
+      }
+      catch {
+       console.log('Hittar inte eventet');
+      }
+    }
 
     //Skickar in fel bokstav, samt uppdaterar antal felgissningar
     function updateIncorrectGuess() {
