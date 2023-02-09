@@ -11,7 +11,6 @@ function errorMessage() {
     errorMessage.innerText = errorMessageText
 }
 
-
 //Resetknappar i win, lose samt för header
 resetButtonForWinOrLoseModalScreen.forEach(button => {
   button.addEventListener('click', (event) => {
@@ -71,7 +70,7 @@ let nameInputButton = document.querySelector("#name-enter-button");
 nameInputButton.addEventListener("click", () => {
 
     // Kollar om inputfältet är tomt eller ej
-    let isNameProvided = (nameInput.value !== '')
+    let isNameProvided = (nameInput.value !== '' && difficultySelected === true)
 
     if (isNameProvided === true) {
         namePlaceholder.innerText = " " + nameInput.value;
