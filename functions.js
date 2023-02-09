@@ -3,14 +3,16 @@ function reloadGame() {
   location.reload()
 };
 
+let errorMessageText = {
+  empty: '',
+  inputError: 'Var god ange ditt namn!',
+  difficultyError: 'Var god ange en svårighetsgrad!'
+}
+
 function errorMessage(action) {
   let errorMessage = document.querySelector('.error-message')
-    if (action === 'textinput') {
-      errorMessage.innerText = errorMessageTextInput
-    } 
-    else if (action === 'difficultyButton') {
-      errorMessage.innerText = errorMessageDifficulty
-    }
+  if (action === 'textinput') {errorMessage.innerText = errorMessageText.inputError} 
+  else if (action === 'difficultyButton') {errorMessage.innerText = errorMessageText.difficultyError}
 }
 
 //Resetknappar i win, lose samt för header
@@ -65,7 +67,6 @@ function appendPlayerName(event) {
   } else if (difficultySelected === false) {
     errorMessage('difficultyButton')
   }
-  errorMessageEmpty
 }
 
 
