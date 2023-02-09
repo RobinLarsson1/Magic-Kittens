@@ -75,7 +75,6 @@ function appendPlayerName(event) {
 // FUNKTION - Namn-input kopplat till "Redo att spela!"-knapp
 let nameInputButton = document.querySelector("#name-enter-button");
 nameInputButton.addEventListener("click", () => {
-    publishStats(result)
 
     // Kollar om inputfältet är tomt eller ej
     let isNameProvided = (nameInput.value !== '' && difficultySelected === true)
@@ -95,8 +94,11 @@ nameInputButton.addEventListener("click", () => {
     }
   }
 );
-
-
+let stringFromLocalStorage = localStorage.getItem(LS_KEY)
+let results = JSON.parse(stringFromLocalStorage)
+nameInputButton.addEventListener("click", (event) => {
+  publishStats(results)
+});
 
 // FUNKTION - generera fram spelarnamn samt resultat
 let playerResult = {};
@@ -111,7 +113,7 @@ generatePlayerResult();
 //funktion för att printa bokstäver
 document.onkeydown = function(event) {
   //Tangentbordet
-  let key = event.key.toLowerCase();
+  let key = event.key.toLowerCase()
 
   let singleLetter = secretWord.split("");
 
