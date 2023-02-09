@@ -8,13 +8,17 @@ const easyWords = wordArray.filter(secretWord => secretWord.length > 11);
 const mediumWords = wordArray.filter(secretWord => 7 <= secretWord.length && secretWord.length <= 11);
 const hardWords = wordArray.filter(secretWord => secretWord.length < 7);
 
+
 //Måste ha secretWord som tom sträng pga ordet ändras
 let secretWord = '';
 
 // sparar svårighetsgraden för att använda vid reload-funktion
 let currentDifficulty
 
+
 //funktion för svårighetsgrad
+let difficultySelected = false;
+
 function setDifficulty(difficulty) {
     if (difficulty === 'easy') {
         secretWord = easyWords[Math.floor(Math.random() * easyWords.length)].toLowerCase();
@@ -32,13 +36,16 @@ function setDifficulty(difficulty) {
 
 //Lyssnar efter klick på knapparna
 difficultyEasy.addEventListener('click', function() {
-    setDifficulty('easy');
+  setDifficulty('easy');
+  difficultySelected = true;
 });
 
 difficultyMedium.addEventListener('click', function() {
-    setDifficulty('medium');
+  setDifficulty('medium');
+  difficultySelected = true;
 });
 
 difficultyHard.addEventListener('click', function() {
-    setDifficulty('hard');
+  setDifficulty('hard');
+  difficultySelected = true;
 });
