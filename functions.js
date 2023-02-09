@@ -167,6 +167,8 @@ document.onkeydown = function(event) {
   if (gameIsOver) {
     gameResultModalOverlay(false, answer);
     publishStats(false);
+  } else if (gameIsOver && gameMode == 'pvp') {
+    publishStatsPVP(false)
   }
 
   //Kolla om spelet är vunnet 
@@ -174,5 +176,7 @@ document.onkeydown = function(event) {
   if (isGameWon) {
     gameResultModalOverlay(true, null, mistakes);
     publishStats(true);
+  } else if (isGameWon && gameMode == 'pvp') {
+    publishStatsPVP(true)
   }
 }}
