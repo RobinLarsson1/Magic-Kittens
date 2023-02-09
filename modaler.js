@@ -62,3 +62,5 @@ const goToScoreboard = () => {
     gameboard.classList.add('hidden')
     scoreboard.classList.remove('hidden')
 }
+
+
