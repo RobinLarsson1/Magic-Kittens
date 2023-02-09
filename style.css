@@ -251,6 +251,7 @@ html, body {
 
 #enter-name-modal {
     flex-flow: column wrap;
+    width: auto;
 }
 #gamemode-modal {
     display: flex;
