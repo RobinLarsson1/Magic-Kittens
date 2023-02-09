@@ -62,6 +62,7 @@ function appendPlayerName(event) {
       modalPanels.enterName.className = "hidden";
       let overlay = document.querySelector(".overlay");
       overlay.classList.add("hidden");
+      gameMode = 'singleplayer'
     } else if (isNameProvided === false) {
       errorMessage('textinput')
   } else if (difficultySelected === false) {
@@ -85,6 +86,7 @@ nameInputButton.addEventListener("click", () => {
         modalPanels.enterName.className = "hidden";
         let overlay = document.querySelector(".overlay");
         overlay.classList.add("hidden");
+        gameMode = 'singleplayer'
     } else if (isNameProvided === false) {
         errorMessage('textinput')
     }else if (difficultySelected === false) {
@@ -175,6 +177,8 @@ document.onkeydown = function(event) {
   if (gameIsOver) {
     gameResultModalOverlay(false, answer);
     publishStats(false);
+  } else if (gameIsOver && gameMode == 'pvp') {
+    publishStatsPVP(false)
   }
 
   //Kolla om spelet är vunnet 
@@ -182,5 +186,7 @@ document.onkeydown = function(event) {
   if (isGameWon) {
     gameResultModalOverlay(true, null, mistakes);
     publishStats(true);
+  } else if (isGameWon && gameMode == 'pvp') {
+    publishStatsPVP(true)
   }
 }}
