@@ -4,12 +4,11 @@ function reloadGame() {
 };
 
 function errorMessage(action) {
+  let errorMessage = document.querySelector('.error-message')
     if (action === 'textinput') {
-      let errorMessage = document.querySelector('.error-message')
       errorMessage.innerText = errorMessageTextInput
     } 
     else if (action === 'difficultyButton') {
-      let errorMessage = document.querySelector('.error-message')
       errorMessage.innerText = errorMessageDifficulty
     }
 }
