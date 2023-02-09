@@ -3,15 +3,24 @@ function reloadGame() {
   location.reload()
 };
 
-function errorMessage() {
-    let errorMessage = document.querySelector('.error-message')
-    errorMessage.innerText = errorMessageText
+function errorMessage(action) {
+    if (action === 'textinput') {
+      let errorMessage = document.querySelector('.error-message')
+      errorMessage.innerText = errorMessageTextInput
+    } 
+    else if (action === 'difficultyButton') {
+      let errorMessage = document.querySelector('.error-message')
+      errorMessage.innerText = errorMessageDifficulty
+    }
 }
 
 function errorMessageForDifficulty () {
   let errorMessageDifficulty = document.querySelector('.error-message-difficulty')
   errorMessageDifficulty.innerText = errorMessageDifficulty
 }
+
+
+
 
 //Resetknappar i win, lose samt för header
 resetButtonForWinOrLoseModalScreen.forEach(button => {
@@ -62,7 +71,10 @@ function appendPlayerName(event) {
       overlay.classList.add("hidden");
     } else if (isNameProvided === false) {
       errorMessage()
+  } else if (difficultySelected === false) {
+    errorMessage('difficultyButton')
   }
+  errorMessageEmpty
 }
 
 
@@ -83,12 +95,13 @@ nameInputButton.addEventListener("click", () => {
         overlay.classList.add("hidden");
     } else if (isNameProvided === false) {
         errorMessage()
+    }else if (difficultySelected === false) {
+      errorMessage('difficultyButton')
     }
-});
+  }
+);
 
-if(difficultySelected === false) {
-  errorMessageForDifficulty()
-}
+
 
 // FUNKTION - generera fram spelarnamn samt resultat
 let playerResult = {};

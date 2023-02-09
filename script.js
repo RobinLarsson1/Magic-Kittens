@@ -34,8 +34,8 @@ let nameInputDiv = document.querySelector('.player-input')
 let nameInput = document.getElementById('name-input')
 let namePlaceholder = document.getElementById('player-name-placeholder')
 
-
-let errorMessageText = 'Var god ange ditt namn!'
+let errorMessageEmpty = ''
+let errorMessageTextInput = 'Var god ange ditt namn!'
 let errorMessageDifficulty = 'Var god ange en svårighetsgrad!'
 
 //Eventlyssnare på restart-game knapp i win eller lose

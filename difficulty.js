@@ -36,14 +36,20 @@ function setDifficulty(difficulty) {
 difficultyEasy.addEventListener('click', function() {
     setDifficulty('easy');
     difficultySelected = true;
+    let errorMessage = document.querySelector('.error-message')
+    errorMessage.innerText = errorMessageEmpty
 });
 
 difficultyMedium.addEventListener('click', function() {
     setDifficulty('medium');
     difficultySelected = true;
+    let errorMessage = document.querySelector('.error-message')
+    errorMessage.innerText = errorMessageEmpty
 });
 
 difficultyHard.addEventListener('click', function() {
     setDifficulty('hard');
     difficultySelected = true;
+    let errorMessage = document.querySelector('.error-message')
+    errorMessage.innerText = errorMessageEmpty
 });
