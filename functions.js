@@ -74,6 +74,7 @@ function appendPlayerName(event) {
 // FUNKTION - Namn-input kopplat till "Redo att spela!"-knapp
 let nameInputButton = document.querySelector("#name-enter-button");
 nameInputButton.addEventListener("click", () => {
+    publishStats(result)
 
     // Kollar om inputfältet är tomt eller ej
     let isNameProvided = (nameInput.value !== '' && difficultySelected === true)
