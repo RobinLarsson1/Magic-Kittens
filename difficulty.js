@@ -17,6 +17,8 @@ let currentDifficulty
 
 
 //funktion för svårighetsgrad
+let difficultySelected = false;
+
 function setDifficulty(difficulty) {
     if (difficulty === 'easy') {
         secretWord = easyWords[Math.floor(Math.random() * easyWords.length)].toLowerCase();
@@ -35,12 +37,15 @@ function setDifficulty(difficulty) {
 //Lyssnar efter klick på knapparna
 difficultyEasy.addEventListener('click', function() {
   setDifficulty('easy');
+  difficultySelected = true;
 });
 
 difficultyMedium.addEventListener('click', function() {
   setDifficulty('medium');
+  difficultySelected = true;
 });
 
 difficultyHard.addEventListener('click', function() {
   setDifficulty('hard');
+  difficultySelected = true;
 });

@@ -73,7 +73,7 @@ nameInputButton.addEventListener("click", () => {
     // Kollar om inputfältet är tomt eller ej
     let isNameProvided = (nameInput.value !== '')
 
-    if (isNameProvided === true) {
+    if (isNameProvided === true && difficultySelected === true) { 
         namePlaceholder.innerText = " " + nameInput.value;
         p1name = nameInput.value;
         nameInput.remove();
