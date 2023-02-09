@@ -132,8 +132,7 @@ document.onkeydown = function(event) {
   let nameOverlayIsHidden = modalPanels.enterName.className.includes("hidden");
   console.log(event.key);
 
-  if (nameOverlayIsHidden === true) {
-
+  const gameStart = () => {
 
     //Skickar in fel bokstav, samt uppdaterar antal felgissningar
     function updateIncorrectGuess() {
@@ -144,7 +143,7 @@ document.onkeydown = function(event) {
         hangManPicture.innerHTML = hangManPicture.innerHTML + hangMan[wrongGuesses];
         wrongGuesses++
         return wrongGuesses;
-}
+    }
 
   //Skickar in korrekt gissning iställer för understräcken
   function updateCorrectGuess() {
@@ -153,9 +152,9 @@ document.onkeydown = function(event) {
             dashes[index].innerText = char;
         }
     });
-} 
+  } 
 
-//Kollar om ordet är gissat eller inte, loopas varje gång
+  //Kollar om ordet är gissat eller inte, loopas varje gång
   function isWordComplete(singleLetter, dashes) {
       for (let i = 0; i < singleLetter.length; i++) {
       if (dashes[i].innerText !== singleLetter[i]) {
@@ -165,7 +164,7 @@ document.onkeydown = function(event) {
       return true;
   }
 
-//kallar på rätt funktion beroende på vilken gissning som anges
+  //kallar på rätt funktion beroende på vilken gissning som anges
   if (isCorrectGuess) {
       updateCorrectGuess()
   } else if (isValidGuess) {
@@ -189,4 +188,11 @@ document.onkeydown = function(event) {
   } else if (isGameWon && gameMode == 'pvp') {
     publishStatsPVP(true)
   }
-}}
+}
+
+if (overlay.classList.contains('hidden') === true) {
+    gameStart()
+} else {
+    console.log('Du måste stänga av overlayen för modalerna för att kunna spela eller fortsätta kunna spela.');
+  }
+}
