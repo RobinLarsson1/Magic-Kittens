@@ -14,14 +14,6 @@ function errorMessage(action) {
     }
 }
 
-function errorMessageForDifficulty () {
-  let errorMessageDifficulty = document.querySelector('.error-message-difficulty')
-  errorMessageDifficulty.innerText = errorMessageDifficulty
-}
-
-
-
-
 //Resetknappar i win, lose samt för header
 resetButtonForWinOrLoseModalScreen.forEach(button => {
   button.addEventListener('click', (event) => {
@@ -70,7 +62,7 @@ function appendPlayerName(event) {
       let overlay = document.querySelector(".overlay");
       overlay.classList.add("hidden");
     } else if (isNameProvided === false) {
-      errorMessage()
+      errorMessage('textinput')
   } else if (difficultySelected === false) {
     errorMessage('difficultyButton')
   }
@@ -94,7 +86,7 @@ nameInputButton.addEventListener("click", () => {
         let overlay = document.querySelector(".overlay");
         overlay.classList.add("hidden");
     } else if (isNameProvided === false) {
-        errorMessage()
+        errorMessage('textinput')
     }else if (difficultySelected === false) {
       errorMessage('difficultyButton')
     }
