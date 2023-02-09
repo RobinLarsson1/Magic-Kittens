@@ -227,6 +227,43 @@ function renderStats(results) {
                 p.innerHTML = `PVP <br> ${element.name1}, ordskapare, spelade mot ${element.name2} som gissade. <br> Ordet var ${element.word}, <br> Felgissningar: ${element.tries} <br> Vinst? ${element.won}`
         
                 displayScoreContainer.append(p)
+
+                        // Det denna gör är att den kollar om elementet (win) har egenskapen true
+        const listAllWinsButton = document.querySelector('#list-only-wins-button')
+        listAllWinsButton.addEventListener('click', event => {
+            console.log('Hello there!');
+            if(!element.won == true) {
+                // p.style.display = 'none'
+                p.classList.add('list-element-hidden')
+            } else {
+                // p.style.display = 'block'
+                p.classList.remove('list-element-hidden')
+            }
+            // Gör listan numerisk 0 > 5 (typ)
+            if(element.tries > 0) {
+                displayScoreContainer.append(p)
+            } 
+        })
+
+        // Det denna gör är att den kollar om elementet (win) har egenskapen true
+        const listAllLossesButton = document.querySelector('#list-only-losses-button')
+        listAllLossesButton.addEventListener('click', event => {
+            if(!element.won == false) {
+                p.classList.add('list-element-hidden')
+            } else {
+                p.classList.remove('list-element-hidden')
+            }
+        })
+
+        // Funkar bara om man har tryckt på vinster eller förluster först
+        const listAllResultsButton = document.querySelector('#list-all-results-button')
+        listAllResultsButton.addEventListener('click', event => {
+            if(!element.won == false || !element.won == true) {
+                // p.style.display = 'block'
+                p.classList.remove('list-element-hidden')
+            }
+        })
+
             });
         }
         else if (gameMode === 'singleplayer') {
