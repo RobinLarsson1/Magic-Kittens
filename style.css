@@ -23,6 +23,7 @@ html, body {
 	width: 100%;
 	height: 100vh;
     font-family: 'Poppins', sans-serif;
+    overflow: hidden;
 }
 
 .game-over {
@@ -190,6 +191,7 @@ html, body {
     display: flex;
 }
 
+
 /* Hide elements */
 .hidden {
     visibility: hidden;
@@ -223,8 +225,22 @@ html, body {
     flex-flow: row wrap;
     box-shadow: var(--shadow-low);
 }
-
-
+#gamemode-modal {
+    display: flex;
+    flex-direction: column;
+}
+.mode-buttons {
+    display: flex;
+    justify-content: center;
+}
+.pvp-div {
+    display: flex;
+    flex-direction: column;
+    visibility: hidden;
+}
+#secret-name-div {
+    visibility: hidden;
+}
 
 .modal > .button.close {
     margin-left: min(430px);
@@ -269,6 +285,13 @@ html, body {
 #win-modal, #lose-modal {
     flex-flow: column wrap;
 }
+
+#remove-player-data-modal {
+    flex-flow: column wrap;
+}
+
+
+
 .svårighetsgrad {
     margin-bottom: 1em;
 }
@@ -324,4 +347,29 @@ html, body {
 #svar {
     display: flex;
     flex-wrap: wrap;
+}
+
+/* Scoreboard */
+
+.container-display-score {
+    display: grid;
+    justify-content: space-around;
+    overflow-y:scroll;
+    height: 80vh;
+}
+
+.score-div {
+    width: 100%;
+    margin: 1em;
+    font-size: 1em;
+}
+
+.player-result {
+    margin: 0.5em;
+}
+
+.player-result.list-element-hidden {
+    height: 0px;
+    margin: 0px;
+    visibility: hidden;
 }

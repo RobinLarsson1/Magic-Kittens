@@ -8,6 +8,8 @@
 	<!-- Style -->
 	<link rel="stylesheet" href="style.css">
 	<!-- Icons and fonts -->
+	<link rel="shortcut icon" href="logo.png" />
+
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,6 +22,7 @@
 	<script src="script.js" defer></script>
 	<script src="hangman.js" defer></script>
 	<script src="functions.js" defer></script>
+	<script src="pvp.js" defer></script>
 </head>
 
 <body id="body">
@@ -110,7 +113,7 @@
 
 						<span>Sortera listan</span>
 						
-						<!-- SCOREBOARD-KNAPP #1: Sämst -->
+						<!-- SCOREBOARD-KNAPP Sämst -->
 						<button class="header-button">
 							<span class="material-symbols-outlined">
 								arrow_upward
@@ -118,7 +121,7 @@
 							Sämst
 						</button>
 
-						<!-- SCOREBOARD-KNAPP #2: Bästa -->
+						<!-- SCOREBOARD-KNAPP Bästa -->
 						<button class="header-button">
 							<span class="material-symbols-outlined">
 								arrow_downward
@@ -126,30 +129,30 @@
 							Bästa
 						</button>
 
-						<!-- SCOREBOARD-KNAPP #3: Vinst -->
-						<button class="header-button">
+						<!-- SCOREBOARD-KNAPP Vinst -->
+						<button id="list-only-wins-button" class="header-button">
 							Vinst
 						</button>
 
-						<!-- SCOREBOARD-KNAPP #4: Förlust -->
-						<button class="header-button">
+						<!-- SCOREBOARD-KNAPP Förlust -->
+						<button id="list-only-losses-button" class="header-button">
 							Förlust
 						</button>
-
-						<!-- SCOREBOARD-KNAPP #5: Senast -->
-						<button class="header-button">
-							Senast
+						
+						<!-- SCOREBOARD-KNAPP Alla resultat -->
+						<button id="list-all-results-button" class="header-button">
+							Alla resultat
 						</button>
 
-						<!-- SCOREBOARD-KNAPP #6: Från start -->
+						<!-- SCOREBOARD-KNAPP Senast -->
 						<button class="header-button">
-							Från start
+							Senast
 						</button>
 
 						<span>Alternativ</span>
 						
 						<!-- SCOREBOARD-KNAPP #7: Ta bort -->
-						<button class="header-button">
+						<button id="remove-results-with-specific-name-button" class="header-button">
 							<span class="material-symbols-outlined">
 								delete
 							</span>
@@ -162,6 +165,9 @@
 							</span>
 						</button>
 
+					</div>
+					<div class="container-display-score">
+						
 					</div>
 				</header>
 			</section>
@@ -201,15 +207,27 @@
 		<!-- MODAL: Välj spelläge -->
 		<div id="gamemode-modal" class="modal hidden"><h2>Välj läge!</h2>
 			<div>
-				<button class="normal-mode button">Vanligt</button>
-				<button class="pvp-mode button" id="pvp-button">PvP</button>
-				<input type="text" id="pvp-secret-word">
+				<div class="mode-buttons">
+				<button class="normal-mode button" id="vanligt-button">Vanligt</button>
+				<button class="pvp-mode button">PvP</button>
+			</div>
+				<div class="pvp-div">
+					<label for="pvp-name">Namn på spelare 1</label>
+					<input type="text" class="pvp-name"
+					id="pvp-name1">
+					<label for="pvp-name">Namn på spelare 2</label>
+					<input type="text" class="pvp-name" id="pvp-name2">
+					<button id="pvp-start-button">Start game</button>
+				</div>
+				<div id="secret-name-div">
+				<label for="hemligt-ord">Ange det hemliga ordet</label>
+					<input type="text" id="secret-word-pvp">
+				</div>
 			</div>
 		</div>
-
 		<!-- MODAL: Vid förlust -->
 		<div id="lose-modal" class="modal hidden">
-			<h2 class="lose-title">Du förlora!</h2>
+			<h2 class="lose-title">Du förlorade!</h2>
 			<p>Det korrekta ordet var: <span id="correct-answer"></span></p>
 			<p>Vill du spela igen?</p>
 			<div>
@@ -257,6 +275,16 @@
 		<div id="change-player-modal" class="modal hidden">
 			<button class="button close" id="change-player-modal-close-button">X</button>
 			<h1 class="title">Hangman</h1>
+		</div>
+
+		<!-- MODAL: Ta bort data (Syns på scoreboard) -->
+		<div id="remove-player-data-modal" class="modal hidden">
+			<button class="button close" id="remove-player-data-modal-close-button">X</button>
+			<h2>Radera spelardata</h2>
+			<div>
+				<input class="text-input" placeholder="Skriv in ett spelarnamn" id="select-player-data-using-input" type="text">
+				<button class="button" id="select-player-data-using-input-button">Radera data!</button>
+			</div>
 		</div>
 	</div>
 </body>

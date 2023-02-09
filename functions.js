@@ -1,6 +1,9 @@
 //funktion för att ladda om sidan
-const reloadGame = () => {
-  location.reload();
+function reloadGame() {
+  setDifficulty(prompt('easy, medium, hard?'))
+  appendSecretWordToDashes();
+  mistakes = 0
+  document.getElementById('mistakes').innerText = mistakes;
 };
 
 function errorMessage() {
@@ -11,8 +14,12 @@ function errorMessage() {
 
 //Resetknappar i win, lose samt för header
 resetButtonForWinOrLoseModalScreen.forEach(button => {
-  button.addEventListener('click', reloadGame)
+  button.addEventListener('click', (event) => {
+    reloadGame()
+    overlayScreenToggle()
+  })
 })
+
 headerButtonList.resetGame.addEventListener("click", reloadGame);
 
 
@@ -30,24 +37,33 @@ goToScoreboardButton.forEach(button => {
   });
 })
 
+//Skickar in hemliga ordet
+function appendSecretWordToDashes() {
+  const svar = document.getElementById('correctLetters');
+  svar.innerHTML = secretWord.replace(/./g, '<span class="dashes">_</span>');
+  }
 
 // FUNKTION - Namn-input
 nameInput.addEventListener("keyup", (event) => {
-
-    // Kollar om inputfältet är tomt eller ej
-    let isNameProvided = (nameInput.value !== '')
-    
-    if ((event.code === "Enter") && (nameInput.value !== '')) {
-    namePlaceholder.innerText = " " + nameInput.value;
-    p1name = nameInput.value;
-    nameInput.remove();
-    modalPanels.enterName.className = "hidden";
-    let overlay = document.querySelector(".overlay");
-    overlay.classList.add("hidden");
-  } else if (isNameProvided === false) {
-    errorMessage()
-}
+  appendPlayerName(event)
 });
+
+function appendPlayerName(event) {
+      // Kollar om inputfältet är tomt eller ej
+      let isNameProvided = (nameInput.value !== '')
+    
+      if ((event.code === "Enter") && (nameInput.value !== '')) {
+      namePlaceholder.innerText = " " + nameInput.value;
+      p1name = nameInput.value;
+      nameInput.remove();
+      modalPanels.enterName.className = "hidden";
+      let overlay = document.querySelector(".overlay");
+      overlay.classList.add("hidden");
+    } else if (isNameProvided === false) {
+      errorMessage()
+  }
+}
+
 
 
 // FUNKTION - Namn-input kopplat till "Redo att spela!"-knapp
@@ -68,6 +84,8 @@ nameInputButton.addEventListener("click", () => {
         errorMessage()
     }
 });
+
+
 
 // FUNKTION - generera fram spelarnamn samt resultat
 let playerResult = {};
@@ -148,13 +166,13 @@ document.onkeydown = function(event) {
   let gameIsOver = mistakes >= maxWrong;
   if (gameIsOver) {
     gameResultModalOverlay(false, answer);
-    publishStats(p1name, false);
+    publishStats(false);
   }
 
   //Kolla om spelet är vunnet 
   let isGameWon = isWordComplete(singleLetter, dashes)
   if (isGameWon) {
     gameResultModalOverlay(true, null, mistakes);
-    publishStats(p1name, true);
+    publishStats(true);
   }
 }}

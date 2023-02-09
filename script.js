@@ -114,6 +114,7 @@ const closeScoreboardButton = document.querySelector("#close-scoreboard-button")
 closeScoreboardButton.addEventListener('click', () => {
     scoreboard.classList.add('hidden')
     gameboard.classList.remove('hidden')
+    bodyElem.style.background = "#bae1ff"
 })
 
 showScoreboardButton.addEventListener('click', () => {

@@ -5,13 +5,17 @@ const modalPanels = {
     endLose: document.querySelector('#lose-modal'),
     endWin: document.querySelector('#win-modal'),
     about: document.querySelector('#about-modal'),
-    changePlayer: document.querySelector('#change-player-modal')
+    changePlayer: document.querySelector('#change-player-modal'),
+    // SCOREBOARD
+    removeSpecificPlayerData: document.querySelector('#remove-player-data-modal')
 }
 
 // En knapp för varje modal för att stänga (toggla) av modalen och overlayen
 const modalCloseButtons = {
     aboutModal: document.querySelector('#about-modal-close-button'),
-    changePlayerModal: document.querySelector('#change-player-modal-close-button')
+    changePlayerModal: document.querySelector('#change-player-modal-close-button'),
+    // SCOREBOARD
+    removeSpecificPlayerDataModal: document.querySelector('#remove-player-data-modal-close-button')
 }
 
 // Selecta overlayen för modals
