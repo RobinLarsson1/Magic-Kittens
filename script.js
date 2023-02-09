@@ -145,6 +145,7 @@ const LS_KEY = 'hangman-score'
 
 
 // DENNA GÄLLER, LÄGG IN BERGSTRÖMS HÄR ! 
+// STÄMMER ENLIGT V+R LAYOUT? = JA
 function publishStats(result) {
 
     if (gameMode === 'pvp') {
@@ -213,6 +214,7 @@ function publishStats(result) {
 
 
 // DENNA GÄLLER, LÄGG IN BERGSTRÖMS HÄR ! 
+// STÄMMER ENLIGT V+R LAYOUT? = JA
 function renderStats(results) {
         let displayScoreContainer = document.querySelector('.container-display-score')
         
@@ -249,14 +251,17 @@ function renderStats(results) {
                     newTableData.innerText = 'data'
                     newTableData.style.border = '1px dashed orange'
                     newScoreTableRow.append(newTableData)
+                }
 
-
+                let p = document.createElement('p')
+                p.className = 'player-result'
+                
+                p.innerHTML = `${element.name1}, gissade. <br> Ordet var ${element.word}, <br> Felgissningar: ${element.tries} <br> Vinst? ${element.won}`
     
         
         displayScoreContainer.append(p)
 
-            
-        // Knappar
+
 
         // BUG: Spammar flera gånger på grund av forEach
         const removePlayerData = () => {
@@ -325,20 +330,4 @@ function renderStats(results) {
             }
         })
 
-    })}
-})
-
-// //
-//                 }
-
-
-//                 let p = document.createElement('p')
-//                 p.className = 'player-result'
-                
-//                 p.innerHTML = `${element.name1}, gissade. <br> Ordet var ${element.word}, <br> Felgissningar: ${element.tries} <br> Vinst? ${element.won}`
-        
-//                 displayScoreContainer.append(p)
-//             });
-//         }
-
-//     }
+})}}
