@@ -5,6 +5,9 @@ let wrongGuesses = 0
 document.getElementById('maxWrong').innerHTML = maxWrong;
 document.getElementById('mistakes').innerHTML = mistakes;
 
+// Anger spelläge
+let gameMode
+
 //Slumpar ut ett ord i wordArray
 const randomWords = wordArray
 
@@ -134,55 +137,131 @@ showScoreboardButton.addEventListener('click', () => {
 })
 
 let p1name
-let p2name
+// let p2name
 
 // publishStats()
 
 const LS_KEY = 'hangman-score'
 
+
+// DENNA GÄLLER, LÄGG IN BERGSTRÖMS HÄR ! 
+// STÄMMER ENLIGT V+R LAYOUT? = JA
 function publishStats(result) {
-    let currentResult = {
-        name: p1name,
-        word: secretWord,
-        tries: mistakes,
-        won: result
-    }
-    
-    // steg 1: hämta data från localStorage
-    // ifsats kontrollerar om det inte finns någon data sen innan
-    let stringFromLocalStorage = localStorage.getItem(LS_KEY)
-    if (!stringFromLocalStorage) {
-        stringFromLocalStorage = '[]'
-    }
-    
-    // omvandlar JSON-strängen till array med namn 'results'
-    let results = JSON.parse(stringFromLocalStorage)
-    
-    // pushar in senaste omgång till result-arrayen
-    results.push(currentResult)
 
-    // mha annan funktion - renderar listan på scoreboard-sidan
-    renderStats(results)
+    if (gameMode === 'pvp') {
+        let currentResult = {
+            name1: p1name,
+            name2: p2name,
+            word: secretWord,
+            tries: mistakes,
+            won: result
+        }
+    
+        const LS_KEY = 'hangman-score-pvp'
+        
+        // steg 1: hämta data från localStorage
+        // ifsats kontrollerar om det inte finns någon data sen innan
+        let stringFromLocalStorage = localStorage.getItem(LS_KEY)
+        if (!stringFromLocalStorage) {
+            stringFromLocalStorage = '[]'
+        }
+        
+        // omvandlar JSON-strängen till array med namn 'results'
+        let results = JSON.parse(stringFromLocalStorage)
+        
+        // pushar in senaste omgång till result-arrayen
+        results.push(currentResult)
+    
+        // mha annan funktion - renderar listan på scoreboard-sidan
+        renderStats(results)
+    
+        // lägger tillbaka arrayen till localStorage (görs om till JSON-string)
+        let stringToSave = JSON.stringify(results)
+        localStorage.setItem(LS_KEY, stringToSave)
+    }
 
-    // lägger tillbaka arrayen till localStorage (görs om till JSON-string)
-    let stringToSave = JSON.stringify(results)
-    localStorage.setItem(LS_KEY, stringToSave)
+    else if (gameMode === 'singleplayer') {
+        let currentResult = {
+            name1: p1name,
+            word: secretWord,
+            tries: mistakes,
+            won: result
+        }
+            
+        const LS_KEY = 'hangman-score'
+                
+        // steg 1: hämta data från localStorage
+        // ifsats kontrollerar om det inte finns någon data sen innan
+        let stringFromLocalStorage = localStorage.getItem(LS_KEY)
+        if (!stringFromLocalStorage) {
+            stringFromLocalStorage = '[]'
+            }
+                
+        // omvandlar JSON-strängen till array med namn 'results'
+        let results = JSON.parse(stringFromLocalStorage)
+                
+        // pushar in senaste omgång till result-arrayen
+        results.push(currentResult)
+            
+        // mha annan funktion - renderar listan på scoreboard-sidan
+        renderStats(results)
+            
+        // lägger tillbaka arrayen till localStorage (görs om till JSON-string)
+        let stringToSave = JSON.stringify(results)
+        localStorage.setItem(LS_KEY, stringToSave)
+    }
 }
 
+
+// DENNA GÄLLER, LÄGG IN BERGSTRÖMS HÄR ! 
+// STÄMMER ENLIGT V+R LAYOUT? = JA
 function renderStats(results) {
-    let displayScoreContainer = document.querySelector('.container-display-score')
-
-    // Skapa de DOMelement som behövs 
-    results.forEach(element => {
-        let p = document.createElement('p')
-        p.className = 'player-result'
+        let displayScoreContainer = document.querySelector('.container-display-score')
         
-        p.innerHTML = `Namn: ${element.name}, <br> Ord: ${element.word}, <br> Felgissningar: ${element.tries} <br> Vinst? ${element.won}`
+        if (gameMode === 'pvp') {
+            // Skapa de DOMelement som behövs 
+            results.forEach(element => {
+                let p = document.createElement('p')
+                p.className = 'player-result'
+                
+                p.innerHTML = `PVP <br> ${element.name1}, ordskapare, spelade mot ${element.name2} som gissade. <br> Ordet var ${element.word}, <br> Felgissningar: ${element.tries} <br> Vinst? ${element.won}`
+        
+                displayScoreContainer.append(p)
+            });
+        }
+        else if (gameMode === 'singleplayer') {
+            // Skapa de DOMelement som behövs 
+            results.forEach(element => {
 
+                let scoreTable = document.querySelector('#score-table-static-header')
+                scoreTable.style.border = '1px solid blue'
+
+                let scoreTableBody = document.getElementById('table-body')
+
+                let newScoreTableRow = document.createElement('tr')
+                newScoreTableRow.className = 'score-table-row'
+                // newScoreTableRow.innerText = 'ny table row'
+                newScoreTableRow.style.border = '1px dashed red'
+                scoreTableBody.append(newScoreTableRow)
+
+
+                for (let i = 0; i < newScoreTableRow.length; i++) {
+                    let newTableData = document.createElement('td')
+                    newTableData.className = 'score-table-data'
+                    newTableData.innerText = 'data'
+                    newTableData.style.border = '1px dashed orange'
+                    newScoreTableRow.append(newTableData)
+                }
+
+                let p = document.createElement('p')
+                p.className = 'player-result'
+                
+                p.innerHTML = `${element.name1}, gissade. <br> Ordet var ${element.word}, <br> Felgissningar: ${element.tries} <br> Vinst? ${element.won}`
+    
+        
         displayScoreContainer.append(p)
 
-            
-        // Knappar
+
 
         // BUG: Spammar flera gånger på grund av forEach
         const removePlayerData = () => {
@@ -251,7 +330,4 @@ function renderStats(results) {
             }
         })
 
-    });
-}
-
-//
+})}}

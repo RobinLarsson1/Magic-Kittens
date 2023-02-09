@@ -62,6 +62,7 @@ function appendPlayerName(event) {
       modalPanels.enterName.className = "hidden";
       let overlay = document.querySelector(".overlay");
       overlay.classList.add("hidden");
+      gameMode = 'singleplayer'
     } else if (isNameProvided === false) {
       errorMessage('textinput')
   } else if (difficultySelected === false) {
@@ -86,6 +87,7 @@ nameInputButton.addEventListener("click", () => {
         modalPanels.enterName.className = "hidden";
         let overlay = document.querySelector(".overlay");
         overlay.classList.add("hidden");
+        gameMode = 'singleplayer'
     } else if (isNameProvided === false) {
         errorMessage('textinput')
     }else if (difficultySelected === false) {
@@ -131,8 +133,7 @@ document.onkeydown = function(event) {
   let nameOverlayIsHidden = modalPanels.enterName.className.includes("hidden");
   console.log(event.key);
 
-  if (nameOverlayIsHidden === true) {
-
+  const gameStart = () => {
 
     //Skickar in fel bokstav, samt uppdaterar antal felgissningar
     function updateIncorrectGuess() {
@@ -143,7 +144,7 @@ document.onkeydown = function(event) {
         hangManPicture.innerHTML = hangManPicture.innerHTML + hangMan[wrongGuesses];
         wrongGuesses++
         return wrongGuesses;
-}
+    }
 
   //Skickar in korrekt gissning iställer för understräcken
   function updateCorrectGuess() {
@@ -152,9 +153,9 @@ document.onkeydown = function(event) {
             dashes[index].innerText = char;
         }
     });
-} 
+  } 
 
-//Kollar om ordet är gissat eller inte, loopas varje gång
+  //Kollar om ordet är gissat eller inte, loopas varje gång
   function isWordComplete(singleLetter, dashes) {
       for (let i = 0; i < singleLetter.length; i++) {
       if (dashes[i].innerText !== singleLetter[i]) {
@@ -164,7 +165,7 @@ document.onkeydown = function(event) {
       return true;
   }
 
-//kallar på rätt funktion beroende på vilken gissning som anges
+  //kallar på rätt funktion beroende på vilken gissning som anges
   if (isCorrectGuess) {
       updateCorrectGuess()
   } else if (isValidGuess) {
@@ -176,6 +177,8 @@ document.onkeydown = function(event) {
   if (gameIsOver) {
     gameResultModalOverlay(false, answer);
     publishStats(false);
+  } else if (gameIsOver && gameMode == 'pvp') {
+    publishStatsPVP(false)
   }
 
   //Kolla om spelet är vunnet 
@@ -183,5 +186,14 @@ document.onkeydown = function(event) {
   if (isGameWon) {
     gameResultModalOverlay(true, null, mistakes);
     publishStats(true);
+  } else if (isGameWon && gameMode == 'pvp') {
+    publishStatsPVP(true)
   }
-}}
+}
+
+if (overlay.classList.contains('hidden') === true) {
+    gameStart()
+} else {
+    console.log('Du måste stänga av overlayen för modalerna för att kunna spela eller fortsätta kunna spela.');
+  }
+}
