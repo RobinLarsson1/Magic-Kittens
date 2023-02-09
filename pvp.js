@@ -47,10 +47,15 @@ pvpInputfieldPlayer1.addEventListener("keydown", (event) => {
 pvpInputfieldPlayer2.addEventListener("keydown", (event) => {
     
     event.stopPropagation()
-    // Förhindrar input utanför namninputs-modalen
-    // if (modalPanels.gameMode.classList.contains('hidden')) {
-        // modalPanels.gameMode.classList.toggle('hidden')
-    // }
+
+    if (event.key === 'Enter') {
+        p1name = pvpInputfieldPlayer1.value
+        p2name = pvpInputfieldPlayer2.value
+        pvpDiv.style.visibility = 'hidden'
+        secretWordDiv.style.visibility = 'visible'
+        // gameModeModal.style.visibility = 'hidden'
+        gameMode = 'pvp'
+    }
 
 })
 
