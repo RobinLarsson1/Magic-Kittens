@@ -298,22 +298,19 @@ function renderStats(results) {
         
         displayScoreContainer.append(p)
 
-
-
-        // BUG: Spammar flera gånger på grund av forEach
         const removePlayerData = () => {
             const playerNameInputValue = playerNameInput.value.toLowerCase()
             const elementName = element.name1
                 if(playerNameInputValue === elementName ) {
                     console.log('playerNameInputValue', playerNameInputValue);
-                    console.log('Inne i if satsen!');
                     p.remove()
-                    const saveFilterResult = results.filter(result => result.name1 !== playerNameInputValue)
+                    const saveFilterResult = JSON.parse(localStorage.getItem(LS_KEY)).filter(result => result.name1 !== playerNameInputValue)
                     
                     console.log('saveFilterResult', saveFilterResult);
                     const saveNewString = JSON.stringify(saveFilterResult)
 
                     console.log('saveNewString', saveNewString);
+
                     localStorage.setItem(LS_KEY, saveNewString)
                 } 
         }
