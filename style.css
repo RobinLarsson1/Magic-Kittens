@@ -224,6 +224,10 @@ html, body {
     flex-flow: row wrap;
     box-shadow: var(--shadow-low);
 }
+
+#enter-name-modal {
+    flex-flow: column wrap;
+}
 #gamemode-modal {
     display: flex;
     flex-direction: column;
