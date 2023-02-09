@@ -388,7 +388,7 @@ html, body {
 /* Scoreboard */
 
 .container-display-score {
-    display: grid;
+    display: block;
     justify-content: space-around;
     overflow-y:scroll;
     height: 80vh;
@@ -408,4 +408,25 @@ html, body {
     height: 0px;
     margin: 0px;
     visibility: hidden;
+}
+
+#scoreboard-header {
+    display: block;
+}
+
+#score-table-static-header {
+    width: 100%;
+    padding-left: 0.5em;
+}
+
+.score-table-heading > * {
+    text-align: left;
+}
+
+.table-head-data {
+    font-weight: 600;
+    font-size: 1.1em;
+    padding: 0.3em;
+    background-color: #49a9f3;
+    color: white;
 }

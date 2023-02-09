@@ -144,8 +144,6 @@ let p1name
 const LS_KEY = 'hangman-score'
 
 
-// DENNA GÄLLER, LÄGG IN BERGSTRÖMS HÄR ! 
-// STÄMMER ENLIGT V+R LAYOUT? = JA
 function publishStats(result) {
 
     if (gameMode === 'pvp') {
@@ -221,46 +219,14 @@ function renderStats(results) {
         if (gameMode === 'pvp') {
             // Skapa de DOMelement som behövs 
             results.forEach(element => {
-                let p = document.createElement('p')
-                p.className = 'player-result'
-                
-                p.innerHTML = `PVP <br> ${element.name1}, ordskapare, spelade mot ${element.name2} som gissade. <br> Ordet var ${element.word}, <br> Felgissningar: ${element.tries} <br> Vinst? ${element.won}`
-        
-                displayScoreContainer.append(p)
-            });
+                generateTableForPlayerResultPVP ((element.name1), (element.name2), (element.word), (element.tries), (element.won))
+            })
         }
         else if (gameMode === 'singleplayer') {
             // Skapa de DOMelement som behövs 
             results.forEach(element => {
-
-                let scoreTable = document.querySelector('#score-table-static-header')
-                scoreTable.style.border = '1px solid blue'
-
-                let scoreTableBody = document.getElementById('table-body')
-
-                let newScoreTableRow = document.createElement('tr')
-                newScoreTableRow.className = 'score-table-row'
-                // newScoreTableRow.innerText = 'ny table row'
-                newScoreTableRow.style.border = '1px dashed red'
-                scoreTableBody.append(newScoreTableRow)
-
-
-                for (let i = 0; i < newScoreTableRow.length; i++) {
-                    let newTableData = document.createElement('td')
-                    newTableData.className = 'score-table-data'
-                    newTableData.innerText = 'data'
-                    newTableData.style.border = '1px dashed orange'
-                    newScoreTableRow.append(newTableData)
-                }
-
-                let p = document.createElement('p')
-                p.className = 'player-result'
-                
-                p.innerHTML = `${element.name1}, gissade. <br> Ordet var ${element.word}, <br> Felgissningar: ${element.tries} <br> Vinst? ${element.won}`
-    
-        
-        displayScoreContainer.append(p)
-
+                generateTableForPlayerResult((element.name1), (element.word), (element.tries), (element.won))
+            })}
 
 
         // BUG: Spammar flera gånger på grund av forEach
@@ -330,7 +296,7 @@ function renderStats(results) {
             }
         })
 
-})}}
+}
 
 function publishStatsWithoutCurrentSession() {
 
