@@ -104,7 +104,7 @@ function generatePlayerResult() {
   playerResult.score = `${mistakes} of ${maxWrong}`;
   return playerResult;
 }
-generatePlayerResult();
+// generatePlayerResult();
 
 //
 //funktion för att printa bokstäver
@@ -173,20 +173,20 @@ document.onkeydown = function(event) {
 
   //Kolla om spelet är förlorat
   let gameIsOver = mistakes >= maxWrong;
-  if (gameIsOver) {
+  if (gameIsOver && (gameMode == 'singleplayer')) {
     gameResultModalOverlay(false, answer);
     publishStats(false);
-  } else if (gameIsOver && gameMode == 'pvp') {
-    publishStatsPVP(false)
+  } else if (gameIsOver && (gameMode == 'pvp')) {
+    publishStats(false)
   }
 
   //Kolla om spelet är vunnet 
   let isGameWon = isWordComplete(singleLetter, dashes)
-  if (isGameWon) {
+  if (isGameWon && (gameMode == 'singleplayer')) {
     gameResultModalOverlay(true, null, mistakes);
     publishStats(true);
-  } else if (isGameWon && gameMode == 'pvp') {
-    publishStatsPVP(true)
+  } else if (isGameWon && (gameMode == 'pvp')) {
+    publishStats(true)
   }
 }
 

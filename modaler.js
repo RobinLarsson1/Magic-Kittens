@@ -59,4 +59,5 @@ const goToScoreboard = () => {
     overlay.classList.add('hidden')
     gameboard.classList.add('hidden')
     scoreboard.classList.remove('hidden')
+    publishStatsWithoutCurrentSession()
 }

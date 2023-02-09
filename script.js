@@ -331,3 +331,56 @@ function renderStats(results) {
         })
 
 })}}
+
+function publishStatsWithoutCurrentSession() {
+
+    if (gameMode === 'pvp') {
+  
+        const LS_KEY = 'hangman-score-pvp'
+        
+        // steg 1: hämta data från localStorage
+        // ifsats kontrollerar om det inte finns någon data sen innan
+        let stringFromLocalStorage = localStorage.getItem(LS_KEY)
+        // if (!stringFromLocalStorage) {
+        //     stringFromLocalStorage = '[]'
+        // }
+        
+        // omvandlar JSON-strängen till array med namn 'results'
+        let results = JSON.parse(stringFromLocalStorage)
+        
+        // pushar in senaste omgång till result-arrayen
+        // results.push(currentResult)
+    
+        // mha annan funktion - renderar listan på scoreboard-sidan
+        renderStats(results)
+    
+        // lägger tillbaka arrayen till localStorage (görs om till JSON-string)
+        let stringToSave = JSON.stringify(results)
+        localStorage.setItem(LS_KEY, stringToSave)
+    }
+
+    else if (gameMode === 'singleplayer') {
+            
+        const LS_KEY = 'hangman-score'
+                
+        // steg 1: hämta data från localStorage
+        // ifsats kontrollerar om det inte finns någon data sen innan
+        let stringFromLocalStorage = localStorage.getItem(LS_KEY)
+        if (!stringFromLocalStorage) {
+            stringFromLocalStorage = '[]'
+            }
+                
+        // omvandlar JSON-strängen till array med namn 'results'
+        let results = JSON.parse(stringFromLocalStorage)
+                
+        // pushar in senaste omgång till result-arrayen
+        // results.push(currentResult)
+            
+        // mha annan funktion - renderar listan på scoreboard-sidan
+        renderStats(results)
+            
+        // lägger tillbaka arrayen till localStorage (görs om till JSON-string)
+        let stringToSave = JSON.stringify(results)
+        localStorage.setItem(LS_KEY, stringToSave)
+    }
+}
