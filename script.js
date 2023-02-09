@@ -144,6 +144,7 @@ let p1name
 const LS_KEY = 'hangman-score'
 
 
+// DENNA GÄLLER, LÄGG IN BERGSTRÖMS HÄR ! 
 function publishStats(result) {
 
     if (gameMode === 'pvp') {
@@ -178,41 +179,40 @@ function publishStats(result) {
         localStorage.setItem(LS_KEY, stringToSave)
     }
 
-    else if (gameMode === 'singleplayer'){
-                let currentResult = {
-                    name1: p1name,
-                    word: secretWord,
-                    tries: mistakes,
-                    won: result
-                }
+    else if (gameMode === 'singleplayer') {
+        let currentResult = {
+            name1: p1name,
+            word: secretWord,
+            tries: mistakes,
+            won: result
+        }
             
-                const LS_KEY = 'hangman-score'
+        const LS_KEY = 'hangman-score'
                 
-                // steg 1: hämta data från localStorage
-                // ifsats kontrollerar om det inte finns någon data sen innan
-                let stringFromLocalStorage = localStorage.getItem(LS_KEY)
-                if (!stringFromLocalStorage) {
-                    stringFromLocalStorage = '[]'
-                }
-                
-                // omvandlar JSON-strängen till array med namn 'results'
-                let results = JSON.parse(stringFromLocalStorage)
-                
-                // pushar in senaste omgång till result-arrayen
-                results.push(currentResult)
-            
-                // mha annan funktion - renderar listan på scoreboard-sidan
-                renderStats(results)
-            
-                // lägger tillbaka arrayen till localStorage (görs om till JSON-string)
-                let stringToSave = JSON.stringify(results)
-                localStorage.setItem(LS_KEY, stringToSave)
+        // steg 1: hämta data från localStorage
+        // ifsats kontrollerar om det inte finns någon data sen innan
+        let stringFromLocalStorage = localStorage.getItem(LS_KEY)
+        if (!stringFromLocalStorage) {
+            stringFromLocalStorage = '[]'
             }
-
-    
-
+                
+        // omvandlar JSON-strängen till array med namn 'results'
+        let results = JSON.parse(stringFromLocalStorage)
+                
+        // pushar in senaste omgång till result-arrayen
+        results.push(currentResult)
+            
+        // mha annan funktion - renderar listan på scoreboard-sidan
+        renderStats(results)
+            
+        // lägger tillbaka arrayen till localStorage (görs om till JSON-string)
+        let stringToSave = JSON.stringify(results)
+        localStorage.setItem(LS_KEY, stringToSave)
+    }
 }
 
+
+// DENNA GÄLLER, LÄGG IN BERGSTRÖMS HÄR ! 
 function renderStats(results) {
         let displayScoreContainer = document.querySelector('.container-display-score')
         
@@ -250,13 +250,9 @@ function renderStats(results) {
                     newTableData.style.border = '1px dashed orange'
                     newScoreTableRow.append(newTableData)
 
-    // Skapa de DOMelement som behövs 
-    results.forEach(element => {
-        let p = document.createElement('p')
-        p.className = 'player-result'
-        
-        p.innerHTML = `Namn: ${element.name}, <br> Ord: ${element.word}, <br> Felgissningar: ${element.tries} <br> Vinst? ${element.won}`
 
+    
+        
         displayScoreContainer.append(p)
 
             
@@ -330,7 +326,7 @@ function renderStats(results) {
         })
 
     })}
-})}}
+})
 
 // //
 //                 }
