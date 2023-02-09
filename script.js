@@ -340,6 +340,29 @@ function renderStats(results) {
         else if (gameMode === 'singleplayer') {
             // Skapa de DOMelement som behövs 
             results.forEach(element => {
+
+                let scoreTable = document.querySelector('#score-table-static-header')
+                scoreTable.style.border = '1px solid blue'
+
+                let scoreTableBody = document.getElementById('table-body')
+
+                let newScoreTableRow = document.createElement('tr')
+                newScoreTableRow.className = 'score-table-row'
+                // newScoreTableRow.innerText = 'ny table row'
+                newScoreTableRow.style.border = '1px dashed red'
+                scoreTableBody.append(newScoreTableRow)
+
+
+                for (let i = 0; i < newScoreTableRow.length; i++) {
+                    let newTableData = document.createElement('td')
+                    newTableData.className = 'score-table-data'
+                    newTableData.innerText = 'data'
+                    newTableData.style.border = '1px dashed orange'
+                    newScoreTableRow.append(newTableData)
+
+                }
+
+
                 let p = document.createElement('p')
                 p.className = 'player-result'
                 
