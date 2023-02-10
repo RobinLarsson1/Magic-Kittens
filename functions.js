@@ -179,6 +179,7 @@ document.onkeydown = function(event) {
     gameResultModalOverlay(false, answer);
     publishStats(false);
   } else if (gameIsOver && (gameMode == 'pvp')) {
+    gameResultModalOverlay(false, null, mistakes)
     publishStats(false)
   }
   
