@@ -133,7 +133,7 @@ document.onkeydown = function(event) {
   let isDisabled = disabledKeys.includes(key);
 
   //Kollar om en ny och korrekt key är pressed, samt om man har slut på gissningar
-  let isValidGuess = isCorrectGuess ||(!isCorrectGuess && !isGuessed && mistakes < maxWrong && !isDisabled)
+  let isValidGuess = isCorrectGuess && (!isCorrectGuess && !isGuessed && mistakes < maxWrong && !isDisabled)
 
 
   
