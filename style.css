@@ -36,7 +36,7 @@ html, body {
 #profile-img {
     display: flex;
     flex-direction: row;
-    margin-bottom: 3em;
+    margin-bottom: 5em;
     justify-content: space-evenly;
     width: 100%;
 }
@@ -261,6 +261,10 @@ html, body {
     display: flex;
     justify-content: center;
 }
+#pvp-button {
+    margin-left: 0.5em;
+}
+
 .pvp-div {
     display: flex;
     flex-direction: column;
@@ -309,7 +313,13 @@ html, body {
     color: #C70039;
     text-shadow: #272727 4px 3px;
 }
-
+.title-about-us {
+    text-align: start;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 20px;
+}
 #win-modal, #lose-modal {
     flex-flow: column wrap;
 }
@@ -320,8 +330,24 @@ html, body {
 
 
 
-.svårighetsgrad {
+/* .svårighetsgrad {
     margin-bottom: 1em;
+} */
+
+.error-message {
+    height: 20px;
+    font-size: 1em;
+    margin: 0.5em 0.5em 1em 0.5em;;
+    color: #a6201e;
+    font-weight: 600;
+    text-align: center;
+}
+.error-message-difficulty {
+    height: 20px;
+    font-size: 1em;
+    margin: 0.5em 0.5em 1em 0.5em;
+    color: #a6201e;
+    font-weight: 600;
 }
 
 /* Mobile */
@@ -361,23 +387,6 @@ html, body {
         gap: 0.5em;
     }
 
-}
-
-.error-message {
-    height: 20px;
-    font-size: 1em;
-    margin-top: 0.5em;
-    margin-left: 0.5em;
-    color: #a6201e;
-    font-weight: 600;
-}
-.error-message-difficulty {
-    height: 20px;
-    font-size: 1em;
-    margin-top: 0.5em;
-    margin-left: 0.5em;
-    color: #a6201e;
-    font-weight: 600;
 }
 
 #svar {

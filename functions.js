@@ -11,8 +11,10 @@ let errorMessageText = {
 
 function errorMessage(action) {
   let errorMessage = document.querySelector('.error-message')
+  let errorMessageDifficulty = document.querySelector('.error-message-difficulty')
   if (action === 'textinput') {errorMessage.innerText = errorMessageText.inputError} 
-  else if (action === 'difficultyButton') {errorMessage.innerText = errorMessageText.difficultyError}
+  else if (action === 'difficultyButton') {errorMessageDifficulty.innerText = errorMessageText.difficultyError}
+  else if (action === 'empty') {errorMessageDifficulty.innerText = errorMessageText.empty} 
 }
 
 //Resetknappar i win, lose samt för header
@@ -323,13 +325,6 @@ function generateTableForPlayerResultPVP (name1, name2, word, faultyguesses, win
   scoreTableBody.append(newScoreTableRow)
 
   // Lägger till player1-namn till tabellraden
-  let newTableDataNameOne = document.createElement('td')
-  newTableDataNameOne.className = 'score-table-data score-table-data-name'
-  newTableDataNameOne.innerText = `${name1}`
-  newScoreTableRow.append(newTableDataNameOne)
-
-  // Lägger till player2-namn till tabellraden
-  let newTableDataNameTwo = document.createElement('td')
   newTableDataNameTwo.className = 'score-table-data score-table-data-name'
   newTableDataNameTwo.innerText = `${name2}`
   newScoreTableRow.append(newTableDataNameTwo)
@@ -351,4 +346,11 @@ function generateTableForPlayerResultPVP (name1, name2, word, faultyguesses, win
   newTableDataWinLose.className = 'score-table-data score-table-data-winlose'
   newTableDataWinLose.innerText = `${winlose}`
   newScoreTableRow.append(newTableDataWinLose)
-}
+}let newTableDataNameOne = document.createElement('td')
+  newTableDataNameOne.className = 'score-table-data score-table-data-name'
+  newTableDataNameOne.innerText = `${name1}`
+  newScoreTableRow.append(newTableDataNameOne)
+
+  // Lägger till player2-namn till tabellraden
+  let newTableDataNameTwo = document.createElement('td')
+  
