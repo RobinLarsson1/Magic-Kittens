@@ -253,12 +253,15 @@ const playerNameInputButton = document.querySelector('#select-player-data-using-
 
 function renderStats(results) {
 
+
+    let scoreTableRow = document.querySelectorAll('.score-table-row')
         // Väldig viktig container!
         let displayScoreContainer = document.querySelector('.container-display-score')
 
         if (gameMode === 'pvp') {
             // Skapa de DOMelement som behövs 
             results.forEach(element => {
+
         // Det denna gör är att den kollar localstorage och filtrerar spelarens namn. Om den finns, tas den bort i localstorage genom att göra en ny sträng som excluderar den filterade spelaren. Sen spottar den in det i LS_KEY igen. Den tar även bort p elementet.
 
         const removePlayerData = () => {
@@ -266,7 +269,9 @@ function renderStats(results) {
             const elementName = element.name1
                 if(playerNameInputValue === elementName ) {
                     console.log('playerNameInputValue', playerNameInputValue);
-                    // p.remove()
+
+                    Array.from(document.querySelectorAll('.score-table-row')).forEach(el => el[contains(playerNameInputValue)].remove());
+
                     const saveFilterResult = JSON.parse(localStorage.getItem('hangman-score-pvp')).filter(result => result.name1 !== playerNameInputValue)
                     
                     const saveNewString = JSON.stringify(saveFilterResult)
@@ -295,6 +300,7 @@ function renderStats(results) {
         }
         else if (gameMode === 'singleplayer') {
 
+            let scoreTableRow = document.querySelectorAll('.score-table-row')
             // Skapa de DOMelement som behövs 
             results.forEach(element => {
 
@@ -306,7 +312,9 @@ function renderStats(results) {
                 const elementName = element.name1
                     if(playerNameInputValue === elementName ) {
                         console.log('playerNameInputValue', playerNameInputValue);
-                        // p.remove()
+
+                        Array.from(document.querySelectorAll('.score-table-row')).forEach(el => el.remove());
+
                         const saveFilterResult = JSON.parse(localStorage.getItem('hangman-score')).filter(result => result.name1 !== playerNameInputValue)
                         
                         const saveNewString = JSON.stringify(saveFilterResult)
