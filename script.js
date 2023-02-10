@@ -214,7 +214,6 @@ function publishStats(result) {
 
         
 const sortWinsListByAmountTries = () => {
-    // BUG: Får bara true istället för antal tal
             const saveSortResult = JSON.parse(localStorage.getItem(LS_KEY)).sort(function(a, b) {
                 return parseFloat(a.tries) - parseFloat(b.tries);
             })
