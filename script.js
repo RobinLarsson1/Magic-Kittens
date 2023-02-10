@@ -256,11 +256,6 @@ function renderStats(results) {
         // Väldig viktig container!
         let displayScoreContainer = document.querySelector('.container-display-score')
 
-
-        
-
-
-        
         if (gameMode === 'pvp') {
             // Skapa de DOMelement som behövs 
             results.forEach(element => {
