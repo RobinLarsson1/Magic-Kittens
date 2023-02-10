@@ -212,6 +212,19 @@ function publishStats(result) {
     }
 }
 
+        
+const sortWinsListByAmountTries = () => {
+    // BUG: Får bara true istället för antal tal
+            const saveSortResult = JSON.parse(localStorage.getItem(LS_KEY)).sort((result) => {return result.tries < 6 })
+
+            console.log('saveSortResult', saveSortResult)
+            // const saveNewString = JSON.stringify(saveSortResult)
+
+            // localStorage.setItem(LS_KEY, saveNewString)
+
+            // displayScoreContainer.append(p)
+}
+
 
 // DENNA GÄLLER, LÄGG IN BERGSTRÖMS HÄR ! 
 // STÄMMER ENLIGT V+R LAYOUT? = JA
@@ -228,21 +241,34 @@ function renderStats(results) {
         
                 displayScoreContainer.append(p)
 
-                        // Det denna gör är att den kollar om elementet (win) har egenskapen true
+                const removePlayerData = () => {
+                    const playerNameInputValue = playerNameInput.value.toLowerCase()
+                    const elementName = element.name1
+                        if(playerNameInputValue === elementName ) {
+                            console.log('playerNameInputValue', playerNameInputValue);
+                            p.remove()
+                            const saveFilterResult = JSON.parse(localStorage.getItem(LS_KEY)).filter(result => result.name1 !== playerNameInputValue)
+                            
+                            const saveNewString = JSON.stringify(saveFilterResult)
+        
+        
+                            localStorage.setItem(LS_KEY, saveNewString)
+        
+                            playerNameInput.value = ''
+                        } 
+                }
+
+
         const listAllWinsButton = document.querySelector('#list-only-wins-button')
         listAllWinsButton.addEventListener('click', event => {
-            console.log('Hello there!');
             if(!element.won == true) {
                 // p.style.display = 'none'
                 p.classList.add('list-element-hidden')
             } else {
                 // p.style.display = 'block'
                 p.classList.remove('list-element-hidden')
+                sortWinsListByAmountTries()
             }
-            // Gör listan numerisk 0 > 5 (typ)
-            if(element.tries > 0) {
-                displayScoreContainer.append(p)
-            } 
         })
 
         // Det denna gör är att den kollar om elementet (win) har egenskapen true
@@ -308,12 +334,12 @@ function renderStats(results) {
                     p.remove()
                     const saveFilterResult = JSON.parse(localStorage.getItem(LS_KEY)).filter(result => result.name1 !== playerNameInputValue)
                     
-                    console.log('saveFilterResult', saveFilterResult);
                     const saveNewString = JSON.stringify(saveFilterResult)
 
-                    console.log('saveNewString', saveNewString);
 
                     localStorage.setItem(LS_KEY, saveNewString)
+
+                    playerNameInput.value = ''
                 } 
         }
 
@@ -322,31 +348,26 @@ function renderStats(results) {
             event.stopPropagation()
             if (event.key == 'Enter') {
                     removePlayerData()
-                    //playerNameInput.value = null
             }
         })
 
         const playerNameInputButton = document.querySelector('#select-player-data-using-input-button')
         playerNameInputButton.addEventListener('click', () => {
                 removePlayerData()
-                //playerNameInput.value = null
         })
 
         // Det denna gör är att den kollar om elementet (win) har egenskapen true
         const listAllWinsButton = document.querySelector('#list-only-wins-button')
         listAllWinsButton.addEventListener('click', event => {
-            console.log('Hello there!');
             if(!element.won == true) {
                 // p.style.display = 'none'
                 p.classList.add('list-element-hidden')
             } else {
+            // Gör listan numerisk 0 > 5 (typ)
+                sortWinsListByAmountTries()
                 // p.style.display = 'block'
                 p.classList.remove('list-element-hidden')
             }
-            // Gör listan numerisk 0 > 5 (typ)
-            if(element.tries > 0) {
-                displayScoreContainer.append(p)
-            } 
         })
 
         // Det denna gör är att den kollar om elementet (win) har egenskapen true
