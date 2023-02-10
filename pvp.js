@@ -53,6 +53,7 @@ pvpInputfieldPlayer2.addEventListener("keydown", (event) => {
         secretWordDiv.style.visibility = 'visible'
         // gameModeModal.style.visibility = 'hidden'
         gameMode = 'pvp'
+        generateTableHeader('pvp')
     }
 
 })
@@ -64,6 +65,7 @@ pvpStartButton.addEventListener('click', (event) => {
 	secretWordDiv.style.visibility = 'visible'
     // gameModeModal.style.visibility = 'hidden'
     gameMode = 'pvp'
+    generateTableHeader('pvp')
 })
 
 
