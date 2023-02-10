@@ -315,6 +315,8 @@ function renderStats(results) {
 
                         Array.from(document.querySelectorAll('.score-table-row')).forEach(el => el.remove());
 
+                        generateTableForPlayerResult((element.name1), (element.word), (element.tries), (element.won))
+
                         const saveFilterResult = JSON.parse(localStorage.getItem('hangman-score')).filter(result => result.name1 !== playerNameInputValue)
                         
                         const saveNewString = JSON.stringify(saveFilterResult)
