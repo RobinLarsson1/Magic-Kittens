@@ -63,6 +63,7 @@ function appendPlayerName(event) {
       let overlay = document.querySelector(".overlay");
       overlay.classList.add("hidden");
       gameMode = 'singleplayer'
+      // publishStatsWithoutCurrentSession()
     } else if (isNameProvided === false) {
       errorMessage('textinput')
   } else if (difficultySelected === false) {
@@ -79,7 +80,7 @@ nameInputButton.addEventListener("click", () => {
     // Kollar om inputfältet är tomt eller ej
     let isNameProvided = (nameInput.value !== '' && difficultySelected === true)
 
-    if (isNameProvided === true) {
+    if (isNameProvided === true && difficultySelected === true) { 
         namePlaceholder.innerText = " " + nameInput.value;
         p1name = nameInput.value;
         nameInput.remove();
@@ -87,6 +88,7 @@ nameInputButton.addEventListener("click", () => {
         let overlay = document.querySelector(".overlay");
         overlay.classList.add("hidden");
         gameMode = 'singleplayer'
+        // publishStatsWithoutCurrentSession()
     } else if (isNameProvided === false) {
         errorMessage('textinput')
     }else if (difficultySelected === false) {
@@ -104,11 +106,13 @@ function generatePlayerResult() {
   playerResult.score = `${mistakes} of ${maxWrong}`;
   return playerResult;
 }
-generatePlayerResult();
+// generatePlayerResult();
 
 //
 //funktion för att printa bokstäver
 document.onkeydown = function(event) {
+
+  if (scoreboard.classList.contains('hidden') && scoreboardPVP.classList.contains('hidden')) {
   //Tangentbordet
   let key = event.key.toLowerCase();
 
@@ -173,20 +177,22 @@ document.onkeydown = function(event) {
 
   //Kolla om spelet är förlorat
   let gameIsOver = mistakes >= maxWrong;
-  if (gameIsOver) {
+  if (gameIsOver && (gameMode == 'singleplayer')) {
     gameResultModalOverlay(false, answer);
     publishStats(false);
-  } else if (gameIsOver && gameMode == 'pvp') {
-    publishStatsPVP(false)
+  } else if (gameIsOver && (gameMode == 'pvp')) {
+    publishStats(false)
   }
-
+  
   //Kolla om spelet är vunnet 
   let isGameWon = isWordComplete(singleLetter, dashes)
-  if (isGameWon) {
+  if (isGameWon && (gameMode == 'singleplayer')) {
+    generateTableHeader('singleplayer')
     gameResultModalOverlay(true, null, mistakes);
     publishStats(true);
-  } else if (isGameWon && gameMode == 'pvp') {
-    publishStatsPVP(true)
+  } else if (isGameWon && (gameMode == 'pvp')) {
+    gameResultModalOverlay(true, null, mistakes)
+    publishStats(true)
   }
 }
 
@@ -195,4 +201,154 @@ if (overlay.classList.contains('hidden') === true) {
 } else {
     console.log('Du måste stänga av overlayen för modalerna för att kunna spela eller fortsätta kunna spela.');
   }
+}}
+
+function generateTableHeader(gameMode) {
+
+  let scoreTableBody = document.getElementById('table-body')
+  let scoreTableBodyPVP = document.getElementById('table-body-pvp')
+  
+  if (gameMode == 'pvp') {
+      // Skapa en tableheader
+  let scoreTableHeaderPVP = document.createElement('tr')
+  scoreTableHeaderPVP.className = 'score-table-header-row'
+  scoreTableBodyPVP.append(scoreTableHeaderPVP)
+
+  // Tillför fält för spelare 1 till table header
+  let newTableHeadDataNameOnePVP = document.createElement('td')
+  newTableHeadDataNameOnePVP.className = 'table-head-data'
+  newTableHeadDataNameOnePVP.innerText = `Spelare 1`
+  scoreTableBodyPVP.append(newTableHeadDataNameOnePVP)
+
+  // Tillför fält för spelare 2 till table header
+  let newTableHeadDataNameTwoPVP = document.createElement('td')
+  newTableHeadDataNameTwoPVP.className = 'table-head-data'
+  newTableHeadDataNameTwoPVP.innerText = `Spelare 2`
+  scoreTableBodyPVP.append(newTableHeadDataNameTwoPVP)
+ 
+  // Tillför fält för ord till table header
+  let newTableHeadDataWordPVP = document.createElement('td')
+  newTableHeadDataWordPVP.className = 'table-head-data'
+  newTableHeadDataWordPVP.innerText = `Ord`
+  scoreTableBodyPVP.append(newTableHeadDataWordPVP)
+
+  // Tillför fält för antal felgissningar till table header
+  let newTableHeadDataFaultyGuessesPVP = document.createElement('td')
+  newTableHeadDataFaultyGuessesPVP.className = 'table-head-data'
+  newTableHeadDataFaultyGuessesPVP.innerText = `Felgissningar`
+  scoreTableBodyPVP.append(newTableHeadDataFaultyGuessesPVP)
+
+  // Tillför fält för vinst eller förlust till table header
+  let newTableHeadDataWinLosePVP = document.createElement('td')
+  newTableHeadDataWinLosePVP.className = 'table-head-data'
+  newTableHeadDataWinLosePVP.innerText = `Vinst?`
+  scoreTableBodyPVP.append(newTableHeadDataWinLosePVP)
+
+
+  } else if (gameMode === 'singleplayer') {
+    // Skapa en tableheader
+  let scoreTableHeader = document.createElement('tr')
+  scoreTableHeader.className = 'score-table-header-row'
+  scoreTableBody.append(scoreTableHeader)
+
+  // Tillför fält för spelare 1 till table header
+  let newTableHeadDataNameOne = document.createElement('td')
+  newTableHeadDataNameOne.className = 'table-head-data'
+  newTableHeadDataNameOne.innerText = `Spelare`
+  scoreTableBody.append(newTableHeadDataNameOne)
+
+  // Tillför fält för ord till table header
+  let newTableHeadDataWord = document.createElement('td')
+  newTableHeadDataWord.className = 'table-head-data'
+  newTableHeadDataWord.innerText = `Ord`
+  scoreTableBody.append(newTableHeadDataWord)
+
+  // Tillför fält för antal felgissningar till table header
+  let newTableHeadDataFaultyGuesses = document.createElement('td')
+  newTableHeadDataFaultyGuesses.className = 'table-head-data'
+  newTableHeadDataFaultyGuesses.innerText = `Felgissningar`
+  scoreTableBody.append(newTableHeadDataFaultyGuesses)
+
+  // Tillför fält för vinst eller förlust till table header
+  let newTableHeadDataWinLose = document.createElement('td')
+  newTableHeadDataWinLose.className = 'table-head-data'
+  newTableHeadDataWinLose.innerText = `Vinst?`
+  scoreTableBody.append(newTableHeadDataWinLose)
+  }
+}
+
+function generateTableForPlayerResult (name, word, faultyguesses, winlose) {
+
+  let scoreTableBody = document.getElementById('table-body')
+
+
+
+  // Skapar en ny tabellrad, som newTableData-varianterna nedan ska appendas till
+  let newScoreTableRow = document.createElement('tr')
+  newScoreTableRow.className = 'score-table-row'
+  scoreTableBody.append(newScoreTableRow)
+
+  // Lägger till ett namnfält till tabellraden
+  let newTableDataName = document.createElement('td')
+  newTableDataName.className = 'score-table-data score-table-data-name'
+  newTableDataName.innerText = `${name}`
+  newScoreTableRow.append(newTableDataName)
+
+  // Lägger till ett ordfält till tabellraden
+  let newTableDataWord = document.createElement('td')
+  newTableDataWord.className = 'score-table-data score-table-data-word'
+  newTableDataWord.innerText = `${word}`
+  newScoreTableRow.append(newTableDataWord)
+
+  // Lägger till antal felgissnigar i ett fält till tabellraden 
+  let newTableDataFaultyGuesses = document.createElement('td')
+  newTableDataFaultyGuesses.className = 'score-table-data score-table-data-faultyguesses'
+  newTableDataFaultyGuesses.innerText = `${faultyguesses}`
+  newScoreTableRow.append(newTableDataFaultyGuesses)
+
+  // Lägger till fält för vinst eller förlust till tabellraden
+  let newTableDataWinLose = document.createElement('td')
+  newTableDataWinLose.className = 'score-table-data score-table-data-winlose'
+  newTableDataWinLose.innerText = `${winlose}`
+  newScoreTableRow.append(newTableDataWinLose)
+}
+
+
+function generateTableForPlayerResultPVP (name1, name2, word, faultyguesses, winlose) {
+  let scoreTableBodyPVP = document.getElementById('table-body-pvp')
+
+  // Skapar en ny tabellrad, som newTableData-varianterna nedan ska appendas till
+  let newScoreTableRowPVP = document.createElement('tr')
+  newScoreTableRowPVP.className = 'score-table-row'
+  scoreTableBodyPVP.append(newScoreTableRowPVP)
+
+  // Lägger till player1-namn till tabellraden
+  let newTableDataNameOnePVP = document.createElement('td')
+  newTableDataNameOnePVP.className = 'score-table-data score-table-data-name'
+  newTableDataNameOnePVP.innerText = `${name1}`
+  newScoreTableRowPVP.append(newTableDataNameOnePVP)
+
+  // Lägger till player2-namn till tabellraden
+  let newTableDataNameTwoPVP = document.createElement('td')
+  newTableDataNameTwoPVP.className = 'score-table-data score-table-data-name'
+  newTableDataNameTwoPVP.innerText = `${name2}`
+  newScoreTableRowPVP.append(newTableDataNameTwoPVP)
+
+  // Lägger till ett ordfält till tabellraden
+  let newTableDataWordPVP = document.createElement('td')
+  newTableDataWordPVP.className = 'score-table-data score-table-data-word'
+  newTableDataWordPVP.innerText = `${word}`
+  newScoreTableRowPVP.append(newTableDataWordPVP)
+
+  // Lägger till antal felgissnigar i ett fält till tabellraden 
+  let newTableDataFaultyGuessesPVP = document.createElement('td')
+  newTableDataFaultyGuessesPVP.className = 'score-table-data score-table-data-faultyguesses'
+  newTableDataFaultyGuessesPVP.innerText = `${faultyguesses}`
+  newScoreTableRowPVP.append(newTableDataFaultyGuessesPVP)
+
+  // Lägger till fält för vinst eller förlust till tabellraden
+  let newTableDataWinLosePVP = document.createElement('td')
+  newTableDataWinLosePVP.className = 'score-table-data score-table-data-winlose'
+  newTableDataWinLosePVP.innerText = `${winlose}`
+  newScoreTableRowPVP.append(newTableDataWinLosePVP)
 }
