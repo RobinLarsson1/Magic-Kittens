@@ -52,8 +52,6 @@ const gameResultModalOverlay = (endResult, generatedWord, amountTries) => {
         modalPanels.endLose.classList.remove('hidden')
     }
 }
-
-
 // Gör så att man kan komma till scoreboarden efter win och lose
 const goToScoreboard = () => {
     overlay.classList.add('hidden')
