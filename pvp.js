@@ -20,10 +20,6 @@ vanligtButton.addEventListener('click', (event) => {
     overlayScreenToggle()
 })
 
-//Submitknapp
-pvpStartButton.addEventListener('click', (event) => {
-
-})
 
 // #2 : Namninputs ska sparas i en variabel
 
