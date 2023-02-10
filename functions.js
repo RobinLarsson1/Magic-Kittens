@@ -111,6 +111,8 @@ function generatePlayerResult() {
 //
 //funktion för att printa bokstäver
 document.onkeydown = function(event) {
+
+  if (scoreboard.classList.contains('hidden') && scoreboardPVP.classList.contains('hidden')) {
   //Tangentbordet
   let key = event.key.toLowerCase();
 
@@ -199,7 +201,7 @@ if (overlay.classList.contains('hidden') === true) {
 } else {
     console.log('Du måste stänga av overlayen för modalerna för att kunna spela eller fortsätta kunna spela.');
   }
-}
+}}
 
 function generateTableHeader(gameMode) {
 
