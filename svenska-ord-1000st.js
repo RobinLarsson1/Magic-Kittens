@@ -1,7 +1,6 @@
 const wordArray = [
   "abakus",
   "abandon",
-  "abbé",
   "abbedissa",
   "abborre",
   "abborrgrund",
@@ -437,7 +436,6 @@ const wordArray = [
   "affärsgata",
   "affärshemlighet",
   "affärshus",
-  "affärsidé",
   "affärsidkare",
   "affärsimperium",
   "affärsinnehavare",
