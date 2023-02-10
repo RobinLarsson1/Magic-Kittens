@@ -149,6 +149,18 @@ let p1name
 
 const LS_KEY = 'hangman-score'
 
+function sortWinsListByAmountTries() {
+    const saveSortResult = JSON.parse(localStorage.getItem(LS_KEY)).sort(function(a, b) {
+        return parseFloat(a.tries) - parseFloat(b.tries);
+    })
+
+    
+    const saveNewString = JSON.stringify(saveSortResult)
+
+    localStorage.setItem(LS_KEY, saveNewString)
+    let displayScoreContainer = document.querySelector('.container-display-score')
+    // displayScoreContainer.append(p)
+}
 
 function publishStats(result) {
 
@@ -268,6 +280,7 @@ function renderStats(results) {
         const listAllWinsButton = document.querySelector('#list-only-wins-button')
         listAllWinsButton.addEventListener('click', event => {
             console.log('Hello there!');
+            sortWinsListByAmountTries()
             if(!element.won == true) {
                 // p.style.display = 'none'
                 p.classList.add('list-element-hidden')
