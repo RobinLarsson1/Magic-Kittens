@@ -11,8 +11,10 @@ let errorMessageText = {
 
 function errorMessage(action) {
   let errorMessage = document.querySelector('.error-message')
+  let errorMessageDifficulty = document.querySelector('.error-message-difficulty')
   if (action === 'textinput') {errorMessage.innerText = errorMessageText.inputError} 
-  else if (action === 'difficultyButton') {errorMessage.innerText = errorMessageText.difficultyError}
+  else if (action === 'difficultyButton') {errorMessageDifficulty.innerText = errorMessageText.difficultyError}
+  else if (action === 'empty') {errorMessageDifficulty.innerText = errorMessageText.empty} 
 }
 
 //Resetknappar i win, lose samt för header
@@ -96,8 +98,11 @@ nameInputButton.addEventListener("click", () => {
     }
   }
 );
-
-
+let stringFromLocalStorage = localStorage.getItem(LS_KEY)
+let results = JSON.parse(stringFromLocalStorage)
+nameInputButton.addEventListener("click", (event) => {
+  publishStats(results)
+});
 
 // FUNKTION - generera fram spelarnamn samt resultat
 let playerResult = {};
@@ -114,7 +119,7 @@ document.onkeydown = function(event) {
 
   if (scoreboard.classList.contains('hidden') && scoreboardPVP.classList.contains('hidden')) {
   //Tangentbordet
-  let key = event.key.toLowerCase();
+  let key = event.key.toLowerCase()
 
   let singleLetter = secretWord.split("");
 

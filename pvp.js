@@ -13,7 +13,6 @@ pvpButton.addEventListener('click', (event) => {
     // inputfieldP1.innerText = 'blabla'
     // gameModeModal.append(inputfieldP1)
     pvpDiv.style.visibility = 'visible' 
-    console.log('hahahaha')
 })
 
 //Stänger ner overlay om vanligt blir klickad
