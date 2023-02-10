@@ -216,89 +216,121 @@ function publishStats(result) {
     }
 }
 
+        
+const sortWinsListByAmountTries = () => {
+            const saveSortResult = JSON.parse(localStorage.getItem(LS_KEY)).sort(function(a, b) {
+                return parseFloat(a.tries) - parseFloat(b.tries);
+            })
+
+            console.log('saveSortResult', saveSortResult)
+            const saveNewString = JSON.stringify(saveSortResult)
+
+            localStorage.setItem(LS_KEY, saveNewString)
+
+}
+
+// Knappar
+const listAllWinsButton = document.querySelector('#list-only-wins-button')
+const listAllLossesButton = document.querySelector('#list-only-losses-button')
+const listAllResultsButton = document.querySelector('#list-all-results-button')
+const removePlayerDataButton = document.querySelector('#remove-results-with-specific-name-button')
+
+removePlayerDataButton.addEventListener('click', () => {
+    console.log('hello!');
+    modalPanels.removeSpecificPlayerData.classList.toggle('hidden')
+    overlay.classList.remove('hidden')
+})
+
+modalCloseButtons.removeSpecificPlayerDataModal.addEventListener('click', () => {
+    modalPanels.removeSpecificPlayerData.classList.toggle('hidden')
+    overlayScreenToggle()
+})
+
+// Modal knappar
+const playerNameInput = document.querySelector('#select-player-data-using-input')
+const playerNameInputButton = document.querySelector('#select-player-data-using-input-button')
+
 
 function renderStats(results) {
+
+        // Väldig viktig container!
         let displayScoreContainer = document.querySelector('.container-display-score')
-        
+
         if (gameMode === 'pvp') {
             // Skapa de DOMelement som behövs 
             results.forEach(element => {
-                generateTableForPlayerResultPVP ((element.name1), (element.name2), (element.word), (element.tries), (element.won))
-            })
-        }
-        else if (gameMode === 'singleplayer') {
-            // Skapa de DOMelement som behövs 
-            results.forEach(element => {
-                generateTableForPlayerResult((element.name1), (element.word), (element.tries), (element.won))
-            })}
+        // Det denna gör är att den kollar localstorage och filtrerar spelarens namn. Om den finns, tas den bort i localstorage genom att göra en ny sträng som excluderar den filterade spelaren. Sen spottar den in det i LS_KEY igen. Den tar även bort p elementet.
 
-
-        // BUG: Spammar flera gånger på grund av forEach
         const removePlayerData = () => {
             const playerNameInputValue = playerNameInput.value.toLowerCase()
-            const elementName = element.name
-            console.log(elementName);
-                if(elementName === playerNameInput) {
+            const elementName = element.name1
+                if(playerNameInputValue === elementName ) {
+                    console.log('playerNameInputValue', playerNameInputValue);
                     p.remove()
-                    let saveFilterResult = results.filter(result => result.name !== playerNameInputValue)
+                    const saveFilterResult = JSON.parse(localStorage.getItem('hangman-score-pvp')).filter(result => result.name1 !== playerNameInputValue)
                     
-                    let saveNewString = JSON.stringify(saveFilterResult)
-                    localStorage.setItem(LS_KEY, saveNewString)
+                    const saveNewString = JSON.stringify(saveFilterResult)
+
+
+                    localStorage.setItem('hangman-score-pvp', saveNewString)
+
+                    playerNameInput.value = ''
                 } 
         }
 
-        // BUG 2: Om man trycker på en funktionknapp eller mellanslag så registerar spelet samma resultat igen. Men localstorage uppdateras inte vilket är bra.
-        // BUG 3: Man kan fortfarande spela spelet även om man har en modal uppe.
-        const playerNameInput = document.querySelector('#select-player-data-using-input')
+        
         playerNameInput.addEventListener('keydown', event => {
             event.stopPropagation()
             if (event.key == 'Enter') {
                     removePlayerData()
-                    //playerNameInput.value = null
             }
         })
 
-        const playerNameInputButton = document.querySelector('#select-player-data-using-input-button')
         playerNameInputButton.addEventListener('click', () => {
                 removePlayerData()
-                //playerNameInput.value = null
         })
 
-        // Det denna gör är att den kollar om elementet (win) har egenskapen true
-        const listAllWinsButton = document.querySelector('#list-only-wins-button')
-        listAllWinsButton.addEventListener('click', event => {
-            console.log('Hello there!');
-            if(!element.won == true) {
-                // p.style.display = 'none'
-                p.classList.add('list-element-hidden')
-            } else {
-                // p.style.display = 'block'
-                p.classList.remove('list-element-hidden')
+                generateTableForPlayerResultPVP ((element.name1), (element.name2), (element.word), (element.tries), (element.won))
+            })
+        }
+        else if (gameMode === 'singleplayer') {
+
+            // Skapa de DOMelement som behövs 
+            results.forEach(element => {
+
+                generateTableForPlayerResult((element.name1), (element.word), (element.tries), (element.won))
+
+             // Det denna gör är att den kollar localstorage och filtrerar spelarens namn. Om den finns, tas den bort i localstorage genom att göra en ny sträng som excluderar den filterade spelaren. Sen spottar den in det i LS_KEY igen. Den tar även bort p elementet.
+                const removePlayerData = () => {
+                const playerNameInputValue = playerNameInput.value.toLowerCase()
+                const elementName = element.name1
+                    if(playerNameInputValue === elementName ) {
+                        console.log('playerNameInputValue', playerNameInputValue);
+                        p.remove()
+                        const saveFilterResult = JSON.parse(localStorage.getItem('hangman-score')).filter(result => result.name1 !== playerNameInputValue)
+                        
+                        const saveNewString = JSON.stringify(saveFilterResult)
+
+
+                        localStorage.setItem('hangman-score', saveNewString)
+
+                        playerNameInput.value = ''
+                    } 
             }
-            // Gör listan numerisk 0 > 5 (typ)
-            if(element.tries > 0) {
-                displayScoreContainer.append(p)
-            } 
+
+        
+        playerNameInput.addEventListener('keydown', event => {
+            event.stopPropagation()
+            if (event.key == 'Enter') {
+                    removePlayerData()
+            }
         })
 
-        // Det denna gör är att den kollar om elementet (win) har egenskapen true
-        const listAllLossesButton = document.querySelector('#list-only-losses-button')
-        listAllLossesButton.addEventListener('click', event => {
-            if(!element.won == false) {
-                p.classList.add('list-element-hidden')
-            } else {
-                p.classList.remove('list-element-hidden')
-            }
+        playerNameInputButton.addEventListener('click', () => {
+                removePlayerData()
         })
 
-        // Funkar bara om man har tryckt på vinster eller förluster först
-        const listAllResultsButton = document.querySelector('#list-all-results-button')
-        listAllResultsButton.addEventListener('click', event => {
-            if(!element.won == false || !element.won == true) {
-                // p.style.display = 'block'
-                p.classList.remove('list-element-hidden')
-            }
-        })
+})}
 
 }
 
