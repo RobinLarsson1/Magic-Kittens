@@ -358,7 +358,6 @@ html, body {
 
     .header-buttons {
         display: flex;
-        justify-content: flex-start;
         gap: 0.5em;
     }
 
