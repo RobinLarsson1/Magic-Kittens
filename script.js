@@ -215,14 +215,16 @@ function publishStats(result) {
         
 const sortWinsListByAmountTries = () => {
     // BUG: Får bara true istället för antal tal
-            const saveSortResult = JSON.parse(localStorage.getItem(LS_KEY)).sort((result) => {return result.tries < 6 })
+            const saveSortResult = JSON.parse(localStorage.getItem(LS_KEY)).sort(function(a, b) {
+                return parseFloat(a.tries) - parseFloat(b.tries);
+            })
 
             console.log('saveSortResult', saveSortResult)
-            // const saveNewString = JSON.stringify(saveSortResult)
+            const saveNewString = JSON.stringify(saveSortResult)
 
-            // localStorage.setItem(LS_KEY, saveNewString)
+            localStorage.setItem(LS_KEY, saveNewString)
 
-            // displayScoreContainer.append(p)
+            displayScoreContainer.append(p)
 }
 
 
