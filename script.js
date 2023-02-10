@@ -266,7 +266,7 @@ function renderStats(results) {
             const elementName = element.name1
                 if(playerNameInputValue === elementName ) {
                     console.log('playerNameInputValue', playerNameInputValue);
-                    p.remove()
+                    // p.remove()
                     const saveFilterResult = JSON.parse(localStorage.getItem('hangman-score-pvp')).filter(result => result.name1 !== playerNameInputValue)
                     
                     const saveNewString = JSON.stringify(saveFilterResult)
@@ -306,7 +306,7 @@ function renderStats(results) {
                 const elementName = element.name1
                     if(playerNameInputValue === elementName ) {
                         console.log('playerNameInputValue', playerNameInputValue);
-                        p.remove()
+                        // p.remove()
                         const saveFilterResult = JSON.parse(localStorage.getItem('hangman-score')).filter(result => result.name1 !== playerNameInputValue)
                         
                         const saveNewString = JSON.stringify(saveFilterResult)
