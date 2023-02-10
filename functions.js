@@ -27,10 +27,9 @@ resetButtonForWinOrLoseModalScreen.forEach(button => {
 
 headerButtonList.resetGame.addEventListener("click", reloadGame);
 
-
 // Gå till scoreboard efter lose eller win
 goToScoreboardButton.forEach(button => {
-  button.addEventListener('click', () => {
+  button.addEventListener('click', (event) => {
     if (!document.querySelector('#win-modal').classList.contains('hidden')) {
       modalPanels.endWin.classList.add('hidden')
       goToScoreboard()
@@ -38,7 +37,7 @@ goToScoreboardButton.forEach(button => {
     if (!document.querySelector('#lose-modal').classList.contains('hidden')) {
       modalPanels.endLose.classList.add('hidden')
       goToScoreboard()
-    }
+    } 
   });
 })
 
@@ -113,9 +112,10 @@ function generatePlayerResult() {
 }
 // generatePlayerResult();
 
-//
 //funktion för att printa bokstäver
 document.onkeydown = function(event) {
+  
+  if (scoreboard.classList.contains('hidden') && scoreboardPVP.classList.contains('hidden')) {
   //Tangentbordet
   let key = event.key.toLowerCase()
 
@@ -132,8 +132,6 @@ document.onkeydown = function(event) {
 
   //Kollar om en ny och korrekt key är pressed, samt om man har slut på gissningar
   let isValidGuess = isCorrectGuess ||(!isCorrectGuess && !isGuessed && mistakes < maxWrong && !isDisabled)
-
-
   
   // Förhindrar input utanför namninputs-modalen
   let nameOverlayIsHidden = modalPanels.enterName.className.includes("hidden");
@@ -204,7 +202,9 @@ if (overlay.classList.contains('hidden') === true) {
 } else {
     console.log('Du måste stänga av overlayen för modalerna för att kunna spela eller fortsätta kunna spela.');
   }
-}
+
+
+}}
 
 function generateTableHeader(gameMode) {
 

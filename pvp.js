@@ -18,8 +18,8 @@ pvpButton.addEventListener('click', (event) => {
 //Stänger ner overlay om vanligt blir klickad
 vanligtButton.addEventListener('click', (event) => {
     overlayScreenToggle()
+    modalPanels.gameMode.classList.add('hidden')
 })
-
 
 // #2 : Namninputs ska sparas i en variabel
 
