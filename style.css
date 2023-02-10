@@ -30,23 +30,27 @@ html, body {
     flex-direction: column;
     text-align: center;
 }
+
+/* About */
+
 #about-modal, h3 {
     margin-bottom: 1em;
 }
 #profile-img {
     display: flex;
-    flex-direction: row;
+    flex-flow: row wrap;
     margin-bottom: 3em;
     justify-content: space-evenly;
     width: 100%;
 }
 .profile > * {
     border-radius: 7.5px;
+    margin: 0px 10px;
 }
 .about-modal-mid {
     display: flex;
     flex-direction: row-reverse;
-    margin: 2em;
+    margin: 0.75em;
 }
 
 
@@ -238,7 +242,7 @@ html, body {
 
 /* Modal */
 .modal {
-    width: 500px;
+    width: auto;
     background-color: #fffefc;
     border-radius: 15px;
     display: flex;
@@ -269,10 +273,6 @@ html, body {
 }
 #secret-name-div {
     visibility: hidden;
-}
-
-.modal > .button.close {
-    margin-left: min(430px);
 }
 
 .modal > .profile {
@@ -311,14 +311,9 @@ html, body {
     text-shadow: #272727 4px 3px;
 }
 
-#win-modal, #lose-modal {
+#win-modal, #lose-modal, #remove-player-data-modal {
     flex-flow: column wrap;
 }
-
-#remove-player-data-modal {
-    flex-flow: column wrap;
-}
-
 
 
 .svårighetsgrad {
