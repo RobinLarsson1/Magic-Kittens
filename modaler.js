@@ -58,5 +58,9 @@ const gameResultModalOverlay = (endResult, generatedWord, amountTries) => {
 const goToScoreboard = () => {
     overlay.classList.add('hidden')
     gameboard.classList.add('hidden')
-    scoreboard.classList.remove('hidden')
+    if (gameMode === 'singleplayer') {
+        scoreboard.classList.remove('hidden')
+    } else if (gameMode === 'pvp') {
+        scoreboardPVP.classList.remove('hidden')
+    }
 }

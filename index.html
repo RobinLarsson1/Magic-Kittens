@@ -162,25 +162,84 @@
 
 						<table id='score-table-static-header' class="score-table">
 							<tbody id="table-body" class="table-body">
-								<!-- <tr class="score-table-row-header">
-								
-									<th class="score-table-heading">
-										<p class="score-table-name">Namn</p>
-									</th>
-									<th class="score-table-heading">
-										<p class="score-table-word">Ord</p>
-									</th>
-									<th class="score-table-heading">
-										<p class="score-table-faults">Antal fel</p>
-									</th>
-									<th class="score-table-heading">
-										<p class="score-table-win-lose">Vinst?</p>
-									</th>
-	
-								</tr> -->
+
 							</tbody>
 
 
+						</table>
+					</div>
+				</header>
+			</section>
+
+			<!-- SCOREBOARD PVP-->
+			<section class="scoreboard-section-pvp hidden">
+				<header id ="scoreboard-header-PVP" class="header">
+					<h1 class="scoreboard-title">Scoreboard PVP</h1>
+					<div class="header-buttons">
+			
+						<span>Sortera listan</span>
+									
+						<!-- SCOREBOARD-KNAPP Sämst -->
+						<button class="header-button">
+							<span class="material-symbols-outlined">
+								arrow_upward
+							</span>
+							Sämst
+						</button>
+			
+						<!-- SCOREBOARD-KNAPP Bästa -->
+						<button class="header-button">
+							<span class="material-symbols-outlined">
+								arrow_downward
+							</span>
+							Bästa
+						</button>
+			
+						<!-- SCOREBOARD-KNAPP Vinst -->
+						<button id="list-only-wins-button" class="header-button">
+							Vinst
+						</button>
+			
+						<!-- SCOREBOARD-KNAPP Förlust -->
+						<button id="list-only-losses-button" class="header-button">
+							Förlust
+						</button>
+									
+						<!-- SCOREBOARD-KNAPP Alla resultat -->
+						<button id="list-all-results-button" class="header-button">
+							Alla resultat
+						</button>
+			
+						<!-- SCOREBOARD-KNAPP Senast -->
+						<button class="header-button">
+							Senast
+						</button>
+			
+						<span>Alternativ</span>
+									
+						<!-- SCOREBOARD-KNAPP #7: Ta bort -->
+						<button id="remove-results-with-specific-name-button" class="header-button">
+							<span class="material-symbols-outlined">
+								delete
+							</span>
+						</button>
+			
+						<!-- SCOREBOARD-KNAPP #8: Stäng scoreboard -->
+						<button id="close-scoreboard-button-PVP" class="header-button" title="Stäng av scoreboarden">
+							<span class="material-symbols-outlined">
+								close
+							</span>
+						</button>
+			
+					</div>
+					<div class="container-display-score container-display-score-pvp">
+			
+						<table id='score-table-pvp-static-header' class="score-table">
+							<tbody id="table-body-pvp" class="table-body">
+
+							</tbody>
+			
+			
 						</table>
 					</div>
 				</header>

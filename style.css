@@ -410,11 +410,11 @@ html, body {
     visibility: hidden;
 }
 
-#scoreboard-header {
+#scoreboard-header, #scoreboard-header-PVP {
     display: block;
 }
 
-#score-table-static-header {
+#score-table-static-header, #score-table-pvp-static-header {
     width: 100%;
     padding-left: 0.5em;
 }

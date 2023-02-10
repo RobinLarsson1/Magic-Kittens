@@ -119,21 +119,38 @@ closeButtonsForModals.forEach(element => {
 //////// SCOREBOARD ////////
 
 const scoreboard = document.querySelector('.scoreboard-section')
+const scoreboardPVP = document.querySelector('.scoreboard-section-pvp')
 const gameboard = document.querySelector('.game-section')
+// const gameboardPVP = document.querySelector('.game-section')
 
 
 const showScoreboardButton = document.querySelector('#show-scoreboard-button')
+const showScoreboardButtonPVP = document.querySelector('#show-scoreboard-button')
 const closeScoreboardButton = document.querySelector("#close-scoreboard-button")
+const closeScoreboardButtonPVP = document.querySelector("#close-scoreboard-button-PVP")
 
 closeScoreboardButton.addEventListener('click', () => {
+    // Singleplayer
     scoreboard.classList.add('hidden')
     gameboard.classList.remove('hidden')
     bodyElem.style.background = '#bae1ff'
 })
 
+closeScoreboardButtonPVP.addEventListener('click', () => {
+    // PVP
+    scoreboardPVP.classList.add('hidden')
+    gameboard.classList.remove('hidden')
+    bodyElem.style.background = '#bae1ff'
+})
+
 showScoreboardButton.addEventListener('click', () => {
-    scoreboard.classList.remove('hidden')
-    gameboard.classList.add('hidden')
+    if (gameMode === 'singleplayer') {
+        scoreboard.classList.remove('hidden')
+        gameboard.classList.add('hidden')
+    } else if (gameMode === 'pvp') {
+        scoreboardPVP.classList.remove('hidden')
+        gameboard.classList.add('hidden')
+    }
 })
 
 let p1name
@@ -211,8 +228,6 @@ function publishStats(result) {
 }
 
 
-// DENNA GÄLLER, LÄGG IN BERGSTRÖMS HÄR ! 
-// STÄMMER ENLIGT V+R LAYOUT? = JA
 function renderStats(results) {
         let displayScoreContainer = document.querySelector('.container-display-score')
         

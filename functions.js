@@ -204,42 +204,43 @@ if (overlay.classList.contains('hidden') === true) {
 function generateTableHeader(gameMode) {
 
   let scoreTableBody = document.getElementById('table-body')
+  let scoreTableBodyPVP = document.getElementById('table-body-pvp')
   
   if (gameMode == 'pvp') {
       // Skapa en tableheader
-  let scoreTableHeader = document.createElement('tr')
-  scoreTableHeader.className = 'score-table-header-row'
-  scoreTableBody.append(scoreTableHeader)
+  let scoreTableHeaderPVP = document.createElement('tr')
+  scoreTableHeaderPVP.className = 'score-table-header-row'
+  scoreTableBodyPVP.append(scoreTableHeaderPVP)
 
   // Tillför fält för spelare 1 till table header
-  let newTableHeadDataNameOne = document.createElement('td')
-  newTableHeadDataNameOne.className = 'table-head-data'
-  newTableHeadDataNameOne.innerText = `Spelare 1`
-  scoreTableBody.append(newTableHeadDataNameOne)
+  let newTableHeadDataNameOnePVP = document.createElement('td')
+  newTableHeadDataNameOnePVP.className = 'table-head-data'
+  newTableHeadDataNameOnePVP.innerText = `Spelare 1`
+  scoreTableBodyPVP.append(newTableHeadDataNameOnePVP)
 
   // Tillför fält för spelare 2 till table header
-  let newTableHeadDataNameTwo = document.createElement('td')
-  newTableHeadDataNameTwo.className = 'table-head-data'
-  newTableHeadDataNameTwo.innerText = `Spelare 2`
-  scoreTableBody.append(newTableHeadDataNameTwo)
+  let newTableHeadDataNameTwoPVP = document.createElement('td')
+  newTableHeadDataNameTwoPVP.className = 'table-head-data'
+  newTableHeadDataNameTwoPVP.innerText = `Spelare 2`
+  scoreTableBodyPVP.append(newTableHeadDataNameTwoPVP)
  
   // Tillför fält för ord till table header
-  let newTableHeadDataWord = document.createElement('td')
-  newTableHeadDataWord.className = 'table-head-data'
-  newTableHeadDataWord.innerText = `Ord`
-  scoreTableBody.append(newTableHeadDataWord)
+  let newTableHeadDataWordPVP = document.createElement('td')
+  newTableHeadDataWordPVP.className = 'table-head-data'
+  newTableHeadDataWordPVP.innerText = `Ord`
+  scoreTableBodyPVP.append(newTableHeadDataWordPVP)
 
   // Tillför fält för antal felgissningar till table header
-  let newTableHeadDataFaultyGuesses = document.createElement('td')
-  newTableHeadDataFaultyGuesses.className = 'table-head-data'
-  newTableHeadDataFaultyGuesses.innerText = `Felgissningar`
-  scoreTableBody.append(newTableHeadDataFaultyGuesses)
+  let newTableHeadDataFaultyGuessesPVP = document.createElement('td')
+  newTableHeadDataFaultyGuessesPVP.className = 'table-head-data'
+  newTableHeadDataFaultyGuessesPVP.innerText = `Felgissningar`
+  scoreTableBodyPVP.append(newTableHeadDataFaultyGuessesPVP)
 
   // Tillför fält för vinst eller förlust till table header
-  let newTableHeadDataWinLose = document.createElement('td')
-  newTableHeadDataWinLose.className = 'table-head-data'
-  newTableHeadDataWinLose.innerText = `Vinst?`
-  scoreTableBody.append(newTableHeadDataWinLose)
+  let newTableHeadDataWinLosePVP = document.createElement('td')
+  newTableHeadDataWinLosePVP.className = 'table-head-data'
+  newTableHeadDataWinLosePVP.innerText = `Vinst?`
+  scoreTableBodyPVP.append(newTableHeadDataWinLosePVP)
 
 
   } else if (gameMode === 'singleplayer') {
@@ -312,40 +313,40 @@ function generateTableForPlayerResult (name, word, faultyguesses, winlose) {
 
 
 function generateTableForPlayerResultPVP (name1, name2, word, faultyguesses, winlose) {
-  let scoreTableBody = document.getElementById('table-body')
+  let scoreTableBodyPVP = document.getElementById('table-body-pvp')
 
   // Skapar en ny tabellrad, som newTableData-varianterna nedan ska appendas till
-  let newScoreTableRow = document.createElement('tr')
-  newScoreTableRow.className = 'score-table-row'
-  scoreTableBody.append(newScoreTableRow)
+  let newScoreTableRowPVP = document.createElement('tr')
+  newScoreTableRowPVP.className = 'score-table-row'
+  scoreTableBodyPVP.append(newScoreTableRowPVP)
 
   // Lägger till player1-namn till tabellraden
-  let newTableDataNameOne = document.createElement('td')
-  newTableDataNameOne.className = 'score-table-data score-table-data-name'
-  newTableDataNameOne.innerText = `${name1}`
-  newScoreTableRow.append(newTableDataNameOne)
+  let newTableDataNameOnePVP = document.createElement('td')
+  newTableDataNameOnePVP.className = 'score-table-data score-table-data-name'
+  newTableDataNameOnePVP.innerText = `${name1}`
+  newScoreTableRowPVP.append(newTableDataNameOnePVP)
 
   // Lägger till player2-namn till tabellraden
-  let newTableDataNameTwo = document.createElement('td')
-  newTableDataNameTwo.className = 'score-table-data score-table-data-name'
-  newTableDataNameTwo.innerText = `${name2}`
-  newScoreTableRow.append(newTableDataNameTwo)
+  let newTableDataNameTwoPVP = document.createElement('td')
+  newTableDataNameTwoPVP.className = 'score-table-data score-table-data-name'
+  newTableDataNameTwoPVP.innerText = `${name2}`
+  newScoreTableRowPVP.append(newTableDataNameTwoPVP)
 
   // Lägger till ett ordfält till tabellraden
-  let newTableDataWord = document.createElement('td')
-  newTableDataWord.className = 'score-table-data score-table-data-word'
-  newTableDataWord.innerText = `${word}`
-  newScoreTableRow.append(newTableDataWord)
+  let newTableDataWordPVP = document.createElement('td')
+  newTableDataWordPVP.className = 'score-table-data score-table-data-word'
+  newTableDataWordPVP.innerText = `${word}`
+  newScoreTableRowPVP.append(newTableDataWordPVP)
 
   // Lägger till antal felgissnigar i ett fält till tabellraden 
-  let newTableDataFaultyGuesses = document.createElement('td')
-  newTableDataFaultyGuesses.className = 'score-table-data score-table-data-faultyguesses'
-  newTableDataFaultyGuesses.innerText = `${faultyguesses}`
-  newScoreTableRow.append(newTableDataFaultyGuesses)
+  let newTableDataFaultyGuessesPVP = document.createElement('td')
+  newTableDataFaultyGuessesPVP.className = 'score-table-data score-table-data-faultyguesses'
+  newTableDataFaultyGuessesPVP.innerText = `${faultyguesses}`
+  newScoreTableRowPVP.append(newTableDataFaultyGuessesPVP)
 
   // Lägger till fält för vinst eller förlust till tabellraden
-  let newTableDataWinLose = document.createElement('td')
-  newTableDataWinLose.className = 'score-table-data score-table-data-winlose'
-  newTableDataWinLose.innerText = `${winlose}`
-  newScoreTableRow.append(newTableDataWinLose)
+  let newTableDataWinLosePVP = document.createElement('td')
+  newTableDataWinLosePVP.className = 'score-table-data score-table-data-winlose'
+  newTableDataWinLosePVP.innerText = `${winlose}`
+  newScoreTableRowPVP.append(newTableDataWinLosePVP)
 }
