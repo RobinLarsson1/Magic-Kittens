@@ -6,7 +6,7 @@ document.getElementById('maxWrong').innerHTML = maxWrong;
 document.getElementById('mistakes').innerHTML = mistakes;
 
 // Anger spelläge
-let gameMode
+// let gameMode
 
 //Slumpar ut ett ord i wordArray
 const randomWords = wordArray
@@ -147,7 +147,7 @@ let p1name
 
 // publishStats()
 
-const LS_KEY = 'hangman-score'
+const LS_KEY = 'hangman-score-old'
 
 
 function publishStats(result) {
@@ -161,7 +161,7 @@ function publishStats(result) {
             won: result
         }
     
-        const LS_KEY = 'hangman-score-pvp'
+        const LS_KEY = 'hangman-score-pvp-old'
         
         // steg 1: hämta data från localStorage
         // ifsats kontrollerar om det inte finns någon data sen innan
@@ -171,7 +171,7 @@ function publishStats(result) {
         }
         
         // omvandlar JSON-strängen till array med namn 'results'
-        let results = JSON.parse(stringFromLocalStorage)
+        // let results = JSON.parse(stringFromLocalStorage)
         
         // pushar in senaste omgång till result-arrayen
         results.push(currentResult)
@@ -192,7 +192,7 @@ function publishStats(result) {
             won: result
         }
             
-        const LS_KEY = 'hangman-score'
+        const LS_KEY = 'hangman-score-old'
                 
         // steg 1: hämta data från localStorage
         // ifsats kontrollerar om det inte finns någon data sen innan
@@ -202,7 +202,7 @@ function publishStats(result) {
             }
                 
         // omvandlar JSON-strängen till array med namn 'results'
-        let results = JSON.parse(stringFromLocalStorage)
+        // let results = JSON.parse(stringFromLocalStorage)
                 
         // pushar in senaste omgång till result-arrayen
         results.push(currentResult)
@@ -229,6 +229,277 @@ const sortWinsListByAmountTries = () => {
 
 }
 
+
+
+
+// function renderStatsOld(results) {
+
+
+//     let scoreTableRow = document.querySelectorAll('.score-table-row')
+//         // Väldig viktig container!
+//         let displayScoreContainer = document.querySelector('.container-display-score')
+
+//         if (gameMode === 'pvp') {
+//             // Skapa de DOMelement som behövs 
+//             results.forEach(element => {
+
+//         // Det denna gör är att den kollar localstorage och filtrerar spelarens namn. Om den finns, tas den bort i localstorage genom att göra en ny sträng som excluderar den filterade spelaren. Sen spottar den in det i LS_KEY igen. Den tar även bort p elementet.
+
+
+
+        
+        
+
+        
+
+//                 generateTableForPlayerResultPVP ((element.name1), (element.name2), (element.word), (element.tries), (element.won))
+//             })
+//         }
+//         else if (gameMode === 'singleplayer') {
+
+//             let scoreTableRow = document.querySelectorAll('.score-table-row')
+//             // Skapa de DOMelement som behövs 
+//             results.forEach(element => {
+
+//                 generateTableForPlayerResult((element.name1), (element.word), (element.tries), (element.won))
+
+//              // Det denna gör är att den kollar localstorage och filtrerar spelarens namn. Om den finns, tas den bort i localstorage genom att göra en ny sträng som excluderar den filterade spelaren. Sen spottar den in det i LS_KEY igen. Den tar även bort p elementet.
+                
+
+        
+
+
+// })}
+
+// }
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+let gameMode = 'pvp'
+
+let LS_KEY_SINGLEPLAYER = 'hangman-score'
+let LS_KEY_PVP = 'hangman-score-pvp'
+let LS_LIST_CHOICE = []
+let stringFromLocalStorage = []
+stringFromLocalStorage = localStorage.getItem(LS_LIST_CHOICE)
+let results = stringFromLocalStorage
+let objectFromLocalStorage = JSON.parse(stringFromLocalStorage)
+
+// Placeholder-objekt ( ska fyllas i mha funktionerna nedan )
+let currentResult = {}
+let currentResultPVP = {}
+let result
+
+
+function currentResultForWhatGameMode (gameMode) {
+    if (gameMode == 'singleplayer') {
+        return currentResult = {
+            name1: p1name,
+            word: secretWord,
+            tries: mistakes,
+            won: result
+        }
+    } else if (gameMode == 'pvp') {
+        return currentResult = {
+            name1: p1name,
+            name2: p2name,
+            word: secretWord,
+            tries: mistakes,
+            won: result
+        }
+    }
+}
+
+function saveToWhichLS_LIST(gameMode) {
+    if (gameMode == 'singleplayer') { return LS_LIST_CHOICE = LS_KEY_SINGLEPLAYER }
+    else if (gameMode == 'pvp') { return LS_LIST_CHOICE = LS_KEY_PVP }
+}
+
+
+let currentArrayFromLocalStorage 
+// Funktion för att hämta nuvarande stats - FÄRDIG
+function currentStats() {
+    // Kontroll för spelläge, singleplayer eller pvp?
+    saveToWhichLS_LIST(gameMode)
+    
+    let currentStringFromLocalStorage = localStorage.getItem(LS_LIST_CHOICE) // Hämtar LS som JSON-sträng
+    if (!currentStringFromLocalStorage) { currentStringFromLocalStorage = '[]' } // Om LS är tomt, tilldela en tom array
+    currentArrayFromLocalStorage = JSON.parse(currentStringFromLocalStorage) // Gör om JSON-sträng till JS-array
+    console.log('FUNKTIONSTEST: currentStats -> currentArrayFromLocalStorage nedan')
+    console.log(currentArrayFromLocalStorage)
+    console.log('')
+    return currentArrayFromLocalStorage
+}
+
+// Funktion för att lägga till nya stats - FÄRDIG
+function addStatToCurrentStats( ) {
+    // Kontroll för spelläge, singleplayer eller pvp?
+    saveToWhichLS_LIST('singleplayer')
+
+    let stringFromLocalStorage = localStorage.getItem(LS_LIST_CHOICE) // Hämtar LS som JSON-sträng
+    if ( !stringFromLocalStorage ) { stringFromLocalStorage = '[]' }
+    let arrayFromLocalStorage = JSON.parse( stringFromLocalStorage ) // Gör om JSON-sträng till JS-array
+    arrayFromLocalStorage.push( currentResultForWhatGameMode(gameMode) )
+    
+    console.log('FUNKTIONSTEST: addStatToCurrentStats -> arrayFromLocalStorage')
+    console.log(arrayFromLocalStorage)
+    console.log('')
+    let stringToSave = JSON.stringify(arrayFromLocalStorage) // gör om JS-arrayen till JSON-string igen
+    localStorage.setItem(LS_LIST_CHOICE, stringToSave) // skickar tillbaka den nya JSON-stringen till LS
+    renderStats()
+}
+
+
+
+// // Funktion för att ta bort vissa stats
+// function removeUserStatsFromLocalStorage(user, gameMode) {
+//     // Kontroll för spelläge, singleplayer eller pvp?
+//     saveToWhichLS_LIST(gameMode)
+     
+//     let stringFromLocalStorage = localStorage.getItem(LS_LIST_CHOICE) // Hämtar LS som JSON-sträng
+//     let objectFromLocalStorage = JSON.parse(stringFromLocalStorage)
+//     // console.log('FUNKTIONSTEST: removeUserStatsFromLocalStorage -> objectFromLocalStorage nedan')
+//     // console.log(objectFromLocalStorage)
+//     // console.log('')
+
+//     // Loop som hämtar alla namn innehållande argumentet (dvs strängen/namnet) man tillför till funktionen
+//     // och sparar till arrayen 'stringToSave'
+//     for (let i = 0; i < objectFromLocalStorage.length; i++) {
+//         if (objectFromLocalStorage[i].name == user) {
+
+//             let filteredObjectFromLocalStorage = objectFromLocalStorage.filter(function(player){
+//                 return player.name !== user
+//             })
+//             // console.log('FUNKTIONSTEST: removeUserStatsFromLocalStorage -> Filtrerad nedan');
+//             // console.log(filteredObjectFromLocalStorage)
+//             // console.log('')
+
+//             // Den nya filtrerade arrayen 'stringToSave' skickas tillbaka till LS 
+//             let stringToSave = JSON.stringify(filteredObjectFromLocalStorage)
+//             localStorage.setItem(LS_LIST_CHOICE, stringToSave)
+//         }
+//     }
+// }
+
+// Funktion för att ta bort vissa stats
+function removeUserStatsFromLocalStorage() {
+    // Kontroll för spelläge, singleplayer eller pvp?
+    // saveToWhichLS_LIST(gameMode)
+     
+    let stringFromLocalStorage = localStorage.getItem(LS_KEY_SINGLEPLAYER) // Hämtar LS som JSON-sträng
+    let objectFromLocalStorage = JSON.parse(stringFromLocalStorage)
+    console.log('Nu är det parsat')
+    // console.log('FUNKTIONSTEST: removeUserStatsFromLocalStorage -> objectFromLocalStorage nedan')
+    // console.log(objectFromLocalStorage)
+    // console.log('')
+
+    // Loop som hämtar alla namn innehållande argumentet (dvs strängen/namnet) man tillför till funktionen
+    // och sparar till arrayen 'stringToSave'
+    console.log(objectFromLocalStorage[2])
+    console.log(objectFromLocalStorage[0].name1)
+    let newArray = []
+    for (let i = 0; i < objectFromLocalStorage.length; i++) {
+        if (objectFromLocalStorage[i].name1 != playerNameInput.value) {
+            newArray.push(objectFromLocalStorage[i])
+            console.log(newArray)
+            
+            // console.log(filteredObjectFromLocalStorage)
+            // console.log('FUNKTIONSTEST: removeUserStatsFromLocalStorage -> Filtrerad nedan');
+            // console.log(filteredObjectFromLocalStorage)
+            // console.log('')
+
+            // Den nya filtrerade arrayen 'stringToSave' skickas tillbaka till LS 
+            let stringToSave = JSON.stringify(newArray)
+            localStorage.setItem(LS_KEY_SINGLEPLAYER, stringToSave)
+        }
+    }
+}
+function clearScoreboard(name, word, faultyguesses, winlose) {
+    
+}
+
+function renderStats() {
+    currentResultForWhatGameMode()
+    currentStats()
+
+    // console.log('hej')
+    if (gameMode == 'singleplayer') {
+        currentArrayFromLocalStorage.forEach(element => {
+            generateTableForPlayerResult((element.name1), (element.word), (element.tries), (element.won))
+        }) 
+    } else if (gameMode == 'pvp') {
+    currentArrayFromLocalStorage.forEach(element => {
+        generateTableForPlayerResultPVP((element.name1), (element.name2), (element.word), (element.tries), (element.won))
+    }) 
+}
+}
+
+//////////////////////////
+
+// Modal knappar
+const playerNameInput = document.querySelector('#select-player-data-using-input')
+const playerNameInputButton = document.querySelector('#select-player-data-using-input-button')
+
+
+playerNameInput.addEventListener('keydown', event => {
+    event.stopPropagation()
+    if (event.key == 'Enter') {
+            removePlayerData()
+            console.log('Du klickade')
+    }
+})
+
+playerNameInputButton.addEventListener('click', () => {
+    let user = playerNameInput.value
+    console.log(user)
+    removeUserStatsFromLocalStorage()
+    generateTableForPlayerResult()
+    console.log('Du klickade')
+})
+
+// const removePlayerData = () => {
+//     const playerNameInputValue = playerNameInput.value.toLowerCase()
+//     const elementName = element.name1
+//         if(playerNameInputValue === elementName ) {
+//             console.log('playerNameInputValue', playerNameInputValue);
+
+//             Array.from(document.querySelectorAll('.score-table-row')).forEach(el => el[contains(playerNameInputValue)].remove());
+
+//             const saveFilterResult = JSON.parse(localStorage.getItem('hangman-score-pvp-old')).filter(result => result.name1 !== playerNameInputValue)
+            
+//             const saveNewString = JSON.stringify(saveFilterResult)
+
+
+//             localStorage.setItem('hangman-score-pvp-old', saveNewString)
+
+//             playerNameInput.value = ''
+//         } 
+// }
+
+// const removePlayerData = () => {
+//     const playerNameInputValue = playerNameInput.value.toLowerCase()
+//     const elementName = element.name1
+//         if(playerNameInputValue === elementName ) {
+//             console.log('playerNameInputValue', playerNameInputValue);
+
+//             Array.from(document.querySelectorAll('.score-table-row')).forEach(el => el.remove());
+
+//             generateTableForPlayerResult((element.name1), (element.word), (element.tries), (element.won))
+
+//             const saveFilterResult = JSON.parse(localStorage.getItem('hangman-score-old')).filter(result => result.name1 !== playerNameInputValue)
+            
+//             const saveNewString = JSON.stringify(saveFilterResult)
+
+
+//             localStorage.setItem('hangman-score-old', saveNewString)
+
+//             playerNameInput.value = ''
+//         } 
+// }
+
+
+
 // Knappar
 const listAllWinsButton = document.querySelector('#list-only-wins-button')
 const listAllLossesButton = document.querySelector('#list-only-losses-button')
@@ -246,153 +517,3 @@ modalCloseButtons.removeSpecificPlayerDataModal.addEventListener('click', () => 
     overlayScreenToggle()
 })
 
-// Modal knappar
-const playerNameInput = document.querySelector('#select-player-data-using-input')
-const playerNameInputButton = document.querySelector('#select-player-data-using-input-button')
-
-
-function renderStats(results) {
-
-
-    let scoreTableRow = document.querySelectorAll('.score-table-row')
-        // Väldig viktig container!
-        let displayScoreContainer = document.querySelector('.container-display-score')
-
-        if (gameMode === 'pvp') {
-            // Skapa de DOMelement som behövs 
-            results.forEach(element => {
-
-        // Det denna gör är att den kollar localstorage och filtrerar spelarens namn. Om den finns, tas den bort i localstorage genom att göra en ny sträng som excluderar den filterade spelaren. Sen spottar den in det i LS_KEY igen. Den tar även bort p elementet.
-
-        const removePlayerData = () => {
-            const playerNameInputValue = playerNameInput.value.toLowerCase()
-            const elementName = element.name1
-                if(playerNameInputValue === elementName ) {
-                    console.log('playerNameInputValue', playerNameInputValue);
-
-                    Array.from(document.querySelectorAll('.score-table-row')).forEach(el => el[contains(playerNameInputValue)].remove());
-
-                    const saveFilterResult = JSON.parse(localStorage.getItem('hangman-score-pvp')).filter(result => result.name1 !== playerNameInputValue)
-                    
-                    const saveNewString = JSON.stringify(saveFilterResult)
-
-
-                    localStorage.setItem('hangman-score-pvp', saveNewString)
-
-                    playerNameInput.value = ''
-                } 
-        }
-
-        
-        playerNameInput.addEventListener('keydown', event => {
-            event.stopPropagation()
-            if (event.key == 'Enter') {
-                    removePlayerData()
-            }
-        })
-
-        playerNameInputButton.addEventListener('click', () => {
-                removePlayerData()
-        })
-
-                generateTableForPlayerResultPVP ((element.name1), (element.name2), (element.word), (element.tries), (element.won))
-            })
-        }
-        else if (gameMode === 'singleplayer') {
-
-            let scoreTableRow = document.querySelectorAll('.score-table-row')
-            // Skapa de DOMelement som behövs 
-            results.forEach(element => {
-
-                generateTableForPlayerResult((element.name1), (element.word), (element.tries), (element.won))
-
-             // Det denna gör är att den kollar localstorage och filtrerar spelarens namn. Om den finns, tas den bort i localstorage genom att göra en ny sträng som excluderar den filterade spelaren. Sen spottar den in det i LS_KEY igen. Den tar även bort p elementet.
-                const removePlayerData = () => {
-                const playerNameInputValue = playerNameInput.value.toLowerCase()
-                const elementName = element.name1
-                    if(playerNameInputValue === elementName ) {
-                        console.log('playerNameInputValue', playerNameInputValue);
-
-                        Array.from(document.querySelectorAll('.score-table-row')).forEach(el => el.remove());
-
-                        generateTableForPlayerResult((element.name1), (element.word), (element.tries), (element.won))
-
-                        const saveFilterResult = JSON.parse(localStorage.getItem('hangman-score')).filter(result => result.name1 !== playerNameInputValue)
-                        
-                        const saveNewString = JSON.stringify(saveFilterResult)
-
-
-                        localStorage.setItem('hangman-score', saveNewString)
-
-                        playerNameInput.value = ''
-                    } 
-            }
-
-        
-        playerNameInput.addEventListener('keydown', event => {
-            event.stopPropagation()
-            if (event.key == 'Enter') {
-                    removePlayerData()
-            }
-        })
-
-        playerNameInputButton.addEventListener('click', () => {
-                removePlayerData()
-        })
-
-})}
-
-}
-
-function publishStatsWithoutCurrentSession() {
-
-    if (gameMode === 'pvp') {
-  
-        const LS_KEY = 'hangman-score-pvp'
-        
-        // steg 1: hämta data från localStorage
-        // ifsats kontrollerar om det inte finns någon data sen innan
-        let stringFromLocalStorage = localStorage.getItem(LS_KEY)
-        // if (!stringFromLocalStorage) {
-        //     stringFromLocalStorage = '[]'
-        // }
-        
-        // omvandlar JSON-strängen till array med namn 'results'
-        let results = JSON.parse(stringFromLocalStorage)
-        
-        // pushar in senaste omgång till result-arrayen
-        // results.push(currentResult)
-    
-        // mha annan funktion - renderar listan på scoreboard-sidan
-        renderStats(results)
-    
-        // lägger tillbaka arrayen till localStorage (görs om till JSON-string)
-        let stringToSave = JSON.stringify(results)
-        localStorage.setItem(LS_KEY, stringToSave)
-    }
-
-    else if (gameMode === 'singleplayer') {
-            
-        const LS_KEY = 'hangman-score'
-                
-        // steg 1: hämta data från localStorage
-        // ifsats kontrollerar om det inte finns någon data sen innan
-        let stringFromLocalStorage = localStorage.getItem(LS_KEY)
-        if (!stringFromLocalStorage) {
-            stringFromLocalStorage = '[]'
-            }
-                
-        // omvandlar JSON-strängen till array med namn 'results'
-        let results = JSON.parse(stringFromLocalStorage)
-                
-        // pushar in senaste omgång till result-arrayen
-        // results.push(currentResult)
-            
-        // mha annan funktion - renderar listan på scoreboard-sidan
-        renderStats(results)
-            
-        // lägger tillbaka arrayen till localStorage (görs om till JSON-string)
-        let stringToSave = JSON.stringify(results)
-        localStorage.setItem(LS_KEY, stringToSave)
-    }
-}

@@ -99,6 +99,9 @@ nameInputButton.addEventListener("click", () => {
 
 
 
+
+
+
 // FUNKTION - generera fram spelarnamn samt resultat
 let playerResult = {};
 function generatePlayerResult() {
@@ -130,70 +133,75 @@ document.onkeydown = function(event) {
   //Kollar om en ny och korrekt key är pressed, samt om man har slut på gissningar
   let isValidGuess = isCorrectGuess ||(!isCorrectGuess && !isGuessed && mistakes < maxWrong && !isDisabled)
 
+  //Skickar in fel bokstav, samt uppdaterar antal felgissningar
+
 
   
   // Förhindrar input utanför namninputs-modalen
   let nameOverlayIsHidden = modalPanels.enterName.className.includes("hidden");
   console.log(event.key);
 
-  const gameStart = () => {
-
-    //Skickar in fel bokstav, samt uppdaterar antal felgissningar
+  function gameStart () {
     function updateIncorrectGuess() {
-        wrongLetters.innerText += key + ', '
-        guessedLetters.push(key);
-        mistakes++
-        document.getElementById('mistakes').innerText = mistakes;
-        hangManPicture.innerHTML = hangManPicture.innerHTML + hangMan[wrongGuesses];
-        wrongGuesses++
-        return wrongGuesses;
+      wrongLetters.innerText += key + ', '
+      guessedLetters.push(key);
+      mistakes++
+      document.getElementById('mistakes').innerText = mistakes;
+      hangManPicture.innerHTML = hangManPicture.innerHTML + hangMan[wrongGuesses];
+      wrongGuesses++
+      return wrongGuesses;
     }
 
-  //Skickar in korrekt gissning iställer för understräcken
-  function updateCorrectGuess() {
-    singleLetter.forEach((char, index) => {
-        if (char === key) {
-            dashes[index].innerText = char;
-        }
-    });
-  } 
+    //Skickar in korrekt gissning iställer för understräcken
+    function updateCorrectGuess() {
+      singleLetter.forEach((char, index) => {
+          if (char === key) {
+              dashes[index].innerText = char;
+          }
+      });
+    } 
 
-  //Kollar om ordet är gissat eller inte, loopas varje gång
-  function isWordComplete(singleLetter, dashes) {
+    //Kollar om ordet är gissat eller inte, loopas varje gång
+    function isWordComplete(singleLetter, dashes) {
       for (let i = 0; i < singleLetter.length; i++) {
-      if (dashes[i].innerText !== singleLetter[i]) {
+        if (dashes[i].innerText !== singleLetter[i]) {
           return false;
+        }
       }
+        
+    return true;
+    }
+
+      //kallar på rätt funktion beroende på vilken gissning som anges
+      if (isCorrectGuess) {
+          updateCorrectGuess()
+      } else if (isValidGuess) {
+          updateIncorrectGuess()
       }
-      return true;
-  }
 
-  //kallar på rätt funktion beroende på vilken gissning som anges
-  if (isCorrectGuess) {
-      updateCorrectGuess()
-  } else if (isValidGuess) {
-      updateIncorrectGuess()
-  }
-
-  //Kolla om spelet är förlorat
-  let gameIsOver = mistakes >= maxWrong;
-  if (gameIsOver && (gameMode == 'singleplayer')) {
-    gameResultModalOverlay(false, answer);
-    publishStats(false);
-  } else if (gameIsOver && (gameMode == 'pvp')) {
-    publishStats(false)
-  }
+    //Kolla om spelet är förlorat
+    let gameIsOver = mistakes >= maxWrong;
+    if (gameIsOver && (gameMode == 'singleplayer')) {
+      gameResultModalOverlay(false, answer);
+      addStatToCurrentStats(false);
+      renderStats()
+    } else if (gameIsOver && (gameMode == 'pvp')) {
+      addStatToCurrentStats(false)
+      renderStats()
+    }
   
-  //Kolla om spelet är vunnet 
-  let isGameWon = isWordComplete(singleLetter, dashes)
-  if (isGameWon && (gameMode == 'singleplayer')) {
-    generateTableHeader('singleplayer')
-    gameResultModalOverlay(true, null, mistakes);
-    publishStats(true);
-  } else if (isGameWon && (gameMode == 'pvp')) {
-    gameResultModalOverlay(true, null, mistakes)
-    publishStats(true)
-  }
+    //Kolla om spelet är vunnet 
+    let isGameWon = isWordComplete(singleLetter, dashes)
+    if (isGameWon && (gameMode == 'singleplayer')) {
+      generateTableHeader('singleplayer')
+      gameResultModalOverlay(true, null, mistakes);
+      addStatToCurrentStats( true )
+      renderStats()
+    } else if (isGameWon && (gameMode == 'pvp')) {
+      gameResultModalOverlay(true, null, mistakes)
+      addStatToCurrentStats( true )
+      renderStats()
+    }
 }
 
 if (overlay.classList.contains('hidden') === true) {
