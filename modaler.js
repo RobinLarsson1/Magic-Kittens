@@ -5,13 +5,15 @@ const modalPanels = {
     endLose: document.querySelector('#lose-modal'),
     endWin: document.querySelector('#win-modal'),
     about: document.querySelector('#about-modal'),
-    changePlayer: document.querySelector('#change-player-modal')
+    // SCOREBOARD
+    removeSpecificPlayerData: document.querySelector('#remove-player-data-modal')
 }
 
 // En knapp för varje modal för att stänga (toggla) av modalen och overlayen
 const modalCloseButtons = {
     aboutModal: document.querySelector('#about-modal-close-button'),
-    changePlayerModal: document.querySelector('#change-player-modal-close-button')
+    // SCOREBOARD
+    removeSpecificPlayerDataModal: document.querySelector('#remove-player-data-modal-close-button')
 }
 
 // Selecta overlayen för modals
@@ -25,16 +27,40 @@ const overlayScreenToggle = () => {
 }
 // Om man har gissat max antal gånger
 const bodyElem = document.body;
-const gameOverModalOverlay = () => {
-    bodyElem.classList.add('game-over')
-    overlay.classList.remove('hidden')
-    modalPanels.endLose.classList.remove('hidden')
+
+
+// Denna funktion kollar om man har vunnit spelet och visar då en specifik modal för resultatet
+const gameResultModalOverlay = (endResult, generatedWord, amountTries) => {
+    // Om man har vunnit
+    if (endResult == true) {
+
+        let triesAmount = document.querySelector('#amount-tries')
+        triesAmount.textContent = mistakes
+
+        bodyElem.classList.add('game-won')
+        overlay.classList.remove('hidden')
+        modalPanels.endWin.classList.remove('hidden')
+
+        // Om man har förlorat
+    } else if (endResult == false) {
+
+        let correctAnswer = document.querySelector('#correct-answer')
+        correctAnswer.textContent = secretWord
+
+        bodyElem.classList.add('game-over')
+        overlay.classList.remove('hidden')
+        modalPanels.endLose.classList.remove('hidden')
+    }
 }
 
 
-// När man har vunnit spelet
-const gameWinModalOverlay = () => {
-    bodyElem.classList.add('game-won')
-    overlay.classList.remove('hidden')
-    modalPanels.endWin.classList.remove('hidden')
+// Gör så att man kan komma till scoreboarden efter win och lose
+const goToScoreboard = () => {
+    overlay.classList.add('hidden')
+    gameboard.classList.add('hidden')
+    if (gameMode === 'singleplayer') {
+        scoreboard.classList.remove('hidden')
+    } else if (gameMode === 'pvp') {
+        scoreboardPVP.classList.remove('hidden')
+    }
 }
