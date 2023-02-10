@@ -223,14 +223,25 @@ const sortWinsListByAmountTries = () => {
 
             localStorage.setItem(LS_KEY, saveNewString)
 
-            displayScoreContainer.append(p)
 }
 
 
 // DENNA GÄLLER, LÄGG IN BERGSTRÖMS HÄR ! 
 // STÄMMER ENLIGT V+R LAYOUT? = JA
 function renderStats(results) {
+
+        // Väldig viktig container!
         let displayScoreContainer = document.querySelector('.container-display-score')
+
+
+        // Knappar
+        const listAllWinsButton = document.querySelector('#list-only-wins-button')
+        const listAllLossesButton = document.querySelector('#list-only-losses-button')
+        const listAllResultsButton = document.querySelector('#list-all-results-button')
+
+        // Modal knappar
+        const playerNameInput = document.querySelector('#select-player-data-using-input')
+        const playerNameInputButton = document.querySelector('#select-player-data-using-input-button')
         
         if (gameMode === 'pvp') {
             // Skapa de DOMelement som behövs 
@@ -241,39 +252,51 @@ function renderStats(results) {
                 p.innerHTML = `PVP <br> ${element.name1}, ordskapare, spelade mot ${element.name2} som gissade. <br> Ordet var ${element.word}, <br> Felgissningar: ${element.tries} <br> Vinst? ${element.won}`
         
                 displayScoreContainer.append(p)
-
-                const removePlayerData = () => {
-                    const playerNameInputValue = playerNameInput.value.toLowerCase()
-                    const elementName = element.name1
-                        if(playerNameInputValue === elementName ) {
-                            console.log('playerNameInputValue', playerNameInputValue);
-                            p.remove()
-                            const saveFilterResult = JSON.parse(localStorage.getItem(LS_KEY)).filter(result => result.name1 !== playerNameInputValue)
-                            
-                            const saveNewString = JSON.stringify(saveFilterResult)
-        
-        
-                            localStorage.setItem(LS_KEY, saveNewString)
-        
-                            playerNameInput.value = ''
-                        } 
-                }
+                
+        // Det denna gör är att den kollar localstorage och filtrerar spelarens namn. Om den finns, tas den bort i localstorage genom att göra en ny sträng som excluderar den filterade spelaren. Sen spottar den in det i LS_KEY igen. Den tar även bort p elementet.
+        const removePlayerData = () => {
+            const playerNameInputValue = playerNameInput.value.toLowerCase()
+            const elementName = element.name1
+                if(playerNameInputValue === elementName ) {
+                    console.log('playerNameInputValue', playerNameInputValue);
+                    p.remove()
+                    const saveFilterResult = JSON.parse(localStorage.getItem(LS_KEY)).filter(result => result.name1 !== playerNameInputValue)
+                    
+                    const saveNewString = JSON.stringify(saveFilterResult)
 
 
-        const listAllWinsButton = document.querySelector('#list-only-wins-button')
+                    localStorage.setItem(LS_KEY, saveNewString)
+
+                    playerNameInput.value = ''
+                } 
+        }
+
+        
+        playerNameInput.addEventListener('keydown', event => {
+            event.stopPropagation()
+            if (event.key == 'Enter') {
+                    removePlayerData()
+            }
+        })
+
+        playerNameInputButton.addEventListener('click', () => {
+                removePlayerData()
+        })
+
+        // Det denna gör är att den kollar om elementet (win) har egenskapen true
         listAllWinsButton.addEventListener('click', event => {
             if(!element.won == true) {
                 // p.style.display = 'none'
                 p.classList.add('list-element-hidden')
             } else {
+            // Gör listan numerisk 0 > 5 (typ)
+                sortWinsListByAmountTries()
                 // p.style.display = 'block'
                 p.classList.remove('list-element-hidden')
-                sortWinsListByAmountTries()
             }
         })
 
         // Det denna gör är att den kollar om elementet (win) har egenskapen true
-        const listAllLossesButton = document.querySelector('#list-only-losses-button')
         listAllLossesButton.addEventListener('click', event => {
             if(!element.won == false) {
                 p.classList.add('list-element-hidden')
@@ -283,7 +306,6 @@ function renderStats(results) {
         })
 
         // Funkar bara om man har tryckt på vinster eller förluster först
-        const listAllResultsButton = document.querySelector('#list-all-results-button')
         listAllResultsButton.addEventListener('click', event => {
             if(!element.won == false || !element.won == true) {
                 // p.style.display = 'block'
@@ -344,7 +366,7 @@ function renderStats(results) {
                 } 
         }
 
-        const playerNameInput = document.querySelector('#select-player-data-using-input')
+        
         playerNameInput.addEventListener('keydown', event => {
             event.stopPropagation()
             if (event.key == 'Enter') {
@@ -352,13 +374,11 @@ function renderStats(results) {
             }
         })
 
-        const playerNameInputButton = document.querySelector('#select-player-data-using-input-button')
         playerNameInputButton.addEventListener('click', () => {
                 removePlayerData()
         })
 
         // Det denna gör är att den kollar om elementet (win) har egenskapen true
-        const listAllWinsButton = document.querySelector('#list-only-wins-button')
         listAllWinsButton.addEventListener('click', event => {
             if(!element.won == true) {
                 // p.style.display = 'none'
@@ -372,7 +392,6 @@ function renderStats(results) {
         })
 
         // Det denna gör är att den kollar om elementet (win) har egenskapen true
-        const listAllLossesButton = document.querySelector('#list-only-losses-button')
         listAllLossesButton.addEventListener('click', event => {
             if(!element.won == false) {
                 p.classList.add('list-element-hidden')
@@ -382,7 +401,6 @@ function renderStats(results) {
         })
 
         // Funkar bara om man har tryckt på vinster eller förluster först
-        const listAllResultsButton = document.querySelector('#list-all-results-button')
         listAllResultsButton.addEventListener('click', event => {
             if(!element.won == false || !element.won == true) {
                 // p.style.display = 'block'
