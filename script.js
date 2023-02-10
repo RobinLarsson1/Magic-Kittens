@@ -415,8 +415,11 @@ function removeUserStatsFromLocalStorage() {
         }
     }
 }
-function clearScoreboard(name, word, faultyguesses, winlose) {
-    
+function clearScoreboard() {
+    let newScoreTableRow = document.querySelectorAll('.score-table-row')
+    newScoreTableRow.remove()
+
+    console.log('Du klickade')
 }
 
 function renderStats() {
@@ -454,9 +457,11 @@ playerNameInputButton.addEventListener('click', () => {
     let user = playerNameInput.value
     console.log(user)
     removeUserStatsFromLocalStorage()
-    generateTableForPlayerResult()
+    clearScoreboard()
+    currentArrayFromLocalStorage.forEach(element => {
+        generateTableForPlayerResult((element.name1), (element.word), (element.tries), (element.won))
     console.log('Du klickade')
-})
+})})
 
 // const removePlayerData = () => {
 //     const playerNameInputValue = playerNameInput.value.toLowerCase()
