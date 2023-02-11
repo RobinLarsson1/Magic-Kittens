@@ -217,17 +217,7 @@ function publishStats(result) {
 }
 
         
-const sortWinsListByAmountTries = () => {
-            const saveSortResult = JSON.parse(localStorage.getItem(LS_KEY)).sort(function(a, b) {
-                return parseFloat(a.tries) - parseFloat(b.tries);
-            })
 
-            console.log('saveSortResult', saveSortResult)
-            const saveNewString = JSON.stringify(saveSortResult)
-
-            localStorage.setItem(LS_KEY, saveNewString)
-
-}
 
 
 
@@ -390,49 +380,29 @@ function removeUserStatsFromLocalStorage(user) {
     gameMode = 'singleplayer'
     let stringFromLocalStorage = localStorage.getItem(LS_KEY_SINGLEPLAYER) // Hämtar LS som JSON-sträng
     let objectFromLocalStorage = JSON.parse(stringFromLocalStorage)
-    console.log('Nu är det parsat')
-    // console.log('FUNKTIONSTEST: removeUserStatsFromLocalStorage -> objectFromLocalStorage nedan')
-    // console.log(objectFromLocalStorage)
-    // console.log('')
     const playerNameInput = document.querySelector('#select-player-data-using-input')
     
     // Loop som hämtar alla namn innehållande argumentet (dvs strängen/namnet) man tillför till funktionen
     // och sparar till arrayen 'stringToSave'
-    console.log(objectFromLocalStorage[2])
-    console.log('objectFromLocalStorage[0].name1')
-    console.log(objectFromLocalStorage[0].name1)
+    // console.log(objectFromLocalStorage[2])
+    // console.log('objectFromLocalStorage[0].name1')
+    // console.log(objectFromLocalStorage[0].name1)
     let newArray = []
-    console.log(playerNameInput.value)
     for (let i = 0; i < objectFromLocalStorage.length; i++) {
         if (objectFromLocalStorage[i].name1 != user) {
-            newArray.push(objectFromLocalStorage[i])
-            console.log(newArray)
-            
-            // console.log(filteredObjectFromLocalStorage)
-            // console.log('FUNKTIONSTEST: removeUserStatsFromLocalStorage -> Filtrerad nedan');
-            // console.log(filteredObjectFromLocalStorage)
-            // console.log('')
+            newArray.push(objectFromLocalStorage[i])          
             
             // Den nya filtrerade arrayen 'stringToSave' skickas tillbaka till LS 
-
-            
             let stringToSave = JSON.stringify(newArray)
-            console.log(stringToSave)
             localStorage.setItem(LS_KEY_SINGLEPLAYER, stringToSave)
         } clearScoreboard()
-        }
+    }
 }
 
 
 function clearScoreboard() {
-    
     let stringFromLocalStorage = localStorage.getItem(LS_KEY_SINGLEPLAYER) // Hämtar LS som JSON-sträng
     let objectFromLocalStorage = JSON.parse(stringFromLocalStorage)
-    
-    console.log('objectFromLocalStorage')
-    console.log(objectFromLocalStorage)
-    
-    // let user = playerNameInput.value
 
     for (let i = 0; i < objectFromLocalStorage.length; i++) {
         let newScoreTableRow = document.querySelector('.score-table-row')
@@ -440,28 +410,20 @@ function clearScoreboard() {
         newScoreTableRow.remove()
         console.log('INUTI clearScoreboard: Alla rader tas bort')
     }}
-    
-    // for (let i = 0; i < objectFromLocalStorage.length; i++) {
-    // }
-    // renderStats()
-
-    console.log('Funktion refreshScoreboard() aktiverades')
 }
 
 function renderStats() {
-    // currentResultForWhatGameMode()
     currentStats()
 
-    // console.log('hej')
     if (gameMode == 'singleplayer') {
         currentArrayFromLocalStorage.forEach(element => {
             generateTableForPlayerResult((element.name1), (element.word), (element.tries), (element.won))
         }) 
     } else if (gameMode == 'pvp') {
-    currentArrayFromLocalStorage.forEach(element => {
-        generateTableForPlayerResultPVP((element.name1), (element.name2), (element.word), (element.tries), (element.won))
-    }) 
-}
+        currentArrayFromLocalStorage.forEach(element => {
+            generateTableForPlayerResultPVP((element.name1), (element.name2), (element.word), (element.tries), (element.won))
+        }) 
+    }
 }
 
 function updateStats() {
@@ -469,11 +431,79 @@ function updateStats() {
     renderStats()
 }
 
+
+function scoreboardSortByMistakes() {
+    // 1. Hämta lista
+    let stringFromLocalStorage = localStorage.getItem(LS_KEY_SINGLEPLAYER)
+    let objectFromLocalStorage = JSON.parse(stringFromLocalStorage)
+
+    // 2. Sortera den
+    let sortResult = []
+        let sortedObjectFromLocalStorage = JSON.parse(localStorage.getItem(LS_KEY_SINGLEPLAYER)).sort(function(a, b) {
+            sortResult.push((parseFloat(a.tries) - parseFloat(b.tries)))
+            // console.log(sortResult)
+        return sortResult;
+    }
+    )
+    console.log(sortResult)
+    // 3. Skicka tillbaka
+    let stringToTransfer = JSON.stringify(sortResult)
+    console.log(stringToTransfer)
+
+    localStorage.setItem(LS_KEY_SINGLEPLAYER, stringToTransfer)
+
+    // 4. updateStats???
+}
+
+
+
+let toggleCount = 0
+const sortWinsListByAmountTries = () => {
+    for (let i = 0; i < 5; i++) {
+        if (toggleCount == 0) {
+            const saveSortResult = JSON.parse(localStorage.getItem(LS_KEY_SINGLEPLAYER)).sort(function(a, b) {
+                return parseFloat(a.tries) - parseFloat(b.tries);
+            })
+            const saveNewString = JSON.stringify(saveSortResult)
+            
+            localStorage.setItem(LS_KEY_SINGLEPLAYER, saveNewString)
+            updateStats()
+            
+            ++toggleCount
+        } else if (toggleCount == 1) {
+            --toggleCount
+            const saveSortResult = JSON.parse(localStorage.getItem(LS_KEY_SINGLEPLAYER)).sort(function(a, b) {
+                return parseFloat(b.tries) - parseFloat(a.tries);
+            })
+
+            const saveNewString = JSON.stringify(saveSortResult)
+            localStorage.setItem(LS_KEY_SINGLEPLAYER, saveNewString)
+            updateStats()
+        }       
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
 //////////////////////////
 
 // Modal knappar
 const playerNameInput = document.querySelector('#select-player-data-using-input')
 const playerNameInputButton = document.querySelector('#select-player-data-using-input-button')
+
+// Vinstknappen
+const listAllWinsButton = document.querySelector('#list-only-wins-button')
+listAllWinsButton.addEventListener('click' , (event) => {
+    sortWinsListByAmountTries()
+})
 
 
 playerNameInput.addEventListener('keydown', event => {
@@ -537,7 +567,7 @@ playerNameInputButton.addEventListener('click', () => {
 
 
 // Knappar
-const listAllWinsButton = document.querySelector('#list-only-wins-button')
+// const listAllWinsButton = document.querySelector('#list-only-wins-button')
 const listAllLossesButton = document.querySelector('#list-only-losses-button')
 const listAllResultsButton = document.querySelector('#list-all-results-button')
 const removePlayerDataButton = document.querySelector('#remove-results-with-specific-name-button')
