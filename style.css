@@ -420,8 +420,18 @@ html, body {
 
 .table-head-data {
     font-weight: 600;
-    font-size: 1.1em;
+    font-size: 1.05em;
     padding: 0.3em;
     background-color: #49a9f3;
     color: white;
+    max-width: fit-content;
+}
+
+.score-table-data {
+    text-align: center;
+    font-size: 0.9em;
+}
+
+.score-table-row:nth-child(odd) {
+    background-color: #bae1ff7c;
 }
