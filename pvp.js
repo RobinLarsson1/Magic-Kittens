@@ -1,11 +1,11 @@
 // #1 : INPUTFÄLT UNDER PVP-KNAPP
-let pvpButton = document.querySelector('.pvp-mode')
-const gameModeModal = document.getElementById('gamemode-modal')
-const vanligtButton = document.getElementById('vanligt-button')
-const pvpStartButton = document.getElementById('pvp-start-button')
-let pvpDiv = document.querySelector('.pvp-div')
-const secretWordDiv = document.getElementById('secret-name-div')
-let pvpSecretWordInput = document.getElementById('secret-word-pvp')
+// let pvpButton = document.querySelector('.pvp-mode')
+// const gameModeModal = document.getElementById('gamemode-modal')
+// const vanligtButton = document.getElementById('vanligt-button')
+// const pvpStartButton = document.getElementById('pvp-start-button')
+// let pvpDiv = document.querySelector('.pvp-div')
+// const secretWordDiv = document.getElementById('secret-name-div')
+// let pvpSecretWordInput = document.getElementById('secret-word-pvp')
 
 
 pvpButton.addEventListener('click', (event) => {
@@ -28,8 +28,8 @@ pvpStartButton.addEventListener('click', (event) => {
 
 // #2 : Namninputs ska sparas i en variabel
 
-let pvpInputfieldPlayer1 = document.getElementById('pvp-name1')
-let pvpInputfieldPlayer2 = document.getElementById('pvp-name2')
+// let pvpInputfieldPlayer1 = document.getElementById('pvp-name1')
+// let pvpInputfieldPlayer2 = document.getElementById('pvp-name2')
 
 
 
@@ -62,6 +62,7 @@ pvpInputfieldPlayer2.addEventListener("keydown", (event) => {
 pvpStartButton.addEventListener('click', (event) => {
     p1name = pvpInputfieldPlayer1.value
     p2name = pvpInputfieldPlayer2.value
+    console.log(p2name)
     pvpDiv.style.visibility = 'hidden'
 	secretWordDiv.style.visibility = 'visible'
     // gameModeModal.style.visibility = 'hidden'
@@ -79,10 +80,13 @@ pvpSecretWordInput.addEventListener("keydown", (event) => {
     if ((event.code === "Enter") && (pvpSecretWordInput.value !== '')) {
         pvpSecretWord = pvpSecretWordInput.value.toString()
         pvpSecretWordInput.innerText = pvpSecretWord
+        p2name = pvpInputfieldPlayer2.value
+        console.log(p2name)
 		secretWord = pvpSecretWord.toLowerCase();
         appendSecretWordToDashes()
         overlayScreenToggle()
 		gameModeModal.classList.add('hidden')
+        clearScoreboard()
     }
 })
 

@@ -16,14 +16,15 @@
 	<link href="https://fonts.googleapis.com/css2?family=Carter+One&family=Poppins&display=swap" rel="stylesheet">
 
 	<!-- Script -->
+	<script src="DOMfetches.js" defer></script>
 	<script src="svenska-ord-1000st.js" defer></script>
 	<script src="difficulty.js" defer></script>
 	<script src="modaler.js" defer></script>
+	<script src="pvp.js" defer></script>
 	<script src="script.js" defer></script>
 	<script src="hangman.js" defer></script>
 	<script src="functions.js" defer></script>
-	<script src="pvp.js" defer></script>
-	<script src="developermode.js" defer></script>
+	<!-- <script src="developermode.js" defer></script> -->
 </head>
 
 <body id="body">
@@ -180,39 +181,13 @@
 			
 						<span>Sortera listan</span>
 									
-						<!-- SCOREBOARD-KNAPP Sämst -->
-						<button class="header-button">
-							<span class="material-symbols-outlined">
-								arrow_upward
-							</span>
-							Sämst
-						</button>
-			
-						<!-- SCOREBOARD-KNAPP Bästa -->
-						<button class="header-button">
-							<span class="material-symbols-outlined">
-								arrow_downward
-							</span>
-							Bästa
-						</button>
-			
 						<!-- SCOREBOARD-KNAPP Vinst -->
-						<button id="list-only-wins-button" class="header-button">
+						<button id="list-only-wins-button-pvp" class="header-button">
 							Vinst
 						</button>
 			
-						<!-- SCOREBOARD-KNAPP Förlust -->
-						<button id="list-only-losses-button" class="header-button">
-							Förlust
-						</button>
-									
-						<!-- SCOREBOARD-KNAPP Alla resultat -->
-						<button id="list-all-results-button" class="header-button">
-							Alla resultat
-						</button>
-			
-						<!-- SCOREBOARD-KNAPP Senast -->
-						<button class="header-button">
+						<!-- SCOREBOARD-PVP-KNAPP Senast -->
+						<button id="latest-score-button-pvp" class="header-button">
 							Senast
 						</button>
 			

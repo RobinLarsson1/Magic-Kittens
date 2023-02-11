@@ -63,7 +63,6 @@ function appendPlayerName(event) {
       let overlay = document.querySelector(".overlay");
       overlay.classList.add("hidden");
       gameMode = 'singleplayer'
-      // publishStatsWithoutCurrentSession()
     } else if (isNameProvided === false) {
       errorMessage('textinput')
   } else if (difficultySelected === false) {
@@ -74,7 +73,6 @@ function appendPlayerName(event) {
 
 
 // FUNKTION - Namn-input kopplat till "Redo att spela!"-knapp
-let nameInputButton = document.querySelector("#name-enter-button");
 nameInputButton.addEventListener("click", () => {
 
     // Kollar om inputfältet är tomt eller ej
@@ -88,7 +86,6 @@ nameInputButton.addEventListener("click", () => {
         let overlay = document.querySelector(".overlay");
         overlay.classList.add("hidden");
         gameMode = 'singleplayer'
-        // publishStatsWithoutCurrentSession()
     } else if (isNameProvided === false) {
         errorMessage('textinput')
     }else if (difficultySelected === false) {
@@ -211,6 +208,11 @@ if (overlay.classList.contains('hidden') === true) {
   }
 }}
 
+
+
+
+
+
 function generateTableHeader(gameMode) {
 
   let scoreTableBody = document.getElementById('table-body')
@@ -288,8 +290,6 @@ function generateTableHeader(gameMode) {
 function generateTableForPlayerResult (name, word, faultyguesses, winlose) {
 
   let scoreTableBody = document.getElementById('table-body')
-
-
 
   // Skapar en ny tabellrad, som newTableData-varianterna nedan ska appendas till
   let newScoreTableRow = document.createElement('tr')
