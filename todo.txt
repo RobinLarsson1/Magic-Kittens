@@ -1,0 +1,8 @@
+PVP:
+    * innertext på hemligt ord ska bli tomt efter man submittat
+
+    * knappen öfr scoreboard är samma för både PVP och singleplayer, därför blir det fel vid renderingen av scoreboard
+
+    * lägg till renderStats på eventlyssnarna till show scoreboard 
+
+    * lägg till nya filtrerade listan!
