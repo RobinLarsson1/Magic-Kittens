@@ -204,7 +204,7 @@ let objectFromLocalStorage = JSON.parse(stringFromLocalStorage)
 // Placeholder-objekt ( ska fyllas i mha funktionerna nedan )
 let currentResult = {}
 let currentResultPVP = {}
-let result
+// let result
 // -------------------------------------------------------
 
 console.log(gameMode)
@@ -269,7 +269,7 @@ let chronologicalCount = 0
 let storedChronological
 let currentArrayFromLocalStorage 
 // Funktion för att lägga till nya stats - FÄRDIG
-function addStatToCurrentStats( ) {
+function addStatToCurrentStats( result ) {
   // Kontroll för spelläge, singleplayer eller pvp?
   saveToWhichLS_LIST(gameMode)
   ascendingPlayerNumber()
@@ -343,13 +343,13 @@ function renderStats() {
 
   if (gameMode == 'singleplayer') {
       currentArrayFromLocalStorage.forEach(element => {
-          generateTableForPlayerResult((element.name1), (element.word), (element.tries), (element.result))
+          generateTableForPlayerResult((element.name1), (element.word), (element.tries), (element.winlose))
       }) 
   } else if (gameMode == 'pvp') {
       console.log('PVP')
       console.log(p2name)
       currentArrayFromLocalStorage.forEach(element => {
-          generateTableForPlayerResultPVP((element.name1), (element.name2), (element.word), (element.tries), (element.result))
+          generateTableForPlayerResultPVP((element.name1), (element.name2), (element.word), (element.tries), (element.winlose))
           console.log(element.name2)
       }) 
   }
