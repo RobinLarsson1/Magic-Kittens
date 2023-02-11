@@ -177,7 +177,7 @@ function publishStats(result) {
         results.push(currentResult)
     
         // mha annan funktion - renderar listan på scoreboard-sidan
-        renderStats(results)
+        // renderStats(results)
     
         // lägger tillbaka arrayen till localStorage (görs om till JSON-string)
         let stringToSave = JSON.stringify(results)
@@ -208,7 +208,7 @@ function publishStats(result) {
         results.push(currentResult)
             
         // mha annan funktion - renderar listan på scoreboard-sidan
-        renderStats(results)
+        // renderStats(results)
             
         // lägger tillbaka arrayen till localStorage (görs om till JSON-string)
         let stringToSave = JSON.stringify(results)
@@ -276,7 +276,7 @@ const sortWinsListByAmountTries = () => {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-let gameMode = 'pvp'
+let gameMode = 'singleplayer'
 
 let LS_KEY_SINGLEPLAYER = 'hangman-score'
 let LS_KEY_PVP = 'hangman-score-pvp'
@@ -347,7 +347,7 @@ function addStatToCurrentStats( ) {
     console.log('')
     let stringToSave = JSON.stringify(arrayFromLocalStorage) // gör om JS-arrayen till JSON-string igen
     localStorage.setItem(LS_LIST_CHOICE, stringToSave) // skickar tillbaka den nya JSON-stringen till LS
-    renderStats()
+    // renderStats()
 }
 
 
@@ -383,24 +383,28 @@ function addStatToCurrentStats( ) {
 // }
 
 // Funktion för att ta bort vissa stats
-function removeUserStatsFromLocalStorage() {
+function removeUserStatsFromLocalStorage(user) {
     // Kontroll för spelläge, singleplayer eller pvp?
     // saveToWhichLS_LIST(gameMode)
      
+    gameMode = 'singleplayer'
     let stringFromLocalStorage = localStorage.getItem(LS_KEY_SINGLEPLAYER) // Hämtar LS som JSON-sträng
     let objectFromLocalStorage = JSON.parse(stringFromLocalStorage)
     console.log('Nu är det parsat')
     // console.log('FUNKTIONSTEST: removeUserStatsFromLocalStorage -> objectFromLocalStorage nedan')
     // console.log(objectFromLocalStorage)
     // console.log('')
-
+    const playerNameInput = document.querySelector('#select-player-data-using-input')
+    
     // Loop som hämtar alla namn innehållande argumentet (dvs strängen/namnet) man tillför till funktionen
     // och sparar till arrayen 'stringToSave'
     console.log(objectFromLocalStorage[2])
+    console.log('objectFromLocalStorage[0].name1')
     console.log(objectFromLocalStorage[0].name1)
     let newArray = []
+    console.log(playerNameInput.value)
     for (let i = 0; i < objectFromLocalStorage.length; i++) {
-        if (objectFromLocalStorage[i].name1 != playerNameInput.value) {
+        if (objectFromLocalStorage[i].name1 != user) {
             newArray.push(objectFromLocalStorage[i])
             console.log(newArray)
             
@@ -408,25 +412,44 @@ function removeUserStatsFromLocalStorage() {
             // console.log('FUNKTIONSTEST: removeUserStatsFromLocalStorage -> Filtrerad nedan');
             // console.log(filteredObjectFromLocalStorage)
             // console.log('')
-
+            
             // Den nya filtrerade arrayen 'stringToSave' skickas tillbaka till LS 
+
+            
             let stringToSave = JSON.stringify(newArray)
+            console.log(stringToSave)
             localStorage.setItem(LS_KEY_SINGLEPLAYER, stringToSave)
+        } clearScoreboard()
         }
-    }
 }
 
 
-function refreshScoreboard() {
-    let newScoreTableRow = document.querySelector('.score-table-row')
-    newScoreTableRow.remove()
-    renderStats()
+function clearScoreboard() {
+    
+    let stringFromLocalStorage = localStorage.getItem(LS_KEY_SINGLEPLAYER) // Hämtar LS som JSON-sträng
+    let objectFromLocalStorage = JSON.parse(stringFromLocalStorage)
+    
+    console.log('objectFromLocalStorage')
+    console.log(objectFromLocalStorage)
+    
+    // let user = playerNameInput.value
+
+    for (let i = 0; i < objectFromLocalStorage.length; i++) {
+        let newScoreTableRow = document.querySelector('.score-table-row')
+        if (newScoreTableRow != null) {
+        newScoreTableRow.remove()
+        console.log('INUTI clearScoreboard: Alla rader tas bort')
+    }}
+    
+    // for (let i = 0; i < objectFromLocalStorage.length; i++) {
+    // }
+    // renderStats()
 
     console.log('Funktion refreshScoreboard() aktiverades')
 }
 
 function renderStats() {
-    currentResultForWhatGameMode()
+    // currentResultForWhatGameMode()
     currentStats()
 
     // console.log('hej')
@@ -439,6 +462,11 @@ function renderStats() {
         generateTableForPlayerResultPVP((element.name1), (element.name2), (element.word), (element.tries), (element.won))
     }) 
 }
+}
+
+function updateStats() {
+    clearScoreboard()
+    renderStats()
 }
 
 //////////////////////////
@@ -459,12 +487,12 @@ playerNameInput.addEventListener('keydown', event => {
 playerNameInputButton.addEventListener('click', () => {
     let user = playerNameInput.value
     // console.log(user)
-    removeUserStatsFromLocalStorage()
-    clearScoreboard()
-    currentArrayFromLocalStorage.forEach(element => {
-        generateTableForPlayerResult((element.name1), (element.word), (element.tries), (element.won))
+    removeUserStatsFromLocalStorage(user)
+    updateStats()
+    // currentArrayFromLocalStorage.forEach(element => {
+    //     generateTableForPlayerResult((element.name1), (element.word), (element.tries), (element.won))
     console.log('Du klickade')
-})})
+})
 
 // const removePlayerData = () => {
 //     const playerNameInputValue = playerNameInput.value.toLowerCase()
