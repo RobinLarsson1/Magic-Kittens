@@ -204,7 +204,7 @@ let objectFromLocalStorage = JSON.parse(stringFromLocalStorage)
 // Placeholder-objekt ( ska fyllas i mha funktionerna nedan )
 let currentResult = {}
 let currentResultPVP = {}
-// let result
+let result
 // -------------------------------------------------------
 
 console.log(gameMode)
@@ -229,7 +229,7 @@ function currentResultForWhatGameMode (gameMode) {
           // name2: p2name,
           word: secretWord,
           tries: mistakes,
-          winlose: result,
+          // winlose: result,
           count: ascendingPlayerNumber()
       }
   } else if (gameMode == 'pvp') {
@@ -238,7 +238,7 @@ function currentResultForWhatGameMode (gameMode) {
           name2: p2name,
           word: secretWord,
           tries: mistakes,
-          winlose: result,
+          // winlose: result,
           count: ascendingPlayerNumber()
       }
   }

@@ -81,6 +81,7 @@ let underScore = document.getElementById('correctLetters')
 const listAllLossesButton = document.querySelector('#list-only-losses-button')
 const listAllResultsButton = document.querySelector('#list-all-results-button')
 const removePlayerDataButton = document.querySelector('#remove-results-with-specific-name-button')
+const removePlayerDataButtonPVP = document.querySelector('#remove-results-with-specific-name-button-pvp')
 
 //Anger knapparna
 const difficultyEasy = document.getElementById('difficulty-easy');

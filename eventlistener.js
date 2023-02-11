@@ -168,16 +168,13 @@ playerNameInput.addEventListener('keydown', event => {
 
 playerNameInputButton.addEventListener('click', () => {
     let user = playerNameInput.value
-    // console.log(user)
     removeUserStatsFromLocalStorage(user)
     updateStats()
-    // currentArrayFromLocalStorage.forEach(element => {
-    //     generateTableForPlayerResult((element.name1), (element.word), (element.tries), (element.won))
-    console.log('Du klickade')
+    overlayScreenToggle()
 })
 
 
-
+// Ta bort data-knapp för singleplayer
 removePlayerDataButton.addEventListener('click', () => {
     console.log('hello!');
     modalPanels.removeSpecificPlayerData.classList.toggle('hidden')
