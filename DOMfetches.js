@@ -1,8 +1,57 @@
+// Alla modals
+const modalPanels = {
+    enterName: document.querySelector('#enter-name-modal'),
+    gameMode: document.querySelector('#gamemode-modal'),
+    endLose: document.querySelector('#lose-modal'),
+    endWin: document.querySelector('#win-modal'),
+    about: document.querySelector('#about-modal'),
+    // SCOREBOARD
+    removeSpecificPlayerData: document.querySelector('#remove-player-data-modal')
+}
+
+const modalCloseButtons = {
+    aboutModal: document.querySelector('#about-modal-close-button'),
+    // SCOREBOARD
+    removeSpecificPlayerDataModal: document.querySelector('#remove-player-data-modal-close-button')
+}
+
+// OVERLAY - WIN OCH LOSE MODALER
+    const resetButtonForWinOrLoseModalScreen = document.querySelectorAll('.reset-button')
+    const goToScoreboardButton = document.querySelectorAll('.go-to-scoreboard-button')
+    let correctAnswer = document.querySelector('#correct-answer')
+    let triesAmount = document.querySelector('#amount-tries')
 
 
 // OVERLAY I BÖRJAN MED NAMN OSV
-let nameInputButton = document.querySelector("#name-enter-button");
-let errorMessageDOM = document.querySelector('.error-message')
+    let nameInputButton = document.querySelector("#name-enter-button");
+    let errorMessageDOM = document.querySelector('.error-message')
+    
+    //Anger knapparna
+    const difficultyEasy = document.getElementById('difficulty-easy');
+    const difficultyMedium = document.getElementById('difficulty-medium');
+    const difficultyHard = document.getElementById('difficulty-hard');
+        let errorMessageEmpty = ''
+        let errorMessageTextInput = 'Var god ange ditt namn!'
+        let errorMessageDifficulty = 'Var god ange en svårighetsgrad!'
+
+       
+        
+// OVERLAY - SPELLÄGE
+    const gameModeModal = document.getElementById('gamemode-modal')
+    const vanligtButton = document.getElementById('vanligt-button')
+    let pvpButton = document.querySelector('.pvp-mode')
+    let pvpDiv = document.querySelector('.pvp-div')
+        let pvpInputfieldPlayer1 = document.getElementById('pvp-name1')
+        let pvpInputfieldPlayer2 = document.getElementById('pvp-name2')
+        const pvpStartButton = document.getElementById('pvp-start-button')
+    const secretWordDiv = document.getElementById('secret-name-div')
+        let pvpSecretWordInput = document.getElementById('secret-word-pvp')
+
+
+// OVERLAY - OM OSS
+
+
+
 
 // Modal knappar
 const playerNameInput = document.querySelector('#select-player-data-using-input')
@@ -17,26 +66,18 @@ const listAllWinsButtonPVP = document.getElementById('list-only-wins-button-pvp'
 
 // #2 : Namninputs ska sparas i en variabel
 
-let pvpInputfieldPlayer1 = document.getElementById('pvp-name1')
-let pvpInputfieldPlayer2 = document.getElementById('pvp-name2')
+
 
 
 // #1 : INPUTFÄLT UNDER PVP-KNAPP
-let pvpButton = document.querySelector('.pvp-mode')
-const gameModeModal = document.getElementById('gamemode-modal')
-const vanligtButton = document.getElementById('vanligt-button')
-const pvpStartButton = document.getElementById('pvp-start-button')
-let pvpDiv = document.querySelector('.pvp-div')
-const secretWordDiv = document.getElementById('secret-name-div')
-let pvpSecretWordInput = document.getElementById('secret-word-pvp')
+
 
 let nameInputDiv = document.querySelector('.player-input')
 let nameInput = document.getElementById('name-input')
 let namePlaceholder = document.getElementById('player-name-placeholder')
 
 //Eventlyssnare på restart-game knapp i win eller lose
-const resetButtonForWinOrLoseModalScreen = document.querySelectorAll('.reset-button')
-const goToScoreboardButton = document.querySelectorAll('.go-to-scoreboard-button')
+
 
 let overlayNameInput = document.querySelector('#name-input')
 
@@ -83,10 +124,6 @@ const listAllResultsButton = document.querySelector('#list-all-results-button')
 const removePlayerDataButton = document.querySelector('#remove-results-with-specific-name-button')
 const removePlayerDataButtonPVP = document.querySelector('#remove-results-with-specific-name-button-pvp')
 
-//Anger knapparna
-const difficultyEasy = document.getElementById('difficulty-easy');
-const difficultyMedium = document.getElementById('difficulty-medium');
-const difficultyHard = document.getElementById('difficulty-hard');
 
 // Antal felgissningar
 let mistakes = 0;
@@ -95,28 +132,14 @@ let wrongGuesses = 0
 document.getElementById('maxWrong').innerHTML = maxWrong;
 document.getElementById('mistakes').innerHTML = mistakes;
 
-// Anger spelläge
-// let gameMode
-
 //Måste ha secretWord som tom sträng pga ordet ändras
 let secretWord = '';
-
-
 
 //Slumpar ut ett ord i wordArray
 const randomWords = wordArray
 
 //Ordet som valdes
 let answer = secretWord;
-
-
-
-
-
-
-
-
-// console.log('script ' + p2name)
 
 // Tangenter som inte får registreras som försök
 const disabledKeys = ['enter', 'control', 'arrowleft', 'arrowright', 'arrowdown', 'arrowup', 'meta', 'alt', 'altgraph', 'contextmenu', 'home', 'end', 'pagedown', 'pageup', 'shift', 'delete', 'capslock', 'backspace', 'insert', 'scrollock', 'pause', 'tab', 'apostrophe', 'f1', 'f2', 'f3', 'f4', 'f5', 'f6', 'f7', 'f8', 'f9', 'f10', 'f11', 'f12', '§', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'capsLock', 'escape', 'Tab', '-', ',', '.', '+', '<', '>', 'dead', "'", 'scrollock', '*', '?', ')', '(', '/', '&', '%', '¤', '#', '"', '!', '½', ';', ':', '_', '=']
@@ -128,46 +151,8 @@ let guessedLetters = wrongLetters.innerText.split();
 let singleLetter = secretWord.split(""); //delar upp ordet
 
 
-// Namn-input variabler
-
-let errorMessageEmpty = ''
-let errorMessageTextInput = 'Var god ange ditt namn!'
-let errorMessageDifficulty = 'Var god ange en svårighetsgrad!'
-
-
-
-
-
-
-
-
-
-
-
-
 let p1name
-// let p2name
 
-
-
-
-// Alla modals
-const modalPanels = {
-    enterName: document.querySelector('#enter-name-modal'),
-    gameMode: document.querySelector('#gamemode-modal'),
-    endLose: document.querySelector('#lose-modal'),
-    endWin: document.querySelector('#win-modal'),
-    about: document.querySelector('#about-modal'),
-    // SCOREBOARD
-    removeSpecificPlayerData: document.querySelector('#remove-player-data-modal')
-}
-
-// En knapp för varje modal för att stänga (toggla) av modalen och overlayen
-const modalCloseButtons = {
-    aboutModal: document.querySelector('#about-modal-close-button'),
-    // SCOREBOARD
-    removeSpecificPlayerDataModal: document.querySelector('#remove-player-data-modal-close-button')
-}
 
 // Selecta overlayen för modals
 const overlay = document.querySelector('.overlay')
@@ -187,7 +172,6 @@ const gameResultModalOverlay = (endResult, generatedWord, amountTries) => {
     // Om man har vunnit
     if (endResult == true) {
 
-        let triesAmount = document.querySelector('#amount-tries')
         triesAmount.textContent = mistakes
 
         bodyElem.classList.add('game-won')
@@ -197,7 +181,7 @@ const gameResultModalOverlay = (endResult, generatedWord, amountTries) => {
         // Om man har förlorat
     } else if (endResult == false) {
 
-        let correctAnswer = document.querySelector('#correct-answer')
+        
         correctAnswer.textContent = secretWord
 
         bodyElem.classList.add('game-over')

@@ -57,16 +57,16 @@ closeScoreboardButton.addEventListener('click', () => {
     scoreboard.classList.add('hidden')
     gameboard.classList.remove('hidden')
     bodyElem.style.background = '#bae1ff'
-    clearTableHeader()
-    clearScoreboard()
-    // generateTableHeader()
+    clearTableHeader(gameMode)
+    clearScoreboard(gameMode)
 })
 
 closeScoreboardButtonPVP.addEventListener('click', () => {
-    // PVP
     scoreboardPVP.classList.add('hidden')
     gameboard.classList.remove('hidden')
     bodyElem.style.background = '#bae1ff'
+    clearTableHeader(gameMode)
+    clearScoreboard(gameMode)
 })
 
 showScoreboardButton.addEventListener('click', () => {
@@ -119,7 +119,6 @@ headerButtons.forEach(element => {
 })
 
 // Förhindrande av att namninskrivning i början räknas som gissningar i spelet.
-
 overlayNameInput.addEventListener('keydown', (event) => {
     event.stopPropagation()
 })
@@ -141,7 +140,6 @@ nameInput.addEventListener("keyup", (event) => {
         let overlay = document.querySelector(".overlay");
         overlay.classList.add("hidden");
         gameMode = 'singleplayer'
-        console.log(gameMode)
       } else if (isNameProvided === false) {
         errorMessage('textinput')
     } else if (difficultySelected === false) {
@@ -155,7 +153,6 @@ listAllWinsButton.addEventListener('click' , (event) => {
 })
 
 // SCOREBOARD > PVP > KNAPP > VINST
-
 listAllWinsButtonPVP.addEventListener('click' , (event) => {
     sortWinsListByAmountTries()
 })
@@ -208,14 +205,8 @@ headerButtonList.showScoreboard.addEventListener('click', (event) => {
 
 ///////////////// PVP 
 pvpButton.addEventListener('click', (event) => {
-    // let inputfieldP1 = document.createElement('input')
-    // inputfieldP1.innerText = 'blabla'
-    // gameModeModal.append(inputfieldP1)
     pvpDiv.style.visibility = 'visible' 
-    console.log('hahahaha')
 })
-
-
 
 //Stänger ner overlay om vanligt blir klickad
 vanligtButton.addEventListener('click', (event) => {
@@ -224,15 +215,12 @@ vanligtButton.addEventListener('click', (event) => {
 
 //Submitknapp
 pvpStartButton.addEventListener('click', (event) => {
-
 })
 
 // FUNKTION - PVP - Spelare 1
 pvpInputfieldPlayer1.addEventListener("keydown", (event) => {
-    
     // Förhindrar input utanför namninputs-modalen
     event.stopPropagation()
-
 })
 
 
@@ -247,20 +235,16 @@ pvpInputfieldPlayer2.addEventListener("keydown", (event) => {
         p2name = pvpInputfieldPlayer2.value
         pvpDiv.style.visibility = 'hidden'
         secretWordDiv.style.visibility = 'visible'
-        // gameModeModal.style.visibility = 'hidden'
         gameMode = 'pvp'
         generateTableHeader('pvp')
     }
-
 })
 
 pvpStartButton.addEventListener('click', (event) => {
     p1name = pvpInputfieldPlayer1.value
     p2name = pvpInputfieldPlayer2.value
-    console.log(p2name)
     pvpDiv.style.visibility = 'hidden'
 	secretWordDiv.style.visibility = 'visible'
-    // gameModeModal.style.visibility = 'hidden'
     gameMode = 'pvp'
     generateTableHeader('pvp')
 })
@@ -276,7 +260,6 @@ pvpSecretWordInput.addEventListener("keydown", (event) => {
         pvpSecretWord = pvpSecretWordInput.value.toString()
         pvpSecretWordInput.innerText = pvpSecretWord
         p2name = pvpInputfieldPlayer2.value
-        console.log(p2name)
 		secretWord = pvpSecretWord.toLowerCase();
         appendSecretWordToDashes()
         overlayScreenToggle()
@@ -284,7 +267,3 @@ pvpSecretWordInput.addEventListener("keydown", (event) => {
         clearScoreboard()
     }
 })
-
-
-
-

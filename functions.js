@@ -1,5 +1,3 @@
-console.log(gameMode)
-
 let errorMessageText = {
   empty: '',
   inputError: 'Var god ange ditt namn!',
@@ -26,9 +24,6 @@ function generatePlayerResult() {
   playerResult.score = `${mistakes} of ${maxWrong}`;
   return playerResult;
 }
-// generatePlayerResult();
-
-//
 
 
 
@@ -40,7 +35,7 @@ let p2name
 
 
 function generateTableHeader(gameMode) {
-console.log(gameMode)
+// console.log(gameMode)
   let scoreTableBody = document.getElementById('table-body')
   let scoreTableBodyPVP = document.getElementById('table-body-pvp')
   
@@ -114,15 +109,20 @@ console.log(gameMode)
 }
 
 
-function clearTableHeader() {
+function clearTableHeader(gameMode) {
 
-    let scoreTableHeader = document.querySelector('.score-table-header-row')
-    scoreTableHeader.remove()
 
-    for (let i = 0; i < 4; i++) {
-    let tableHeadData = document.querySelector('.table-head-data')
-    tableHeadData.remove()
-  }
+    if (gameMode = 'singleplayer') {
+      for (let i = 0; i < 4; i++) {
+        let tableHeadData = document.querySelector('.table-head-data')
+        tableHeadData.remove()
+      }
+    } else {
+      for (let i = 0; i < 5; i++) {
+        let tableHeadData = document.querySelector('.table-head-data-pvp')
+        tableHeadData.remove()
+      }
+    }
   }
 
 function generateTableForPlayerResult (name, word, faultyguesses, winlose) {
@@ -218,7 +218,6 @@ let currentResultPVP = {}
 let result
 // -------------------------------------------------------
 
-console.log(gameMode)
 
 // PlayerCount-sektion
 let LS_KEY_COUNTER = 'hangman-player#'
@@ -233,7 +232,6 @@ function ascendingPlayerNumber() {
 }
 
 function currentResultForWhatGameMode (gameMode) {
-  console.log(gameMode)
   if (gameMode == 'singleplayer') {
       return currentResult = {
           name1: p1name,
@@ -270,9 +268,6 @@ function currentStats() {
 
   currentArrayFromLocalStorage = JSON.parse(currentStringFromLocalStorage) // Gör om JSON-sträng till JS-array
 
-  console.log('FUNKTIONSTEST: currentStats -> currentArrayFromLocalStorage nedan')
-  console.log(currentArrayFromLocalStorage)
-  console.log('')
   return currentArrayFromLocalStorage
 }
 
@@ -298,9 +293,9 @@ function addStatToCurrentStats( result ) {
   // }
 
 
-  console.log('FUNKTIONSTEST: addStatToCurrentStats -> arrayFromLocalStorage')
-  console.log(arrayFromLocalStorage)
-  console.log('')
+  // console.log('FUNKTIONSTEST: addStatToCurrentStats -> arrayFromLocalStorage')
+  // console.log(arrayFromLocalStorage)
+  // console.log('')
   let stringToSave = JSON.stringify(arrayFromLocalStorage) // gör om JS-arrayen till JSON-string igen
   localStorage.setItem(LS_LIST_CHOICE, stringToSave) // skickar tillbaka den nya JSON-stringen till LS
   // renderStats()
@@ -343,7 +338,7 @@ function clearScoreboard() {
       let newScoreTableRow = document.querySelector('.score-table-row')
       if (newScoreTableRow != null) {
       newScoreTableRow.remove()
-      console.log('INUTI clearScoreboard: Alla rader tas bort')
+      // console.log('INUTI clearScoreboard: Alla rader tas bort')
   }}
 }
 
@@ -357,11 +352,8 @@ function renderStats() {
           generateTableForPlayerResult((element.name1), (element.word), (element.tries), (element.winlose))
       }) 
   } else if (gameMode == 'pvp') {
-      console.log('PVP')
-      console.log(p2name)
       currentArrayFromLocalStorage.forEach(element => {
           generateTableForPlayerResultPVP((element.name1), (element.name2), (element.word), (element.tries), (element.winlose))
-          console.log(element.name2)
       }) 
   }
 }
