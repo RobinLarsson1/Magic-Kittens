@@ -73,9 +73,11 @@ showScoreboardButton.addEventListener('click', () => {
     if (gameMode === 'singleplayer') {
         scoreboard.classList.remove('hidden')
         gameboard.classList.add('hidden')
+        renderStats()
     } else if (gameMode === 'pvp') {
         scoreboardPVP.classList.remove('hidden')
         gameboard.classList.add('hidden')
+        renderStats()
     }
 })
 
