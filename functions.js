@@ -48,13 +48,13 @@ function generateTableHeader(gameMode) {
   // Tillför fält för spelare 1 till table header
   let newTableHeadDataNameOnePVP = document.createElement('td')
   newTableHeadDataNameOnePVP.className = 'table-head-data'
-  newTableHeadDataNameOnePVP.innerText = `Spelare 1`
+  newTableHeadDataNameOnePVP.innerText = `Gissare`
   scoreTableBodyPVP.append(newTableHeadDataNameOnePVP)
 
   // Tillför fält för spelare 2 till table header
   let newTableHeadDataNameTwoPVP = document.createElement('td')
   newTableHeadDataNameTwoPVP.className = 'table-head-data'
-  newTableHeadDataNameTwoPVP.innerText = `Spelare 2`
+  newTableHeadDataNameTwoPVP.innerText = `Ordskapare`
   scoreTableBodyPVP.append(newTableHeadDataNameTwoPVP)
  
   // Tillför fält för ord till table header
