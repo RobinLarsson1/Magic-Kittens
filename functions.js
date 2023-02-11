@@ -113,6 +113,18 @@ console.log(gameMode)
   }
 }
 
+
+function clearTableHeader() {
+
+    let scoreTableHeader = document.querySelector('.score-table-header-row')
+    scoreTableHeader.remove()
+
+    for (let i = 0; i < 4; i++) {
+    let tableHeadData = document.querySelector('.table-head-data')
+    tableHeadData.remove()
+  }
+  }
+
 function generateTableForPlayerResult (name, word, faultyguesses, winlose) {
 
   let scoreTableBody = document.getElementById('table-body')
@@ -186,7 +198,6 @@ function generateTableForPlayerResultPVP (name1, name2, word, faultyguesses, win
   newTableDataWinLosePVP.innerText = `${winlose}`
   newScoreTableRowPVP.append(newTableDataWinLosePVP)
 }
-
 
 
 // --------- DATA FÖR NEDANSTÅENDE FUNKTIONER ------------

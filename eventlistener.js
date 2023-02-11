@@ -57,6 +57,9 @@ closeScoreboardButton.addEventListener('click', () => {
     scoreboard.classList.add('hidden')
     gameboard.classList.remove('hidden')
     bodyElem.style.background = '#bae1ff'
+    clearTableHeader()
+    clearScoreboard()
+    // generateTableHeader()
 })
 
 closeScoreboardButtonPVP.addEventListener('click', () => {
@@ -197,6 +200,10 @@ scoreboardPVPButtonLatest.addEventListener('click', (event) => {
 })
 
 
+headerButtonList.showScoreboard.addEventListener('click', (event) => {
+    generateTableHeader(gameMode)
+    updateStats()
+})
 
 
 ///////////////// PVP 
