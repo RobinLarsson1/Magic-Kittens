@@ -415,11 +415,14 @@ function removeUserStatsFromLocalStorage() {
         }
     }
 }
-function clearScoreboard() {
-    let newScoreTableRow = document.querySelectorAll('.score-table-row')
-    newScoreTableRow.remove()
 
-    console.log('Du klickade')
+
+function refreshScoreboard() {
+    let newScoreTableRow = document.querySelector('.score-table-row')
+    newScoreTableRow.remove()
+    renderStats()
+
+    console.log('Funktion refreshScoreboard() aktiverades')
 }
 
 function renderStats() {
@@ -455,7 +458,7 @@ playerNameInput.addEventListener('keydown', event => {
 
 playerNameInputButton.addEventListener('click', () => {
     let user = playerNameInput.value
-    console.log(user)
+    // console.log(user)
     removeUserStatsFromLocalStorage()
     clearScoreboard()
     currentArrayFromLocalStorage.forEach(element => {
