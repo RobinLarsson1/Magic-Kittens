@@ -161,10 +161,11 @@ listAllWinsButtonPVP.addEventListener('click' , (event) => {
 playerNameInput.addEventListener('keydown', event => {
     event.stopPropagation()
     if (event.key == 'Enter') {
-            removePlayerData()
-            console.log('Du klickade')
-    }
-})
+        let user = playerNameInput.value
+        removeUserStatsFromLocalStorage(user)
+        updateStats()
+        overlayScreenToggle()
+}})
 
 playerNameInputButton.addEventListener('click', () => {
     let user = playerNameInput.value
