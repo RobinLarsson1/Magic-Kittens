@@ -1,7 +1,4 @@
-//Anger knapparna
-const difficultyEasy = document.getElementById('difficulty-easy');
-const difficultyMedium = document.getElementById('difficulty-medium');
-const difficultyHard = document.getElementById('difficulty-hard');
+
 
 //Regler för knapparna
 const easyWords = wordArray.filter(secretWord => secretWord.length > 11);
@@ -9,8 +6,7 @@ const mediumWords = wordArray.filter(secretWord => 7 <= secretWord.length && sec
 const hardWords = wordArray.filter(secretWord => secretWord.length < 7);
 
 
-//Måste ha secretWord som tom sträng pga ordet ändras
-let secretWord = '';
+
 
 // sparar svårighetsgraden för att använda vid reload-funktion
 let currentDifficulty

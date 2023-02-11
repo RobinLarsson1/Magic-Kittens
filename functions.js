@@ -1,7 +1,4 @@
-//funktion för att ladda om sidan
-function reloadGame() {
-  location.reload()
-};
+console.log(gameMode)
 
 let errorMessageText = {
   empty: '',
@@ -10,93 +7,16 @@ let errorMessageText = {
 }
 
 function errorMessage(action) {
-  let errorMessage = document.querySelector('.error-message')
-  if (action === 'textinput') {errorMessage.innerText = errorMessageText.inputError} 
-  else if (action === 'difficultyButton') {errorMessage.innerText = errorMessageText.difficultyError}
+  if (action === 'textinput') {errorMessageDOM.innerText = errorMessageText.inputError} 
+  else if (action === 'difficultyButton') {errorMessageDOM.innerText = errorMessageText.difficultyError}
 }
 
-//Resetknappar i win, lose samt för header
-resetButtonForWinOrLoseModalScreen.forEach(button => {
-  button.addEventListener('click', (event) => {
-    reloadGame()
-    overlayScreenToggle()
-  })
-})
-
-headerButtonList.resetGame.addEventListener("click", reloadGame);
-
-
-// Gå till scoreboard efter lose eller win
-goToScoreboardButton.forEach(button => {
-  button.addEventListener('click', () => {
-    if (!document.querySelector('#win-modal').classList.contains('hidden')) {
-      modalPanels.endWin.classList.add('hidden')
-      goToScoreboard()
-    }
-    if (!document.querySelector('#lose-modal').classList.contains('hidden')) {
-      modalPanels.endLose.classList.add('hidden')
-      goToScoreboard()
-    }
-  });
-})
 
 //Skickar in hemliga ordet
 function appendSecretWordToDashes() {
   const svar = document.getElementById('correctLetters');
   svar.innerHTML = secretWord.replace(/./g, '<span class="dashes">_</span>');
   }
-
-// FUNKTION - Namn-input
-nameInput.addEventListener("keyup", (event) => {
-  appendPlayerName(event)
-});
-
-function appendPlayerName(event) {
-      // Kollar om inputfältet är tomt eller ej
-      let isNameProvided = (nameInput.value !== '')
-    
-      if ((event.code === "Enter") && (nameInput.value !== '')) {
-      namePlaceholder.innerText = " " + nameInput.value;
-      p1name = nameInput.value;
-      nameInput.remove();
-      modalPanels.enterName.className = "hidden";
-      let overlay = document.querySelector(".overlay");
-      overlay.classList.add("hidden");
-      gameMode = 'singleplayer'
-    } else if (isNameProvided === false) {
-      errorMessage('textinput')
-  } else if (difficultySelected === false) {
-    errorMessage('difficultyButton')
-  }
-}
-
-
-
-// FUNKTION - Namn-input kopplat till "Redo att spela!"-knapp
-nameInputButton.addEventListener("click", () => {
-
-    // Kollar om inputfältet är tomt eller ej
-    let isNameProvided = (nameInput.value !== '' && difficultySelected === true)
-
-    if (isNameProvided === true && difficultySelected === true) { 
-        namePlaceholder.innerText = " " + nameInput.value;
-        p1name = nameInput.value;
-        nameInput.remove();
-        modalPanels.enterName.className = "hidden";
-        let overlay = document.querySelector(".overlay");
-        overlay.classList.add("hidden");
-        gameMode = 'singleplayer'
-    } else if (isNameProvided === false) {
-        errorMessage('textinput')
-    }else if (difficultySelected === false) {
-      errorMessage('difficultyButton')
-    }
-  }
-);
-
-
-
-
 
 
 // FUNKTION - generera fram spelarnamn samt resultat
@@ -109,112 +29,18 @@ function generatePlayerResult() {
 // generatePlayerResult();
 
 //
-//funktion för att printa bokstäver
-document.onkeydown = function(event) {
-
-  if (scoreboard.classList.contains('hidden') && scoreboardPVP.classList.contains('hidden')) {
-  //Tangentbordet
-  let key = event.key.toLowerCase();
-
-  let singleLetter = secretWord.split("");
-
-  //Kolla om gissningen är rätt
-  let isCorrectGuess = singleLetter.includes(key);
-
-  //Kollar om man redan gissat 
-  let isGuessed = guessedLetters.includes(key);
-
-  //Kollar om det man gissat är disabled key
-  let isDisabled = disabledKeys.includes(key);
-
-  //Kollar om en ny och korrekt key är pressed, samt om man har slut på gissningar
-  let isValidGuess = isCorrectGuess ||(!isCorrectGuess && !isGuessed && mistakes < maxWrong && !isDisabled)
-
-  //Skickar in fel bokstav, samt uppdaterar antal felgissningar
 
 
-  
-  // Förhindrar input utanför namninputs-modalen
-  let nameOverlayIsHidden = modalPanels.enterName.className.includes("hidden");
-  console.log(event.key);
 
-  function gameStart () {
-    function updateIncorrectGuess() {
-      wrongLetters.innerText += key + ', '
-      guessedLetters.push(key);
-      mistakes++
-      document.getElementById('mistakes').innerText = mistakes;
-      hangManPicture.innerHTML = hangManPicture.innerHTML + hangMan[wrongGuesses];
-      wrongGuesses++
-      return wrongGuesses;
-    }
 
-    //Skickar in korrekt gissning iställer för understräcken
-    function updateCorrectGuess() {
-      singleLetter.forEach((char, index) => {
-          if (char === key) {
-              dashes[index].innerText = char;
-          }
-      });
-    } 
-
-    //Kollar om ordet är gissat eller inte, loopas varje gång
-    function isWordComplete(singleLetter, dashes) {
-      for (let i = 0; i < singleLetter.length; i++) {
-        if (dashes[i].innerText !== singleLetter[i]) {
-          return false;
-        }
-      }
-        
-    return true;
-    }
-
-      //kallar på rätt funktion beroende på vilken gissning som anges
-      if (isCorrectGuess) {
-          updateCorrectGuess()
-      } else if (isValidGuess) {
-          updateIncorrectGuess()
-      }
-
-    //Kolla om spelet är förlorat
-    let gameIsOver = mistakes >= maxWrong;
-    if (gameIsOver && (gameMode == 'singleplayer')) {
-      gameResultModalOverlay(false, answer);
-      addStatToCurrentStats(false);
-      renderStats()
-    } else if (gameIsOver && (gameMode == 'pvp')) {
-      addStatToCurrentStats(false)
-      renderStats()
-    }
-  
-    //Kolla om spelet är vunnet 
-    let isGameWon = isWordComplete(singleLetter, dashes)
-    if (isGameWon && (gameMode == 'singleplayer')) {
-      generateTableHeader('singleplayer')
-      gameResultModalOverlay(true, null, mistakes);
-      addStatToCurrentStats( true )
-      renderStats()
-    } else if (isGameWon && (gameMode == 'pvp')) {
-      gameResultModalOverlay(true, null, mistakes)
-      addStatToCurrentStats( true )
-      renderStats()
-    }
-}
-
-if (overlay.classList.contains('hidden') === true) {
-    gameStart()
-} else {
-    console.log('Du måste stänga av overlayen för modalerna för att kunna spela eller fortsätta kunna spela.');
-  }
-}}
-
+let p2name
 
 
 
 
 
 function generateTableHeader(gameMode) {
-
+console.log(gameMode)
   let scoreTableBody = document.getElementById('table-body')
   let scoreTableBodyPVP = document.getElementById('table-body-pvp')
   
@@ -359,4 +185,232 @@ function generateTableForPlayerResultPVP (name1, name2, word, faultyguesses, win
   newTableDataWinLosePVP.className = 'score-table-data score-table-data-winlose'
   newTableDataWinLosePVP.innerText = `${winlose}`
   newScoreTableRowPVP.append(newTableDataWinLosePVP)
+}
+
+
+
+// --------- DATA FÖR NEDANSTÅENDE FUNKTIONER ------------
+const LS_KEY = 'hangman-score-old'
+
+let LS_KEY_SINGLEPLAYER = 'hangman-score'
+let LS_KEY_PVP = 'hangman-score-pvp'
+
+let LS_LIST_CHOICE = []
+let stringFromLocalStorage = []
+stringFromLocalStorage = localStorage.getItem(LS_LIST_CHOICE)
+let results = stringFromLocalStorage
+let objectFromLocalStorage = JSON.parse(stringFromLocalStorage)
+
+// Placeholder-objekt ( ska fyllas i mha funktionerna nedan )
+let currentResult = {}
+let currentResultPVP = {}
+let result
+// -------------------------------------------------------
+
+console.log(gameMode)
+
+// PlayerCount-sektion
+let LS_KEY_COUNTER = 'hangman-player#'
+// let LS_KEY_COUNTER_PVP = 'hangman-PVP-player#'
+function ascendingPlayerNumber() {
+    let counterFromLocalStorage = localStorage.getItem(LS_KEY_COUNTER)
+    if (!counterFromLocalStorage) { counterFromLocalStorage = 0 }
+    counterFromLocalStorage++
+    let stringToTransfer = JSON.parse(counterFromLocalStorage)
+    localStorage.setItem(LS_KEY_COUNTER, stringToTransfer)
+    return counterFromLocalStorage
+}
+
+function currentResultForWhatGameMode (gameMode) {
+  console.log(gameMode)
+  if (gameMode == 'singleplayer') {
+      return currentResult = {
+          name1: p1name,
+          // name2: p2name,
+          word: secretWord,
+          tries: mistakes,
+          winlose: result,
+          count: ascendingPlayerNumber()
+      }
+  } else if (gameMode == 'pvp') {
+      return currentResult = {
+          name1: p1name,
+          name2: p2name,
+          word: secretWord,
+          tries: mistakes,
+          winlose: result,
+          count: ascendingPlayerNumber()
+      }
+  }
+}
+
+function saveToWhichLS_LIST(gameMode) {
+  if (gameMode == 'singleplayer') { return LS_LIST_CHOICE = LS_KEY_SINGLEPLAYER }
+  else if (gameMode == 'pvp') { return LS_LIST_CHOICE = LS_KEY_PVP }
+}
+
+// Funktion för att hämta nuvarande stats - FÄRDIG
+function currentStats() {
+  // Kontroll för spelläge, singleplayer eller pvp?
+  saveToWhichLS_LIST(gameMode)
+  
+  let currentStringFromLocalStorage = localStorage.getItem(LS_LIST_CHOICE) // Hämtar LS som JSON-sträng
+  if (!currentStringFromLocalStorage) { currentStringFromLocalStorage = '[]' } // Om LS är tomt, tilldela en tom array
+
+  currentArrayFromLocalStorage = JSON.parse(currentStringFromLocalStorage) // Gör om JSON-sträng till JS-array
+
+  console.log('FUNKTIONSTEST: currentStats -> currentArrayFromLocalStorage nedan')
+  console.log(currentArrayFromLocalStorage)
+  console.log('')
+  return currentArrayFromLocalStorage
+}
+
+let chronologicalCount = 0
+let storedChronological
+let currentArrayFromLocalStorage 
+// Funktion för att lägga till nya stats - FÄRDIG
+function addStatToCurrentStats( ) {
+  // Kontroll för spelläge, singleplayer eller pvp?
+  saveToWhichLS_LIST(gameMode)
+  ascendingPlayerNumber()
+
+  let stringFromLocalStorage = localStorage.getItem(LS_LIST_CHOICE) // Hämtar LS som JSON-sträng
+  if ( !stringFromLocalStorage ) { stringFromLocalStorage = '[]' }
+  let arrayFromLocalStorage = JSON.parse( stringFromLocalStorage ) // Gör om JSON-sträng till JS-array
+  arrayFromLocalStorage.push( currentResultForWhatGameMode(gameMode) )
+  
+  // if (chronologicalCount = 0) {
+  //     storedChronological = currentArrayFromLocalStorage
+  //     console.log(storedChronological)
+  //     chronologicalCount++
+  //     console.log(chronologicalCount)
+  // }
+
+
+  console.log('FUNKTIONSTEST: addStatToCurrentStats -> arrayFromLocalStorage')
+  console.log(arrayFromLocalStorage)
+  console.log('')
+  let stringToSave = JSON.stringify(arrayFromLocalStorage) // gör om JS-arrayen till JSON-string igen
+  localStorage.setItem(LS_LIST_CHOICE, stringToSave) // skickar tillbaka den nya JSON-stringen till LS
+  // renderStats()
+}
+
+
+// Funktion för att ta bort vissa stats
+function removeUserStatsFromLocalStorage(user) {
+  // Kontroll för spelläge, singleplayer eller pvp?
+  // saveToWhichLS_LIST(gameMode)
+   
+  // gameMode = 'singleplayer'
+  let stringFromLocalStorage = localStorage.getItem(LS_LIST_CHOICE) // Hämtar LS som JSON-sträng
+  let objectFromLocalStorage = JSON.parse(stringFromLocalStorage)
+  const playerNameInput = document.querySelector('#select-player-data-using-input')
+  
+  // Loop som hämtar alla namn innehållande argumentet (dvs strängen/namnet) man tillför till funktionen
+  // och sparar till arrayen 'stringToSave'
+  // console.log(objectFromLocalStorage[2])
+  // console.log('objectFromLocalStorage[0].name1')
+  // console.log(objectFromLocalStorage[0].name1)
+  let newArray = []
+  for (let i = 0; i < objectFromLocalStorage.length; i++) {
+      if (objectFromLocalStorage[i].name1 != user) {
+          newArray.push(objectFromLocalStorage[i])          
+          
+          // Den nya filtrerade arrayen 'stringToSave' skickas tillbaka till LS 
+          let stringToSave = JSON.stringify(newArray)
+          localStorage.setItem(LS_LIST_CHOICE, stringToSave)
+      } clearScoreboard()
+  }
+}
+
+
+function clearScoreboard() {
+  let stringFromLocalStorage = localStorage.getItem(LS_LIST_CHOICE) // Hämtar LS som JSON-sträng
+  let objectFromLocalStorage = JSON.parse(stringFromLocalStorage)
+
+  for (let i = 0; i < objectFromLocalStorage.length; i++) {
+      let newScoreTableRow = document.querySelector('.score-table-row')
+      if (newScoreTableRow != null) {
+      newScoreTableRow.remove()
+      console.log('INUTI clearScoreboard: Alla rader tas bort')
+  }}
+}
+
+function renderStats() {
+  currentResultForWhatGameMode(gameMode)
+  currentStats()
+  // gameMode = 'pvp'
+
+  if (gameMode == 'singleplayer') {
+      currentArrayFromLocalStorage.forEach(element => {
+          generateTableForPlayerResult((element.name1), (element.word), (element.tries), (element.result))
+      }) 
+  } else if (gameMode == 'pvp') {
+      console.log('PVP')
+      console.log(p2name)
+      currentArrayFromLocalStorage.forEach(element => {
+          generateTableForPlayerResultPVP((element.name1), (element.name2), (element.word), (element.tries), (element.result))
+          console.log(element.name2)
+      }) 
+  }
+}
+
+function updateStats() {
+  clearScoreboard()
+  renderStats()
+}
+
+
+let toggleCountForChronological = 0
+const scoreboardSortChronologically = () => {
+  for (let i = 0; i < 5; i++) {
+      if (toggleCountForChronological == 0) {
+          const saveSortResult = JSON.parse(localStorage.getItem(LS_LIST_CHOICE)).sort(function(a, b) {
+              return parseFloat(a.count) - parseFloat(b.count);
+          })
+          const saveNewString = JSON.stringify(saveSortResult)
+          
+          localStorage.setItem(LS_LIST_CHOICE, saveNewString)
+          updateStats()
+          
+          ++toggleCountForChronological
+      } else if (toggleCountForChronological == 1) {
+          --toggleCountForChronological
+          const saveSortResult = JSON.parse(localStorage.getItem(LS_LIST_CHOICE)).sort(function(a, b) {
+              return parseFloat(b.count) - parseFloat(a.count);
+          })
+
+          const saveNewString = JSON.stringify(saveSortResult)
+          localStorage.setItem(LS_LIST_CHOICE, saveNewString)
+          updateStats()
+      }       
+  }
+}
+
+
+
+let toggleCountForTries = 0
+const sortWinsListByAmountTries = () => {
+  for (let i = 0; i < 5; i++) {
+      if (toggleCountForTries == 0) {
+          const saveSortResult = JSON.parse(localStorage.getItem(LS_LIST_CHOICE)).sort(function(a, b) {
+              return parseFloat(a.tries) - parseFloat(b.tries);
+          })
+          const saveNewString = JSON.stringify(saveSortResult)
+          
+          localStorage.setItem(LS_LIST_CHOICE, saveNewString)
+          updateStats()
+          
+          ++toggleCountForTries
+      } else if (toggleCountForTries == 1) {
+          --toggleCountForTries
+          const saveSortResult = JSON.parse(localStorage.getItem(LS_LIST_CHOICE)).sort(function(a, b) {
+              return parseFloat(b.tries) - parseFloat(a.tries);
+          })
+
+          const saveNewString = JSON.stringify(saveSortResult)
+          localStorage.setItem(LS_LIST_CHOICE, saveNewString)
+          updateStats()
+      }       
+  }
 }

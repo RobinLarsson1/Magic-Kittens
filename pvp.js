@@ -1,30 +1,4 @@
-// #1 : INPUTFÄLT UNDER PVP-KNAPP
-// let pvpButton = document.querySelector('.pvp-mode')
-// const gameModeModal = document.getElementById('gamemode-modal')
-// const vanligtButton = document.getElementById('vanligt-button')
-// const pvpStartButton = document.getElementById('pvp-start-button')
-// let pvpDiv = document.querySelector('.pvp-div')
-// const secretWordDiv = document.getElementById('secret-name-div')
-// let pvpSecretWordInput = document.getElementById('secret-word-pvp')
 
-
-pvpButton.addEventListener('click', (event) => {
-    // let inputfieldP1 = document.createElement('input')
-    // inputfieldP1.innerText = 'blabla'
-    // gameModeModal.append(inputfieldP1)
-    pvpDiv.style.visibility = 'visible' 
-    console.log('hahahaha')
-})
-
-//Stänger ner overlay om vanligt blir klickad
-vanligtButton.addEventListener('click', (event) => {
-    overlayScreenToggle()
-})
-
-//Submitknapp
-pvpStartButton.addEventListener('click', (event) => {
-
-})
 
 // #2 : Namninputs ska sparas i en variabel
 
@@ -34,62 +8,8 @@ pvpStartButton.addEventListener('click', (event) => {
 
 
 
-// FUNKTION - PVP - Spelare 1
-pvpInputfieldPlayer1.addEventListener("keydown", (event) => {
-    
-    // Förhindrar input utanför namninputs-modalen
-    event.stopPropagation()
 
-})
-
-// FUNKTION - PVP - Spelare 2
-pvpInputfieldPlayer2.addEventListener("keydown", (event) => {
-    
-    event.stopPropagation()
-
-    if (event.key === 'Enter') {
-        p1name = pvpInputfieldPlayer1.value
-        p2name = pvpInputfieldPlayer2.value
-        pvpDiv.style.visibility = 'hidden'
-        secretWordDiv.style.visibility = 'visible'
-        // gameModeModal.style.visibility = 'hidden'
-        gameMode = 'pvp'
-        generateTableHeader('pvp')
-    }
-
-})
-
-pvpStartButton.addEventListener('click', (event) => {
-    p1name = pvpInputfieldPlayer1.value
-    p2name = pvpInputfieldPlayer2.value
-    console.log(p2name)
-    pvpDiv.style.visibility = 'hidden'
-	secretWordDiv.style.visibility = 'visible'
-    // gameModeModal.style.visibility = 'hidden'
-    gameMode = 'pvp'
-    generateTableHeader('pvp')
-})
-
-
-let pvpSecretWord
-
-// FUNKTION - PVP - Hemligt ord
-pvpSecretWordInput.addEventListener("keydown", (event) => {
-    // Förhindrar input utanför namninputs-modalen
-    event.stopPropagation()
-    if ((event.code === "Enter") && (pvpSecretWordInput.value !== '')) {
-        pvpSecretWord = pvpSecretWordInput.value.toString()
-        pvpSecretWordInput.innerText = pvpSecretWord
-        p2name = pvpInputfieldPlayer2.value
-        console.log(p2name)
-		secretWord = pvpSecretWord.toLowerCase();
-        appendSecretWordToDashes()
-        overlayScreenToggle()
-		gameModeModal.classList.add('hidden')
-        clearScoreboard()
-    }
-})
-
+// let p2name
 
 
 // function publishStats(result) {
