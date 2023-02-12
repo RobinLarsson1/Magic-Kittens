@@ -229,18 +229,37 @@ function removeUserStatsFromLocalStorage(user) {
   let objectFromLocalStorage = JSON.parse(stringFromLocalStorage)
  
   let newArray = []
+
+  let newScoreTableRow = document.querySelector('.score-table-row')
+
   if (objectFromLocalStorage[0].name1 != undefined) {
-    for (let i = 0; i < objectFromLocalStorage.length; i++) {
-        if ( objectFromLocalStorage[i].name1 != user ) {
-            newArray.push(objectFromLocalStorage[i])          
-            clearScoreboardOfRemovedPlayer()
-          } 
-          }} 
+  objectFromLocalStorage.forEach(object => {
+    if (object.name1 != user) {
+     newArray.push(object) 
+     newScoreTableRow.remove()
+    clearScoreboard()
+    }
+  })}
+
 
     let stringToSave = JSON.stringify(newArray)
     localStorage.setItem(LS_LIST_CHOICE, stringToSave)
-    renderStats()
+
 }
+
+function eraseEveryInstanceOutsideLS(user) {
+  const stringFromLocalStorage = localStorage.getItem(LS_LIST_CHOICE)
+  const objectFromLocalStorage = JSON.parse(stringFromLocalStorage)
+  let newScoreTableRow = document.querySelector('.score-table-row')
+
+  objectFromLocalStorage.forEach(element => {
+    if ((user == element.name1) == true) {
+      return newScoreTableRow.remove()
+    }
+  });
+
+}
+
 
 // FUNKTION för att rensa scoreboard för player removal_______________________________________________________
 function clearScoreboardOfRemovedPlayer() {
@@ -352,3 +371,20 @@ const sortWinsListByAmountTries = () => {
       }       
   }
 }
+
+
+  // let testArray = [
+  //   {name1: 'kalle', word: 'båt', tries: mistakes, winlose: true},
+  //   {name1: 'pelle', word: 'penna', tries: mistakes, winlose: true},
+  //   {name1: 'nils', word: 'torktumlare', tries: mistakes, winlose: true},
+  //   {name1: 'asd', word: 'pommes', tries: mistakes, winlose: true},
+  //   {name1: 'asd', word: 'dator', tries: mistakes, winlose: true},
+  //   {name1: 'kanin', word: 'bord', tries: mistakes, winlose: true},
+  // ]
+
+  // testArray.forEach(object => {
+  //   if (object.name1 == 'asd') {
+  //     console.log(object)
+  //   }
+
+  // })

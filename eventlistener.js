@@ -163,8 +163,9 @@ playerNameInput.addEventListener('keydown', event => {
     if (event.key == 'Enter') {
         let user = playerNameInput.value
         removeUserStatsFromLocalStorage(user)
+        updateStats()
         // clearScoreboard()
-        clearScoreboardOfRemovedPlayer()
+        // clearScoreboardOfRemovedPlayer()
         overlayScreenToggle()
 }})
 
@@ -172,14 +173,15 @@ playerNameInput.addEventListener('keydown', event => {
 playerNameInputButton.addEventListener('click', () => {
     let user = playerNameInput.value
     removeUserStatsFromLocalStorage(user)
-    clearScoreboardOfRemovedPlayer()
+    // clearScoreboardOfRemovedPlayer()
+    updateStats()
     // testFunction()
     modalPanels.removeSpecificPlayerData.classList.toggle('hidden')
     overlayScreenToggle()
 })
 
 
-// Ta bort data-knapp för singleplayer (knappen i headern)
+// Ta bort data-knapp för singleplayer (knappen i headern, inte den som tar bort)
 removePlayerDataButton.addEventListener('click', () => {
     console.log('hello!');
     overlayScreenToggle()
