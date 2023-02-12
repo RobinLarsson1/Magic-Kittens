@@ -57,7 +57,7 @@ closeScoreboardButton.addEventListener('click', () => {
     scoreboard.classList.add('hidden')
     gameboard.classList.remove('hidden')
     bodyElem.style.background = '#bae1ff'
-    clearTableHeader(gameMode)
+    // clearTableHeader(gameMode)
     clearScoreboard(gameMode)
 })
 
@@ -65,7 +65,7 @@ closeScoreboardButtonPVP.addEventListener('click', () => {
     scoreboardPVP.classList.add('hidden')
     gameboard.classList.remove('hidden')
     bodyElem.style.background = '#bae1ff'
-    clearTableHeader(gameMode)
+    // clearTableHeader(gameMode)
     clearScoreboard(gameMode)
 })
 
@@ -199,7 +199,7 @@ scoreboardPVPButtonLatest.addEventListener('click', (event) => {
 
 
 headerButtonList.showScoreboard.addEventListener('click', (event) => {
-    generateTableHeader(gameMode)
+    // generateTableHeader(gameMode)
     updateStats()
 })
 
@@ -237,7 +237,7 @@ pvpInputfieldPlayer2.addEventListener("keydown", (event) => {
         pvpDiv.style.visibility = 'hidden'
         secretWordDiv.style.visibility = 'visible'
         gameMode = 'pvp'
-        generateTableHeader('pvp')
+        // generateTableHeader('pvp')
     }
 })
 
@@ -247,7 +247,7 @@ pvpStartButton.addEventListener('click', (event) => {
     pvpDiv.style.visibility = 'hidden'
 	secretWordDiv.style.visibility = 'visible'
     gameMode = 'pvp'
-    generateTableHeader('pvp')
+    // generateTableHeader('pvp')
 })
 
 

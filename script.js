@@ -88,7 +88,7 @@ document.onkeydown = function(event) {
       //Kolla om spelet är vunnet 
       let isGameWon = isWordComplete(singleLetter, dashes)
       if (isGameWon && (gameMode == 'singleplayer')) {
-        generateTableHeader('singleplayer')
+        // generateTableHeader('singleplayer')
         gameResultModalOverlay(true, null, mistakes);
         addStatToCurrentStats( true )
         renderStats()
