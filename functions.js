@@ -331,7 +331,10 @@ function removeUserStatsFromLocalStorage(user) {
 
 
 function clearScoreboard() {
+  // saveToWhichLS_LIST(gameMode)
   let stringFromLocalStorage = localStorage.getItem(LS_LIST_CHOICE) // Hämtar LS som JSON-sträng
+  if (!stringFromLocalStorage) {stringFromLocalStorage = '[]'}
+
   let objectFromLocalStorage = JSON.parse(stringFromLocalStorage)
 
   for (let i = 0; i < objectFromLocalStorage.length; i++) {
