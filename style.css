@@ -346,18 +346,6 @@ html, body {
     }
 }
 
-@media (max-width: 450px) {
-    .main-section, .middle-section, .game-section {
-        min-width: 90%;
-    }
-
-    .header-buttons {
-        display: flex;
-        gap: 0.5em;
-    }
-
-}
-
 .error-message {
     height: 20px;
     font-size: 1em;
@@ -387,6 +375,7 @@ html, body {
     justify-content: space-around;
     overflow-y:scroll;
     height: 80vh;
+    overflow: hidden;
 }
 
 .score-div {
@@ -424,14 +413,39 @@ html, body {
     padding: 0.3em;
     background-color: #49a9f3;
     color: white;
-    max-width: fit-content;
+    /* max-width: 33%; */
+    padding-left: 0.5em;
+}
+
+.score-table-data-word {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .score-table-data {
-    text-align: center;
+    /* text-align: center; */
+    padding-left: 0.5em;
     font-size: 0.9em;
 }
 
 .score-table-row:nth-child(odd) {
     background-color: #bae1ff7c;
+}
+
+@media (max-width: 600px) {
+    .main-section, .middle-section, .game-section {
+        min-width: 95%;
+    }
+
+    .header-buttons {
+        display: flex;
+        gap: 0.5em;
+    }
+    .table-head-data {
+        font-size: 0.8em;
+    }
+    .score-table-data {
+        font-size: 0.8em;
+    }
+
 }
