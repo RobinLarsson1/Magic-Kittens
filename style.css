@@ -375,7 +375,7 @@ html, body {
     justify-content: space-around;
     overflow-y:scroll;
     height: 80vh;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .score-div {
@@ -448,4 +448,10 @@ html, body {
         font-size: 0.8em;
     }
 
+}
+
+#latest-score-button {
+    width: 9.2em;
+    text-align: center;
+    padding-left: 1em;
 }

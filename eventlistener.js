@@ -195,12 +195,7 @@ modalCloseButtons.removeSpecificPlayerDataModal.addEventListener('click', () => 
 let scoreboardButtonLatest = document.querySelector('#latest-score-button')
 scoreboardButtonLatest.addEventListener('click', (event) => {
     scoreboardSortChronologically()
-    // updateStats()
-    // clearScoreboardOfRemovedPlayer()
-    // currentStats()
-    // clearScoreboard()
-    // renderStats()
-    // toggleText(scoreboardButtonLatest, 'Senaste överst', 'Senaste nederst')
+    // toggleText('scoreboardButtonLatest', 'Senaste nederst', 'Senaste överst')
 })
 
 let scoreboardPVPButtonLatest = document.querySelector('#latest-score-button-pvp')

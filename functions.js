@@ -25,26 +25,16 @@ function generatePlayerResult() {
   return playerResult;
 }
 
-// function toggleText(JSelement, first, second) {
+function toggleText(JSelement, second, first) {
   
-//   if (JSelement.innerText == first) {
-//     JSelement.innerText = second
-//   }
+  if (JSelement.innerText == second) {
+    return JSelement.innerText = first
+  }
+  else if (JSelement.innerText == first) {
+    return JSelement.innerText = second
+  }
 
-//   else if (JSelement.innerText == second) {
-//     JSelement.innerText = first
-//   }
-  
-  
-//   let counterForToggleText
-  
-//     JSelement.innerText = first
-//     ++counterForToggleText
-
-//   if (counterForToggleText == 1)
-//     JSelement.innerText = second
-//     --counterForToggleText
-// }
+}
 
 let p2name
 
@@ -306,29 +296,31 @@ function updateStats() {
 let toggleCountForChronological = 0
 const scoreboardSortChronologically = () => {
   // for (let i = 0; i < 1; i++) {
-      if (toggleCountForChronological == 0) {
+      // if (toggleCountForChronological == 0) {
           const saveSortResult = JSON.parse(localStorage.getItem(LS_LIST_CHOICE)).sort(function(a, b) {
+            // toggleText(scoreboardButtonLatest, 'Senaste nederst', 'Senaste överst')
             clearScoreboard()  
             return parseFloat(a.count) - parseFloat(b.count);
           })
           const saveNewString = JSON.stringify(saveSortResult)
           
           localStorage.setItem(LS_LIST_CHOICE, saveNewString)
-          // updateStats()
+          updateStats()
           
-          ++toggleCountForChronological
-      } else if (toggleCountForChronological == 1) {
-        --toggleCountForChronological
-        const saveSortResult = JSON.parse(localStorage.getItem(LS_LIST_CHOICE)).sort(function(a, b) {
-            clearScoreboard()  
-              return parseFloat(b.count) - parseFloat(a.count);
-          })
+      //     ++toggleCountForChronological
+      // // } else if (toggleCountForChronological == 1) {
+      //   --toggleCountForChronological
+      //   const saveSortResult = JSON.parse(localStorage.getItem(LS_LIST_CHOICE)).sort(function(a, b) {
+      //     // toggleText(scoreboardButtonLatest, 'Senaste nederst', 'Senaste överst')
+      //       clearScoreboard()  
+      //         return parseFloat(b.count) - parseFloat(a.count);
+      //     })
 
-          const saveNewString = JSON.stringify(saveSortResult)
-          localStorage.setItem(LS_LIST_CHOICE, saveNewString)
-          // }       
-        }
-        updateStats()
+      //     const saveNewString = JSON.stringify(saveSortResult)
+      //     localStorage.setItem(LS_LIST_CHOICE, saveNewString)
+      //     // }       
+        // }
+        // updateStats()
 }
 
 
