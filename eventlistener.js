@@ -163,7 +163,8 @@ playerNameInput.addEventListener('keydown', event => {
     if (event.key == 'Enter') {
         let user = playerNameInput.value
         removeUserStatsFromLocalStorage(user)
-        updateStats()
+        // clearScoreboard()
+        clearScoreboardOfRemovedPlayer()
         overlayScreenToggle()
 }})
 
@@ -171,7 +172,8 @@ playerNameInput.addEventListener('keydown', event => {
 playerNameInputButton.addEventListener('click', () => {
     let user = playerNameInput.value
     removeUserStatsFromLocalStorage(user)
-    updateStats()
+    clearScoreboardOfRemovedPlayer()
+    // testFunction()
     modalPanels.removeSpecificPlayerData.classList.toggle('hidden')
     overlayScreenToggle()
 })

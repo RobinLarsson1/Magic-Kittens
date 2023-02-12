@@ -11,7 +11,7 @@ _______________ATT GÖRA & BUGGFIXAR
 * Felmeddelande vid raderning av spelare om textfält är tomt
 
 _______________PÅGÅENDE
-* Scoreboard kan INTE bli tom när man tar bort en spelare ...
+* Scoreboard -> När endast ett namn, går det ej ta bort längre
 
 
 

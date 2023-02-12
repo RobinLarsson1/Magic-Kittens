@@ -232,20 +232,38 @@ function removeUserStatsFromLocalStorage(user) {
   let objectFromLocalStorage = JSON.parse(stringFromLocalStorage)
   const playerNameInput = document.querySelector('#select-player-data-using-input')
   
-  // Loop som hämtar alla namn innehållande argumentet (dvs strängen/namnet) man tillför till funktionen
-  // och sparar till arrayen 'stringToSave'
-  // console.log(objectFromLocalStorage[2])
-  // console.log('objectFromLocalStorage[0].name1')
-  // console.log(objectFromLocalStorage[0].name1)
+
+ 
   let newArray = []
-  for (let i = 0; i < objectFromLocalStorage.length; i++) {
-      if (objectFromLocalStorage[i].name1 != user) {
-          newArray.push(objectFromLocalStorage[i])          
-          
-          // Den nya filtrerade arrayen 'stringToSave' skickas tillbaka till LS 
-          let stringToSave = JSON.stringify(newArray)
-          localStorage.setItem(LS_LIST_CHOICE, stringToSave)
-      } clearScoreboard()
+  if (objectFromLocalStorage[0].name1 != undefined) {
+    for (let i = 0; i < objectFromLocalStorage.length; i++) {
+        if ( objectFromLocalStorage[i].name1 != user ) {
+            newArray.push(objectFromLocalStorage[i])          
+            clearScoreboardOfRemovedPlayer()
+            // Den nya filtrerade arrayen 'stringToSave' skickas tillbaka till LS 
+            // let stringToSave = JSON.stringify(newArray)
+            // localStorage.setItem(LS_LIST_CHOICE, stringToSave)
+          } 
+          }} 
+          // else if (objectFromLocalStorage[0].name1 == undefined) {
+    // }
+
+    let stringToSave = JSON.stringify(newArray)
+    localStorage.setItem(LS_LIST_CHOICE, stringToSave)
+    // clearScoreboard()
+    renderStats()
+    // clearScoreboard()
+
+}
+
+function clearScoreboardOfRemovedPlayer() {
+  let stringFromLocalStorage = localStorage.getItem(LS_LIST_CHOICE) // Hämtar LS som JSON-sträng
+  let objectFromLocalStorage = JSON.parse(stringFromLocalStorage)
+  let newScoreTableRow = document.querySelector('.score-table-row')
+
+  while (objectFromLocalStorage.length > 0) {
+    newScoreTableRow.remove()
+    --objectFromLocalStorage
   }
 }
 
@@ -256,10 +274,11 @@ function clearScoreboard() {
   if (!stringFromLocalStorage) {stringFromLocalStorage = '[]'}
 
   let objectFromLocalStorage = JSON.parse(stringFromLocalStorage)
-
+  let newScoreTableRow = document.querySelector('.score-table-row')
+  
+  if (newScoreTableRow != null) {
   for (let i = 0; i < objectFromLocalStorage.length; i++) {
-      let newScoreTableRow = document.querySelector('.score-table-row')
-      if (newScoreTableRow != null) {
+
       newScoreTableRow.remove()
       // console.log('INUTI clearScoreboard: Alla rader tas bort')
   }}
