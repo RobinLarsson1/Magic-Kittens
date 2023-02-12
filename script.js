@@ -99,3 +99,7 @@ document.onkeydown = function(event) {
       }
 
 }}}
+
+function gameEnd() {
+  
+}

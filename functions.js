@@ -231,14 +231,27 @@ function ascendingPlayerNumber() {
     return counterFromLocalStorage
 }
 
+
+//För vinstfältet
+function returnWinOrLose() {
+  if (mistakes == maxWrong) {
+    return 'Förlust'
+  } else if (mistakes < maxWrong) {
+    return 'Vinst!'
+  }
+}
+
 function currentResultForWhatGameMode (gameMode) {
+
+
+
   if (gameMode == 'singleplayer') {
       return currentResult = {
           name1: p1name,
           // name2: p2name,
           word: secretWord,
           tries: mistakes,
-          // winlose: result,
+          winlose: returnWinOrLose(),
           count: ascendingPlayerNumber()
       }
   } else if (gameMode == 'pvp') {
@@ -247,7 +260,7 @@ function currentResultForWhatGameMode (gameMode) {
           name2: p2name,
           word: secretWord,
           tries: mistakes,
-          // winlose: result,
+          winlose: returnWinOrLose(),
           count: ascendingPlayerNumber()
       }
   }
@@ -270,6 +283,7 @@ function currentStats() {
 
   return currentArrayFromLocalStorage
 }
+
 
 let chronologicalCount = 0
 let storedChronological
