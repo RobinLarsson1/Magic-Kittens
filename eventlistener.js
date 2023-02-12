@@ -167,17 +167,20 @@ playerNameInput.addEventListener('keydown', event => {
         overlayScreenToggle()
 }})
 
+// Submitknappen för att ta bort speldata
 playerNameInputButton.addEventListener('click', () => {
     let user = playerNameInput.value
     removeUserStatsFromLocalStorage(user)
     updateStats()
+    modalPanels.removeSpecificPlayerData.classList.toggle('hidden')
     overlayScreenToggle()
 })
 
 
-// Ta bort data-knapp för singleplayer
+// Ta bort data-knapp för singleplayer (knappen i headern)
 removePlayerDataButton.addEventListener('click', () => {
     console.log('hello!');
+    overlayScreenToggle()
     modalPanels.removeSpecificPlayerData.classList.toggle('hidden')
     overlay.classList.remove('hidden')
 })
