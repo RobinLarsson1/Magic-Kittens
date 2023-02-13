@@ -157,7 +157,7 @@ listAllWinsButtonPVP.addEventListener('click' , (event) => {
     sortWinsListByAmountTries()
 })
 
-
+// SCOREBOARD -> TA BORT DATA -> INPUTFÄLT
 playerNameInput.addEventListener('keydown', event => {
     event.stopPropagation()
     if (event.key == 'Enter') {
@@ -169,7 +169,7 @@ playerNameInput.addEventListener('keydown', event => {
         overlayScreenToggle()
 }})
 
-// Submitknappen för att ta bort speldata
+// SCOREBOARD -> TA BORT DATA -> "Radera data!"-knapp (för att ta bort speldata)
 playerNameInputButton.addEventListener('click', () => {
     let user = playerNameInput.value
     removeUserStatsFromLocalStorage(user)
@@ -181,30 +181,24 @@ playerNameInputButton.addEventListener('click', () => {
 })
 
 
-// Ta bort data-knapp för singleplayer (knappen i headern, inte den som tar bort)
+// INSIDE GAME: Ta bort data-knapp för singleplayer (knappen i headern, inte den som tar bort)
 removePlayerDataButton.addEventListener('click', () => {
-    console.log('hello!');
     overlayScreenToggle()
     modalPanels.removeSpecificPlayerData.classList.toggle('hidden')
     overlay.classList.remove('hidden')
 })
 
+// SCOREBOARD -> KRYSSKNAPP
 modalCloseButtons.removeSpecificPlayerDataModal.addEventListener('click', () => {
     modalPanels.removeSpecificPlayerData.classList.toggle('hidden')
     overlayScreenToggle()
 })
 
+// SCOREBOARD -> KNAPP FÖR SENASTE (sortera enligt senaste)
 let scoreboardButtonLatest = document.querySelector('#latest-score-button')
 scoreboardButtonLatest.addEventListener('click', (event) => {
     scoreboardSortChronologically()
-    // toggleText('scoreboardButtonLatest', 'Senaste nederst', 'Senaste överst')
 })
-
-let scoreboardPVPButtonLatest = document.querySelector('#latest-score-button-pvp')
-scoreboardPVPButtonLatest.addEventListener('click', (event) => {
-    scoreboardSortChronologically()
-})
-
 
 headerButtonList.showScoreboard.addEventListener('click', (event) => {
     // generateTableHeader(gameMode)
@@ -212,27 +206,33 @@ headerButtonList.showScoreboard.addEventListener('click', (event) => {
 })
 
 
-///////////////// PVP 
+///////////////// PVP ___________________________________________________
+
+// PVP -> GAMEMODE OVERLAY -> PVP-KNAPPEN (för att välja spelläge PVP)
 pvpButton.addEventListener('click', (event) => {
     pvpDiv.style.visibility = 'visible' 
 })
 
-//Stänger ner overlay om vanligt blir klickad
+// PVP -> GAMEMODE OVERLAY -> VANLIGT-knappen (för att välja spelläge singleplayer)
 vanligtButton.addEventListener('click', (event) => {
-    overlayScreenToggle()
+    reloadGame()
 })
 
-//Submitknapp
+// PVP -> GAMEMODE OVERLAY -> 
 pvpStartButton.addEventListener('click', (event) => {
 })
 
-// FUNKTION - PVP - Spelare 1
+// PVP -> GAMEMODE OVERLAY -> INPUTFÄLT FÖR SPELARE 1 (gissare)
 pvpInputfieldPlayer1.addEventListener("keydown", (event) => {
     // Förhindrar input utanför namninputs-modalen
     event.stopPropagation()
 })
 
-
+// PVP -> SCOREBOARD -> "SENASTE"-KNAPP
+let scoreboardPVPButtonLatest = document.querySelector('#latest-score-button-pvp')
+scoreboardPVPButtonLatest.addEventListener('click', (event) => {
+    scoreboardSortChronologically()
+})
 
 // FUNKTION - PVP - Spelare 2
 pvpInputfieldPlayer2.addEventListener("keydown", (event) => {

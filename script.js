@@ -3,7 +3,7 @@
 
 //funktion för att printa bokstäver
 document.onkeydown = function(event) {
-    console.log(gameMode)
+    // console.log(gameMode)
 
     if (scoreboard.classList.contains('hidden') && scoreboardPVP.classList.contains('hidden')) {
     //Tangentbordet
@@ -34,7 +34,7 @@ document.onkeydown = function(event) {
     
     // Förhindrar input utanför namninputs-modalen
     let nameOverlayIsHidden = modalPanels.enterName.className.includes("hidden");
-    console.log(event.key);
+    // console.log(event.key);
   
     function gameStart () {
       function updateIncorrectGuess() {
