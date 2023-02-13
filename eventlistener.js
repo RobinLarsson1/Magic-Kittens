@@ -51,7 +51,7 @@ nameInputButton.addEventListener("click", () => {
   }
 );
 
-
+// SCOREBOARD ->
 closeScoreboardButton.addEventListener('click', () => {
     // Singleplayer
     scoreboard.classList.add('hidden')
