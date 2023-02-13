@@ -188,6 +188,12 @@ removePlayerDataButton.addEventListener('click', () => {
     overlay.classList.remove('hidden')
 })
 
+removePlayerDataButtonPVP.addEventListener('click', () => {
+    overlayScreenToggle()
+    modalPanels.removeSpecificPlayerData.classList.toggle('hidden')
+    overlay.classList.remove('hidden')
+})
+
 // SCOREBOARD -> KRYSSKNAPP
 modalCloseButtons.removeSpecificPlayerDataModal.addEventListener('click', () => {
     modalPanels.removeSpecificPlayerData.classList.toggle('hidden')
