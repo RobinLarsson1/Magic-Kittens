@@ -162,6 +162,7 @@ playerNameInput.addEventListener('keydown', event => {
     event.stopPropagation()
     if (event.key == 'Enter') {
         let user = playerNameInput.value
+        modalPanels.removeSpecificPlayerData.classList.toggle('hidden')
         removeUserStatsFromLocalStorage(user)
         updateStats()
         // clearScoreboard()
