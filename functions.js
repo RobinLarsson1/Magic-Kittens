@@ -232,14 +232,18 @@ function removeUserStatsFromLocalStorage(user) {
 
   let newScoreTableRow = document.querySelector('.score-table-row')
 
-  if (objectFromLocalStorage[0].name1 != undefined) {
-  objectFromLocalStorage.forEach(object => {
-    if (object.name1 != user) {
-     newArray.push(object) 
-     newScoreTableRow.remove()
-    clearScoreboard()
-    }
-  })}
+  try {
+    if (objectFromLocalStorage[0].name1 != undefined) {
+      objectFromLocalStorage.forEach(object => {
+        if (object.name1 != user) {
+         newArray.push(object) 
+         newScoreTableRow.remove()
+        clearScoreboard()
+        }
+      })}
+  } catch {
+    console.log('Spelarnamnet finns ej!');
+  }
 
 
     let stringToSave = JSON.stringify(newArray)
