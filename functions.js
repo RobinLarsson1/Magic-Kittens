@@ -244,7 +244,7 @@ function removeUserStatsFromLocalStorage(user) {
   } catch {
     console.log('Spelarnamnet finns ej!');
   }
-
+    clearScoreboard()
 
     let stringToSave = JSON.stringify(newArray)
     localStorage.setItem(LS_LIST_CHOICE, stringToSave)

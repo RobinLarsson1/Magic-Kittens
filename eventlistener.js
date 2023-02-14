@@ -180,9 +180,11 @@ playerNameInput.addEventListener('keydown', event => {
 // SCOREBOARD -> TA BORT DATA -> "Radera data!"-knapp (för att ta bort speldata)
 playerNameInputButton.addEventListener('click', () => {
     let user = playerNameInput.value
+    clearScoreboard()
     removeUserStatsFromLocalStorage(user)
     // clearScoreboardOfRemovedPlayer()
-    updateStats()
+    // updateStats()
+    renderStats()
     // testFunction()
     modalPanels.removeSpecificPlayerData.classList.toggle('hidden')
     overlayScreenToggle()
