@@ -394,10 +394,13 @@ const sortWinsListByAmountTries = () => {
 }
 function resetForPvp() {
   mistakes = 0;
+  mistakes.innerText = mistakes;
+  document.getElementById('mistakes').innerText = mistakes;
   wrongGuesses = 0;
   guessedLetters = [];
   hangManPicture.innerHTML = '';
   wrongLetters.innerText = '';
+  namePlaceholder.innerText = " " + p1name;
 }
 
 // // INHÄMTNING AV SCOREBOARD I BÖRJAN:

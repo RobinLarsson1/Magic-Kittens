@@ -1,3 +1,5 @@
+document.getElementById('mistakes').innerText = mistakes;
+
 //funktion för att printa bokstäver
 document.onkeydown = function(event) {
     // console.log(gameMode)

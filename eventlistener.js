@@ -227,7 +227,7 @@ headerButtonList.showScoreboardHeader.addEventListener('click', (event) => {
 // PVP -> GAMEMODE OVERLAY -> PVP-KNAPPEN (för att välja spelläge PVP)
 pvpButton.addEventListener('click', (event) => {
     pvpDiv.style.visibility = 'visible'
-    resetForPvp(); 
+     
 })
 
 // PVP -> GAMEMODE OVERLAY -> VANLIGT-knappen (för att välja spelläge singleplayer)
@@ -283,6 +283,7 @@ pvpSecretWordInput.addEventListener("keydown", (event) => {
     // Förhindrar input utanför namninputs-modalen
     event.stopPropagation()
     if ((event.code === "Enter") && (pvpSecretWordInput.value !== '')) {
+        resetForPvp()
         pvpSecretWord = pvpSecretWordInput.value.toString()
         pvpSecretWordInput.innerText = pvpSecretWord
         p2name = pvpInputfieldPlayer2.value
