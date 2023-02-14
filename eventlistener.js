@@ -17,16 +17,20 @@ resetButtonForWinOrLoseModalScreen.forEach(button => {
 
   // Gå till scoreboard efter lose eller win
 goToScoreboardButton.forEach(button => {
+
+
+
     button.addEventListener('click', () => {
       if (!document.querySelector('#win-modal').classList.contains('hidden')) {
         modalPanels.endWin.classList.add('hidden')
         goToScoreboard()
-      }
-      if (!document.querySelector('#lose-modal').classList.contains('hidden')) {
+    }
+    if (!document.querySelector('#lose-modal').classList.contains('hidden')) {
         modalPanels.endLose.classList.add('hidden')
         goToScoreboard()
-      }
-    });
+    }
+    updateStats()
+});
   })
 
   // FUNKTION - Namn-input kopplat till "Redo att spela!"-knapp
@@ -43,6 +47,7 @@ nameInputButton.addEventListener("click", () => {
         let overlay = document.querySelector(".overlay");
         overlay.classList.add("hidden");
         gameMode = 'singleplayer'
+        renderStats()
     } else if (isNameProvided === false) {
         errorMessage('textinput')
     }else if (difficultySelected === false) {
@@ -58,7 +63,8 @@ closeScoreboardButton.addEventListener('click', () => {
     gameboard.classList.remove('hidden')
     bodyElem.style.background = '#bae1ff'
     // clearTableHeader(gameMode)
-    clearScoreboard(gameMode)
+    
+    // clearScoreboard(gameMode) ///////////////////////////////////////////
 })
 
 closeScoreboardButtonPVP.addEventListener('click', () => {
@@ -66,7 +72,8 @@ closeScoreboardButtonPVP.addEventListener('click', () => {
     gameboard.classList.remove('hidden')
     bodyElem.style.background = '#bae1ff'
     // clearTableHeader(gameMode)
-    clearScoreboard(gameMode)
+    
+    // clearScoreboard(gameMode) /////////////////////////////////////////////
 })
 
 showScoreboardButton.addEventListener('click', () => {
@@ -207,9 +214,9 @@ scoreboardButtonLatest.addEventListener('click', (event) => {
     scoreboardSortChronologically()
 })
 
-headerButtonList.showScoreboard.addEventListener('click', (event) => {
+headerButtonList.showScoreboardHeader.addEventListener('click', (event) => {
     // generateTableHeader(gameMode)
-    updateStats()
+    // updateStats()
 })
 
 

@@ -293,6 +293,23 @@ function clearScoreboard() {
   }}
 }
 
+// FUNKTION för att rensa scoreboard__________________________________________________________________________
+function clearScoreboardALL() {
+  saveToWhichLS_LIST(gameMode)
+  
+  let stringFromLocalStorage = localStorage.getItem(LS_LIST_CHOICE) // Hämtar LS som JSON-sträng
+  if (!stringFromLocalStorage) {stringFromLocalStorage = '[]'}
+
+  let currentArrayFromLocalStorage = JSON.parse(stringFromLocalStorage)
+  let newScoreTableRow = document.querySelector('.score-table-row')
+  
+  if (newScoreTableRow != null) {
+  for (let i = 0; i < currentArrayFromLocalStorage.length; i++) {
+      newScoreTableRow.remove()
+  }}
+}
+
+
 // FUNKTION för att rendera det som finns i LS till sidan till tabeller______________________________________
 function renderStats() {
   currentResultForWhatGameMode(gameMode)
@@ -375,3 +392,13 @@ const sortWinsListByAmountTries = () => {
       }       
   }
 }
+
+
+// // INHÄMTNING AV SCOREBOARD I BÖRJAN:
+// let preloadScoreboardString = localStorage.getItem('hangman-score')
+// if (!preloadScoreboardString) { preloadScoreboardString = '[]' }
+
+// let preloadScoreboardObject = JSON.parse(preloadScoreboardString)
+
+
+

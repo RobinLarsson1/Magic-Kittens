@@ -1,6 +1,3 @@
-
-
-
 //funktion för att printa bokstäver
 document.onkeydown = function(event) {
     // console.log(gameMode)
@@ -79,10 +76,10 @@ document.onkeydown = function(event) {
       if (gameIsOver && (gameMode == 'singleplayer')) {
         gameResultModalOverlay(false, answer);
         addStatToCurrentStats(false);
-        renderStats()
+        // renderStats()
       } else if (gameIsOver && (gameMode == 'pvp')) {
         addStatToCurrentStats(false)
-        renderStats()
+        // renderStats()
       }
     
       //Kolla om spelet är vunnet 
@@ -91,14 +88,16 @@ document.onkeydown = function(event) {
         // generateTableHeader('singleplayer')
         gameResultModalOverlay(true, null, mistakes);
         addStatToCurrentStats( true )
-        renderStats()
+        // renderStats()
       } else if (isGameWon && (gameMode == 'pvp')) {
         gameResultModalOverlay(true, null, mistakes)
         addStatToCurrentStats( true )
-        renderStats()
+        // renderStats()
       }
-
-}}}
+      
+    }}}
+    // renderStats()
+    updateStats()
 
 function gameEnd() {
   

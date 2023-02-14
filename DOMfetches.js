@@ -17,7 +17,7 @@ const modalCloseButtons = {
 
 // OVERLAY - WIN OCH LOSE MODALER
     const resetButtonForWinOrLoseModalScreen = document.querySelectorAll('.reset-button')
-    const goToScoreboardButton = document.querySelectorAll('.go-to-scoreboard-button')
+    const goToScoreboardButton = document.querySelectorAll('.go-to-scoreboard-button') // Scoreboardknapp vid vinst
     let correctAnswer = document.querySelector('#correct-answer')
     let triesAmount = document.querySelector('#amount-tries')
 
@@ -85,7 +85,7 @@ const headerButtonList = {
     aboutGame: document.querySelector('#about-game-button'),
     resetGame: document.querySelector('#reset-game-button'),
     changeGameMode: document.querySelector('#change-gamemode-button'),
-    showScoreboard: document.querySelector('#show-scoreboard-button'),
+    showScoreboardHeader: document.querySelector('#show-scoreboard-button'),
     changePlayer: document.querySelector('#change-player-button')
 }
 
@@ -197,8 +197,10 @@ const goToScoreboard = () => {
     gameboard.classList.add('hidden')
     if (gameMode === 'singleplayer') {
         scoreboard.classList.remove('hidden')
+        clearScoreboardALL()
     } else if (gameMode === 'pvp') {
         scoreboardPVP.classList.remove('hidden')
+        clearScoreboardALL()
     }
 }
 
