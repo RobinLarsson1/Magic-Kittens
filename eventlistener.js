@@ -226,7 +226,8 @@ headerButtonList.showScoreboardHeader.addEventListener('click', (event) => {
 
 // PVP -> GAMEMODE OVERLAY -> PVP-KNAPPEN (för att välja spelläge PVP)
 pvpButton.addEventListener('click', (event) => {
-    pvpDiv.style.visibility = 'visible' 
+    pvpDiv.style.visibility = 'visible'
+    resetForPvp(); 
 })
 
 // PVP -> GAMEMODE OVERLAY -> VANLIGT-knappen (för att välja spelläge singleplayer)
