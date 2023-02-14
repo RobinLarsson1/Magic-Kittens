@@ -392,7 +392,13 @@ const sortWinsListByAmountTries = () => {
       }       
   }
 }
-
+function resetForPvp() {
+  mistakes = 0;
+  wrongGuesses = 0;
+  guessedLetters = [];
+  hangManPicture.innerHTML = '';
+  wrongLetters.innerText = '';
+}
 
 // // INHÄMTNING AV SCOREBOARD I BÖRJAN:
 // let preloadScoreboardString = localStorage.getItem('hangman-score')

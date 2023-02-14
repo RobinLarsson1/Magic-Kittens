@@ -288,5 +288,7 @@ pvpSecretWordInput.addEventListener("keydown", (event) => {
         overlayScreenToggle()
 		gameModeModal.classList.add('hidden')
         clearScoreboard()
+        
+        
     }
 })
